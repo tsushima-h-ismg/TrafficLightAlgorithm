@@ -18,7 +18,7 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 歩行者用信号機に割り振る番号
         /// </summary>
-        public readonly int TrafficNum;
+        public readonly int PedesNum;
 
         /// <summary>
         /// 歩行者用信号機の緑ランプ点滅間隔
@@ -82,12 +82,12 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private BlinkMem BlinkState;
 
-        public PedesTraffic(int carGreenSec, int redOnSec, int num, string colorName, DateTime startTime)
+        public PedesTraffic(int num, int carGreenSec, int redOnSec, string colorName, DateTime startTime)
         {
+            PedesNum    = num;
             BlinkTime     = DateTime.Today;
             GreenBlinkSec = carGreenSec;
             RedSec        = redOnSec;
-            TrafficNum    = num;
             UpdateStateChangeTime(startTime);
 
             if (colorName == "Green")
@@ -104,7 +104,7 @@ namespace TrafficLightAlgorithm
         /// 点灯状態の変更を行うか判定を行う
         /// </summary>
         /// <returns> 点灯状態の変更を行う場合はtrue、それ以外の場合はfalse </returns>
-        public bool Judge_PedesLightOn()
+        public bool JudgePedesLightOn()
         {
             if (LightOn == LightOnState.Green)
             {
@@ -138,13 +138,13 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 点灯状態を更新する
         /// </summary>
-        public void Update_LightOnState()
+        public void UpdateLightOnState()
         {
             LightOnState nowState = LightOn;
 
             if (LightOn == LightOnState.Green)
             {
-                LightOn    = LightOnState.Blink;
+                LightOn    = LightOnState.Blink;  // 緑点灯から点滅
                 BlinkState = BlinkMem.Green;
                 BlinkTime  = DateTime.Now.AddMilliseconds(-DateTime.Now.Millisecond + PedesBlinkMSec);
             }
@@ -152,7 +152,8 @@ namespace TrafficLightAlgorithm
             {
                 if (DateTime.Now >= StateChangeTime.AddSeconds(GreenBlinkSec - 2).AddMilliseconds(-StateChangeTime.Millisecond))
                 {
-                    LightOn = LightOnState.Red;
+                 
+                    LightOn = LightOnState.Red;   // 点滅から赤点灯
                 }
                 else if (DateTime.Now >= BlinkTime)
                 {
@@ -171,7 +172,7 @@ namespace TrafficLightAlgorithm
             }
             else if (LightOn == LightOnState.Red)
             {
-                LightOn = LightOnState.Green;
+                LightOn = LightOnState.Green;  // 赤点灯から緑点灯
             }
 
             // 点灯状態が変更した場合、点灯状態変更時刻を更新する
