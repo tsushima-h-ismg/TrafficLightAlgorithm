@@ -36,6 +36,8 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private DateTime InterruptTime;
 
+        private DateTime GreenLightOnTime;
+
         /// <summary>
         /// フォーム画面の「開始」ボタンクリックでtrue、「終了」ボタンクリックもしくはフォームロード時でfalse
         /// </summary>
@@ -87,13 +89,13 @@ namespace TrafficLightAlgorithm
         private PedesTraffic WestPedesLight;
 
         /// <summary>
-        /// 歩行者用信号機の緑ランプ点滅間隔
+        /// 交差点内の車用信号機のクラスが入る配列
         /// </summary>
-        private const int PedesBlinkMSec = 500;
+        private CarTraffic[] carTrafficArr;
 
-
-        private CarTraffic[] carTrafficArr = new CarTraffic[4];
-
+        /// <summary>
+        /// 交差点内の歩行者用信号機のクラスが入る配列
+        /// </summary>
         private PedesTraffic[] pedesTrafficArr;
 
         /// <summary>
@@ -132,8 +134,6 @@ namespace TrafficLightAlgorithm
                 { lbl_EastPedesGreenOne,  lbl_EastPedesGreenTwo,  lbl_EastPedesRedOne,  lbl_EastPedesRedTwo },
                 { lbl_WestPedesGreenOne,  lbl_WestPedesGreenTwo,  lbl_WestPedesRedOne,  lbl_WestPedesRedTwo }
             };
-
-            pedesTrafficArr = new PedesTraffic[] { NorthPedesLight, SouthPedesLight, EastPedesLight, WestPedesLight };
         }
 
         /// <summary>
@@ -166,6 +166,8 @@ namespace TrafficLightAlgorithm
             {
                 Thread.Sleep(10);
             }
+
+            GreenLightOnTime = DateTime.Now.AddMilliseconds(-DateTime.Now.Millisecond);
 
             Change_InterruptResumeBtnTxt(IsInterrupt);  // 「中断/再開」ボタンのTextプロパティ値変更
             Change_TxtEnable(false);                    // テキストボックスのEnabledプロパティ値変更
@@ -201,6 +203,7 @@ namespace TrafficLightAlgorithm
             if (IsInterrupt)
             {
                 InterruptTime = DateTime.Now;  // 中断時の時刻を取得する
+                Console.WriteLine(InterruptTime);
                 Timer_Traffic.Stop();
             }
             else
@@ -229,8 +232,8 @@ namespace TrafficLightAlgorithm
 
             for (int i = 0; i < carTrafficArr.Length; i++)
             {
-                carTrafficArr[i].UpdateStateNoLight();                       // 車用信号機の点灯状態を無灯火に設定する
-                Change_TrafficLightOnState(carTrafficArr[i], DateTime.Now);  // 車用信号機をイメージしたラベルの背景色を変更する
+                carTrafficArr[i].UpdateStateNoLight();         // 車用信号機の点灯状態を無灯火に設定する
+                Change_TrafficLightOnState(carTrafficArr[i]);  // 車用信号機をイメージしたラベルの背景色を変更する
             }
 
             for (int j = 0; j < pedesTrafficArr.Length; j++)
@@ -265,14 +268,14 @@ namespace TrafficLightAlgorithm
             // 設定値のチェックを満たす最大値と最小値からなる配列
             int[,] secArray = 
             { 
-                { BlueLightOnSecMax, BlueLightOnSecMax, BlueLightOnSecMax, BlueLightOnSecMax, PrepareSecMax}, 
-                { BlueLightOnSecMin, BlueLightOnSecMin, BlueLightOnSecMin, BlueLightOnSecMin, PrepareSecMin}
+                { BlueLightOnSecMin, BlueLightOnSecMin, BlueLightOnSecMin, BlueLightOnSecMin, PrepareSecMin},
+                { BlueLightOnSecMax, BlueLightOnSecMax, BlueLightOnSecMax, BlueLightOnSecMax, PrepareSecMax} 
             };
 
             // テキストボックスに入力された設定値のチェック
             for (int i = 0; i < tlp_InputSecField.RowCount - 1; i++)
             {
-                if (!Check_SecText(tlp_InputSecField.GetControlFromPosition(1, i + 1).Text, secArray[0, i], secArray[1, i]))
+                if (!Check_SecText(tlp_InputSecField.GetControlFromPosition(1, i + 1).Text, secArray[1, i], secArray[0, i]))
                 {
                     errStr += $"「{tlp_InputSecField.GetControlFromPosition(0, i + 1).Text}」には{secArray[0, i]}から{secArray[1, i]}の整数を入力してください。\n";
                 }
@@ -335,34 +338,27 @@ namespace TrafficLightAlgorithm
             int.TryParse(txt_WLightOnSec.Text, out int w_GreSec);  // 西車用信号機の緑色灯火時間を取得
             int.TryParse(txt_PrepareSec.Text,  out int preSec);    // 進行方向切り替え準備時間を取得
 
-            int northRedLightOn = Math.Max(w_GreSec, e_GreSec) + YellowSec + 2 * preSec + Math.Max(n_GreSec, s_GreSec) - n_GreSec;  // 北車用信号機の赤色点灯時間を算出
-            int southRedLightOn = Math.Max(w_GreSec, e_GreSec) + YellowSec + 2 * preSec + Math.Max(n_GreSec, s_GreSec) - s_GreSec;  // 南車用信号機の赤色点灯時間を算出
-            int eastRedLightOn  = Math.Max(n_GreSec, s_GreSec) + YellowSec + 2 * preSec + Math.Max(w_GreSec, e_GreSec) - e_GreSec;  // 東車用信号機の赤色点灯時間を算出
-            int westRedLightOn  = Math.Max(n_GreSec, s_GreSec) + YellowSec + 2 * preSec + Math.Max(w_GreSec, e_GreSec) - w_GreSec;  // 西車用信号機の赤色点灯時間を算出
+            int n_RedSec = Math.Max(w_GreSec, e_GreSec) + YellowSec + 2 * preSec + Math.Max(0, s_GreSec - n_GreSec);  // 北車用信号機の赤色点灯時間を算出
+            int s_RedSec = Math.Max(w_GreSec, e_GreSec) + YellowSec + 2 * preSec + Math.Max(0, n_GreSec - s_GreSec);  // 南車用信号機の赤色点灯時間を算出
+            int e_RedSec = Math.Max(n_GreSec, s_GreSec) + YellowSec + 2 * preSec + Math.Max(0, w_GreSec - e_GreSec);  // 東車用信号機の赤色点灯時間を算出
+            int w_RedSec = Math.Max(n_GreSec, s_GreSec) + YellowSec + 2 * preSec + Math.Max(0, e_GreSec - w_GreSec);  // 西車用信号機の赤色点灯時間を算出
 
-            int eastMinusSec = -preSec;
-            int westMinusSec = -preSec;
-            if (e_GreSec < w_GreSec) eastMinusSec = -preSec - Math.Abs(w_GreSec - e_GreSec);  // 東車用信号機で点灯処理をずらす秒数
-            if (e_GreSec > w_GreSec) westMinusSec = -preSec - Math.Abs(e_GreSec - w_GreSec);  // 西車用信号機で点灯処理をずらす秒数
+            int eastMinusSec = -preSec + Math.Min(e_GreSec - w_GreSec, 0);  // 東車用信号機で点灯処理をずらす秒数
+            int westMinusSec = -preSec + Math.Min(w_GreSec - e_GreSec, 0);  // 西車用信号機で点灯処理をずらす秒数
 
             // 車用信号機クラスのインスタンス生成
-            NorthLight = new CarTraffic(n_GreSec, YellowSec, northRedLightOn, 0);
-            SouthLight = new CarTraffic(s_GreSec, YellowSec, southRedLightOn, 1);
-            EastLight  = new CarTraffic(e_GreSec, YellowSec, eastRedLightOn,  2);
-            WestLight  = new CarTraffic(w_GreSec, YellowSec, westRedLightOn,  3);
+            NorthLight = new CarTraffic(n_GreSec, YellowSec, n_RedSec, 0, "Green", DateTime.Now);
+            SouthLight = new CarTraffic(s_GreSec, YellowSec, s_RedSec, 1, "Green", DateTime.Now);
+            EastLight  = new CarTraffic(e_GreSec, YellowSec, e_RedSec, 2, "Red", DateTime.Now.AddSeconds(eastMinusSec));
+            WestLight  = new CarTraffic(w_GreSec, YellowSec, w_RedSec, 3, "Red", DateTime.Now.AddSeconds(westMinusSec));
 
             carTrafficArr = new CarTraffic[]{ NorthLight, SouthLight, EastLight, WestLight };
 
             // 車用信号機を初期の点灯状態に設定する
-            NorthLight.UpdateStateGreen();
-            SouthLight.UpdateStateGreen();
-            EastLight.UpdateStateRed();
-            WestLight.UpdateStateRed();
-
-            Change_TrafficLightOnState(NorthLight, DateTime.Now);
-            Change_TrafficLightOnState(SouthLight, DateTime.Now);
-            Change_TrafficLightOnState(EastLight, DateTime.Now.AddSeconds(eastMinusSec));
-            Change_TrafficLightOnState(WestLight, DateTime.Now.AddSeconds(westMinusSec));
+            Change_TrafficLightOnState(NorthLight);
+            Change_TrafficLightOnState(SouthLight);
+            Change_TrafficLightOnState(EastLight);
+            Change_TrafficLightOnState(WestLight);
         }
 
         /// <summary>
@@ -372,7 +368,7 @@ namespace TrafficLightAlgorithm
         {
             for (int i = 0; i < carTrafficArr.Length; i++)
             {
-                carTrafficArr[i].Update_StateChangeTime(InterruptTime);
+                carTrafficArr[i].UpdateStateChangeResumeTime(InterruptTime);  // 車用信号機の点灯状態変更時刻を更新する
             }
         }
 
@@ -381,13 +377,24 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private void Initialize_PedesLight()
         {
-            // 歩行者用信号機のインスタンス生成
-            NorthPedesLight = new PedesTraffic(0);
-            SouthPedesLight = new PedesTraffic(1);
-            EastPedesLight  = new PedesTraffic(2);
-            WestPedesLight  = new PedesTraffic(3);
+            int.TryParse(txt_PrepareSec.Text, out int preSec);
+            int ew_CarGreenSec = Math.Min(WestLight.GreenLightOnSec,  EastLight.GreenLightOnSec);   // 東と西の車用信号機が同時に緑色に点灯する時間
+            int ns_CarGreenSec = Math.Min(NorthLight.GreenLightOnSec, SouthLight.GreenLightOnSec);  // 北と南の車用信号機が同時に緑色に点灯する時間
 
-            // 歩行者用信号機を初期の点灯状態に設定する。
+            int ns_CarRedSec = Math.Max(NorthLight.RedLightOnSec, SouthLight.RedLightOnSec);  // 北と南の車用信号機で赤色点灯時間が長い方の時間
+            int ew_CarRedSec = Math.Max(EastLight.RedLightOnSec, WestLight.RedLightOnSec);    // 東と西の車用信号機で赤色点灯時間が長い方の時間 
+
+            int minusSec = Math.Abs(EastLight.GreenLightOnSec - WestLight.GreenLightOnSec);
+
+            // 歩行者用信号機のインスタンス生成
+            NorthPedesLight = new PedesTraffic(ew_CarGreenSec, ew_CarRedSec + YellowSec + 1, 0, "Red",   DateTime.Now.AddSeconds(-preSec - YellowSec - 1 - minusSec));
+            SouthPedesLight = new PedesTraffic(ew_CarGreenSec, ew_CarRedSec + YellowSec + 1, 1, "Red",   DateTime.Now.AddSeconds(-preSec - YellowSec - 1 - minusSec));
+            EastPedesLight  = new PedesTraffic(ns_CarGreenSec, ns_CarRedSec + YellowSec + 1, 2, "Green", DateTime.Now);
+            WestPedesLight  = new PedesTraffic(ns_CarGreenSec, ns_CarRedSec + YellowSec + 1, 3, "Green", DateTime.Now);
+
+            pedesTrafficArr = new PedesTraffic[]{ NorthPedesLight, SouthPedesLight, EastPedesLight, WestPedesLight };
+
+            // 歩行者用信号機を初期の点灯状態に設定する
             Change_PedesLightOnState(NorthPedesLight);
             Change_PedesLightOnState(SouthPedesLight);
             Change_PedesLightOnState(EastPedesLight);
@@ -404,116 +411,43 @@ namespace TrafficLightAlgorithm
                 // 車用信号機の点灯状態を切り替えるか判定
                 if (carTrafficArr[i].Judge_TrafficLightOn(DateTime.Now))
                 {
-                    carTrafficArr[i].Update_LightOnState();                      // 車用信号機の点灯状態を更新する
-                    Change_TrafficLightOnState(carTrafficArr[i], DateTime.Now);  // 車用信号機をイメージしたラベルの背景色を変更する
+                    carTrafficArr[i].Update_LightOnState();        // 車用信号機の点灯状態を更新する
+                    Change_TrafficLightOnState(carTrafficArr[i]);  // 車用信号機をイメージしたラベルの背景色を変更する
                 }
             }
 
-            Judge_PedesLightOn(NorthPedesLight, SouthPedesLight);  // 北方向と南方向の歩行者用信号機の点灯状態を切り替えるか判定
-            Judge_PedesLightOn(EastPedesLight,  WestPedesLight);   // 東方向と西方向の歩行者用信号機の点灯状態を切り替えるか判定
+            for (int i = 0; i < pedesTrafficArr.Length; i++)
+            {
+                // 歩行者用信号機の点灯状態を切り替えるか判定
+                if (pedesTrafficArr[i].Judge_PedesLightOn())
+                {
+                    pedesTrafficArr[i].Update_LightOnState();      // 歩行者用信号機の点灯状態を更新する
+                    Change_PedesLightOnState(pedesTrafficArr[i]);  // 歩行者用信号機をイメージしたラベルの背景色を変更する
+                }
+            }
         }
 
         /// <summary>
         /// 車用信号機の点灯色を変更する
         /// </summary>
         /// <param name="carTraffic"> 車用信号機を表すクラス           </param>
-        private void Change_TrafficLightOnState(CarTraffic carTraffic, DateTime dateTime)
+        private void Change_TrafficLightOnState(CarTraffic carTraffic)
         {
             CarLabelArr[carTraffic.CarTrafficNum, 0].BackColor = carTraffic.LightOnColor()[0];  // 車用信号機の緑ランプを表すラベルの背景色を変更する
             CarLabelArr[carTraffic.CarTrafficNum, 1].BackColor = carTraffic.LightOnColor()[1];  // 車用信号機の黄ランプを表すラベルの背景色を変更する 
             CarLabelArr[carTraffic.CarTrafficNum, 2].BackColor = carTraffic.LightOnColor()[2];  // 車用信号機の赤ランプを表すラベルの背景色を変更する 
-            carTraffic.SetStateTime(dateTime.AddMilliseconds(-dateTime.Millisecond));           // ラベル背景色を変更した時刻を取得する
-        }
-
-        /// <summary>
-        /// 歩行者用信号機の点灯状態を切り替えるか判定する
-        /// </summary>
-        /// <param name="pedesTraffic1"> 歩行者用信号機を表すクラス1 </param>
-        /// <param name="pedesTraffic2"> 歩行者用信号機を表すクラス2 </param>
-        private void Judge_PedesLightOn(PedesTraffic pedesTraffic1, PedesTraffic pedesTraffic2)
-        {
-            int        greenSec;          // 車用信号機の緑色点灯時間を取得する
-            DateTime   carTrafficChange;  // 車用信号機の点灯状態更新時刻を取得する
-            CarTraffic carTra1 = null;    // 車用信号機クラス1
-            CarTraffic carTra2 = null;    // 車用信号機クラス2
-
-            if (pedesTraffic1 == NorthPedesLight)
-            {
-                carTra1 = EastLight;  // 東方向の車用信号機
-                carTra2 = WestLight;  // 西方向の車用信号機
-            }
-            else if (pedesTraffic1 == EastPedesLight)
-            {
-                carTra1 = NorthLight;  // 北方向の車用信号機
-                carTra2 = SouthLight;  // 南方向の車用信号機
-            }
-
-            greenSec = Math.Min(carTra1.GreenLightOnSec, carTra2.GreenLightOnSec);  // 2つの車用信号機の緑色点灯時間を比較し、短い方の秒数を取得する
-            
-            carTrafficChange = carTra1.GetStateTime();  // 車用信号機の点灯状態更新時刻を取得する
-
-            if (pedesTraffic1.LightState == "Green")
-            {
-                // 緑信号の点灯時間が残り(3秒 - PedesBlinkミリ秒)になった場合に点滅を開始する
-                if (DateTime.Now >= carTrafficChange.AddSeconds(greenSec - 3).AddMilliseconds(-PedesBlinkMSec))
-                {
-                    Change_PedesLightOnState(pedesTraffic1);
-                    Change_PedesLightOnState(pedesTraffic2);
-                    pedesTraffic1.BlinkTime = DateTime.Now;
-                    pedesTraffic2.BlinkTime = DateTime.Now;
-                }
-            }
-            else if (pedesTraffic1.LightState == "Red")
-            {
-                // 車用信号機carTra1とcarTra2の点灯状態が緑で、車用信号機の緑色点灯時間が残り1秒より長い場合に歩行者用信号機を緑に点灯する
-                //if (carTra1.LightState == "Green" && carTra2.LightState == "Green" && (DateTime.Now < carTrafficChange.AddSeconds(greenSec - 1)))
-                //{
-                //    Change_PedesLightOnState(pedesTraffic1);
-                //    Change_PedesLightOnState(pedesTraffic2);
-                //}
-            }
-            else if (pedesTraffic1.LightState == "Blink_Green" || pedesTraffic1.LightState == "Blink_White")
-            {
-                if (DateTime.Now >= carTrafficChange.AddSeconds(greenSec - 1))
-                {
-                    // 車用信号機の緑色点灯時間が残り1秒になった場合に歩行者用信号機の点灯状態を赤に設定する
-                    Change_PedesLightOnState(pedesTraffic1);
-                    Change_PedesLightOnState(pedesTraffic2);
-                }
-                else if (DateTime.Now > pedesTraffic1.BlinkTime.AddMilliseconds(PedesBlinkMSec))
-                {
-                    // 歩行者用信号機緑ランプの点滅状態を切り替える
-                    if (pedesTraffic1.LightState == "Blink_Green")
-                    { 
-                        pedesTraffic1.LightState = "Blink_White";
-                        pedesTraffic1.BlinkTime  = DateTime.Now.AddMilliseconds(-DateTime.Now.Millisecond + PedesBlinkMSec);
-                    }
-                    else if (pedesTraffic1.LightState == "Blink_White")
-                    {
-                        pedesTraffic1.LightState = "Blink_Green";
-                        pedesTraffic1.BlinkTime  = DateTime.Now.AddMilliseconds(-DateTime.Now.Millisecond);
-                    }
-
-                    // PedesBlinkMSecミリ秒の間隔で歩行者用信号機の緑ランプを点滅する
-                    Change_PedesLightOnState(pedesTraffic1);
-                    Change_PedesLightOnState(pedesTraffic2);
-                }
-            }
         }
 
         /// <summary>
         /// 歩行者用信号機の点灯状態を切り替える
         /// </summary>
-        /// <param name="pedesTraffic"> 歩行者用信号機を表すクラス           </param>
+        /// <param name="pedesTraffic"> 歩行者用信号機を表すクラス </param>
         private void Change_PedesLightOnState(PedesTraffic pedesTraffic)
         {
-            //pedesTraffic.Update_LightOnState();  // 歩行者用信号機の点灯状態を更新する
-
-            //PedesLabelArr[pedesTraffic.TrafficNum, 0].BackColor = pedesTraffic.LightOnColor()[0];  // 歩行者用信号機の１つ目の緑ランプを表すラベルの背景色を変更する
-            //PedesLabelArr[pedesTraffic.TrafficNum, 1].BackColor = pedesTraffic.LightOnColor()[1];  // 歩行者用信号機の２つ目の緑ランプを表すラベルの背景色を変更する 
-            //PedesLabelArr[pedesTraffic.TrafficNum, 2].BackColor = pedesTraffic.LightOnColor()[2];  // 歩行者用信号機の１つ目の赤ランプを表すラベルの背景色を変更する 
-            //PedesLabelArr[pedesTraffic.TrafficNum, 3].BackColor = pedesTraffic.LightOnColor()[3];  // 歩行者用信号機の２つ目の赤ランプを表すラベルの背景色を変更する
-            //pedesTraffic.SetStateTime(DateTime.Now.AddMilliseconds(-DateTime.Now.Millisecond));    // 点灯状態が更新された時刻を取得する
+            PedesLabelArr[pedesTraffic.TrafficNum, 0].BackColor = pedesTraffic.LightOnColor()[0];  // 歩行者用信号機の１つ目の緑ランプを表すラベルの背景色を変更する
+            PedesLabelArr[pedesTraffic.TrafficNum, 1].BackColor = pedesTraffic.LightOnColor()[1];  // 歩行者用信号機の２つ目の緑ランプを表すラベルの背景色を変更する 
+            PedesLabelArr[pedesTraffic.TrafficNum, 2].BackColor = pedesTraffic.LightOnColor()[2];  // 歩行者用信号機の１つ目の赤ランプを表すラベルの背景色を変更する 
+            PedesLabelArr[pedesTraffic.TrafficNum, 3].BackColor = pedesTraffic.LightOnColor()[3];  // 歩行者用信号機の２つ目の赤ランプを表すラベルの背景色を変更する
         }
     }
 }
