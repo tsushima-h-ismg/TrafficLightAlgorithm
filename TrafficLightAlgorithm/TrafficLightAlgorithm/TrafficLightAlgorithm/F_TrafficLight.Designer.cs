@@ -173,7 +173,7 @@
             this.lbl_NLightOnSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NLightOnSec.Name = "lbl_NLightOnSec";
             this.lbl_NLightOnSec.Size = new System.Drawing.Size(232, 40);
-            this.lbl_NLightOnSec.TabIndex = 6;
+            this.lbl_NLightOnSec.TabIndex = 2;
             this.lbl_NLightOnSec.Text = "北信号機の青色灯火時間";
             this.lbl_NLightOnSec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -186,7 +186,7 @@
             this.lbl_SLightOnSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SLightOnSec.Name = "lbl_SLightOnSec";
             this.lbl_SLightOnSec.Size = new System.Drawing.Size(232, 40);
-            this.lbl_SLightOnSec.TabIndex = 7;
+            this.lbl_SLightOnSec.TabIndex = 3;
             this.lbl_SLightOnSec.Text = "南信号機の青色灯火時間";
             this.lbl_SLightOnSec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -199,7 +199,7 @@
             this.lbl_ELightOnSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_ELightOnSec.Name = "lbl_ELightOnSec";
             this.lbl_ELightOnSec.Size = new System.Drawing.Size(232, 40);
-            this.lbl_ELightOnSec.TabIndex = 8;
+            this.lbl_ELightOnSec.TabIndex = 4;
             this.lbl_ELightOnSec.Text = "東信号機の青色灯火時間";
             this.lbl_ELightOnSec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -212,7 +212,7 @@
             this.lbl_WLightOnSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WLightOnSec.Name = "lbl_WLightOnSec";
             this.lbl_WLightOnSec.Size = new System.Drawing.Size(232, 40);
-            this.lbl_WLightOnSec.TabIndex = 9;
+            this.lbl_WLightOnSec.TabIndex = 5;
             this.lbl_WLightOnSec.Text = "西信号機の青色灯火時間";
             this.lbl_WLightOnSec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -225,7 +225,7 @@
             this.lbl_ArrowSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_ArrowSec.Name = "lbl_ArrowSec";
             this.lbl_ArrowSec.Size = new System.Drawing.Size(232, 40);
-            this.lbl_ArrowSec.TabIndex = 10;
+            this.lbl_ArrowSec.TabIndex = 6;
             this.lbl_ArrowSec.Text = "矢印信号機の青色灯火時間";
             this.lbl_ArrowSec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -249,7 +249,7 @@
             this.tlp_InputSecField.Controls.Add(this.lbl_SLightOnSec, 0, 2);
             this.tlp_InputSecField.Controls.Add(this.lbl_ELightOnSec, 0, 3);
             this.tlp_InputSecField.Controls.Add(this.lbl_WLightOnSec, 0, 4);
-            this.tlp_InputSecField.Location = new System.Drawing.Point(570, 140);
+            this.tlp_InputSecField.Location = new System.Drawing.Point(570, 162);
             this.tlp_InputSecField.Margin = new System.Windows.Forms.Padding(0);
             this.tlp_InputSecField.Name = "tlp_InputSecField";
             this.tlp_InputSecField.RowCount = 7;
@@ -272,7 +272,7 @@
             this.txt_Prepare.MaxLength = 1;
             this.txt_Prepare.Name = "txt_Prepare";
             this.txt_Prepare.Size = new System.Drawing.Size(105, 20);
-            this.txt_Prepare.TabIndex = 11;
+            this.txt_Prepare.TabIndex = 14;
             this.txt_Prepare.Text = "1";
             this.txt_Prepare.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -284,7 +284,7 @@
             this.lbl_PrepareSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PrepareSec.Name = "lbl_PrepareSec";
             this.lbl_PrepareSec.Size = new System.Drawing.Size(232, 40);
-            this.lbl_PrepareSec.TabIndex = 11;
+            this.lbl_PrepareSec.TabIndex = 7;
             this.lbl_PrepareSec.Text = "進行方向切り替え準備時間";
             this.lbl_PrepareSec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -297,7 +297,7 @@
             this.txt_ArrowSec.MaxLength = 1;
             this.txt_ArrowSec.Name = "txt_ArrowSec";
             this.txt_ArrowSec.Size = new System.Drawing.Size(105, 20);
-            this.txt_ArrowSec.TabIndex = 7;
+            this.txt_ArrowSec.TabIndex = 13;
             this.txt_ArrowSec.Text = "1";
             this.txt_ArrowSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -310,7 +310,7 @@
             this.txt_WLightOnSec.MaxLength = 2;
             this.txt_WLightOnSec.Name = "txt_WLightOnSec";
             this.txt_WLightOnSec.Size = new System.Drawing.Size(105, 20);
-            this.txt_WLightOnSec.TabIndex = 6;
+            this.txt_WLightOnSec.TabIndex = 12;
             this.txt_WLightOnSec.Text = "5";
             this.txt_WLightOnSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -323,7 +323,7 @@
             this.txt_ELightOnSec.MaxLength = 2;
             this.txt_ELightOnSec.Name = "txt_ELightOnSec";
             this.txt_ELightOnSec.Size = new System.Drawing.Size(105, 20);
-            this.txt_ELightOnSec.TabIndex = 5;
+            this.txt_ELightOnSec.TabIndex = 11;
             this.txt_ELightOnSec.Text = "5";
             this.txt_ELightOnSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -336,7 +336,7 @@
             this.txt_SLightOnSec.MaxLength = 2;
             this.txt_SLightOnSec.Name = "txt_SLightOnSec";
             this.txt_SLightOnSec.Size = new System.Drawing.Size(105, 20);
-            this.txt_SLightOnSec.TabIndex = 4;
+            this.txt_SLightOnSec.TabIndex = 10;
             this.txt_SLightOnSec.Text = "5";
             this.txt_SLightOnSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -349,7 +349,7 @@
             this.txt_NLightOnSec.MaxLength = 2;
             this.txt_NLightOnSec.Name = "txt_NLightOnSec";
             this.txt_NLightOnSec.Size = new System.Drawing.Size(105, 20);
-            this.txt_NLightOnSec.TabIndex = 3;
+            this.txt_NLightOnSec.TabIndex = 9;
             this.txt_NLightOnSec.Text = "5";
             this.txt_NLightOnSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -362,7 +362,7 @@
             this.lbl_SecHead.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SecHead.Name = "lbl_SecHead";
             this.lbl_SecHead.Size = new System.Drawing.Size(125, 40);
-            this.lbl_SecHead.TabIndex = 12;
+            this.lbl_SecHead.TabIndex = 8;
             this.lbl_SecHead.Text = "時間（秒）";
             this.lbl_SecHead.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -375,7 +375,7 @@
             this.lbl_NameHead.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NameHead.Name = "lbl_NameHead";
             this.lbl_NameHead.Size = new System.Drawing.Size(232, 40);
-            this.lbl_NameHead.TabIndex = 5;
+            this.lbl_NameHead.TabIndex = 1;
             this.lbl_NameHead.Text = "名称";
             this.lbl_NameHead.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 

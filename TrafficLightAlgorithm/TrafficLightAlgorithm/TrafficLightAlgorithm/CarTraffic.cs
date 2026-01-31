@@ -8,22 +8,32 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 信号機の緑色灯火時間
         /// </summary>
-        public readonly int GreenLightOnSec;
+        private readonly int GreenLightOnSec;
 
         /// <summary>
-        /// 信号機の黄色灯火時間
+        /// 矢印信号機が点灯する前の黄色灯火時間
         /// </summary>
-        public readonly int YellowLightOnSec;
+        private readonly int YellowOneLightOnSec;
 
         /// <summary>
-        /// 信号機の赤色灯火時間
+        /// 矢印信号機が点灯した後の黄色灯火時間
         /// </summary>
-        public readonly int RedLightOnSec;
+        private readonly int YellowTwoLightOnSec;
+
+        /// <summary>
+        /// 矢印信号機が点灯する前の赤色灯火時間
+        /// </summary>
+        private readonly int RedOneLightOnSec;
+
+        /// <summary>
+        /// 矢印信号機が点灯する前の赤色灯火時間
+        /// </summary>
+        private readonly int RedTwoLightOnSec;
 
         /// <summary>
         /// 矢印信号機の灯火時間
         /// </summary>
-        public readonly int ArrowLightOnSec;
+        private readonly int ArrowLightOnSec;
 
         /// <summary>
         /// 車用信号機に割り振る番号
@@ -56,7 +66,7 @@ namespace TrafficLightAlgorithm
         private readonly Color TrafficNoLight = Color.White;
         
         /// <summary>
-        /// 矢印信号機の緑点灯色
+        /// 矢印信号機の緑を表す色
         /// </summary>
         private readonly Color ArrowGreen = Color.Green;
 
@@ -83,25 +93,45 @@ namespace TrafficLightAlgorithm
         /// 信号機の点灯状態
         /// </summary>
         private LightOnState LightOn;
-        
-        public CarTraffic(int greenSec, int yellowSec, int redSec, int arrowSec, int num, string colorName, DateTime startTime) 
-        {
-            GreenLightOnSec  = greenSec;
-            YellowLightOnSec = yellowSec;
-            RedLightOnSec    = redSec;
-            CarTrafficNum    = num;
-            ArrowLightOnSec  = arrowSec;
-            UpdateStateChangeTime(startTime);
 
-            if (colorName == "Green") LightOn = LightOnState.Green;
-            if (colorName == "Red")   LightOn = LightOnState.Red_Two;
+        public CarTraffic(int[] setArray, string colorName)
+        {
+            CarTrafficNum       = setArray[0];
+            GreenLightOnSec     = setArray[1];
+            YellowOneLightOnSec = setArray[2];
+            YellowTwoLightOnSec = setArray[2];
+            RedOneLightOnSec    = setArray[3];
+            RedTwoLightOnSec    = setArray[4];
+            ArrowLightOnSec     = setArray[5];
+
+            if (ArrowLightOnSec == 0) YellowTwoLightOnSec = 0;
+
+            if (colorName == "Green")
+            {
+                LightOn = LightOnState.Green;
+                UpdateStateChangeTime(DateTime.Now);
+            }
+            else if (colorName == "Red")
+            {
+                LightOn = LightOnState.Red_Two;
+                UpdateStateChangeTime(DateTime.Now.AddSeconds(setArray[6]));
+            }
+        }
+
+        /// <summary>
+        /// 車用信号機の点灯状態が一巡するまでに必要な秒数を返す
+        /// </summary>
+        /// <returns> 秒数を表す数値 </returns>
+        public int SecCount()
+        {
+            return GreenLightOnSec + YellowOneLightOnSec + YellowTwoLightOnSec + RedOneLightOnSec + RedTwoLightOnSec + ArrowLightOnSec;
         }
 
         /// <summary>
         /// 点灯状態を更新するか判定する
         /// </summary>
         /// <returns> 点灯状態を更新する場合はtrue、それ以外の場合はfalse </returns>
-        public bool Judge_TrafficLightOn()
+        public bool JudgeTrafficLightOn()
         {
             if (LightOn == LightOnState.Green)
             {
@@ -109,11 +139,11 @@ namespace TrafficLightAlgorithm
             }
             else if (LightOn == LightOnState.Yellow_One)
             {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(YellowLightOnSec)) return true;
+                if (DateTime.Now >= StateChangeTime.AddSeconds(YellowOneLightOnSec)) return true;
             }
             else if (LightOn == LightOnState.Red_One)
             {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(1)) return true;
+                if (DateTime.Now >= StateChangeTime.AddSeconds(RedOneLightOnSec)) return true;
             }
             else if (LightOn == LightOnState.Arrow)
             {
@@ -121,11 +151,11 @@ namespace TrafficLightAlgorithm
             }
             else if (LightOn == LightOnState.Yellow_Two)
             {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(YellowLightOnSec)) return true;
+                if (DateTime.Now >= StateChangeTime.AddSeconds(YellowTwoLightOnSec)) return true;
             }
             else if (LightOn == LightOnState.Red_Two)
             {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(RedLightOnSec)) return true;
+                if (DateTime.Now >= StateChangeTime.AddSeconds(RedTwoLightOnSec)) return true;
             }
 
             return false;
@@ -134,17 +164,17 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 点灯状態を更新する
         /// </summary>
-        public void Update_LightOnState()
+        public void UpdateLightOnState()
         {
             if (LightOn == LightOnState.Red_Two)
             {
-                LightOn = LightOnState.Green;  // 点灯状態を緑色に更新する
+                LightOn = LightOnState.Green;  // 点灯状態がRed_Twoの場合、Greenに移行する
             }
             else if (LightOn == LightOnState.Yellow_One && ArrowLightOnSec == 0)
             {
                 LightOn = LightOnState.Red_Two;  // 矢印信号機が存在しない場合、点灯状態はYellow_OneからRed_Twoへ移行する
             }
-            else
+            else if (LightOn != LightOnState.NoLight)
             {
                 LightOn++;  // 次の点灯状態へ移行する
             }
