@@ -50,6 +50,7 @@
     <Compile Include="F_TrafficLight.Designer.cs">
       <DependentUpon>F_TrafficLight.cs</DependentUpon>
     </Compile>
+    <Compile Include="PedesTraffic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="F_TrafficLight.resx">

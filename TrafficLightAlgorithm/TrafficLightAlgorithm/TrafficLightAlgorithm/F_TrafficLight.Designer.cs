@@ -47,6 +47,22 @@
             this.lbl_SecHead = new System.Windows.Forms.Label();
             this.lbl_NameHead = new System.Windows.Forms.Label();
             this.pnl_Traffic = new System.Windows.Forms.Panel();
+            this.lbl_WestPedesRedTwo = new System.Windows.Forms.Label();
+            this.lbl_WestPedesRedOne = new System.Windows.Forms.Label();
+            this.lbl_SouthPedesRedTwo = new System.Windows.Forms.Label();
+            this.lbl_NorthPedesRedTwo = new System.Windows.Forms.Label();
+            this.lbl_NorthPedesRedOne = new System.Windows.Forms.Label();
+            this.lbl_EastPedesRedOne = new System.Windows.Forms.Label();
+            this.lbl_EastPedesRedTwo = new System.Windows.Forms.Label();
+            this.lbl_SouthPedesRedOne = new System.Windows.Forms.Label();
+            this.lbl_NorthPedesGreenOne = new System.Windows.Forms.Label();
+            this.lbl_NorthPedesGreenTwo = new System.Windows.Forms.Label();
+            this.lbl_EastPedesGreenOne = new System.Windows.Forms.Label();
+            this.lbl_EastPedesGreenTwo = new System.Windows.Forms.Label();
+            this.lbl_SouthPedesGreenOne = new System.Windows.Forms.Label();
+            this.lbl_SouthPedesGreenTwo = new System.Windows.Forms.Label();
+            this.lbl_WestPedesGreenTwo = new System.Windows.Forms.Label();
+            this.lbl_WestPedesGreenOne = new System.Windows.Forms.Label();
             this.lbl_SouthStopLine = new System.Windows.Forms.Label();
             this.lbl_NorthStopLine = new System.Windows.Forms.Label();
             this.lbl_WestStopLine = new System.Windows.Forms.Label();
@@ -107,7 +123,7 @@
             this.btn_Start.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn_Start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Start.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_Start.Location = new System.Drawing.Point(480, 50);
+            this.btn_Start.Location = new System.Drawing.Point(510, 50);
             this.btn_Start.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(100, 50);
@@ -121,7 +137,7 @@
             this.btn_Stop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn_Stop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Stop.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_Stop.Location = new System.Drawing.Point(740, 50);
+            this.btn_Stop.Location = new System.Drawing.Point(770, 50);
             this.btn_Stop.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Stop.Name = "btn_Stop";
             this.btn_Stop.Size = new System.Drawing.Size(100, 50);
@@ -135,7 +151,7 @@
             this.btn_InterruptResume.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btn_InterruptResume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_InterruptResume.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_InterruptResume.Location = new System.Drawing.Point(610, 50);
+            this.btn_InterruptResume.Location = new System.Drawing.Point(640, 50);
             this.btn_InterruptResume.Margin = new System.Windows.Forms.Padding(0);
             this.btn_InterruptResume.Name = "btn_InterruptResume";
             this.btn_InterruptResume.Size = new System.Drawing.Size(100, 50);
@@ -227,7 +243,7 @@
             this.tlp_InputSecField.Controls.Add(this.lbl_SLightOnSec, 0, 2);
             this.tlp_InputSecField.Controls.Add(this.lbl_ELightOnSec, 0, 3);
             this.tlp_InputSecField.Controls.Add(this.lbl_WLightOnSec, 0, 4);
-            this.tlp_InputSecField.Location = new System.Drawing.Point(480, 140);
+            this.tlp_InputSecField.Location = new System.Drawing.Point(510, 140);
             this.tlp_InputSecField.Margin = new System.Windows.Forms.Padding(0);
             this.tlp_InputSecField.Name = "tlp_InputSecField";
             this.tlp_InputSecField.RowCount = 6;
@@ -244,11 +260,11 @@
             // 
             this.txt_PrepareSec.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_PrepareSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_PrepareSec.Location = new System.Drawing.Point(234, 216);
-            this.txt_PrepareSec.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.txt_PrepareSec.MaxLength = 2;
+            this.txt_PrepareSec.Location = new System.Drawing.Point(244, 216);
+            this.txt_PrepareSec.Margin = new System.Windows.Forms.Padding(10);
+            this.txt_PrepareSec.MaxLength = 1;
             this.txt_PrepareSec.Name = "txt_PrepareSec";
-            this.txt_PrepareSec.Size = new System.Drawing.Size(125, 20);
+            this.txt_PrepareSec.Size = new System.Drawing.Size(105, 20);
             this.txt_PrepareSec.TabIndex = 7;
             this.txt_PrepareSec.Text = "1";
             this.txt_PrepareSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -257,11 +273,11 @@
             // 
             this.txt_WLightOnSec.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_WLightOnSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_WLightOnSec.Location = new System.Drawing.Point(234, 175);
-            this.txt_WLightOnSec.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.txt_WLightOnSec.Location = new System.Drawing.Point(244, 175);
+            this.txt_WLightOnSec.Margin = new System.Windows.Forms.Padding(10);
             this.txt_WLightOnSec.MaxLength = 2;
             this.txt_WLightOnSec.Name = "txt_WLightOnSec";
-            this.txt_WLightOnSec.Size = new System.Drawing.Size(125, 20);
+            this.txt_WLightOnSec.Size = new System.Drawing.Size(105, 20);
             this.txt_WLightOnSec.TabIndex = 6;
             this.txt_WLightOnSec.Text = "5";
             this.txt_WLightOnSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -270,11 +286,11 @@
             // 
             this.txt_ELightOnSec.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_ELightOnSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_ELightOnSec.Location = new System.Drawing.Point(234, 134);
-            this.txt_ELightOnSec.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.txt_ELightOnSec.Location = new System.Drawing.Point(244, 134);
+            this.txt_ELightOnSec.Margin = new System.Windows.Forms.Padding(10);
             this.txt_ELightOnSec.MaxLength = 2;
             this.txt_ELightOnSec.Name = "txt_ELightOnSec";
-            this.txt_ELightOnSec.Size = new System.Drawing.Size(125, 20);
+            this.txt_ELightOnSec.Size = new System.Drawing.Size(105, 20);
             this.txt_ELightOnSec.TabIndex = 5;
             this.txt_ELightOnSec.Text = "5";
             this.txt_ELightOnSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -283,11 +299,11 @@
             // 
             this.txt_SLightOnSec.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_SLightOnSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_SLightOnSec.Location = new System.Drawing.Point(234, 93);
-            this.txt_SLightOnSec.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.txt_SLightOnSec.Location = new System.Drawing.Point(244, 93);
+            this.txt_SLightOnSec.Margin = new System.Windows.Forms.Padding(10);
             this.txt_SLightOnSec.MaxLength = 2;
             this.txt_SLightOnSec.Name = "txt_SLightOnSec";
-            this.txt_SLightOnSec.Size = new System.Drawing.Size(125, 20);
+            this.txt_SLightOnSec.Size = new System.Drawing.Size(105, 20);
             this.txt_SLightOnSec.TabIndex = 4;
             this.txt_SLightOnSec.Text = "5";
             this.txt_SLightOnSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -296,11 +312,11 @@
             // 
             this.txt_NLightOnSec.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_NLightOnSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_NLightOnSec.Location = new System.Drawing.Point(234, 52);
-            this.txt_NLightOnSec.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.txt_NLightOnSec.Location = new System.Drawing.Point(244, 52);
+            this.txt_NLightOnSec.Margin = new System.Windows.Forms.Padding(10);
             this.txt_NLightOnSec.MaxLength = 2;
             this.txt_NLightOnSec.Name = "txt_NLightOnSec";
-            this.txt_NLightOnSec.Size = new System.Drawing.Size(125, 20);
+            this.txt_NLightOnSec.Size = new System.Drawing.Size(105, 20);
             this.txt_NLightOnSec.TabIndex = 3;
             this.txt_NLightOnSec.Text = "5";
             this.txt_NLightOnSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -334,6 +350,22 @@
             // pnl_Traffic
             // 
             this.pnl_Traffic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_Traffic.Controls.Add(this.lbl_WestPedesRedTwo);
+            this.pnl_Traffic.Controls.Add(this.lbl_WestPedesRedOne);
+            this.pnl_Traffic.Controls.Add(this.lbl_SouthPedesRedTwo);
+            this.pnl_Traffic.Controls.Add(this.lbl_NorthPedesRedTwo);
+            this.pnl_Traffic.Controls.Add(this.lbl_NorthPedesRedOne);
+            this.pnl_Traffic.Controls.Add(this.lbl_EastPedesRedOne);
+            this.pnl_Traffic.Controls.Add(this.lbl_EastPedesRedTwo);
+            this.pnl_Traffic.Controls.Add(this.lbl_SouthPedesRedOne);
+            this.pnl_Traffic.Controls.Add(this.lbl_NorthPedesGreenOne);
+            this.pnl_Traffic.Controls.Add(this.lbl_NorthPedesGreenTwo);
+            this.pnl_Traffic.Controls.Add(this.lbl_EastPedesGreenOne);
+            this.pnl_Traffic.Controls.Add(this.lbl_EastPedesGreenTwo);
+            this.pnl_Traffic.Controls.Add(this.lbl_SouthPedesGreenOne);
+            this.pnl_Traffic.Controls.Add(this.lbl_SouthPedesGreenTwo);
+            this.pnl_Traffic.Controls.Add(this.lbl_WestPedesGreenTwo);
+            this.pnl_Traffic.Controls.Add(this.lbl_WestPedesGreenOne);
             this.pnl_Traffic.Controls.Add(this.lbl_SouthStopLine);
             this.pnl_Traffic.Controls.Add(this.lbl_NorthStopLine);
             this.pnl_Traffic.Controls.Add(this.lbl_WestStopLine);
@@ -383,14 +415,206 @@
             this.pnl_Traffic.Location = new System.Drawing.Point(50, 50);
             this.pnl_Traffic.Margin = new System.Windows.Forms.Padding(0);
             this.pnl_Traffic.Name = "pnl_Traffic";
-            this.pnl_Traffic.Size = new System.Drawing.Size(380, 380);
+            this.pnl_Traffic.Size = new System.Drawing.Size(400, 400);
             this.pnl_Traffic.TabIndex = 5;
+            // 
+            // lbl_WestPedesRedTwo
+            // 
+            this.lbl_WestPedesRedTwo.BackColor = System.Drawing.Color.White;
+            this.lbl_WestPedesRedTwo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_WestPedesRedTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_WestPedesRedTwo.Location = new System.Drawing.Point(45, 260);
+            this.lbl_WestPedesRedTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_WestPedesRedTwo.Name = "lbl_WestPedesRedTwo";
+            this.lbl_WestPedesRedTwo.Size = new System.Drawing.Size(15, 15);
+            this.lbl_WestPedesRedTwo.TabIndex = 12;
+            this.lbl_WestPedesRedTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_WestPedesRedOne
+            // 
+            this.lbl_WestPedesRedOne.BackColor = System.Drawing.Color.White;
+            this.lbl_WestPedesRedOne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_WestPedesRedOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_WestPedesRedOne.Location = new System.Drawing.Point(90, 125);
+            this.lbl_WestPedesRedOne.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_WestPedesRedOne.Name = "lbl_WestPedesRedOne";
+            this.lbl_WestPedesRedOne.Size = new System.Drawing.Size(15, 15);
+            this.lbl_WestPedesRedOne.TabIndex = 53;
+            this.lbl_WestPedesRedOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_SouthPedesRedTwo
+            // 
+            this.lbl_SouthPedesRedTwo.BackColor = System.Drawing.Color.White;
+            this.lbl_SouthPedesRedTwo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_SouthPedesRedTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_SouthPedesRedTwo.Location = new System.Drawing.Point(126, 295);
+            this.lbl_SouthPedesRedTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_SouthPedesRedTwo.Name = "lbl_SouthPedesRedTwo";
+            this.lbl_SouthPedesRedTwo.Size = new System.Drawing.Size(15, 15);
+            this.lbl_SouthPedesRedTwo.TabIndex = 52;
+            this.lbl_SouthPedesRedTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_NorthPedesRedTwo
+            // 
+            this.lbl_NorthPedesRedTwo.BackColor = System.Drawing.Color.White;
+            this.lbl_NorthPedesRedTwo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_NorthPedesRedTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_NorthPedesRedTwo.Location = new System.Drawing.Point(126, 45);
+            this.lbl_NorthPedesRedTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_NorthPedesRedTwo.Name = "lbl_NorthPedesRedTwo";
+            this.lbl_NorthPedesRedTwo.Size = new System.Drawing.Size(15, 15);
+            this.lbl_NorthPedesRedTwo.TabIndex = 51;
+            this.lbl_NorthPedesRedTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_NorthPedesRedOne
+            // 
+            this.lbl_NorthPedesRedOne.BackColor = System.Drawing.Color.White;
+            this.lbl_NorthPedesRedOne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_NorthPedesRedOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_NorthPedesRedOne.Location = new System.Drawing.Point(260, 90);
+            this.lbl_NorthPedesRedOne.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_NorthPedesRedOne.Name = "lbl_NorthPedesRedOne";
+            this.lbl_NorthPedesRedOne.Size = new System.Drawing.Size(15, 15);
+            this.lbl_NorthPedesRedOne.TabIndex = 50;
+            this.lbl_NorthPedesRedOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_EastPedesRedOne
+            // 
+            this.lbl_EastPedesRedOne.BackColor = System.Drawing.Color.White;
+            this.lbl_EastPedesRedOne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_EastPedesRedOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_EastPedesRedOne.Location = new System.Drawing.Point(340, 125);
+            this.lbl_EastPedesRedOne.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_EastPedesRedOne.Name = "lbl_EastPedesRedOne";
+            this.lbl_EastPedesRedOne.Size = new System.Drawing.Size(15, 15);
+            this.lbl_EastPedesRedOne.TabIndex = 49;
+            this.lbl_EastPedesRedOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_EastPedesRedTwo
+            // 
+            this.lbl_EastPedesRedTwo.BackColor = System.Drawing.Color.White;
+            this.lbl_EastPedesRedTwo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_EastPedesRedTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_EastPedesRedTwo.Location = new System.Drawing.Point(295, 260);
+            this.lbl_EastPedesRedTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_EastPedesRedTwo.Name = "lbl_EastPedesRedTwo";
+            this.lbl_EastPedesRedTwo.Size = new System.Drawing.Size(15, 15);
+            this.lbl_EastPedesRedTwo.TabIndex = 48;
+            this.lbl_EastPedesRedTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_SouthPedesRedOne
+            // 
+            this.lbl_SouthPedesRedOne.BackColor = System.Drawing.Color.White;
+            this.lbl_SouthPedesRedOne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_SouthPedesRedOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_SouthPedesRedOne.Location = new System.Drawing.Point(260, 340);
+            this.lbl_SouthPedesRedOne.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_SouthPedesRedOne.Name = "lbl_SouthPedesRedOne";
+            this.lbl_SouthPedesRedOne.Size = new System.Drawing.Size(15, 15);
+            this.lbl_SouthPedesRedOne.TabIndex = 47;
+            this.lbl_SouthPedesRedOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_NorthPedesGreenOne
+            // 
+            this.lbl_NorthPedesGreenOne.BackColor = System.Drawing.Color.White;
+            this.lbl_NorthPedesGreenOne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_NorthPedesGreenOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_NorthPedesGreenOne.Location = new System.Drawing.Point(245, 90);
+            this.lbl_NorthPedesGreenOne.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_NorthPedesGreenOne.Name = "lbl_NorthPedesGreenOne";
+            this.lbl_NorthPedesGreenOne.Size = new System.Drawing.Size(16, 15);
+            this.lbl_NorthPedesGreenOne.TabIndex = 46;
+            this.lbl_NorthPedesGreenOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_NorthPedesGreenTwo
+            // 
+            this.lbl_NorthPedesGreenTwo.BackColor = System.Drawing.Color.White;
+            this.lbl_NorthPedesGreenTwo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_NorthPedesGreenTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_NorthPedesGreenTwo.Location = new System.Drawing.Point(140, 45);
+            this.lbl_NorthPedesGreenTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_NorthPedesGreenTwo.Name = "lbl_NorthPedesGreenTwo";
+            this.lbl_NorthPedesGreenTwo.Size = new System.Drawing.Size(16, 15);
+            this.lbl_NorthPedesGreenTwo.TabIndex = 45;
+            this.lbl_NorthPedesGreenTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_EastPedesGreenOne
+            // 
+            this.lbl_EastPedesGreenOne.BackColor = System.Drawing.Color.White;
+            this.lbl_EastPedesGreenOne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_EastPedesGreenOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_EastPedesGreenOne.Location = new System.Drawing.Point(340, 139);
+            this.lbl_EastPedesGreenOne.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_EastPedesGreenOne.Name = "lbl_EastPedesGreenOne";
+            this.lbl_EastPedesGreenOne.Size = new System.Drawing.Size(15, 16);
+            this.lbl_EastPedesGreenOne.TabIndex = 44;
+            this.lbl_EastPedesGreenOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_EastPedesGreenTwo
+            // 
+            this.lbl_EastPedesGreenTwo.BackColor = System.Drawing.Color.White;
+            this.lbl_EastPedesGreenTwo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_EastPedesGreenTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_EastPedesGreenTwo.Location = new System.Drawing.Point(295, 245);
+            this.lbl_EastPedesGreenTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_EastPedesGreenTwo.Name = "lbl_EastPedesGreenTwo";
+            this.lbl_EastPedesGreenTwo.Size = new System.Drawing.Size(15, 16);
+            this.lbl_EastPedesGreenTwo.TabIndex = 43;
+            this.lbl_EastPedesGreenTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_SouthPedesGreenOne
+            // 
+            this.lbl_SouthPedesGreenOne.BackColor = System.Drawing.Color.White;
+            this.lbl_SouthPedesGreenOne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_SouthPedesGreenOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_SouthPedesGreenOne.Location = new System.Drawing.Point(245, 340);
+            this.lbl_SouthPedesGreenOne.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_SouthPedesGreenOne.Name = "lbl_SouthPedesGreenOne";
+            this.lbl_SouthPedesGreenOne.Size = new System.Drawing.Size(16, 15);
+            this.lbl_SouthPedesGreenOne.TabIndex = 42;
+            this.lbl_SouthPedesGreenOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_SouthPedesGreenTwo
+            // 
+            this.lbl_SouthPedesGreenTwo.BackColor = System.Drawing.Color.White;
+            this.lbl_SouthPedesGreenTwo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_SouthPedesGreenTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_SouthPedesGreenTwo.Location = new System.Drawing.Point(140, 295);
+            this.lbl_SouthPedesGreenTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_SouthPedesGreenTwo.Name = "lbl_SouthPedesGreenTwo";
+            this.lbl_SouthPedesGreenTwo.Size = new System.Drawing.Size(16, 15);
+            this.lbl_SouthPedesGreenTwo.TabIndex = 41;
+            this.lbl_SouthPedesGreenTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_WestPedesGreenTwo
+            // 
+            this.lbl_WestPedesGreenTwo.BackColor = System.Drawing.Color.White;
+            this.lbl_WestPedesGreenTwo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_WestPedesGreenTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_WestPedesGreenTwo.Location = new System.Drawing.Point(45, 245);
+            this.lbl_WestPedesGreenTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_WestPedesGreenTwo.Name = "lbl_WestPedesGreenTwo";
+            this.lbl_WestPedesGreenTwo.Size = new System.Drawing.Size(15, 16);
+            this.lbl_WestPedesGreenTwo.TabIndex = 40;
+            this.lbl_WestPedesGreenTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_WestPedesGreenOne
+            // 
+            this.lbl_WestPedesGreenOne.BackColor = System.Drawing.Color.White;
+            this.lbl_WestPedesGreenOne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_WestPedesGreenOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_WestPedesGreenOne.Location = new System.Drawing.Point(90, 139);
+            this.lbl_WestPedesGreenOne.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_WestPedesGreenOne.Name = "lbl_WestPedesGreenOne";
+            this.lbl_WestPedesGreenOne.Size = new System.Drawing.Size(15, 16);
+            this.lbl_WestPedesGreenOne.TabIndex = 39;
+            this.lbl_WestPedesGreenOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl_SouthStopLine
             // 
             this.lbl_SouthStopLine.BackColor = System.Drawing.Color.White;
             this.lbl_SouthStopLine.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthStopLine.Location = new System.Drawing.Point(151, 330);
+            this.lbl_SouthStopLine.Location = new System.Drawing.Point(161, 350);
             this.lbl_SouthStopLine.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthStopLine.Name = "lbl_SouthStopLine";
             this.lbl_SouthStopLine.Size = new System.Drawing.Size(36, 10);
@@ -401,7 +625,7 @@
             // 
             this.lbl_NorthStopLine.BackColor = System.Drawing.Color.White;
             this.lbl_NorthStopLine.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthStopLine.Location = new System.Drawing.Point(193, 41);
+            this.lbl_NorthStopLine.Location = new System.Drawing.Point(203, 41);
             this.lbl_NorthStopLine.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthStopLine.Name = "lbl_NorthStopLine";
             this.lbl_NorthStopLine.Size = new System.Drawing.Size(36, 10);
@@ -412,7 +636,7 @@
             // 
             this.lbl_WestStopLine.BackColor = System.Drawing.Color.White;
             this.lbl_WestStopLine.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestStopLine.Location = new System.Drawing.Point(40, 151);
+            this.lbl_WestStopLine.Location = new System.Drawing.Point(40, 161);
             this.lbl_WestStopLine.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestStopLine.Name = "lbl_WestStopLine";
             this.lbl_WestStopLine.Size = new System.Drawing.Size(10, 36);
@@ -423,7 +647,7 @@
             // 
             this.lbl_EastStopLine.BackColor = System.Drawing.Color.White;
             this.lbl_EastStopLine.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastStopLine.Location = new System.Drawing.Point(330, 192);
+            this.lbl_EastStopLine.Location = new System.Drawing.Point(350, 202);
             this.lbl_EastStopLine.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastStopLine.Name = "lbl_EastStopLine";
             this.lbl_EastStopLine.Size = new System.Drawing.Size(10, 36);
@@ -434,7 +658,7 @@
             // 
             this.lbl_SouthCenterLine.BackColor = System.Drawing.Color.White;
             this.lbl_SouthCenterLine.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthCenterLine.Location = new System.Drawing.Point(187, 330);
+            this.lbl_SouthCenterLine.Location = new System.Drawing.Point(197, 350);
             this.lbl_SouthCenterLine.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthCenterLine.Name = "lbl_SouthCenterLine";
             this.lbl_SouthCenterLine.Size = new System.Drawing.Size(6, 50);
@@ -445,7 +669,7 @@
             // 
             this.lbl_WestCenterLine.BackColor = System.Drawing.Color.White;
             this.lbl_WestCenterLine.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestCenterLine.Location = new System.Drawing.Point(0, 187);
+            this.lbl_WestCenterLine.Location = new System.Drawing.Point(0, 197);
             this.lbl_WestCenterLine.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestCenterLine.Name = "lbl_WestCenterLine";
             this.lbl_WestCenterLine.Size = new System.Drawing.Size(50, 6);
@@ -456,7 +680,7 @@
             // 
             this.lbl_NorthCenterLine.BackColor = System.Drawing.Color.White;
             this.lbl_NorthCenterLine.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthCenterLine.Location = new System.Drawing.Point(187, 0);
+            this.lbl_NorthCenterLine.Location = new System.Drawing.Point(197, 0);
             this.lbl_NorthCenterLine.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthCenterLine.Name = "lbl_NorthCenterLine";
             this.lbl_NorthCenterLine.Size = new System.Drawing.Size(6, 51);
@@ -467,7 +691,7 @@
             // 
             this.lbl_EastCenterLine.BackColor = System.Drawing.Color.White;
             this.lbl_EastCenterLine.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastCenterLine.Location = new System.Drawing.Point(330, 186);
+            this.lbl_EastCenterLine.Location = new System.Drawing.Point(350, 196);
             this.lbl_EastCenterLine.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastCenterLine.Name = "lbl_EastCenterLine";
             this.lbl_EastCenterLine.Size = new System.Drawing.Size(50, 6);
@@ -478,7 +702,7 @@
             // 
             this.lbl_SouthCrossWalkSix.BackColor = System.Drawing.Color.White;
             this.lbl_SouthCrossWalkSix.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthCrossWalkSix.Location = new System.Drawing.Point(221, 290);
+            this.lbl_SouthCrossWalkSix.Location = new System.Drawing.Point(231, 310);
             this.lbl_SouthCrossWalkSix.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthCrossWalkSix.Name = "lbl_SouthCrossWalkSix";
             this.lbl_SouthCrossWalkSix.Size = new System.Drawing.Size(8, 30);
@@ -489,7 +713,7 @@
             // 
             this.lbl_SouthCrossWalkFive.BackColor = System.Drawing.Color.White;
             this.lbl_SouthCrossWalkFive.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthCrossWalkFive.Location = new System.Drawing.Point(207, 290);
+            this.lbl_SouthCrossWalkFive.Location = new System.Drawing.Point(217, 310);
             this.lbl_SouthCrossWalkFive.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthCrossWalkFive.Name = "lbl_SouthCrossWalkFive";
             this.lbl_SouthCrossWalkFive.Size = new System.Drawing.Size(8, 30);
@@ -500,7 +724,7 @@
             // 
             this.lbl_SouthCrossWalkFour.BackColor = System.Drawing.Color.White;
             this.lbl_SouthCrossWalkFour.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthCrossWalkFour.Location = new System.Drawing.Point(193, 290);
+            this.lbl_SouthCrossWalkFour.Location = new System.Drawing.Point(203, 310);
             this.lbl_SouthCrossWalkFour.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthCrossWalkFour.Name = "lbl_SouthCrossWalkFour";
             this.lbl_SouthCrossWalkFour.Size = new System.Drawing.Size(8, 30);
@@ -511,7 +735,7 @@
             // 
             this.lbl_SouthCrossWalkThree.BackColor = System.Drawing.Color.White;
             this.lbl_SouthCrossWalkThree.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthCrossWalkThree.Location = new System.Drawing.Point(179, 290);
+            this.lbl_SouthCrossWalkThree.Location = new System.Drawing.Point(189, 310);
             this.lbl_SouthCrossWalkThree.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthCrossWalkThree.Name = "lbl_SouthCrossWalkThree";
             this.lbl_SouthCrossWalkThree.Size = new System.Drawing.Size(8, 30);
@@ -522,7 +746,7 @@
             // 
             this.lbl_SouthCrossWalkTwo.BackColor = System.Drawing.Color.White;
             this.lbl_SouthCrossWalkTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthCrossWalkTwo.Location = new System.Drawing.Point(165, 290);
+            this.lbl_SouthCrossWalkTwo.Location = new System.Drawing.Point(175, 310);
             this.lbl_SouthCrossWalkTwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthCrossWalkTwo.Name = "lbl_SouthCrossWalkTwo";
             this.lbl_SouthCrossWalkTwo.Size = new System.Drawing.Size(8, 30);
@@ -533,7 +757,7 @@
             // 
             this.lbl_SouthCrossWalkOne.BackColor = System.Drawing.Color.White;
             this.lbl_SouthCrossWalkOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthCrossWalkOne.Location = new System.Drawing.Point(151, 290);
+            this.lbl_SouthCrossWalkOne.Location = new System.Drawing.Point(161, 310);
             this.lbl_SouthCrossWalkOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthCrossWalkOne.Name = "lbl_SouthCrossWalkOne";
             this.lbl_SouthCrossWalkOne.Size = new System.Drawing.Size(8, 30);
@@ -544,7 +768,7 @@
             // 
             this.lbl_NorthCrossWalkSix.BackColor = System.Drawing.Color.White;
             this.lbl_NorthCrossWalkSix.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthCrossWalkSix.Location = new System.Drawing.Point(221, 60);
+            this.lbl_NorthCrossWalkSix.Location = new System.Drawing.Point(231, 60);
             this.lbl_NorthCrossWalkSix.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthCrossWalkSix.Name = "lbl_NorthCrossWalkSix";
             this.lbl_NorthCrossWalkSix.Size = new System.Drawing.Size(8, 30);
@@ -555,7 +779,7 @@
             // 
             this.lbl_NorthCrossWalkFive.BackColor = System.Drawing.Color.White;
             this.lbl_NorthCrossWalkFive.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthCrossWalkFive.Location = new System.Drawing.Point(207, 60);
+            this.lbl_NorthCrossWalkFive.Location = new System.Drawing.Point(217, 60);
             this.lbl_NorthCrossWalkFive.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthCrossWalkFive.Name = "lbl_NorthCrossWalkFive";
             this.lbl_NorthCrossWalkFive.Size = new System.Drawing.Size(8, 30);
@@ -566,7 +790,7 @@
             // 
             this.lbl_NorthCrossWalkFour.BackColor = System.Drawing.Color.White;
             this.lbl_NorthCrossWalkFour.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthCrossWalkFour.Location = new System.Drawing.Point(193, 60);
+            this.lbl_NorthCrossWalkFour.Location = new System.Drawing.Point(203, 60);
             this.lbl_NorthCrossWalkFour.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthCrossWalkFour.Name = "lbl_NorthCrossWalkFour";
             this.lbl_NorthCrossWalkFour.Size = new System.Drawing.Size(8, 30);
@@ -577,7 +801,7 @@
             // 
             this.lbl_NorthCrossWalkThree.BackColor = System.Drawing.Color.White;
             this.lbl_NorthCrossWalkThree.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthCrossWalkThree.Location = new System.Drawing.Point(179, 60);
+            this.lbl_NorthCrossWalkThree.Location = new System.Drawing.Point(189, 60);
             this.lbl_NorthCrossWalkThree.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthCrossWalkThree.Name = "lbl_NorthCrossWalkThree";
             this.lbl_NorthCrossWalkThree.Size = new System.Drawing.Size(8, 30);
@@ -588,7 +812,7 @@
             // 
             this.lbl_NorthCrossWalkTwo.BackColor = System.Drawing.Color.White;
             this.lbl_NorthCrossWalkTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthCrossWalkTwo.Location = new System.Drawing.Point(165, 60);
+            this.lbl_NorthCrossWalkTwo.Location = new System.Drawing.Point(175, 60);
             this.lbl_NorthCrossWalkTwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthCrossWalkTwo.Name = "lbl_NorthCrossWalkTwo";
             this.lbl_NorthCrossWalkTwo.Size = new System.Drawing.Size(8, 30);
@@ -599,7 +823,7 @@
             // 
             this.lbl_NorthCrossWalkOne.BackColor = System.Drawing.Color.White;
             this.lbl_NorthCrossWalkOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthCrossWalkOne.Location = new System.Drawing.Point(151, 60);
+            this.lbl_NorthCrossWalkOne.Location = new System.Drawing.Point(161, 60);
             this.lbl_NorthCrossWalkOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthCrossWalkOne.Name = "lbl_NorthCrossWalkOne";
             this.lbl_NorthCrossWalkOne.Size = new System.Drawing.Size(8, 30);
@@ -610,7 +834,7 @@
             // 
             this.lbl_EastCrossWalkSix.BackColor = System.Drawing.Color.White;
             this.lbl_EastCrossWalkSix.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastCrossWalkSix.Location = new System.Drawing.Point(290, 220);
+            this.lbl_EastCrossWalkSix.Location = new System.Drawing.Point(310, 230);
             this.lbl_EastCrossWalkSix.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastCrossWalkSix.Name = "lbl_EastCrossWalkSix";
             this.lbl_EastCrossWalkSix.Size = new System.Drawing.Size(30, 8);
@@ -621,7 +845,7 @@
             // 
             this.lbl_EastCrossWalkFive.BackColor = System.Drawing.Color.White;
             this.lbl_EastCrossWalkFive.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastCrossWalkFive.Location = new System.Drawing.Point(290, 206);
+            this.lbl_EastCrossWalkFive.Location = new System.Drawing.Point(310, 216);
             this.lbl_EastCrossWalkFive.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastCrossWalkFive.Name = "lbl_EastCrossWalkFive";
             this.lbl_EastCrossWalkFive.Size = new System.Drawing.Size(30, 8);
@@ -632,7 +856,7 @@
             // 
             this.lbl_EastCrossWalkFour.BackColor = System.Drawing.Color.White;
             this.lbl_EastCrossWalkFour.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastCrossWalkFour.Location = new System.Drawing.Point(290, 192);
+            this.lbl_EastCrossWalkFour.Location = new System.Drawing.Point(310, 202);
             this.lbl_EastCrossWalkFour.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastCrossWalkFour.Name = "lbl_EastCrossWalkFour";
             this.lbl_EastCrossWalkFour.Size = new System.Drawing.Size(30, 8);
@@ -643,7 +867,7 @@
             // 
             this.lbl_EastCrossWalkThree.BackColor = System.Drawing.Color.White;
             this.lbl_EastCrossWalkThree.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastCrossWalkThree.Location = new System.Drawing.Point(290, 178);
+            this.lbl_EastCrossWalkThree.Location = new System.Drawing.Point(310, 188);
             this.lbl_EastCrossWalkThree.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastCrossWalkThree.Name = "lbl_EastCrossWalkThree";
             this.lbl_EastCrossWalkThree.Size = new System.Drawing.Size(30, 8);
@@ -654,7 +878,7 @@
             // 
             this.lbl_EastCrossWalkTwo.BackColor = System.Drawing.Color.White;
             this.lbl_EastCrossWalkTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastCrossWalkTwo.Location = new System.Drawing.Point(290, 164);
+            this.lbl_EastCrossWalkTwo.Location = new System.Drawing.Point(310, 174);
             this.lbl_EastCrossWalkTwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastCrossWalkTwo.Name = "lbl_EastCrossWalkTwo";
             this.lbl_EastCrossWalkTwo.Size = new System.Drawing.Size(30, 8);
@@ -665,7 +889,7 @@
             // 
             this.lbl_EastCrossWalkOne.BackColor = System.Drawing.Color.White;
             this.lbl_EastCrossWalkOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastCrossWalkOne.Location = new System.Drawing.Point(290, 151);
+            this.lbl_EastCrossWalkOne.Location = new System.Drawing.Point(310, 161);
             this.lbl_EastCrossWalkOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastCrossWalkOne.Name = "lbl_EastCrossWalkOne";
             this.lbl_EastCrossWalkOne.Size = new System.Drawing.Size(30, 8);
@@ -676,7 +900,7 @@
             // 
             this.lbl_WestCrossWalkSix.BackColor = System.Drawing.Color.White;
             this.lbl_WestCrossWalkSix.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestCrossWalkSix.Location = new System.Drawing.Point(60, 221);
+            this.lbl_WestCrossWalkSix.Location = new System.Drawing.Point(60, 231);
             this.lbl_WestCrossWalkSix.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestCrossWalkSix.Name = "lbl_WestCrossWalkSix";
             this.lbl_WestCrossWalkSix.Size = new System.Drawing.Size(30, 8);
@@ -687,7 +911,7 @@
             // 
             this.lbl_WestCrossWalkOne.BackColor = System.Drawing.Color.White;
             this.lbl_WestCrossWalkOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestCrossWalkOne.Location = new System.Drawing.Point(60, 151);
+            this.lbl_WestCrossWalkOne.Location = new System.Drawing.Point(60, 161);
             this.lbl_WestCrossWalkOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestCrossWalkOne.Name = "lbl_WestCrossWalkOne";
             this.lbl_WestCrossWalkOne.Size = new System.Drawing.Size(30, 8);
@@ -698,7 +922,7 @@
             // 
             this.lbl_WestCrossWalkFive.BackColor = System.Drawing.Color.White;
             this.lbl_WestCrossWalkFive.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestCrossWalkFive.Location = new System.Drawing.Point(60, 207);
+            this.lbl_WestCrossWalkFive.Location = new System.Drawing.Point(60, 217);
             this.lbl_WestCrossWalkFive.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestCrossWalkFive.Name = "lbl_WestCrossWalkFive";
             this.lbl_WestCrossWalkFive.Size = new System.Drawing.Size(30, 8);
@@ -709,7 +933,7 @@
             // 
             this.lbl_WestCrossWalkFour.BackColor = System.Drawing.Color.White;
             this.lbl_WestCrossWalkFour.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestCrossWalkFour.Location = new System.Drawing.Point(60, 193);
+            this.lbl_WestCrossWalkFour.Location = new System.Drawing.Point(60, 203);
             this.lbl_WestCrossWalkFour.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestCrossWalkFour.Name = "lbl_WestCrossWalkFour";
             this.lbl_WestCrossWalkFour.Size = new System.Drawing.Size(30, 8);
@@ -720,7 +944,7 @@
             // 
             this.lbl_WestCrossWalkThree.BackColor = System.Drawing.Color.White;
             this.lbl_WestCrossWalkThree.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestCrossWalkThree.Location = new System.Drawing.Point(60, 179);
+            this.lbl_WestCrossWalkThree.Location = new System.Drawing.Point(60, 189);
             this.lbl_WestCrossWalkThree.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestCrossWalkThree.Name = "lbl_WestCrossWalkThree";
             this.lbl_WestCrossWalkThree.Size = new System.Drawing.Size(30, 8);
@@ -731,7 +955,7 @@
             // 
             this.lbl_WestCrossWalkTwo.BackColor = System.Drawing.Color.White;
             this.lbl_WestCrossWalkTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestCrossWalkTwo.Location = new System.Drawing.Point(60, 165);
+            this.lbl_WestCrossWalkTwo.Location = new System.Drawing.Point(60, 175);
             this.lbl_WestCrossWalkTwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestCrossWalkTwo.Name = "lbl_WestCrossWalkTwo";
             this.lbl_WestCrossWalkTwo.Size = new System.Drawing.Size(30, 8);
@@ -743,7 +967,7 @@
             this.lbl_SouthGreen.BackColor = System.Drawing.Color.White;
             this.lbl_SouthGreen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_SouthGreen.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthGreen.Location = new System.Drawing.Point(205, 250);
+            this.lbl_SouthGreen.Location = new System.Drawing.Point(215, 255);
             this.lbl_SouthGreen.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthGreen.Name = "lbl_SouthGreen";
             this.lbl_SouthGreen.Size = new System.Drawing.Size(30, 30);
@@ -755,7 +979,7 @@
             this.lbl_NorthRed.BackColor = System.Drawing.Color.White;
             this.lbl_NorthRed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_NorthRed.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthRed.Location = new System.Drawing.Point(205, 100);
+            this.lbl_NorthRed.Location = new System.Drawing.Point(215, 115);
             this.lbl_NorthRed.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthRed.Name = "lbl_NorthRed";
             this.lbl_NorthRed.Size = new System.Drawing.Size(30, 30);
@@ -767,7 +991,7 @@
             this.lbl_SouthYellow.BackColor = System.Drawing.Color.White;
             this.lbl_SouthYellow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_SouthYellow.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthYellow.Location = new System.Drawing.Point(174, 250);
+            this.lbl_SouthYellow.Location = new System.Drawing.Point(184, 255);
             this.lbl_SouthYellow.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthYellow.Name = "lbl_SouthYellow";
             this.lbl_SouthYellow.Size = new System.Drawing.Size(32, 30);
@@ -779,7 +1003,7 @@
             this.lbl_EastRed.BackColor = System.Drawing.Color.White;
             this.lbl_EastRed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_EastRed.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastRed.Location = new System.Drawing.Point(250, 205);
+            this.lbl_EastRed.Location = new System.Drawing.Point(255, 215);
             this.lbl_EastRed.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastRed.Name = "lbl_EastRed";
             this.lbl_EastRed.Size = new System.Drawing.Size(30, 30);
@@ -791,7 +1015,7 @@
             this.lbl_SouthRed.BackColor = System.Drawing.Color.White;
             this.lbl_SouthRed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_SouthRed.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthRed.Location = new System.Drawing.Point(145, 250);
+            this.lbl_SouthRed.Location = new System.Drawing.Point(155, 255);
             this.lbl_SouthRed.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthRed.Name = "lbl_SouthRed";
             this.lbl_SouthRed.Size = new System.Drawing.Size(30, 30);
@@ -803,7 +1027,7 @@
             this.lbl_NorthYellow.BackColor = System.Drawing.Color.White;
             this.lbl_NorthYellow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_NorthYellow.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthYellow.Location = new System.Drawing.Point(174, 100);
+            this.lbl_NorthYellow.Location = new System.Drawing.Point(184, 115);
             this.lbl_NorthYellow.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthYellow.Name = "lbl_NorthYellow";
             this.lbl_NorthYellow.Size = new System.Drawing.Size(32, 30);
@@ -815,7 +1039,7 @@
             this.lbl_WestGreen.BackColor = System.Drawing.Color.White;
             this.lbl_WestGreen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_WestGreen.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestGreen.Location = new System.Drawing.Point(100, 205);
+            this.lbl_WestGreen.Location = new System.Drawing.Point(115, 215);
             this.lbl_WestGreen.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestGreen.Name = "lbl_WestGreen";
             this.lbl_WestGreen.Size = new System.Drawing.Size(30, 30);
@@ -827,7 +1051,7 @@
             this.lbl_NorthGreen.BackColor = System.Drawing.Color.White;
             this.lbl_NorthGreen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_NorthGreen.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthGreen.Location = new System.Drawing.Point(145, 100);
+            this.lbl_NorthGreen.Location = new System.Drawing.Point(155, 115);
             this.lbl_NorthGreen.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthGreen.Name = "lbl_NorthGreen";
             this.lbl_NorthGreen.Size = new System.Drawing.Size(30, 30);
@@ -839,7 +1063,7 @@
             this.lbl_EastYellow.BackColor = System.Drawing.Color.White;
             this.lbl_EastYellow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_EastYellow.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastYellow.Location = new System.Drawing.Point(250, 174);
+            this.lbl_EastYellow.Location = new System.Drawing.Point(255, 184);
             this.lbl_EastYellow.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastYellow.Name = "lbl_EastYellow";
             this.lbl_EastYellow.Size = new System.Drawing.Size(30, 32);
@@ -851,7 +1075,7 @@
             this.lbl_WestYellow.BackColor = System.Drawing.Color.White;
             this.lbl_WestYellow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_WestYellow.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestYellow.Location = new System.Drawing.Point(100, 174);
+            this.lbl_WestYellow.Location = new System.Drawing.Point(115, 184);
             this.lbl_WestYellow.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestYellow.Name = "lbl_WestYellow";
             this.lbl_WestYellow.Size = new System.Drawing.Size(30, 32);
@@ -863,7 +1087,7 @@
             this.lbl_EastGreen.BackColor = System.Drawing.Color.White;
             this.lbl_EastGreen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_EastGreen.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastGreen.Location = new System.Drawing.Point(250, 145);
+            this.lbl_EastGreen.Location = new System.Drawing.Point(255, 155);
             this.lbl_EastGreen.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastGreen.Name = "lbl_EastGreen";
             this.lbl_EastGreen.Size = new System.Drawing.Size(30, 30);
@@ -875,7 +1099,7 @@
             this.lbl_WestRed.BackColor = System.Drawing.Color.White;
             this.lbl_WestRed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_WestRed.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestRed.Location = new System.Drawing.Point(100, 145);
+            this.lbl_WestRed.Location = new System.Drawing.Point(115, 155);
             this.lbl_WestRed.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestRed.Name = "lbl_WestRed";
             this.lbl_WestRed.Size = new System.Drawing.Size(30, 30);
@@ -886,10 +1110,10 @@
             // 
             this.lbl_SNRoadway.BackColor = System.Drawing.Color.Silver;
             this.lbl_SNRoadway.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SNRoadway.Location = new System.Drawing.Point(145, 0);
+            this.lbl_SNRoadway.Location = new System.Drawing.Point(155, -5);
             this.lbl_SNRoadway.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SNRoadway.Name = "lbl_SNRoadway";
-            this.lbl_SNRoadway.Size = new System.Drawing.Size(90, 380);
+            this.lbl_SNRoadway.Size = new System.Drawing.Size(90, 408);
             this.lbl_SNRoadway.TabIndex = 8;
             this.lbl_SNRoadway.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -897,10 +1121,10 @@
             // 
             this.lbl_EWRoadway.BackColor = System.Drawing.Color.Silver;
             this.lbl_EWRoadway.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EWRoadway.Location = new System.Drawing.Point(0, 145);
+            this.lbl_EWRoadway.Location = new System.Drawing.Point(0, 155);
             this.lbl_EWRoadway.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EWRoadway.Name = "lbl_EWRoadway";
-            this.lbl_EWRoadway.Size = new System.Drawing.Size(380, 90);
+            this.lbl_EWRoadway.Size = new System.Drawing.Size(400, 90);
             this.lbl_EWRoadway.TabIndex = 7;
             this.lbl_EWRoadway.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -908,7 +1132,7 @@
             // 
             this.lbl_NorthDirection.BackColor = System.Drawing.Color.White;
             this.lbl_NorthDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthDirection.Location = new System.Drawing.Point(196, 20);
+            this.lbl_NorthDirection.Location = new System.Drawing.Point(206, 20);
             this.lbl_NorthDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthDirection.Name = "lbl_NorthDirection";
             this.lbl_NorthDirection.Size = new System.Drawing.Size(90, 30);
@@ -920,7 +1144,7 @@
             // 
             this.lbl_SouthDirection.BackColor = System.Drawing.Color.White;
             this.lbl_SouthDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthDirection.Location = new System.Drawing.Point(196, 431);
+            this.lbl_SouthDirection.Location = new System.Drawing.Point(206, 450);
             this.lbl_SouthDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthDirection.Name = "lbl_SouthDirection";
             this.lbl_SouthDirection.Size = new System.Drawing.Size(90, 30);
@@ -932,7 +1156,7 @@
             // 
             this.lbl_WestDirection.BackColor = System.Drawing.Color.White;
             this.lbl_WestDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestDirection.Location = new System.Drawing.Point(20, 196);
+            this.lbl_WestDirection.Location = new System.Drawing.Point(20, 206);
             this.lbl_WestDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestDirection.Name = "lbl_WestDirection";
             this.lbl_WestDirection.Size = new System.Drawing.Size(30, 90);
@@ -944,7 +1168,7 @@
             // 
             this.lbl_EastDirection.BackColor = System.Drawing.Color.White;
             this.lbl_EastDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastDirection.Location = new System.Drawing.Point(431, 196);
+            this.lbl_EastDirection.Location = new System.Drawing.Point(450, 206);
             this.lbl_EastDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastDirection.Name = "lbl_EastDirection";
             this.lbl_EastDirection.Size = new System.Drawing.Size(30, 90);
@@ -962,7 +1186,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(874, 481);
+            this.ClientSize = new System.Drawing.Size(904, 501);
             this.Controls.Add(this.lbl_EastDirection);
             this.Controls.Add(this.lbl_WestDirection);
             this.Controls.Add(this.lbl_SouthDirection);
@@ -974,9 +1198,9 @@
             this.Controls.Add(this.btn_Start);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(890, 520);
+            this.MaximumSize = new System.Drawing.Size(920, 540);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(890, 520);
+            this.MinimumSize = new System.Drawing.Size(920, 540);
             this.Name = "F_TrafficLight";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1059,6 +1283,22 @@
         private System.Windows.Forms.TextBox txt_NLightOnSec;
         private System.Windows.Forms.Label lbl_SecHead;
         private System.Windows.Forms.Timer Timer_Traffic;
+        private System.Windows.Forms.Label lbl_WestPedesRedTwo;
+        private System.Windows.Forms.Label lbl_WestPedesGreenOne;
+        private System.Windows.Forms.Label lbl_NorthPedesGreenOne;
+        private System.Windows.Forms.Label lbl_NorthPedesGreenTwo;
+        private System.Windows.Forms.Label lbl_EastPedesGreenOne;
+        private System.Windows.Forms.Label lbl_EastPedesGreenTwo;
+        private System.Windows.Forms.Label lbl_SouthPedesGreenOne;
+        private System.Windows.Forms.Label lbl_SouthPedesGreenTwo;
+        private System.Windows.Forms.Label lbl_WestPedesGreenTwo;
+        private System.Windows.Forms.Label lbl_WestPedesRedOne;
+        private System.Windows.Forms.Label lbl_SouthPedesRedTwo;
+        private System.Windows.Forms.Label lbl_NorthPedesRedTwo;
+        private System.Windows.Forms.Label lbl_NorthPedesRedOne;
+        private System.Windows.Forms.Label lbl_EastPedesRedOne;
+        private System.Windows.Forms.Label lbl_EastPedesRedTwo;
+        private System.Windows.Forms.Label lbl_SouthPedesRedOne;
     }
 }
 
