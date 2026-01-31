@@ -8,12 +8,17 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 歩行者用信号機が緑もしくは点滅している時間
         /// </summary>
-        private readonly int GreenBlinkSec;
+        private readonly int GreenSec;
 
         /// <summary>
         /// 歩行者用信号機が赤に点灯する時間
         /// </summary>
         private readonly int RedSec;
+
+        /// <summary>
+        /// 歩行者用信号機が点滅する時間
+        /// </summary>
+        private const int BlinkSec = 3;
 
         /// <summary>
         /// 歩行者用信号機に割り振る番号
@@ -43,12 +48,12 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 信号機の赤を表す色
         /// </summary>
-        private readonly Color TrafficLightRed = Color.Red;
+        private readonly Color TrafficLightRed   = Color.Red;
 
         /// <summary>
         /// 信号機の無灯火を表す色
         /// </summary>
-        private readonly Color TrafficNoLight = Color.White;
+        private readonly Color TrafficNoLight    = Color.White;
 
         /// <summary>
         /// 信号機の点灯状態を表す列挙型
@@ -82,22 +87,16 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private BlinkMem BlinkState;
 
-        public PedesTraffic(int num, int carGreenSec, int redOnSec, string colorName, DateTime startTime)
+        public PedesTraffic(int num, int greenSec, int redSec, DateTime startTime)
         {
-            PedesNum    = num;
+            PedesNum      = num;
             BlinkTime     = DateTime.Today;
-            GreenBlinkSec = carGreenSec;
-            RedSec        = redOnSec;
+            GreenSec      = greenSec;
+            RedSec        = redSec;
             UpdateStateChangeTime(startTime);
 
-            if (colorName == "Green")
-            {
-                LightOn = LightOnState.Green;
-            }
-            else if (colorName == "Red")
-            {
-                LightOn = LightOnState.Red;
-            }
+            if (num == 0 || num == 1) LightOn = LightOnState.Red;
+            if (num == 2 || num == 3) LightOn = LightOnState.Green;
         }
 
         /// <summary>
@@ -106,32 +105,15 @@ namespace TrafficLightAlgorithm
         /// <returns> 点灯状態の変更を行う場合はtrue、それ以外の場合はfalse </returns>
         public bool JudgePedesLightOn()
         {
-            if (LightOn == LightOnState.Green)
-            {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(GreenBlinkSec - 4).AddMilliseconds(-StateChangeTime.Millisecond))
-                {
-                    return true;
-                }
-            }
-            else if (LightOn == LightOnState.Blink)
-            {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(GreenBlinkSec - 2).AddMilliseconds(-StateChangeTime.Millisecond))
-                {
-                    return true;
-                }
-                else if (DateTime.Now >= BlinkTime)
-                {
-                    return true;
-                }
-            }
-            else if (LightOn == LightOnState.Red)
-            {
-                if (DateTime.Now > StateChangeTime.AddSeconds(RedSec).AddMilliseconds(-StateChangeTime.Millisecond))
-                {
-                    return true;
-                }
-            }
-
+            // 緑点灯で点灯状態更新からGreenSec - 4秒以上経過した場合に点灯状態を変更する
+            if (LightOn == LightOnState.Green && DateTime.Now >= StateChangeTime.AddSeconds(GreenSec - 4)) return true;
+            
+            // 点滅状態で点灯状態更新からBlinkSec秒経過、もしくは現在時刻がBlinkTime以降になった場合に点灯状態を変更する
+            if (LightOn == LightOnState.Blink && (DateTime.Now >= StateChangeTime.AddSeconds(BlinkSec) || DateTime.Now >= BlinkTime)) return true;
+            
+            // 赤点灯で点灯状態更新からRedSec秒以上経過した場合に点灯状態を変更する
+            if (LightOn == LightOnState.Red && DateTime.Now >= StateChangeTime.AddSeconds(RedSec)) return true;
+            
             return false;
         }
 
@@ -140,34 +122,33 @@ namespace TrafficLightAlgorithm
         /// </summary>
         public void UpdateLightOnState()
         {
-            LightOnState nowState = LightOn;
+            LightOnState nowState = LightOn;  // 点灯状態を取得する
 
             if (LightOn == LightOnState.Green)
             {
                 LightOn    = LightOnState.Blink;  // 緑点灯から点滅
-                BlinkState = BlinkMem.Green;
-                BlinkTime  = DateTime.Now.AddMilliseconds(-DateTime.Now.Millisecond + PedesBlinkMSec);
+                BlinkState = BlinkMem.Green;      // 緑に点滅
+
+                BlinkTime  = DateTime.Now.AddMilliseconds(-DateTime.Now.Millisecond + PedesBlinkMSec);  // 点滅を実行する時刻を更新
             }
             else if (LightOn == LightOnState.Blink)
             {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(GreenBlinkSec - 2).AddMilliseconds(-StateChangeTime.Millisecond))
+                if (DateTime.Now >= StateChangeTime.AddSeconds(BlinkSec))
                 {
-                 
-                    LightOn = LightOnState.Red;   // 点滅から赤点灯
+                    LightOn = LightOnState.Red;  // 点滅から赤点灯
                 }
                 else if (DateTime.Now >= BlinkTime)
                 {
-                    // 点滅状態を更新する
                     if (BlinkState == BlinkMem.White)
                     {
-                        BlinkState = BlinkMem.Green;
+                        BlinkState = BlinkMem.Green;  // 点滅状態を緑にする
                     }
                     else if (BlinkState == BlinkMem.Green)
                     {
-                        BlinkState = BlinkMem.White;
+                        BlinkState = BlinkMem.White;  // 点滅状態を無灯火にする
                     }
 
-                    BlinkTime = BlinkTime.AddMilliseconds(PedesBlinkMSec);
+                    BlinkTime = BlinkTime.AddMilliseconds(PedesBlinkMSec);  // 点滅を実行する時刻を更新
                 }
             }
             else if (LightOn == LightOnState.Red)
@@ -216,7 +197,7 @@ namespace TrafficLightAlgorithm
 
             if (LightOn == LightOnState.Green || (LightOn == LightOnState.Blink && BlinkState == BlinkMem.Green))
             {
-                // 点灯状態が緑もしくは点滅状態が緑の場合
+                // 点灯状態が緑の場合
                 colorArr[0] = TrafficLightGreen;
                 colorArr[1] = TrafficLightGreen;
             }
