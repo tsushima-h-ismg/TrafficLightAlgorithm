@@ -48,7 +48,7 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 信号機の緑を表す色
         /// </summary>
-        private readonly Color TrafficLightGreen = Color.ForestGreen;
+        private readonly Color TrafficLightGreen  = Color.ForestGreen;
 
         /// <summary>
         /// 信号機の黄を表す色
@@ -58,22 +58,22 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 信号機の赤を表す色
         /// </summary>
-        private readonly Color TrafficLightRed = Color.Red;
+        private readonly Color TrafficLightRed    = Color.Red;
 
         /// <summary>
         /// 信号機の無灯火を表す色
         /// </summary>
-        private readonly Color TrafficNoLight = Color.White;
+        private readonly Color TrafficNoLight     = Color.White;
         
         /// <summary>
         /// 矢印信号機の緑を表す色
         /// </summary>
-        private readonly Color ArrowGreen = Color.Green;
+        private readonly Color ArrowGreen         = Color.Green;
 
         /// <summary>
         /// 矢印信号機の無灯火を表す色
         /// </summary>
-        private readonly Color ArrowDefault = Color.Black;
+        private readonly Color ArrowDefault       = Color.Black;
 
         /// <summary>
         /// 信号機の点灯状態を表す列挙型
@@ -81,11 +81,11 @@ namespace TrafficLightAlgorithm
         private enum LightOnState
         {
             Green,
-            Yellow_One, 
-            Red_One,
+            YellowOne, 
+            RedOne,
             Arrow,
-            Yellow_Two,
-            Red_Two,
+            YellowTwo,
+            RedTwo,
             NoLight
         }
 
@@ -94,7 +94,7 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private LightOnState LightOn;
 
-        public CarTraffic(int[] setArray, string colorName)
+        public CarTraffic(int[] setArray)
         {
             CarTrafficNum       = setArray[0];
             GreenLightOnSec     = setArray[1];
@@ -106,14 +106,14 @@ namespace TrafficLightAlgorithm
 
             if (ArrowLightOnSec == 0) YellowTwoLightOnSec = 0;
 
-            if (colorName == "Green")
+            if (setArray[0] == 0 || setArray[0] == 1)
             {
                 LightOn = LightOnState.Green;
                 UpdateStateChangeTime(DateTime.Now);
             }
-            else if (colorName == "Red")
+            else if (setArray[0] == 2 || setArray[0] == 3)
             {
-                LightOn = LightOnState.Red_Two;
+                LightOn = LightOnState.RedTwo;
                 UpdateStateChangeTime(DateTime.Now.AddSeconds(setArray[6]));
             }
         }
@@ -133,31 +133,12 @@ namespace TrafficLightAlgorithm
         /// <returns> 点灯状態を更新する場合はtrue、それ以外の場合はfalse </returns>
         public bool JudgeTrafficLightOn()
         {
-            if (LightOn == LightOnState.Green)
-            {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(GreenLightOnSec)) return true;
-            }
-            else if (LightOn == LightOnState.Yellow_One)
-            {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(YellowOneLightOnSec)) return true;
-            }
-            else if (LightOn == LightOnState.Red_One)
-            {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(RedOneLightOnSec)) return true;
-            }
-            else if (LightOn == LightOnState.Arrow)
-            {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(ArrowLightOnSec)) return true;
-            }
-            else if (LightOn == LightOnState.Yellow_Two)
-            {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(YellowTwoLightOnSec)) return true;
-            }
-            else if (LightOn == LightOnState.Red_Two)
-            {
-                if (DateTime.Now >= StateChangeTime.AddSeconds(RedTwoLightOnSec)) return true;
-            }
-
+            if (LightOn == LightOnState.Green     && DateTime.Now >= StateChangeTime.AddSeconds(GreenLightOnSec))     return true;
+            if (LightOn == LightOnState.YellowOne && DateTime.Now >= StateChangeTime.AddSeconds(YellowOneLightOnSec)) return true;
+            if (LightOn == LightOnState.RedOne    && DateTime.Now >= StateChangeTime.AddSeconds(RedOneLightOnSec))    return true;
+            if (LightOn == LightOnState.Arrow     && DateTime.Now >= StateChangeTime.AddSeconds(ArrowLightOnSec))     return true;
+            if (LightOn == LightOnState.YellowTwo && DateTime.Now >= StateChangeTime.AddSeconds(YellowTwoLightOnSec)) return true;
+            if (LightOn == LightOnState.RedTwo 　 && DateTime.Now >= StateChangeTime.AddSeconds(RedTwoLightOnSec))    return true;
             return false;
         }
 
@@ -166,17 +147,17 @@ namespace TrafficLightAlgorithm
         /// </summary>
         public void UpdateLightOnState()
         {
-            if (LightOn == LightOnState.Red_Two)
+            if (LightOn == LightOnState.RedTwo)
             {
-                LightOn = LightOnState.Green;  // 点灯状態がRed_Twoの場合、Greenに移行する
+                LightOn = LightOnState.Green;    // 点灯状態がRedTwoの場合、Greenに移行する
             }
-            else if (LightOn == LightOnState.Yellow_One && ArrowLightOnSec == 0)
+            else if (LightOn == LightOnState.YellowOne && ArrowLightOnSec == 0)
             {
-                LightOn = LightOnState.Red_Two;  // 矢印信号機が存在しない場合、点灯状態はYellow_OneからRed_Twoへ移行する
+                LightOn = LightOnState.RedTwo;   // 矢印信号機が存在しない場合、点灯状態はYellowOneからRedTwoへ移行する
             }
             else if (LightOn != LightOnState.NoLight)
             {
-                LightOn++;  // 次の点灯状態へ移行する
+                LightOn++;                       // 次の点灯状態へ移行する
             }
 
             UpdateStateChangeTime(DateTime.Now);
@@ -220,11 +201,11 @@ namespace TrafficLightAlgorithm
             {
                 colorArr[0] = TrafficLightGreen;
             }
-            else if (LightOn == LightOnState.Yellow_One || LightOn == LightOnState.Yellow_Two)
+            else if (LightOn == LightOnState.YellowOne || LightOn == LightOnState.YellowTwo)
             {
                 colorArr[1] = TrafficLightYellow;
             }
-            else if (LightOn == LightOnState.Red_One || LightOn == LightOnState.Red_Two)
+            else if (LightOn == LightOnState.RedOne || LightOn == LightOnState.RedTwo)
             {
                 colorArr[2] = TrafficLightRed;
             }
