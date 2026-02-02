@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CarTraffic.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="F_TrafficLight.cs">
       <SubType>Form</SubType>
     </Compile>

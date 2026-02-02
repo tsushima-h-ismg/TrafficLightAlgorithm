@@ -21,11 +21,6 @@ namespace TrafficLightAlgorithm
         private const int BlinkSec = 3;
 
         /// <summary>
-        /// 歩行者用信号機に割り振る番号
-        /// </summary>
-        public readonly int PedesNum;
-
-        /// <summary>
         /// 歩行者用信号機の緑ランプ点滅間隔
         /// </summary>
         private const int PedesBlinkMSec = 500;
@@ -39,21 +34,6 @@ namespace TrafficLightAlgorithm
         /// 信号機の緑ランプの点滅を行った時刻
         /// </summary>
         private DateTime BlinkTime;
-
-        /// <summary>
-        /// 信号機の緑を表す色
-        /// </summary>
-        private readonly Color TrafficLightGreen = Color.ForestGreen;
-
-        /// <summary>
-        /// 信号機の赤を表す色
-        /// </summary>
-        private readonly Color TrafficLightRed   = Color.Red;
-
-        /// <summary>
-        /// 信号機の無灯火を表す色
-        /// </summary>
-        private readonly Color TrafficNoLight    = Color.White;
 
         /// <summary>
         /// 信号機の点灯状態を表す列挙型
@@ -87,18 +67,27 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private BlinkMem BlinkState;
 
-        public PedesTraffic(int num, int greenSec, int redSec, DateTime startTime)
+        /// <summary>
+        /// 歩行者用信号機の緑ランプの点灯色
+        /// </summary>
+        public Color LightOnGreen;
+
+        /// <summary>
+        /// 歩行者用信号機の赤ランプの点灯色
+        /// </summary>
+        public Color LightOnRed;
+
+        public PedesTraffic(int greenSec, int redSec, DateTime startTime, bool greenStart)
         {
-            PedesNum      = num;
             BlinkTime     = DateTime.Today;
             GreenSec      = greenSec;
             RedSec        = redSec;
             UpdateStateChangeTime(startTime);
 
-            if (num == 0 || num == 1) LightOn = LightOnState.Red;
-            if (num == 2 || num == 3) LightOn = LightOnState.Green;
+            LightOn = LightOnState.Red;
+            if (greenStart) LightOn = LightOnState.Green;
         }
-
+        
         /// <summary>
         /// 点灯状態の変更を行うか判定を行う
         /// </summary>
@@ -161,14 +150,6 @@ namespace TrafficLightAlgorithm
         }
 
         /// <summary>
-        /// 点灯状態を無灯火に更新する
-        /// </summary>
-        public void UpdateStateNoLight()
-        {
-            LightOn = LightOnState.NoLight;
-        }
-
-        /// <summary>
         /// 点灯状態変更時刻を更新する
         /// </summary>
         /// <param name="stateTime"></param>
@@ -185,30 +166,6 @@ namespace TrafficLightAlgorithm
         {
             StateChangeTime = DateTime.Now.AddSeconds(StateChangeTime.Second - interruptTime.Second).AddMilliseconds(-DateTime.Now.Millisecond);
             BlinkTime       = DateTime.Now.AddSeconds(BlinkTime.Second       - interruptTime.Second).AddMilliseconds(-DateTime.Now.Millisecond);
-        }
-
-        /// <summary>
-        /// 点灯状態に合わせて信号機の点灯色を返す
-        /// </summary>
-        /// <returns> 信号機の点灯色を表すColor型配列 </returns>
-        public Color[] LightOnColor()
-        {
-            Color[] colorArr = { TrafficNoLight, TrafficNoLight, TrafficNoLight, TrafficNoLight };
-
-            if (LightOn == LightOnState.Green || (LightOn == LightOnState.Blink && BlinkState == BlinkMem.Green))
-            {
-                // 点灯状態が緑の場合
-                colorArr[0] = TrafficLightGreen;
-                colorArr[1] = TrafficLightGreen;
-            }
-            else if (LightOn == LightOnState.Red)
-            {
-                // 点灯状態が赤の場合
-                colorArr[2] = TrafficLightRed;
-                colorArr[3] = TrafficLightRed;
-            }
-
-            return colorArr;
         }
     }
 }
