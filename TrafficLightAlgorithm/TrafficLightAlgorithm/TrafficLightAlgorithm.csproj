@@ -82,10 +82,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\GreenSignal.png" />
-    <None Include="Resources\YellowSignal.png" />
-    <None Include="Resources\RedSignal.png" />
+    <None Include="Resources\GreenLightSignal.png" />
     <None Include="Resources\NoLightSignal.png" />
+    <None Include="Resources\YellowLightSignal.png" />
+    <None Include="Resources\RedLightSignal.png" />
+    <None Include="Resources\ArrowDefault.png" />
+    <None Include="Resources\ArrowGreen.png" />
+    <None Include="Resources\PedesGreen.png" />
+    <None Include="Resources\PedesRed.png" />
+    <None Include="Resources\PedesNoLight.png" />
     <Content Include="TrafficLightAlgorithm.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
