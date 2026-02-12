@@ -60,36 +60,6 @@ namespace TrafficLightAlgorithm
         private const int BlinkPhaseCount   = 5;
 
         /// <summary>
-        /// 信号機の緑を表す色
-        /// </summary>
-        private readonly Color TrafficLightGreen  = Color.ForestGreen;
-
-        /// <summary>
-        /// 信号機の黄を表す色
-        /// </summary>
-        private readonly Color TrafficLightYellow = Color.Yellow;
-
-        /// <summary>
-        /// 信号機の赤を表す色
-        /// </summary>
-        private readonly Color TrafficLightRed    = Color.Red;
-
-        /// <summary>
-        /// 信号機の無灯火を表す色
-        /// </summary>
-        private readonly Color TrafficNoLight     = Color.White;
-
-        /// <summary>
-        /// 矢印信号機の緑を表す色
-        /// </summary>
-        private readonly Color ArrowGreen         = Color.Green;
-
-        /// <summary>
-        /// 矢印信号機の無灯火を表す色
-        /// </summary>
-        private readonly Color ArrowDefault       = Color.Black;
-
-        /// <summary>
         /// 信号機点灯処理の中断時点のフェーズを表す番号
         /// </summary>
         private int InterruptPhase;
@@ -151,17 +121,16 @@ namespace TrafficLightAlgorithm
             }
 
             // テキストボックスTextプロパティを数値に変換し、設定値を構造体で受け取る
-            StructTraffic stTraffic = StructTraffic.UpdateValue(txt_NLightOnSec.Text, txt_SLightOnSec.Text, 
-                                                                txt_ELightOnSec.Text, txt_WLightOnSec.Text, 
-                                                                txt_ArrowSec.Text,    txt_Prepare.Text);
+            WaitMSec waitMSec = new WaitMSec(txt_NLightOnSec.Text, txt_SLightOnSec.Text, txt_ELightOnSec.Text, 
+                                             txt_WLightOnSec.Text, txt_ArrowSec.Text,    txt_Prepare.Text);
 
             IsTrafficEnable = true;   // 信号機アルゴリズムを有効にする
             IsInterrupt     = false;  // 信号機アルゴリズムの中断を無効にする
             IsCancel        = false;  // 信号機アルゴリズムのキャンセルを無効にする
 
             ChangeTextInterruptResumeBtn(IsInterrupt);  // 「中断/再開」ボタンのTextプロパティ値変更
-            ChangeTextBoxEnabled(false);                // テキストボックスのEnabledプロパティ値変更        
-            PhaseList = CreateTrafficPhase(stTraffic);  // 信号機アルゴリズムのフェーズリストを作成
+            ChangeTextBoxEnabled(false);                // 値を入力するテキストボックスEnabledプロパティ値変更        
+            PhaseList = CreateTrafficPhase(waitMSec);   // 信号機アルゴリズムのフェーズリストを作成
             LoopTrafficPhase(0);                     　 // 信号機点灯処理をループさせる
         }
 
@@ -184,7 +153,7 @@ namespace TrafficLightAlgorithm
             }
             else
             {
-                return;
+                return;  // IsTrafficEnableがfalseの場合は終了する
             }
 
             ChangeTextInterruptResumeBtn(IsInterrupt);  // 「中断/再開」ボタンのTextプロパティ値変更
@@ -211,24 +180,24 @@ namespace TrafficLightAlgorithm
                 if (DialogResult == DialogResult.No) return;
             }
 
-            // 車用信号機をイメージしたラベルの背景色を変更する
-            ChangeTrafficLblColor(LightState.NoLight, lbl_NorthGreen, lbl_NorthYellow, lbl_NorthRed, null);
-            ChangeTrafficLblColor(LightState.NoLight, lbl_SouthGreen, lbl_SouthYellow, lbl_SouthRed, null);
-            ChangeTrafficLblColor(LightState.NoLight, lbl_EastGreen,  lbl_EastYellow,  lbl_EastRed,  lbl_EastArrow);
-            ChangeTrafficLblColor(LightState.NoLight, lbl_WestGreen,  lbl_WestYellow,  lbl_WestRed,  lbl_WestArrow);
-
-            // 歩行者用信号機をイメージしたラベルの背景色を変更する
-            ChangePedesLblColor(LightState.NoLight, lbl_NorthPedesGreenOne, lbl_NorthPedesGreenTwo, lbl_NorthPedesRedOne, lbl_NorthPedesRedTwo);
-            ChangePedesLblColor(LightState.NoLight, lbl_SouthPedesGreenOne, lbl_SouthPedesGreenTwo, lbl_SouthPedesRedOne, lbl_SouthPedesRedTwo);
-            ChangePedesLblColor(LightState.NoLight, lbl_EastPedesGreenOne,  lbl_EastPedesGreenTwo,  lbl_EastPedesRedOne,  lbl_EastPedesRedTwo);
-            ChangePedesLblColor(LightState.NoLight, lbl_WestPedesGreenOne,  lbl_WestPedesGreenTwo,  lbl_WestPedesRedOne,  lbl_WestPedesRedTwo);
-
             IsTrafficEnable = false;  // 信号機アルゴリズムを無効にする
             IsInterrupt     = false;  // 信号機アルゴリズム中断を無効にする
             IsCancel        = true;   // 信号機アルゴリズムのキャンセルを有効にする
 
             ChangeTextInterruptResumeBtn(IsInterrupt);  // 「中断/再開」ボタンのTextプロパティ値変更
             ChangeTextBoxEnabled(true);                 // テキストボックスのEnabledプロパティ値変更
+
+            // 車用信号機を無灯火にする
+            ChangeSignalLightOn(LightState.NoLight, lbl_picNorth, null);
+            ChangeSignalLightOn(LightState.NoLight, lbl_picSouth, null);
+            ChangeSignalLightOn(LightState.NoLight, lbl_picEast,  lbl_picEastArrow);
+            ChangeSignalLightOn(LightState.NoLight, lbl_picWest,  lbl_picWestArrow);
+
+            // 歩行者用信号機を無灯火にする
+            ChangePedesLightOn(LightState.NoLight, lbl_PedesNorthOne, lbl_PedesNorthTwo);
+            ChangePedesLightOn(LightState.NoLight, lbl_PedesSouthOne, lbl_PedesSouthTwo);
+            ChangePedesLightOn(LightState.NoLight, lbl_PedesEastOne,  lbl_PedesEastTwo);
+            ChangePedesLightOn(LightState.NoLight, lbl_PedesWestOne,  lbl_PedesWestTwo);
         }
 
         /// <summary>
@@ -306,7 +275,7 @@ namespace TrafficLightAlgorithm
         /// </summary>
         /// <param name="stTraffic"> 信号機の設定値を表す構造体 </param>
         /// <returns> 作成した信号機アルゴリズムのフェーズリスト </returns>
-        private List<TrafficPhase> CreateTrafficPhase(StructTraffic stTraffic)
+        private List<TrafficPhase> CreateTrafficPhase(WaitMSec stTraffic)
         {
             List<TrafficPhase> phaseList = new List<TrafficPhase>
             {
@@ -384,7 +353,7 @@ namespace TrafficLightAlgorithm
         /// <returns> 作成したフェーズ </returns>
         private TrafficPhase CreateMultiLightOn(int mSec, LightState state, params Traffic[] traffics)
         {
-            TrafficCommand[] commands = new TrafficCommand[traffics.Length];
+            TrafficCommand[] commands = new TrafficCommand[traffics.Length];  // １フェーズで行う信号機点灯設定が入る
 
             for (int i = 0; i < commands.Length; i++)
             {
@@ -397,54 +366,54 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 車用信号機の黄・赤点灯フェーズリストを作成する
         /// </summary>
-        /// <param name="carOne">     緑点灯時間が短い車用信号機を表す列挙型                 </param>
-        /// <param name="carTwo">     緑点灯時間が長い車用信号機を表す列挙型                 </param>
-        /// <param name="differMSec"> carOneとcarTwoが表す車用信号機の緑点灯時間の差(ミリ秒) </param>
         /// <param name="redMSec">    carTwoが表す車用信号機の赤点灯ミリ秒                   </param>
+        /// <param name="differMSec"> carOneとcarTwoが表す車用信号機の緑点灯時間の差(ミリ秒) </param>
+        /// <param name="carMin">     緑点灯時間が短い車用信号機を表す列挙型                 </param>
+        /// <param name="carMax">     緑点灯時間が長い車用信号機を表す列挙型                 </param>
         /// <returns> 作成したフェーズリスト </returns>
-        private List<TrafficPhase> CarYellowRed(int redMSec, int differMSec, Traffic carOne, Traffic carTwo)
+        private List<TrafficPhase> CarYellowRed(int redMSec, int differMSec, Traffic carMin, Traffic carMax)
         {
             if (differMSec == 0)
             {
                 // carOneとcarTwoが表す車用信号機の緑点灯時間が一致する場合
                 return new List<TrafficPhase>
                 {
-                    CreateMultiLightOn(YellowMSec, LightState.Yellow, carOne, carTwo),  // carOneとcarTwoが表す車用信号機を黄に点灯
-                    CreateMultiLightOn(redMSec,    LightState.Red,    carOne, carTwo)   // carOneとcarTwoが表す車用信号機を黄に点灯
+                    CreateMultiLightOn(YellowMSec, LightState.Yellow, carMin, carMax),  // carMinとcarMaxが表す車用信号機を黄に点灯
+                    CreateMultiLightOn(redMSec,    LightState.Red,    carMin, carMax)   // carMinとcarMaxが表す車用信号機を黄に点灯
                 };
             }
             else if (differMSec == MinMSec)
             {
-                // carOneとcarTwoが表す車用信号機の緑点灯時間の差がMinMSecミリ秒の場合
+                // differMSecとMinMSecが等しい場合
                 return new List<TrafficPhase>
                 {
                     new TrafficPhase(YellowMSec, 
-                        new TrafficCommand(carOne, LightState.Yellow)),  // carOneが表す車用信号機を黄に点灯
+                        new TrafficCommand(carMin, LightState.Yellow)),  // carMinが表す車用信号機を黄に点灯
                     new TrafficPhase(YellowMSec, 
-                        new TrafficCommand(carTwo, LightState.Yellow), 
-                        new TrafficCommand(carOne, LightState.Red)),     // carOneが表す車用信号機を赤、carTwoが表す車用信号機を黄に点灯
+                        new TrafficCommand(carMax, LightState.Yellow), 
+                        new TrafficCommand(carMin, LightState.Red)),     // carMinが表す車用信号機を赤、carMaxが表す車用信号機を黄に点灯
                     new TrafficPhase(redMSec,
-                        new TrafficCommand(carTwo, LightState.Red)),     // carTwoが表す車用信号機を赤に点灯
+                        new TrafficCommand(carMax, LightState.Red)),     // carMaxが表す車用信号機を赤に点灯
                 };
             }
 
             return new List<TrafficPhase>
             {
                 new TrafficPhase(YellowMSec,
-                    new TrafficCommand(carOne, LightState.Yellow)),  // carOneが表す車用信号機を黄に点灯
+                    new TrafficCommand(carMin, LightState.Yellow)),  // carMinが表す車用信号機を黄に点灯
                 new TrafficPhase(differMSec - YellowMSec,
-                    new TrafficCommand(carOne, LightState.Red)),     // carOneが表す車用信号機を赤に点灯
+                    new TrafficCommand(carMin, LightState.Red)),     // carMinが表す車用信号機を赤に点灯
                 new TrafficPhase(YellowMSec,
-                    new TrafficCommand(carTwo, LightState.Yellow)),  // carTwoが表す車用信号機を黄に点灯
+                    new TrafficCommand(carMax, LightState.Yellow)),  // carMaxが表す車用信号機を黄に点灯
                 new TrafficPhase(redMSec,
-                    new TrafficCommand(carTwo, LightState.Red)),     // carTwoが表す車用信号機を赤に点灯
+                    new TrafficCommand(carMax, LightState.Red)),     // carMaxが表す車用信号機を赤に点灯
             };
         }
 
         /// <summary>
         /// 信号機アルゴリズムのフェーズリストをループさせる
         /// </summary>
-        /// <param name="phaseNum"> 開始フェーズを表す数値             </param>
+        /// <param name="phaseNum"> 開始フェーズを表す数値 </param>
         private async void LoopTrafficPhase(int phaseNum)
         {
             int startPhase = phaseNum;  // 開始フェーズを表す番号
@@ -459,44 +428,35 @@ namespace TrafficLightAlgorithm
                     {
                         if (command.Traffic == Traffic.CarNorth)
                         {
-                            // 北車用信号機の点灯
-                            ChangeTrafficLblColor(command.State, lbl_NorthGreen, lbl_NorthYellow, lbl_NorthRed, null);
-                            ChangeSignalLightOn(command.State, lbl_picNorth);
+                            ChangeSignalLightOn(command.State, lbl_picNorth, null);  // 北車用信号機の点灯
                         }
                         else if (command.Traffic == Traffic.CarSouth)
                         {
-                            // 南車用信号機の点灯
-                            ChangeTrafficLblColor(command.State, lbl_SouthGreen, lbl_SouthYellow, lbl_SouthRed, null);
+                            ChangeSignalLightOn(command.State, lbl_picSouth, null);  // 南車用信号機の点灯
                         }
                         else if (command.Traffic == Traffic.CarEast)
                         {
-                            // 東車用信号機の点灯
-                            ChangeTrafficLblColor(command.State, lbl_EastGreen, lbl_EastYellow, lbl_EastRed, lbl_EastArrow);
+                            ChangeSignalLightOn(command.State, lbl_picEast, lbl_picEastArrow);  // 東車用信号機の点灯
                         }
                         else if (command.Traffic == Traffic.CarWest)
                         {
-                            // 西車用信号機の点灯
-                            ChangeTrafficLblColor(command.State, lbl_WestGreen, lbl_WestYellow, lbl_WestRed, lbl_WestArrow);
+                            ChangeSignalLightOn(command.State, lbl_picWest, lbl_picWestArrow);  // 西車用信号機の点灯
                         }
                         else if (command.Traffic == Traffic.PedesNorth)
                         {
-                            // 北歩行者用信号機の点灯
-                            ChangePedesLblColor(command.State, lbl_NorthPedesGreenOne, lbl_NorthPedesGreenTwo, lbl_NorthPedesRedOne, lbl_NorthPedesRedTwo);
+                            ChangePedesLightOn(command.State, lbl_PedesNorthOne, lbl_PedesNorthTwo);  // 北歩行者用信号機の点灯
                         }
                         else if (command.Traffic == Traffic.PedesSouth)
                         {
-                            // 南歩行者用信号機の点灯
-                            ChangePedesLblColor(command.State, lbl_SouthPedesGreenOne, lbl_SouthPedesGreenTwo, lbl_SouthPedesRedOne, lbl_SouthPedesRedTwo);
+                            ChangePedesLightOn(command.State, lbl_PedesSouthOne, lbl_PedesSouthTwo);  // 南歩行者用信号機の点灯
                         }
                         else if (command.Traffic == Traffic.PedesEast)
                         {
-                            // 東歩行者用信号機の点灯
-                            ChangePedesLblColor(command.State, lbl_EastPedesGreenOne, lbl_EastPedesGreenTwo, lbl_EastPedesRedOne, lbl_EastPedesRedTwo);
+                            ChangePedesLightOn(command.State, lbl_PedesEastOne, lbl_PedesEastTwo);  // 東歩行者用信号機の点灯
                         }
                         else if (command.Traffic == Traffic.PedesWest)
                         {
-                            // 西歩行者用信号機の点灯
-                            ChangePedesLblColor(command.State, lbl_WestPedesGreenOne, lbl_WestPedesGreenTwo, lbl_WestPedesRedOne, lbl_WestPedesRedTwo);
+                            ChangePedesLightOn(command.State, lbl_PedesWestOne, lbl_PedesWestTwo);  // 西歩行者用信号機の点灯
                         }
                     }
 
@@ -509,89 +469,48 @@ namespace TrafficLightAlgorithm
         }
 
         /// <summary>
-        /// 車用信号機の点灯状態を更新する
-        /// </summary>
-        /// <param name="state">  点灯状態を表す列挙型             </param>
-        /// <param name="green">  車用信号機の緑ランプを表すラベル </param>
-        /// <param name="yellow"> 車用信号機の黄ランプを表すラベル </param>
-        /// <param name="red">    車用信号機の赤ランプを表すラベル </param>
-        /// <param name="arrow">  矢印信号機を表すラベル           </param>
-        private void ChangeTrafficLblColor(LightState state, Label green, Label yellow, Label red, Label arrow)
-        {
-            Color greenLamp  = TrafficNoLight;  // 車用信号機の緑ランプを表すラベルの背景色
-            Color yellowLamp = TrafficNoLight;  // 車用信号機の黄ランプを表すラベルの背景色
-            Color redLamp    = TrafficNoLight;  // 車用信号機の赤ランプを表すラベルの背景色
-            Color arrowLamp  = ArrowDefault;    // 矢印信号機を表すラベルの背景色
-
-            if (state == LightState.Green)
-            {
-                greenLamp = TrafficLightGreen;    // 点灯状態が緑の場合
-            }
-            else if (state == LightState.Yellow)
-            {
-                yellowLamp = TrafficLightYellow;  // 点灯状態が黄の場合
-            }
-            else if (state == LightState.Red)
-            {
-                redLamp = TrafficLightRed;        // 点灯状態が赤の場合
-            }
-            else if (state == LightState.Arrow)
-            {
-                arrowLamp = ArrowGreen;           // 矢印信号機を点灯する場合
-                redLamp   = TrafficLightRed;
-            }
-
-            green.BackColor  = greenLamp;                    // 車用信号機の緑ランプを表すラベルの背景色を変更する
-            yellow.BackColor = yellowLamp;                   // 車用信号機の黄ランプを表すラベルの背景色を変更する 
-            red.BackColor    = redLamp;                      // 車用信号機の赤ランプを表すラベルの背景色を変更する
-            if (arrow != null) arrow.ForeColor = arrowLamp;  // 矢印信号機を表すラベルのフォント色を変更する
-        }
-
-        /// <summary>
-        /// 歩行者用信号機の点灯状態を更新する
-        /// </summary>
-        /// <param name="state"> 　 点灯状態を表す列挙型                         </param>
-        /// <param name="greenOne"> 歩行者用信号機の緑ランプを表す１つ目のラベル </param>
-        /// <param name="greenTwo"> 歩行者用信号機の緑ランプを表す２つ目のラベル </param>
-        /// <param name="redOne">   歩行者用信号機の赤ランプを表す１つ目のラベル </param>
-        /// <param name="redTwo">   歩行者用信号機の赤ランプを表す２つ目のラベル </param>
-        private void ChangePedesLblColor(LightState state, Label greenOne, Label greenTwo, Label redOne, Label redTwo)
-        {
-            Color greenOneLamp = TrafficNoLight;  // 歩行者用信号機の緑ランプを表す１つ目のラベル背景色
-            Color greenTwoLamp = TrafficNoLight;  // 歩行者用信号機の緑ランプを表す２つ目のラベル背景色
-            Color redOneLamp   = TrafficNoLight;  // 歩行者用信号機の赤ランプを表す１つ目のラベル背景色
-            Color redTwoLamp   = TrafficNoLight;  // 歩行者用信号機の赤ランプを表す２つ目のラベル背景色
-
-            if (state == LightState.Green)
-            {
-                // 点灯状態が緑の場合
-                greenOneLamp = TrafficLightGreen;
-                greenTwoLamp = TrafficLightGreen;
-            }
-            else if (state == LightState.Red)
-            {
-                // 点灯状態が赤の場合
-                redOneLamp = TrafficLightRed;
-                redTwoLamp = TrafficLightRed;
-            }
-
-            greenOne.BackColor = greenOneLamp;  // 歩行者用信号機の緑ランプを表す１つ目のラベル背景色を変更する
-            greenTwo.BackColor = greenTwoLamp;  // 歩行者用信号機の緑ランプを表す２つ目のラベル背景色を変更する
-            redOne.BackColor   = redOneLamp;    // 歩行者用信号機の赤ランプを表す１つ目のラベル背景色を変更する
-            redTwo.BackColor   = redTwoLamp;    // 歩行者用信号機の赤ランプを表す２つ目のラベル背景色を変更する
-        }
-
-        /// <summary>
         /// 車用信号機の点灯状態更新
         /// </summary>
-        /// <param name="state">    点灯状態を表す列挙型               </param>
-        /// <param name="picLabel"> 車用信号機の画像を貼り付けたラベル </param>
-        private void ChangeSignalLightOn(LightState state, Label picLabel)
+        /// <param name="state">      点灯状態を表す列挙型               </param>
+        /// <param name="picLabel">   車用信号機の画像を貼り付けたラベル </param>
+        /// <param name="arrowLabel"> 矢印信号機の画像を貼り付けたラベル </param>
+        private void ChangeSignalLightOn(LightState state, Label picLabel, Label arrowLabel)
         {
-            if (state == LightState.NoLight) picLabel.Image = Resources.NoLightSignal;
-            if (state == LightState.Green)   picLabel.Image = Resources.GreenSignal;
-            if (state == LightState.Yellow)  picLabel.Image = Resources.YellowSignal;
-            if (state == LightState.Red)     picLabel.Image = Resources.RedSignal;
+            if (state == LightState.NoLight) picLabel.Image = Resources.NoLightSignal;      // 無灯火イメージ画像を取得する
+            if (state == LightState.Green)   picLabel.Image = Resources.GreenLightSignal;   // 緑点灯イメージ画像を取得する
+            if (state == LightState.Yellow)  picLabel.Image = Resources.YellowLightSignal;  // 黄点灯イメージ画像を取得する
+            if (state == LightState.Red)     picLabel.Image = Resources.RedLightSignal;     // 赤点灯イメージ画像を取得する
+
+            // 矢印信号機の点灯
+            if (arrowLabel != null)
+            {
+                if (state == LightState.Arrow)
+                {
+                    picLabel.Image   = Resources.RedLightSignal;  // 赤点灯イメージ画像を取得する
+                    arrowLabel.Image = Resources.ArrowGreen;      // 矢印信号機点灯イメージ画像を取得する
+                }
+                else
+                {
+                    arrowLabel.Image = Resources.ArrowDefault;  // 矢印信号機無灯火イメージ画像を取得する
+                }
+            }
+        }
+
+        /// <summary>
+        /// 歩行者用信号機の点灯状態更新
+        /// </summary>
+        /// <param name="state">         点灯状態を表す列挙型                           </param>
+        /// <param name="pedesLabelOne"> 歩行者用信号機の画像を貼り付けた１つ目のラベル </param>
+        /// <param name="pedesLabelTwo"> 歩行者用信号機の画像を貼り付けた２つ目のラベル </param>
+        private void ChangePedesLightOn(LightState state, Label pedesLabelOne, Label pedesLabelTwo)
+        {
+            Bitmap bmp = Resources.PedesNoLight;  // 無灯火イメージ画像を取得する
+
+            if (state == LightState.Green) bmp = Resources.PedesGreen;  // 緑点灯イメージ画像を取得する
+            if (state == LightState.Red)   bmp = Resources.PedesRed;    // 赤点灯イメージ画像を取得する
+
+            pedesLabelOne.Image = bmp;
+            pedesLabelTwo.Image = bmp;
         }
     }
 }
