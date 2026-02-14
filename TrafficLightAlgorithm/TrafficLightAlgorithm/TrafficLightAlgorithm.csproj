@@ -65,7 +65,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -82,15 +81,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\GreenLightSignal.png" />
-    <None Include="Resources\NoLightSignal.png" />
-    <None Include="Resources\YellowLightSignal.png" />
-    <None Include="Resources\RedLightSignal.png" />
+    <None Include="Resources\EastWestSignalDefault.png" />
+    <None Include="Resources\NorthSouthSignalDefault.png" />
+    <None Include="Resources\SignalRed.png" />
+    <None Include="Resources\SignalYellow.png" />
+    <None Include="Resources\SignalGreen.png" />
     <None Include="Resources\ArrowDefault.png" />
-    <None Include="Resources\ArrowGreen.png" />
+    <None Include="Resources\ArrowWest.png" />
+    <None Include="Resources\ArrowEast.png" />
+    <None Include="Resources\PedesDefaultEW.png" />
+    <None Include="Resources\PedesDefaultNS.png" />
     <None Include="Resources\PedesGreen.png" />
-    <None Include="Resources\PedesRed.png" />
-    <None Include="Resources\PedesNoLight.png" />
     <Content Include="TrafficLightAlgorithm.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
