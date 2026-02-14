@@ -179,5 +179,15 @@ namespace TrafficLightAlgorithm.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap TrafficCorner {
+            get {
+                object obj = ResourceManager.GetObject("TrafficCorner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
