@@ -114,6 +114,11 @@ namespace TrafficLightAlgorithm
             // 西方向歩行者用信号機のランプを表すラベルの回転
             lbl_PWGreTwo.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
             lbl_PWRedTwo.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
+
+            // 交差点コーナー画像表示ラベルの回転
+            lbl_NorthEastCorner.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+            lbl_SouthEastCorner.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
+            lbl_SouthWestCorner.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate270FlipNone);
         }
 
         /// <summary>
@@ -193,7 +198,7 @@ namespace TrafficLightAlgorithm
         {
             if (IsTrafficEnable)
             {
-                string msgStr = "信号機の点灯処理を停止しますか？";
+                string msgStr = "信号機の点灯状態をリセットしますか？";
                 DialogResult diresult = MessageBox.Show(msgStr, Program.SoftTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (diresult == DialogResult.No) return;
             }
@@ -212,8 +217,8 @@ namespace TrafficLightAlgorithm
 
             ChangePedesLightOn(LightState.NoLight, lbl_PNGreOne, lbl_PNGreTwo, lbl_PNRedOne, lbl_PNRedTwo);  // 北歩行者用信号機を無灯火にする
             ChangePedesLightOn(LightState.NoLight, lbl_PSGreOne, lbl_PSGreTwo, lbl_PSRedOne, lbl_PSRedTwo);  // 南歩行者用信号機を無灯火にする
-            ChangePedesLightOn(LightState.NoLight, lbl_PEGreOne,  lbl_PEGreTwo,  lbl_PERedOne,  lbl_PERedTwo);   // 東歩行者用信号機を無灯火にする
-            ChangePedesLightOn(LightState.NoLight, lbl_PWGreOne,  lbl_PWGreTwo,  lbl_PWRedOne,  lbl_PWRedTwo);   // 西歩行者用信号機を無灯火にする
+            ChangePedesLightOn(LightState.NoLight, lbl_PEGreOne, lbl_PEGreTwo, lbl_PERedOne, lbl_PERedTwo);  // 東歩行者用信号機を無灯火にする
+            ChangePedesLightOn(LightState.NoLight, lbl_PWGreOne, lbl_PWGreTwo, lbl_PWRedOne, lbl_PWRedTwo);  // 西歩行者用信号機を無灯火にする
         }
         
         /// <summary>
@@ -282,12 +287,12 @@ namespace TrafficLightAlgorithm
         /// <param name="enable"> Enabledプロパティを有効にする場合はtrue、それ以外の場合はfalse </param>
         private void ChangeTextBoxEnabled(bool enable)
         {
-            txt_NLightSec.Enabled = enable;  // 北車用信号機の緑点灯秒数を入力するテキストボックスのEnabledプロパティ値変更
-            txt_SLightSec.Enabled = enable;  // 南車用信号機の緑点灯秒数を入力するテキストボックスのEnabledプロパティ値変更
-            txt_ELightSec.Enabled = enable;  // 東車用信号機の緑点灯秒数を入力するテキストボックスのEnabledプロパティ値変更
-            txt_WLightSec.Enabled = enable;  // 西車用信号機の緑点灯秒数を入力するテキストボックスのEnabledプロパティ値変更
+            txt_NLightSec.Enabled = enable;  // 交差点北方向への進行可能秒数を入力するテキストボックスのEnabledプロパティ値変更
+            txt_SLightSec.Enabled = enable;  // 交差点南方向への進行可能秒数を入力するテキストボックスのEnabledプロパティ値変更
+            txt_ELightSec.Enabled = enable;  // 交差点東方向への進行可能秒数を入力するテキストボックスのEnabledプロパティ値変更
+            txt_WLightSec.Enabled = enable;  // 交差点西方向への進行可能秒数を入力するテキストボックスのEnabledプロパティ値変更
             txt_ArrowSec.Enabled  = enable;  // 矢印信号機の点灯秒数を入力するテキストボックスのEnabledプロパティ値変更
-            txt_PrepaSec.Enabled  = enable;  // 進行方向切り替え準備秒数を入力するテキストボックスのEnabledプロパティ値変更
+            txt_PrepaSec.Enabled  = enable;  // 全信号機の赤点灯秒数を入力するテキストボックスのEnabledプロパティ値変更
         }
 
         /// <summary>
@@ -395,7 +400,7 @@ namespace TrafficLightAlgorithm
         {
             if (difMSec == 0)
             {
-                // carMinとcarMaxが表す車用信号機の緑点灯ミリ秒が一致する場合
+                // carMinとcarMaxが表す車用信号機の緑点灯時間が一致する場合
                 return new List<TrafficPhase>
                 {
                     CreatePhase(YellowMSec, LightState.Yellow, carMin, carMax),  // carMinとcarMaxが表す車用信号機を黄に点灯
@@ -498,10 +503,20 @@ namespace TrafficLightAlgorithm
         /// <param name="arrow">  矢印信号機の矢印ランプを表すラベル </param>
         private void ChangeSignalLightOn(LightState state, Label green, Label yellow, Label red, Label arrow)
         {
-            green.Visible  =  state == LightState.Green;                              // 緑ランプを表すラベルの表示/非表示の設定
-            yellow.Visible =  state == LightState.Yellow;                             // 黄ランプを表すラベルの表示/非表示の設定
-            red.Visible    = (state == LightState.Red || state == LightState.Arrow);  // 赤ランプを表すラベルの表示/非表示の設定
-            if (arrow != null) arrow.Visible = state == LightState.Arrow;             // 矢印ランプを表すラベルの表示/非表示の設定
+            bool greVisible = false;  // 緑ランプを表すラベルのVisibleプロパティに設定する値
+            bool yelVisible = false;  // 黄ランプを表すラベルのVisibleプロパティに設定する値
+            bool redVisible = false;  // 赤ランプを表すラベルのVisibleプロパティに設定する値
+            bool arwVisible = false;  // 矢印ランプを表すラベルのVisibleプロパティに設定する値
+
+            if (state == LightState.Green)  greVisible = true;
+            if (state == LightState.Yellow) yelVisible = true;
+            if (state == LightState.Red || state == LightState.Arrow) redVisible = true;
+            if (state == LightState.Arrow)  arwVisible = true; 
+
+            green.Visible  = greVisible;                    // 緑ランプを表すラベルの表示/非表示の設定
+            yellow.Visible = yelVisible;                    // 黄ランプを表すラベルの表示/非表示の設定
+            red.Visible    = redVisible;                    // 赤ランプを表すラベルの表示/非表示の設定
+            if (arrow != null) arrow.Visible = arwVisible;  // 矢印ランプを表すラベルの表示/非表示の設定
         }
 
         /// <summary>
@@ -514,10 +529,16 @@ namespace TrafficLightAlgorithm
         /// <param name="redTwo">   歩行者用信号機の赤ランプを表す２つ目のラベル </param>
         private void ChangePedesLightOn(LightState state, Label greenOne, Label greenTwo, Label redOne, Label redTwo)
         {
-            greenOne.Visible = state == LightState.Green;  // １つ目の緑ランプを表すラベルの表示/非表示の設定
-            greenTwo.Visible = state == LightState.Green;  // ２つ目の緑ランプを表すラベルの表示/非表示の設定
-            redOne.Visible   = state == LightState.Red;    // １つ目の赤ランプを表すラベルの表示/非表示の設定
-            redTwo.Visible   = state == LightState.Red;    // ２つ目の赤ランプを表すラベルの表示/非表示の設定
+            bool greVisible = false;  // 緑ランプを表すラベルのVisibleプロパティに設定する値
+            bool redVisible = false;  // 赤ランプを表すラベルのVisibleプロパティに設定する値
+
+            if (state == LightState.Green) greVisible = true;
+            if (state == LightState.Red)   redVisible = true;
+
+            greenOne.Visible = greVisible;  // 緑ランプを表す１つ目のラベルの表示/非表示の設定
+            greenTwo.Visible = greVisible;  // 緑ランプを表す２つ目のラベルの表示/非表示の設定
+            redOne.Visible   = redVisible;  // 赤ランプを表す１つ目のラベルの表示/非表示の設定
+            redTwo.Visible   = redVisible;  // 赤ランプを表す２つ目のラベルの表示/非表示の設定
         }
     }
 }

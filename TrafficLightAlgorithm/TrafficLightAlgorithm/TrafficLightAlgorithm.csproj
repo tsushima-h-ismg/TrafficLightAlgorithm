@@ -92,6 +92,7 @@
     <None Include="Resources\PedesDefaultEW.png" />
     <None Include="Resources\PedesDefaultNS.png" />
     <None Include="Resources\PedesGreen.png" />
+    <None Include="Resources\TrafficCorner.png" />
     <Content Include="TrafficLightAlgorithm.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
