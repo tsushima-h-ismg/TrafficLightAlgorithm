@@ -73,9 +73,14 @@ namespace TrafficLightAlgorithm
         private bool IsInterrupt;
 
         /// <summary>
-        /// 信号機アルゴリズムの停止が有効の場合はtrue、それ以外の場合はfalse
+        /// 信号機アルゴリズムの停止要求が有効の場合はtrue、それ以外の場合はfalse
         /// </summary>
-        private bool IsCancel;
+        private bool CancelRequest;
+
+        /// <summary>
+        /// 信号機アルゴリズムを停止する場合はtrue、それ以外の場合はfalse
+        /// </summary>
+        private bool Canceling;
 
         /// <summary>
         /// 信号機アルゴリズムのフェーズリスト
@@ -142,6 +147,8 @@ namespace TrafficLightAlgorithm
                 return;
             }
 
+            if (CancelRequest) return;  // キャンセル要求が出ている場合は終了する
+
             // 信号機アルゴリズムを中断している場合
             if (IsInterrupt)
             {
@@ -151,48 +158,46 @@ namespace TrafficLightAlgorithm
             }
             else
             {
-                if (IsTrafficEnable) return;  // 信号機アルゴリズムが中断されず動いている場合は終了する
+                if (IsTrafficEnable) return;
             }
 
             // 信号機アルゴリズムの設定値構造体を取得する
             WaitMSec waitMSec = new WaitMSec(txt_NProgSec.Text, txt_SProgSec.Text, txt_EProgSec.Text,
                                              txt_WProgSec.Text, txt_ArrowSec.Text, txt_AllRedSec.Text);
-            
-            IsTrafficEnable = true;   // 信号機アルゴリズムが動く場合のブール値に設定する
-            IsInterrupt     = false;  // 信号機アルゴリズムの中断を無効にする       
 
+            IsTrafficEnable = true;   // 信号機アルゴリズムが動く場合のブール値に設定する
+            IsInterrupt     = false;  // 信号機アルゴリズムの中断を無効にする
+
+            PhaseList = CreateTrafficPhaseList(waitMSec);  // 信号機アルゴリズムのフェーズリストを作成
             ChangeTextInterruptResumeBtn();                // 「中断/再開」ボタンのTextプロパティ値変更
             ChangeTextBoxEnabled(false);                   // テキストボックスのEnabledプロパティ値変更
-            PhaseList = CreateTrafficPhaseList(waitMSec);  // 信号機アルゴリズムのフェーズリストを作成
-            LoopTrafficPhase(0);                     　    // フェーズリストの最初のフェーズからループを開始する
+            LoopTrafficPhase(0);                           // フェーズリストの最初のフェーズからループを開始する
         }
 
         /// <summary>
         /// 「中断/再開」ボタンクリック時イベント
         /// </summary>
-        private void Btn_InterruptResume_Click(object sender, EventArgs e)
+        private async void Btn_InterruptResume_Click(object sender, EventArgs e)
         {
             if (IsTrafficEnable)
             {
                 if (IsInterrupt)
                 {
-                    IsInterrupt = false;  // 信号機アルゴリズムの中断を無効にする
+                    IsInterrupt   = false;  // 信号機アルゴリズムの中断を無効にする
+                    CancelRequest = false;  // 信号機アルゴリズムの停止を無効にする
                 }
                 else
                 {
-                    IsInterrupt = true;   // 信号機アルゴリズムの中断を有効にする
+                    IsInterrupt   = true;  // 信号機アルゴリズムの中断を有効にする
+                    CancelRequest = true;  // 信号機アルゴリズムの停止を有効にする
                 }
 
                 ChangeTextInterruptResumeBtn();  // 「中断/再開」ボタンのTextプロパティ値変更
 
-                if (IsInterrupt)
+                if (!IsInterrupt)
                 {
-                    IsCancel = true;  // 信号機アルゴリズムの停止を有効にする
-                }
-                else
-                {
-                    IsCancel = false;                  // 信号機アルゴリズムの停止を無効にする
-                    LoopTrafficPhase(InterruptPhase);  // 中断したフェーズからループを開始する
+                    await Task.Delay(PhaseList[InterruptPhase].WaitMSec);  // 点灯状態変更後の待機時間が終了するまで待機する
+                    LoopTrafficPhase(InterruptPhase);                      // 中断したフェーズからループを開始する                    
                 }
             }
         }
@@ -200,7 +205,7 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 「リセット」ボタンクリック時イベント
         /// </summary>
-        private void Btn_Stop_Click(object sender, EventArgs e)
+        private async void Btn_Stop_Click(object sender, EventArgs e)
         {
             if (IsTrafficEnable)
             {
@@ -211,7 +216,10 @@ namespace TrafficLightAlgorithm
 
             IsTrafficEnable = false;  // 信号機アルゴリズムが動かない場合のブール値に設定する
             IsInterrupt     = false;  // 信号機アルゴリズムの中断を無効にする
-            IsCancel        = true;   // 信号機アルゴリズムの停止を有効にする
+            CancelRequest   = true;   // 信号機アルゴリズムの停止を有効にする
+
+            if (CancelRequest) await Task.Delay(PhaseList[InterruptPhase].WaitMSec);
+            CancelRequest = false;
 
             ChangeTextInterruptResumeBtn();  // 「中断/再開」ボタンのTextプロパティ値変更
             ChangeTextBoxEnabled(true);      // テキストボックスのEnabledプロパティ値変更
@@ -449,12 +457,14 @@ namespace TrafficLightAlgorithm
         {
             int startPhase = phaseNum;  // 開始フェーズの番号を取得する
 
-            while (!IsCancel)
+            while (!CancelRequest)
             {
                 for (int i = startPhase; i < PhaseList.Count; i++)
                 {
                     InterruptPhase = i;  // 現在のフェーズの番号を取得する
-                    
+
+                    if (CancelRequest) Canceling = true;  // キャンセル要求が出ている場合信号機アルゴリズムの停止を有効にする
+
                     foreach(TrafficCommand command in PhaseList[i].Commands)
                     {
                         if (command.Traffic == Traffic.CarNorth)
@@ -490,15 +500,14 @@ namespace TrafficLightAlgorithm
                             ChangePedesLightOn(command.State, lbl_PWGreOne, lbl_PWGreTwo, lbl_PWRedOne, lbl_PWRedTwo);  // 西歩行者用信号機の点灯
                         }
                     }
-
-                    await Task.Delay(PhaseList[i].WaitMSec);  // WaitMSecミリ秒待機する
-                    if (IsCancel) break;                      // 信号機アルゴリズムの停止が有効の場合はループから脱出する
+                    
+                    if (Canceling) break;                     // 信号機アルゴリズムの停止が有効の場合はループから脱出する
+                    await Task.Delay(PhaseList[i].WaitMSec);  // PhaseList[i].WaitMSecミリ秒待機する
                 }
 
-                startPhase = 0;  // 開始フェーズの番号を0に設定する
+                startPhase = 0;      // 開始フェーズの番号を0に設定する
+                Canceling  = false;  // 信号機アルゴリズムの停止を無効にする
             }
-
-            IsCancel = false;
         }
 
         /// <summary>

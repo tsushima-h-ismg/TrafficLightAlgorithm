@@ -59,7 +59,7 @@
     </Compile>
     <Compile Include="TrafficCommand.cs" />
     <Compile Include="TrafficPhase.cs" />
-    <Compile Include="TrafficSetValue.cs" />
+    <Compile Include="TrafficMSecValue.cs" />
     <EmbeddedResource Include="F_TrafficLight.resx">
       <DependentUpon>F_TrafficLight.cs</DependentUpon>
     </EmbeddedResource>
