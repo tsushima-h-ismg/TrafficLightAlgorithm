@@ -87,12 +87,13 @@
     <None Include="Resources\SignalYellow.png" />
     <None Include="Resources\SignalGreen.png" />
     <None Include="Resources\ArrowDefault.png" />
-    <None Include="Resources\ArrowWest.png" />
-    <None Include="Resources\ArrowEast.png" />
     <None Include="Resources\PedesDefaultEW.png" />
     <None Include="Resources\PedesDefaultNS.png" />
     <None Include="Resources\PedesGreen.png" />
     <None Include="Resources\TrafficCorner.png" />
+    <None Include="Resources\CarRightArrow.png" />
+    <None Include="Resources\CarStraightLeftArrow.png" />
+    <None Include="Resources\ArrowSignal.png" />
     <Content Include="TrafficLightAlgorithm.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

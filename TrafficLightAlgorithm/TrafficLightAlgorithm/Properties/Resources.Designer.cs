@@ -73,9 +73,9 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap ArrowEast {
+        internal static System.Drawing.Bitmap ArrowSignal {
             get {
-                object obj = ResourceManager.GetObject("ArrowEast", resourceCulture);
+                object obj = ResourceManager.GetObject("ArrowSignal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,19 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap ArrowWest {
+        internal static System.Drawing.Bitmap CarRightArrow {
             get {
-                object obj = ResourceManager.GetObject("ArrowWest", resourceCulture);
+                object obj = ResourceManager.GetObject("CarRightArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap CarStraightLeftArrow {
+            get {
+                object obj = ResourceManager.GetObject("CarStraightLeftArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

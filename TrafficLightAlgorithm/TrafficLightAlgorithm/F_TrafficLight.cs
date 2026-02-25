@@ -8,32 +8,32 @@ namespace TrafficLightAlgorithm
     public partial class F_TrafficLight : Form
     {
         /// <summary>
-        /// 車用信号機の緑色灯火秒数の最大値
+        /// 進行可能時間の最大値
         /// </summary>
         private const int GreenSecMax     = 20;
 
         /// <summary>
-        /// 車用信号機の緑色灯火秒数の最小値
+        /// 進行可能時間の最小値
         /// </summary>
         private const int GreenSecMin     = 5;
 
         /// <summary>
-        /// 矢印信号機の緑色灯火秒数の最大値
+        /// 矢印信号機の点灯時間の最大値
         /// </summary>
         private const int ArrowSecMax     = 5;
 
         /// <summary>
-        /// 矢印信号機の緑色灯火秒数の最小値
+        /// 矢印信号機の点灯時間の最小値
         /// </summary>
         private const int ArrowSecMin     = 1;
 
         /// <summary>
-        /// 交差点の進行方向切り替え準備秒数の最大値
+        /// 全信号機の赤点灯時間の最大値
         /// </summary>
         private const int PrepaSecMax     = 5;
 
         /// <summary>
-        /// 交差点の進行方向切り替え準備秒数の最小値
+        /// 全信号機の赤点灯時間の最小値
         /// </summary>
         private const int PrepaSecMin     = 1;
 
@@ -92,8 +92,11 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private void F_TrafficLight_Load(object sender, EventArgs e)
         {
-            IsTrafficEnable = false;  // 信号機アルゴリズムが動かない場合のbool値に設定する
+            IsTrafficEnable = false;  // 信号機アルゴリズムが動かない場合のブール値に設定する
             IsInterrupt     = false;  // 信号機アルゴリズムの中断を無効にする
+
+            // 東方向矢印信号機の矢印ランプを表すラベルの回転
+            lbl_EArrow.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
 
             // 北方向歩行者用信号機のランプを表すラベルの回転
             lbl_PNGreOne.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate270FlipNone);
@@ -114,6 +117,10 @@ namespace TrafficLightAlgorithm
             // 西方向歩行者用信号機のランプを表すラベルの回転
             lbl_PWGreTwo.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
             lbl_PWRedTwo.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
+
+            // 西方向車道の進行方向矢印を表示するラベルの回転
+            lbl_WSLArrow.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
+            lbl_WRArrow.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
 
             // 交差点コーナー画像表示ラベルの回転
             lbl_NorthEastCorner.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
@@ -503,20 +510,20 @@ namespace TrafficLightAlgorithm
         /// <param name="arrow">  矢印信号機の矢印ランプを表すラベル </param>
         private void ChangeSignalLightOn(LightState state, Label green, Label yellow, Label red, Label arrow)
         {
-            bool greVisible = false;  // 緑ランプを表すラベルのVisibleプロパティに設定する値
-            bool yelVisible = false;  // 黄ランプを表すラベルのVisibleプロパティに設定する値
-            bool redVisible = false;  // 赤ランプを表すラベルのVisibleプロパティに設定する値
-            bool arwVisible = false;  // 矢印ランプを表すラベルのVisibleプロパティに設定する値
+            bool greVisible = false;  // greenラベルのVisibleプロパティに設定する値
+            bool yelVisible = false;  // yellowラベルのVisibleプロパティに設定する値
+            bool redVisible = false;  // redラベルのVisibleプロパティに設定する値
+            bool arwVisible = false;  // arrowラベルのVisibleプロパティに設定する値
 
             if (state == LightState.Green)  greVisible = true;
             if (state == LightState.Yellow) yelVisible = true;
             if (state == LightState.Red || state == LightState.Arrow) redVisible = true;
             if (state == LightState.Arrow)  arwVisible = true; 
 
-            green.Visible  = greVisible;                    // 緑ランプを表すラベルの表示/非表示の設定
-            yellow.Visible = yelVisible;                    // 黄ランプを表すラベルの表示/非表示の設定
-            red.Visible    = redVisible;                    // 赤ランプを表すラベルの表示/非表示の設定
-            if (arrow != null) arrow.Visible = arwVisible;  // 矢印ランプを表すラベルの表示/非表示の設定
+            green.Visible  = greVisible;                    // greenラベルの表示/非表示の設定
+            yellow.Visible = yelVisible;                    // yellowラベルの表示/非表示の設定
+            red.Visible    = redVisible;                    // redラベルの表示/非表示の設定
+            if (arrow != null) arrow.Visible = arwVisible;  // arrowラベルの表示/非表示の設定
         }
 
         /// <summary>
@@ -529,16 +536,16 @@ namespace TrafficLightAlgorithm
         /// <param name="redTwo">   歩行者用信号機の赤ランプを表す２つ目のラベル </param>
         private void ChangePedesLightOn(LightState state, Label greenOne, Label greenTwo, Label redOne, Label redTwo)
         {
-            bool greVisible = false;  // 緑ランプを表すラベルのVisibleプロパティに設定する値
-            bool redVisible = false;  // 赤ランプを表すラベルのVisibleプロパティに設定する値
+            bool greVisible = false;  // greenOneラベルとgreenTwoラベルのVisibleプロパティに設定する値
+            bool redVisible = false;  // redOneラベルとredTwoラベルのVisibleプロパティに設定する値
 
             if (state == LightState.Green) greVisible = true;
             if (state == LightState.Red)   redVisible = true;
 
-            greenOne.Visible = greVisible;  // 緑ランプを表す１つ目のラベルの表示/非表示の設定
-            greenTwo.Visible = greVisible;  // 緑ランプを表す２つ目のラベルの表示/非表示の設定
-            redOne.Visible   = redVisible;  // 赤ランプを表す１つ目のラベルの表示/非表示の設定
-            redTwo.Visible   = redVisible;  // 赤ランプを表す２つ目のラベルの表示/非表示の設定
+            greenOne.Visible = greVisible;  // 信号機の緑ランプを表す１つ目のラベルの表示/非表示の設定
+            greenTwo.Visible = greVisible;  // 信号機の緑ランプを表す２つ目のラベルの表示/非表示の設定
+            redOne.Visible   = redVisible;  // 信号機の赤ランプを表す１つ目のラベルの表示/非表示の設定
+            redTwo.Visible   = redVisible;  // 信号機の赤ランプを表す２つ目のラベルの表示/非表示の設定
         }
     }
 }
