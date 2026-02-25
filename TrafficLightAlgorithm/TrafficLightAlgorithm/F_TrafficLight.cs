@@ -10,12 +10,12 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 進行可能時間の最大値
         /// </summary>
-        private const int GreenSecMax     = 20;
+        private const int ProgSecMax      = 20;
 
         /// <summary>
         /// 進行可能時間の最小値
         /// </summary>
-        private const int GreenSecMin     = 5;
+        private const int ProgSecMin      = 5;
 
         /// <summary>
         /// 矢印信号機の点灯時間の最大値
@@ -30,12 +30,12 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 全信号機の赤点灯時間の最大値
         /// </summary>
-        private const int PrepaSecMax     = 5;
+        private const int AllRedSecMax    = 5;
 
         /// <summary>
         /// 全信号機の赤点灯時間の最小値
         /// </summary>
-        private const int PrepaSecMin     = 1;
+        private const int AllRedSecMin    = 1;
 
         /// <summary>
         /// 車用信号機の黄点灯ミリ秒
@@ -73,7 +73,7 @@ namespace TrafficLightAlgorithm
         private bool IsInterrupt;
 
         /// <summary>
-        /// 信号機アルゴリズムを停止する場合はtrue、それ以外の場合はfalse
+        /// 信号機アルゴリズムの停止が有効の場合はtrue、それ以外の場合はfalse
         /// </summary>
         private bool IsCancel;
 
@@ -142,7 +142,7 @@ namespace TrafficLightAlgorithm
                 return;
             }
 
-            // 信号機点灯処理を中断している場合
+            // 信号機アルゴリズムを中断している場合
             if (IsInterrupt)
             {
                 string msgStr = "信号機の点灯処理を中断しています。処理を最初から実行しますか？";
@@ -151,16 +151,15 @@ namespace TrafficLightAlgorithm
             }
             else
             {
-                if (IsTrafficEnable) return;  // 信号機点灯処理が中断されず動いている場合は終了する
+                if (IsTrafficEnable) return;  // 信号機アルゴリズムが中断されず動いている場合は終了する
             }
 
             // 信号機アルゴリズムの設定値構造体を取得する
-            WaitMSec waitMSec = new WaitMSec(txt_NLightSec.Text, txt_SLightSec.Text, txt_ELightSec.Text,
-                                             txt_WLightSec.Text, txt_ArrowSec.Text,  txt_PrepaSec.Text);
+            WaitMSec waitMSec = new WaitMSec(txt_NProgSec.Text, txt_SProgSec.Text, txt_EProgSec.Text,
+                                             txt_WProgSec.Text, txt_ArrowSec.Text, txt_AllRedSec.Text);
             
             IsTrafficEnable = true;   // 信号機アルゴリズムが動く場合のブール値に設定する
-            IsInterrupt     = false;  // 信号機アルゴリズムの中断を無効にする
-            IsCancel        = false;  // 信号機アルゴリズムの停止を無効にする            
+            IsInterrupt     = false;  // 信号機アルゴリズムの中断を無効にする       
 
             ChangeTextInterruptResumeBtn();                // 「中断/再開」ボタンのTextプロパティ値変更
             ChangeTextBoxEnabled(false);                   // テキストボックスのEnabledプロパティ値変更
@@ -216,7 +215,7 @@ namespace TrafficLightAlgorithm
 
             ChangeTextInterruptResumeBtn();  // 「中断/再開」ボタンのTextプロパティ値変更
             ChangeTextBoxEnabled(true);      // テキストボックスのEnabledプロパティ値変更
-
+            
             ChangeSignalLightOn(LightState.NoLight, lbl_NGreen, lbl_NYellow, lbl_NRed, null);        // 北車用信号機を無灯火にする
             ChangeSignalLightOn(LightState.NoLight, lbl_SGreen, lbl_SYellow, lbl_SRed, null);        // 南車用信号機を無灯火にする
             ChangeSignalLightOn(LightState.NoLight, lbl_EGreen, lbl_EYellow, lbl_ERed, lbl_EArrow);  // 東車用信号機を無灯火にする
@@ -234,7 +233,7 @@ namespace TrafficLightAlgorithm
         private void Btn_VersionShow_Click(object sender, EventArgs e)
         {
             Version ver    = typeof(F_TrafficLight).Assembly.GetName().Version;  // バージョン情報を取得
-            string  verstr = $"Ver{ver.Minor}.{ver.Build}{ver.Revision}";        // Ver{マイナーバージョン}.{ビルド番号}{リビジョン} 形式の文字列を作成する
+            string  verstr = $"Ver{ver.Minor}.{ver.Build}{ver.Revision}";        // Ver{マイナーバージョン}.{ビルド番号}{リビジョン}形式の文字列を作成する
 
             MessageBox.Show(verstr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -248,12 +247,12 @@ namespace TrafficLightAlgorithm
             string errMsg = "";  // エラーメッセージが入る
 
             // テキストボックスのTextプロパティ値がチェックを満たさない場合はエラーメッセージを追加する
-            if (!CheckSecText(txt_NLightSec.Text, GreenSecMin, GreenSecMax)) errMsg += $"「{lbl_NLightSec.Text}」には{GreenSecMin}から{GreenSecMax}の整数を入力してください。\n";
-            if (!CheckSecText(txt_SLightSec.Text, GreenSecMin, GreenSecMax)) errMsg += $"「{lbl_SLightSec.Text}」には{GreenSecMin}から{GreenSecMax}の整数を入力してください。\n";
-            if (!CheckSecText(txt_ELightSec.Text, GreenSecMin, GreenSecMax)) errMsg += $"「{lbl_ELightSec.Text}」には{GreenSecMin}から{GreenSecMax}の整数を入力してください。\n";
-            if (!CheckSecText(txt_WLightSec.Text, GreenSecMin, GreenSecMax)) errMsg += $"「{lbl_WLightSec.Text}」には{GreenSecMin}から{GreenSecMax}の整数を入力してください。\n";
-            if (!CheckSecText(txt_ArrowSec.Text,  ArrowSecMin, ArrowSecMax)) errMsg += $"「{lbl_ArrowSec.Text}」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
-            if (!CheckSecText(txt_PrepaSec.Text,  PrepaSecMin, PrepaSecMax)) errMsg += $"「{lbl_PrepaSec.Text}」には{PrepaSecMin}から{PrepaSecMax}の整数を入力してください。\n";
+            if (!CheckSecText(txt_NProgSec.Text,  ProgSecMin,   ProgSecMax))   errMsg += $"「北方向への進行可能時間」には{ProgSecMin}から{ProgSecMax}の整数を入力してください。\n";
+            if (!CheckSecText(txt_SProgSec.Text,  ProgSecMin,   ProgSecMax))   errMsg += $"「南方向への進行可能時間」には{ProgSecMin}から{ProgSecMax}の整数を入力してください。\n";
+            if (!CheckSecText(txt_EProgSec.Text,  ProgSecMin,   ProgSecMax))   errMsg += $"「東方向への進行可能時間」には{ProgSecMin}から{ProgSecMax}の整数を入力してください。\n";
+            if (!CheckSecText(txt_WProgSec.Text,  ProgSecMin,   ProgSecMax))   errMsg += $"「西方向への進行可能時間」には{ProgSecMin}から{ProgSecMax}の整数を入力してください。\n";
+            if (!CheckSecText(txt_ArrowSec.Text,  ArrowSecMin,  ArrowSecMax))  errMsg += $"「矢印信号機の点灯時間」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
+            if (!CheckSecText(txt_AllRedSec.Text, AllRedSecMin, AllRedSecMax)) errMsg += $"「全信号機の赤点灯時間」には{AllRedSecMin}から{AllRedSecMax}の整数を入力してください。\n";
 
             return errMsg;
         }
@@ -277,7 +276,7 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private void ChangeTextInterruptResumeBtn()
         {
-            // IsInterruptがtrueの場合のTextプロパティ値は「再開」、それ以外の場合は「中断」に設定する
+            // IsInterruptがtrueの場合Textプロパティ値は「再開」、それ以外の場合は「中断」に設定する
             if (IsInterrupt) 
             { 
                 btn_InterruptResume.Text = "再開";  
@@ -294,12 +293,12 @@ namespace TrafficLightAlgorithm
         /// <param name="enable"> Enabledプロパティを有効にする場合はtrue、それ以外の場合はfalse </param>
         private void ChangeTextBoxEnabled(bool enable)
         {
-            txt_NLightSec.Enabled = enable;  // 交差点北方向への進行可能秒数を入力するテキストボックスのEnabledプロパティ値変更
-            txt_SLightSec.Enabled = enable;  // 交差点南方向への進行可能秒数を入力するテキストボックスのEnabledプロパティ値変更
-            txt_ELightSec.Enabled = enable;  // 交差点東方向への進行可能秒数を入力するテキストボックスのEnabledプロパティ値変更
-            txt_WLightSec.Enabled = enable;  // 交差点西方向への進行可能秒数を入力するテキストボックスのEnabledプロパティ値変更
+            txt_NProgSec.Enabled  = enable;  // 交差点北方向への進行可能秒数を入力するテキストボックスのEnabledプロパティ値変更
+            txt_SProgSec.Enabled  = enable;  // 交差点南方向への進行可能秒数を入力するテキストボックスのEnabledプロパティ値変更
+            txt_EProgSec.Enabled  = enable;  // 交差点東方向への進行可能秒数を入力するテキストボックスのEnabledプロパティ値変更
+            txt_WProgSec.Enabled  = enable;  // 交差点西方向への進行可能秒数を入力するテキストボックスのEnabledプロパティ値変更
             txt_ArrowSec.Enabled  = enable;  // 矢印信号機の点灯秒数を入力するテキストボックスのEnabledプロパティ値変更
-            txt_PrepaSec.Enabled  = enable;  // 全信号機の赤点灯秒数を入力するテキストボックスのEnabledプロパティ値変更
+            txt_AllRedSec.Enabled = enable;  // 全信号機の赤点灯秒数を入力するテキストボックスのEnabledプロパティ値変更
         }
 
         /// <summary>
@@ -312,7 +311,7 @@ namespace TrafficLightAlgorithm
             List<TrafficPhase> phaseList = new List<TrafficPhase>
             {
                 // 全ての車用・歩行者用信号機の赤点灯
-                CreatePhase(setTraffic.PMSec, LightState.Red,
+                CreatePhase(setTraffic.RMSec, LightState.Red,
                     Traffic.CarNorth,   Traffic.CarSouth,   Traffic.CarEast,   Traffic.CarWest,
                     Traffic.PedesNorth, Traffic.PedesSouth, Traffic.PedesEast, Traffic.PedesWest),
 
@@ -335,11 +334,11 @@ namespace TrafficLightAlgorithm
             // 北南の車用信号機の黄・赤点灯
             if (setTraffic.NMSec >= setTraffic.SMSec)
             {
-                phaseList.AddRange(CreateYellowRedPhaseList(setTraffic.PMSec, setTraffic.NMSec - setTraffic.SMSec, Traffic.CarSouth, Traffic.CarNorth));
+                phaseList.AddRange(CreateYellowRedPhaseList(setTraffic.RMSec, setTraffic.NMSec - setTraffic.SMSec, Traffic.CarSouth, Traffic.CarNorth));
             }
             else
             {
-                phaseList.AddRange(CreateYellowRedPhaseList(setTraffic.PMSec, setTraffic.SMSec - setTraffic.NMSec, Traffic.CarNorth, Traffic.CarSouth));
+                phaseList.AddRange(CreateYellowRedPhaseList(setTraffic.RMSec, setTraffic.SMSec - setTraffic.NMSec, Traffic.CarNorth, Traffic.CarSouth));
             }
 
             // 東西の車用・北南の歩行者用信号機の緑点灯
@@ -385,11 +384,11 @@ namespace TrafficLightAlgorithm
         /// <returns> 作成したフェーズ </returns>
         private TrafficPhase CreatePhase(int mSec, LightState state, params Traffic[] traffics)
         {
-            TrafficCommand[] commands = new TrafficCommand[traffics.Length];  // １フェーズで設定する信号機点灯状態の設定値が入る
+            TrafficCommand[] commands = new TrafficCommand[traffics.Length];  // 信号機の種類と点灯状態の設定値が入る
 
             for (int i = 0; i < commands.Length; i++)
             {
-                commands[i] = new TrafficCommand(traffics[i], state);  // 点灯状態を表す設定値を信号機ごとに１つずつ入れる
+                commands[i] = new TrafficCommand(traffics[i], state);
             }
 
             return new TrafficPhase(mSec, commands);
@@ -399,13 +398,13 @@ namespace TrafficLightAlgorithm
         /// 車用信号機の黄・赤点灯フェーズリストを作成する
         /// </summary>
         /// <param name="redMSec"> carMaxが表す車用信号機の赤点灯ミリ秒             </param>
-        /// <param name="difMSec"> carMinとcarMaxが表す車用信号機の緑点灯ミリ秒の差 </param>
+        /// <param name="MSecdif"> carMinとcarMaxが表す車用信号機の緑点灯ミリ秒の差 </param>
         /// <param name="carMin">  緑点灯時間が短い車用信号機を表す列挙型           </param>
         /// <param name="carMax">  緑点灯時間が長い車用信号機を表す列挙型           </param>
         /// <returns> 作成したフェーズリスト </returns>
-        private List<TrafficPhase> CreateYellowRedPhaseList(int redMSec, int difMSec, Traffic carMin, Traffic carMax)
+        private List<TrafficPhase> CreateYellowRedPhaseList(int redMSec, int MSecdif, Traffic carMin, Traffic carMax)
         {
-            if (difMSec == 0)
+            if (MSecdif == 0)
             {
                 // carMinとcarMaxが表す車用信号機の緑点灯時間が一致する場合
                 return new List<TrafficPhase>
@@ -414,9 +413,9 @@ namespace TrafficLightAlgorithm
                     CreatePhase(redMSec,    LightState.Red,    carMin, carMax)   // carMinとcarMaxが表す車用信号機を赤に点灯
                 };
             }
-            else if (difMSec == MinMSec)
+            else if (MSecdif == MinMSec)
             {
-                // differMSecとMinMSecが等しい場合
+                // MSecdifとMinMSecが等しい場合
                 return new List<TrafficPhase>
                 {
                     new TrafficPhase(YellowMSec, 
@@ -433,7 +432,7 @@ namespace TrafficLightAlgorithm
             {
                 new TrafficPhase(YellowMSec, 
                     new TrafficCommand(carMin, LightState.Yellow)),  // carMinが表す車用信号機を黄に点灯
-                new TrafficPhase(difMSec - YellowMSec,
+                new TrafficPhase(MSecdif - YellowMSec,
                     new TrafficCommand(carMin, LightState.Red)),     // carMinが表す車用信号機を赤に点灯
                 new TrafficPhase(YellowMSec,
                     new TrafficCommand(carMax, LightState.Yellow)),  // carMaxが表す車用信号機を黄に点灯
@@ -445,7 +444,7 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 信号機アルゴリズムのフェーズリストをループさせる
         /// </summary>
-        /// <param name="phaseNum"> 開始フェーズを表す番号 </param>
+        /// <param name="phaseNum"> 開始フェーズの番号を表す整数 </param>
         private async void LoopTrafficPhase(int phaseNum)
         {
             int startPhase = phaseNum;  // 開始フェーズの番号を取得する
@@ -493,59 +492,61 @@ namespace TrafficLightAlgorithm
                     }
 
                     await Task.Delay(PhaseList[i].WaitMSec);  // WaitMSecミリ秒待機する
-                    if (IsCancel) break;                      // 信号機アルゴリズムを停止する場合はループから脱出する                    
+                    if (IsCancel) break;                      // 信号機アルゴリズムの停止が有効の場合はループから脱出する
                 }
 
                 startPhase = 0;  // 開始フェーズの番号を0に設定する
             }
+
+            IsCancel = false;
         }
 
         /// <summary>
         /// 車用信号機の点灯状態更新
         /// </summary>
-        /// <param name="state">  点灯状態を表す列挙型               </param>
-        /// <param name="green">  車用信号機の緑ランプを表すラベル   </param>
-        /// <param name="yellow"> 車用信号機の黄ランプを表すラベル   </param>
-        /// <param name="red">    車用信号機の赤ランプを表すラベル   </param>
-        /// <param name="arrow">  矢印信号機の矢印ランプを表すラベル </param>
-        private void ChangeSignalLightOn(LightState state, Label green, Label yellow, Label red, Label arrow)
+        /// <param name="state">      点灯状態を表す列挙型               </param>
+        /// <param name="lbl_green">  車用信号機の緑ランプを表すラベル   </param>
+        /// <param name="lbl_yellow"> 車用信号機の黄ランプを表すラベル   </param>
+        /// <param name="lbl_red">    車用信号機の赤ランプを表すラベル   </param>
+        /// <param name="lbl_arrow">  矢印信号機の矢印ランプを表すラベル </param>
+        private void ChangeSignalLightOn(LightState state, Label lbl_green, Label lbl_yellow, Label lbl_red, Label lbl_arrow)
         {
-            bool greVisible = false;  // greenラベルのVisibleプロパティに設定する値
-            bool yelVisible = false;  // yellowラベルのVisibleプロパティに設定する値
-            bool redVisible = false;  // redラベルのVisibleプロパティに設定する値
-            bool arwVisible = false;  // arrowラベルのVisibleプロパティに設定する値
+            bool greVisible = false;  // lbl_greenのVisibleプロパティに設定する値
+            bool yelVisible = false;  // lbl_yellowのVisibleプロパティに設定する値
+            bool redVisible = false;  // lbl_redのVisibleプロパティに設定する値
+            bool arwVisible = false;  // lbl_arrowのVisibleプロパティに設定する値
 
-            if (state == LightState.Green)  greVisible = true;
+            if (state == LightState.Green) greVisible = true;
             if (state == LightState.Yellow) yelVisible = true;
             if (state == LightState.Red || state == LightState.Arrow) redVisible = true;
-            if (state == LightState.Arrow)  arwVisible = true; 
+            if (state == LightState.Arrow) arwVisible = true;
 
-            green.Visible  = greVisible;                    // greenラベルの表示/非表示の設定
-            yellow.Visible = yelVisible;                    // yellowラベルの表示/非表示の設定
-            red.Visible    = redVisible;                    // redラベルの表示/非表示の設定
-            if (arrow != null) arrow.Visible = arwVisible;  // arrowラベルの表示/非表示の設定
+            lbl_green.Visible  = greVisible;                        // lbl_greenの表示/非表示の設定
+            lbl_yellow.Visible = yelVisible;                        // lbl_yellowの表示/非表示の設定
+            lbl_red.Visible    = redVisible;                        // lbl_redの表示/非表示の設定
+            if (lbl_arrow != null) lbl_arrow.Visible = arwVisible;  // lbl_arrowの表示/非表示の設定
         }
 
         /// <summary>
         /// 歩行者用信号機の点灯状態更新
         /// </summary>
-        /// <param name="state">    点灯状態を表す列挙型                         </param>
-        /// <param name="greenOne"> 歩行者用信号機の緑ランプを表す１つ目のラベル </param>
-        /// <param name="greenTwo"> 歩行者用信号機の緑ランプを表す２つ目のラベル </param>
-        /// <param name="redOne">   歩行者用信号機の赤ランプを表す１つ目のラベル </param>
-        /// <param name="redTwo">   歩行者用信号機の赤ランプを表す２つ目のラベル </param>
-        private void ChangePedesLightOn(LightState state, Label greenOne, Label greenTwo, Label redOne, Label redTwo)
+        /// <param name="state">        点灯状態を表す列挙型                         </param>
+        /// <param name="lbl_greenOne"> 歩行者用信号機の緑ランプを表す１つ目のラベル </param>
+        /// <param name="lbl_greenTwo"> 歩行者用信号機の緑ランプを表す２つ目のラベル </param>
+        /// <param name="lbl_redOne">   歩行者用信号機の赤ランプを表す１つ目のラベル </param>
+        /// <param name="lbl_redTwo">   歩行者用信号機の赤ランプを表す２つ目のラベル </param>
+        private void ChangePedesLightOn(LightState state, Label lbl_greenOne, Label lbl_greenTwo, Label lbl_redOne, Label lbl_redTwo)
         {
-            bool greVisible = false;  // greenOneラベルとgreenTwoラベルのVisibleプロパティに設定する値
-            bool redVisible = false;  // redOneラベルとredTwoラベルのVisibleプロパティに設定する値
+            bool greVisible = false;  // lbl_greenOneとlbl_greenTwoのVisibleプロパティに設定する値
+            bool redVisible = false;  // lbl_redOneとlbl_redTwoのVisibleプロパティに設定する値
 
             if (state == LightState.Green) greVisible = true;
             if (state == LightState.Red)   redVisible = true;
 
-            greenOne.Visible = greVisible;  // 信号機の緑ランプを表す１つ目のラベルの表示/非表示の設定
-            greenTwo.Visible = greVisible;  // 信号機の緑ランプを表す２つ目のラベルの表示/非表示の設定
-            redOne.Visible   = redVisible;  // 信号機の赤ランプを表す１つ目のラベルの表示/非表示の設定
-            redTwo.Visible   = redVisible;  // 信号機の赤ランプを表す２つ目のラベルの表示/非表示の設定
+            lbl_greenOne.Visible = greVisible;  // lbl_greenOneの表示/非表示の設定
+            lbl_greenTwo.Visible = greVisible;  // lbl_greenTwoの表示/非表示の設定
+            lbl_redOne.Visible   = redVisible;  // lbl_redOneの表示/非表示の設定
+            lbl_redTwo.Visible   = redVisible;  // lbl_redTwoの表示/非表示の設定
         }
     }
 }

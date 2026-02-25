@@ -6,22 +6,22 @@
     public readonly struct WaitMSec
     {
         /// <summary>
-        /// 北車用信号機の緑点灯ミリ秒
+        /// 北方向への進行可能ミリ秒
         /// </summary>
         public readonly int NMSec;
 
         /// <summary>
-        /// 南車用信号機の緑点灯ミリ秒
+        /// 南方向への進行可能ミリ秒
         /// </summary>
         public readonly int SMSec;
 
         /// <summary>
-        /// 東車用信号機の緑点灯ミリ秒
+        /// 東方向への進行可能ミリ秒
         /// </summary>
         public readonly int EMSec;
 
         /// <summary>
-        /// 西車用信号機の緑点灯ミリ秒
+        /// 西方向への進行可能ミリ秒
         /// </summary>
         public readonly int WMSec;
 
@@ -30,21 +30,21 @@
         /// </summary>
         public readonly int AMSec;
 
-        /// <summary>
-        /// 交差点の進行方向切り替え準備ミリ秒
+        /// <summary> 
+        /// 全信号機の赤点灯ミリ秒
         /// </summary>
-        public readonly int PMSec;
+        public readonly int RMSec;
 
         /// <summary>
         /// 構造体の各値を設定する
         /// </summary>
-        /// <param name="nSecStr"> 北車用信号機の緑点灯秒数を表す文字列     </param>
-        /// <param name="sSecStr"> 南車用信号機の緑点灯秒数を表す文字列     </param>
-        /// <param name="eSecStr"> 東車用信号機の緑点灯秒数を表す文字列     </param>
-        /// <param name="wSecStr"> 西車用信号機の緑点灯秒数を表す文字列     </param>
-        /// <param name="aSecStr"> 矢印信号機の点灯秒数を表す文字列         </param>
-        /// <param name="pSecStr"> 進行方向切り替え準備時間(秒)を表す文字列 </param>
-        public WaitMSec(string nSecStr, string sSecStr, string eSecStr, string wSecStr, string aSecStr, string pSecStr)
+        /// <param name="nSecStr"> 北方向への進行可能秒数を表す文字列 </param>
+        /// <param name="sSecStr"> 南方向への進行可能秒数を表す文字列 </param>
+        /// <param name="eSecStr"> 東方向への進行可能秒数を表す文字列 </param>
+        /// <param name="wSecStr"> 西方向への進行可能秒数を表す文字列 </param>
+        /// <param name="aSecStr"> 矢印信号機の点灯秒数を表す文字列   </param>
+        /// <param name="rSecStr"> 全信号機の赤点灯秒数を表す文字列   </param>
+        public WaitMSec(string nSecStr, string sSecStr, string eSecStr, string wSecStr, string aSecStr, string rSecStr)
         {
             // 文字列をint型変数に変換する
             int.TryParse(nSecStr, out int nSec);
@@ -52,7 +52,7 @@
             int.TryParse(eSecStr, out int eSec);
             int.TryParse(wSecStr, out int wSec);
             int.TryParse(aSecStr, out int aSec);
-            int.TryParse(pSecStr, out int pSec);
+            int.TryParse(rSecStr, out int rSec);
 
             // 秒数を表す数値をミリ秒に変換する
             NMSec = nSec * 1000;
@@ -60,7 +60,7 @@
             EMSec = eSec * 1000;
             WMSec = wSec * 1000;
             AMSec = aSec * 1000;
-            PMSec = pSec * 1000;
+            RMSec = rSec * 1000;
         }
     }
 }
