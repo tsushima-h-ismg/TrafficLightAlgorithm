@@ -34,7 +34,7 @@
     /// <summary>
     /// 信号機アルゴリズムで用いる信号機の種類
     /// </summary>
-    public enum Traffic
+    public enum Signal
     {
         /// <summary>
         /// 北車用信号機

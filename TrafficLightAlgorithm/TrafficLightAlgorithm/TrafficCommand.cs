@@ -8,7 +8,7 @@
         /// <summary>
         /// 信号機の種類
         /// </summary>
-        public readonly Traffic Traffic;
+        public readonly Signal Signal;
 
         /// <summary>
         /// 信号機の点灯状態
@@ -20,10 +20,10 @@
         /// </summary>
         /// <param name="traffic"> 信号機の種類   　</param>
         /// <param name="state">   信号機の点灯状態 </param>
-        public TrafficCommand(Traffic traffic, LightState state)
+        public TrafficCommand(Signal signal, LightState state)
         {
-            Traffic = traffic;
-            State   = state;
+            Signal = signal;
+            State  = state;
         }
     }
 }
