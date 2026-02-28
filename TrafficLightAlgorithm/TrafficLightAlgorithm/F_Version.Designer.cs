@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_Version));
             this.lbl_FormTitle = new System.Windows.Forms.Label();
-            this.lbl_companyName = new System.Windows.Forms.Label();
-            this.lbl_department = new System.Windows.Forms.Label();
+            this.lbl_CopyRight = new System.Windows.Forms.Label();
+            this.lbl_Company = new System.Windows.Forms.Label();
             this.lbl_SoftTitle = new System.Windows.Forms.Label();
             this.lbl_Version = new System.Windows.Forms.Label();
             this.lbl_verInfo = new System.Windows.Forms.Label();
@@ -51,29 +51,29 @@
             this.lbl_FormTitle.Text = "ー　バージョン情報　ー";
             this.lbl_FormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lbl_companyName
+            // lbl_CopyRight
             // 
-            this.lbl_companyName.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_companyName.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_companyName.Location = new System.Drawing.Point(10, 40);
-            this.lbl_companyName.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_companyName.Name = "lbl_companyName";
-            this.lbl_companyName.Size = new System.Drawing.Size(444, 35);
-            this.lbl_companyName.TabIndex = 1;
-            this.lbl_companyName.Text = "(c) 2026 Takashin Co., Ltd.";
-            this.lbl_companyName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_CopyRight.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_CopyRight.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_CopyRight.Location = new System.Drawing.Point(10, 40);
+            this.lbl_CopyRight.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_CopyRight.Name = "lbl_CopyRight";
+            this.lbl_CopyRight.Size = new System.Drawing.Size(444, 35);
+            this.lbl_CopyRight.TabIndex = 1;
+            this.lbl_CopyRight.Text = "Copyright";
+            this.lbl_CopyRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lbl_department
+            // lbl_Company
             // 
-            this.lbl_department.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_department.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_department.Location = new System.Drawing.Point(10, 135);
-            this.lbl_department.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_department.Name = "lbl_department";
-            this.lbl_department.Size = new System.Drawing.Size(444, 33);
-            this.lbl_department.TabIndex = 3;
-            this.lbl_department.Text = "情報システム管理G";
-            this.lbl_department.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_Company.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_Company.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_Company.Location = new System.Drawing.Point(10, 135);
+            this.lbl_Company.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_Company.Name = "lbl_Company";
+            this.lbl_Company.Size = new System.Drawing.Size(444, 33);
+            this.lbl_Company.TabIndex = 3;
+            this.lbl_Company.Text = "Company";
+            this.lbl_Company.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl_SoftTitle
             // 
@@ -125,9 +125,9 @@
             this.ClientSize = new System.Drawing.Size(464, 171);
             this.Controls.Add(this.lbl_Version);
             this.Controls.Add(this.lbl_SoftTitle);
-            this.Controls.Add(this.lbl_department);
+            this.Controls.Add(this.lbl_Company);
             this.Controls.Add(this.lbl_verInfo);
-            this.Controls.Add(this.lbl_companyName);
+            this.Controls.Add(this.lbl_CopyRight);
             this.Controls.Add(this.lbl_FormTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -146,8 +146,8 @@
         #endregion
 
         private System.Windows.Forms.Label lbl_FormTitle;
-        private System.Windows.Forms.Label lbl_companyName;
-        private System.Windows.Forms.Label lbl_department;
+        private System.Windows.Forms.Label lbl_CopyRight;
+        private System.Windows.Forms.Label lbl_Company;
         private System.Windows.Forms.Label lbl_SoftTitle;
         private System.Windows.Forms.Label lbl_Version;
         private System.Windows.Forms.Label lbl_verInfo;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace TrafficLightAlgorithm
@@ -18,8 +19,15 @@ namespace TrafficLightAlgorithm
             Version ver    = typeof(F_Version).Assembly.GetName().Version;      // バージョン情報を取得する
             string  verstr = $"Version {ver.Minor}.{ver.Build}{ver.Revision}";  // {マイナー番号}.{ビルド番号}{リビジョン番号}形式の文字列を取得する
 
-            lbl_SoftTitle.Text = Program.SoftTitle;  // ラベルにプログラムのタイトルを表示する
-            lbl_Version.Text   = verstr;             // ラベルにバージョン情報を表示する
+            // 著作権と会社名のカスタム属性を取得する
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            AssemblyCopyrightAttribute copyRight = (AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyCopyrightAttribute));
+            AssemblyCompanyAttribute   company   = (AssemblyCompanyAttribute)  Attribute.GetCustomAttribute(assembly, typeof(AssemblyCompanyAttribute));
+
+            lbl_SoftTitle.Text = Program.SoftTitle;    // ラベルテキストをプログラムのタイトルに設定する
+            lbl_Version.Text   = verstr;               // ラベルテキストをバージョン情報に設定する
+            lbl_CopyRight.Text = copyRight.Copyright;  // ラベルテキストを著作権情報に設定する
+            lbl_Company.Text   = company.Company;      // ラベルテキストを会社名情報に設定する
         }
 
         /// <summary>

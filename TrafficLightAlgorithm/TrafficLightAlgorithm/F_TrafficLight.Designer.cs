@@ -180,6 +180,7 @@
             // btn_Start
             // 
             this.btn_Start.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btn_Start.Cursor = System.Windows.Forms.Cursors.Default;
             this.btn_Start.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.btn_Start.FlatAppearance.BorderSize = 2;
             this.btn_Start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -196,6 +197,7 @@
             // btn_Reset
             // 
             this.btn_Reset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btn_Reset.Cursor = System.Windows.Forms.Cursors.Default;
             this.btn_Reset.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.btn_Reset.FlatAppearance.BorderSize = 2;
             this.btn_Reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -212,6 +214,7 @@
             // btn_InterruptResume
             // 
             this.btn_InterruptResume.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btn_InterruptResume.Cursor = System.Windows.Forms.Cursors.Default;
             this.btn_InterruptResume.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.btn_InterruptResume.FlatAppearance.BorderSize = 2;
             this.btn_InterruptResume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

@@ -75,6 +75,11 @@ namespace TrafficLightAlgorithm
         private bool IsInterrupt;
 
         /// <summary>
+        /// キャンセル要求
+        /// </summary>
+        private CancellationTokenSource Cts;
+
+        /// <summary>
         /// 信号機アルゴリズムのフェーズリスト
         /// </summary>
         private List<TrafficPhase> PhaseList;
@@ -119,15 +124,11 @@ namespace TrafficLightAlgorithm
         {
             string errMsg = CreateErrMsg();  // エラーメッセージを取得する
 
-            // エラーメッセージ表示
-            if (errMsg != "")
-            {
-                MessageBox.Show(errMsg, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            if (IsTrafficEnable) return;  // 信号機アルゴリズムを停止する
-
+            // エラーメッセージを表示する
+            if (errMsg != "" && MessageBox.Show(errMsg, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK) return;  
+            
+            if (IsTrafficEnable) Cts?.Cancel();  // 信号機アルゴリズムが動いている場合はキャンセル要求を出す
+            
             IsTrafficEnable = true;   // 信号機アルゴリズムが動く場合のブール値に設定する
             IsInterrupt     = false;  // 信号機アルゴリズムの中断を無効にする
 
@@ -163,7 +164,7 @@ namespace TrafficLightAlgorithm
             {
                 IsInterrupt = true;                  // 信号機アルゴリズムの中断を有効にする
                 ChangeTextInterruptResumeBtn(true);  // 「中断/再開」ボタンのTextプロパティ値変更
-                // 信号機アルゴリズムを停止する
+                Cts.Cancel();                        // キャンセル要求
             }
         }
 
@@ -172,16 +173,10 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private void Btn_Stop_Click(object sender, EventArgs e)
         {
-            if (!IsTrafficEnable) return;  // 信号機アルゴリズムが動いていない場合は終了する
-            
-            string msgStr = "信号機の点灯状態をリセットしますか？";            
-            if (MessageBox.Show(msgStr, Program.SoftTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No) return;
-
             IsTrafficEnable = false;              // 信号機アルゴリズムが動かない場合のブール値に設定する
-            IsInterrupt     = false;              // 信号機アルゴリズムの中断を無効にする
-            // 信号機アルゴリズムを停止する
             ChangeTextInterruptResumeBtn(false);  // 「中断/再開」ボタンのTextプロパティ値変更
             ChangeTextBoxEnabled(true);           // テキストボックスのEnabledプロパティ値変更
+            Cts?.Cancel();                        // キャンセル要求
 
             ChangeSignalLightOn(LightState.NoLight, lbl_NGreen,   lbl_NYellow,  lbl_NRed,     null);          // 北方向の車用信号機を無灯火にする
             ChangeSignalLightOn(LightState.NoLight, lbl_SGreen,   lbl_SYellow,  lbl_SRed,     null);          // 南方向の車用信号機を無灯火にする
@@ -401,10 +396,10 @@ namespace TrafficLightAlgorithm
         /// <param name="phases">   信号機アルゴリズムのフェーズリスト </param>
         private async void LoopTrafficPhase(int phaseNum, List<TrafficPhase> phases)
         {
-            int  startPhase    = phaseNum;  // 開始フェーズの番号を取得する
-            bool cancelRequest = false;
+            int startPhase = phaseNum;            // 開始フェーズの番号を取得する
+            Cts = new CancellationTokenSource();  // Ctsの初期化
 
-            while (!cancelRequest)
+            while (!Cts.IsCancellationRequested)
             {
                 for (int i = startPhase; i < phases.Count; i++)
                 {
@@ -445,10 +440,17 @@ namespace TrafficLightAlgorithm
                             ChangePedesLightOn(command.State, lbl_PWGreOne, lbl_PWGreTwo, lbl_PWRedOne, lbl_PWRedTwo);  // 西方向の歩行者用信号機の点灯状態更新
                         }
                     }
-                    
-                    await Task.Delay(phases[i].WaitMSec);  // WaitMSecミリ秒経過、もしくはキャンセル要求を受け取るまで待機する
-                }
 
+                    try
+                    {
+                        await Task.Delay(phases[i].WaitMSec, Cts.Token);  // キャンセル要求がされていない場合、WaitMSecミリ秒待機する
+                    }
+                    catch (TaskCanceledException)
+                    { 
+                        return;  // タスクが取り消された場合終了する
+                    }
+                }
+                
                 startPhase = 0;  // 開始フェーズの番号を0に設定する
             }
         }
