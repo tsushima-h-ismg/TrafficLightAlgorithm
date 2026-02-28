@@ -60,7 +60,7 @@ namespace TrafficLightAlgorithm
         private const int BlinkPhaseCount = 5;
 
         /// <summary>
-        /// 信号機点灯処理の中断時点のフェーズを表す番号
+        /// 信号機アルゴリズムのフェーズ再生で中断時点のフェーズを表す番号
         /// </summary>
         private int InterruptPhase;
 
@@ -94,8 +94,9 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private void F_TrafficLight_Load(object sender, EventArgs e)
         {
-            IsTrafficEnable = false;  // 信号機アルゴリズムが動かない場合のブール値に設定する
-            IsInterrupt     = false;  // 信号機アルゴリズムの中断を無効にする
+            IsTrafficEnable = false;              // 信号機アルゴリズムが動かない場合のブール値に設定する
+            IsInterrupt     = false;              // 信号機アルゴリズムの中断を無効にする
+            Cts = new CancellationTokenSource();  // Ctsの初期化
 
             // ラベルイメージの回転
             ChangeLabelImageRotate(RotateFlipType.Rotate90FlipNone,  lbl_PNGreTwo, lbl_PNRedTwo, lbl_PSGreTwo, lbl_PSRedTwo, lbl_NECorner);
@@ -124,13 +125,25 @@ namespace TrafficLightAlgorithm
         {
             string errMsg = CreateErrMsg();  // エラーメッセージを取得する
 
-            // エラーメッセージを表示する
-            if (errMsg != "" && MessageBox.Show(errMsg, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK) return;  
+            // エラーメッセージ表示
+            if (errMsg != "")
+            {
+                MessageBox.Show(errMsg, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return; 
+            }
+
+            if (IsTrafficEnable)
+            {
+                string msgStr = "信号機プログラムを最初から実行しますか？";
+                if (MessageBox.Show(msgStr, Program.SoftTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No) return;
+                
+                Cts.Cancel();  // 信号機アルゴリズムが動いている場合はキャンセル要求を伝える                        
+            }
             
-            if (IsTrafficEnable) Cts?.Cancel();  // 信号機アルゴリズムが動いている場合はキャンセル要求を出す
-            
-            IsTrafficEnable = true;   // 信号機アルゴリズムが動く場合のブール値に設定する
-            IsInterrupt     = false;  // 信号機アルゴリズムの中断を無効にする
+            IsTrafficEnable = true;               // 信号機アルゴリズムが動く場合のブール値に設定する
+            IsInterrupt     = false;              // 信号機アルゴリズムの中断を無効にする
+            ChangeTextInterruptResumeBtn(false);  // 「中断/再開」ボタンのTextプロパティ値変更
+            ChangeTextBoxEnabled(false);          // テキストボックスのEnabledプロパティ値変更
 
             int.TryParse(txt_NAvaiSec.Text,  out int nSec);  // 交差点北方向への進行可能秒数を表す文字列をint型に変換する
             int.TryParse(txt_SAvaiSec.Text,  out int sSec);  // 交差点南方向への進行可能秒数を表す文字列をint型に変換する
@@ -142,8 +155,6 @@ namespace TrafficLightAlgorithm
             WaitMSec waitMSec = new WaitMSec(nSec, sSec, eSec, wSec, aSec, rSec);  // 信号機アルゴリズムの設定値構造体を取得する
 
             PhaseList = CreateTrafficPhaseList(waitMSec);  // 信号機アルゴリズムのフェーズリストを作成
-            ChangeTextInterruptResumeBtn(false);           // 「中断/再開」ボタンのTextプロパティ値変更
-            ChangeTextBoxEnabled(false);                   // テキストボックスのEnabledプロパティ値変更
             LoopTrafficPhase(0, PhaseList);                // フェーズリストを最初のフェーズから再生する
         }
 
@@ -157,15 +168,15 @@ namespace TrafficLightAlgorithm
             if (IsInterrupt)
             {
                 IsInterrupt = false;                          // 信号機アルゴリズムの中断を無効にする
-                ChangeTextInterruptResumeBtn(false);          // 「中断/再開」ボタンのTextプロパティ値変更
-                LoopTrafficPhase(InterruptPhase, PhaseList);  // 中断フェーズからフェーズリストを再生する
+                LoopTrafficPhase(InterruptPhase, PhaseList);  // 中断したフェーズからフェーズリストを再生する
             }
             else
             {
-                IsInterrupt = true;                  // 信号機アルゴリズムの中断を有効にする
-                ChangeTextInterruptResumeBtn(true);  // 「中断/再開」ボタンのTextプロパティ値変更
-                Cts.Cancel();                        // キャンセル要求
+                IsInterrupt = true;  // 信号機アルゴリズムの中断を有効にする
+                Cts.Cancel();        // キャンセル要求を伝える
             }
+
+            ChangeTextInterruptResumeBtn(IsInterrupt);  // 「中断/再開」ボタンのTextプロパティ値変更
         }
 
         /// <summary>
@@ -173,19 +184,26 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private void Btn_Stop_Click(object sender, EventArgs e)
         {
+            if (IsTrafficEnable)
+            { 
+                if (MessageBox.Show("点灯状態をリセットしますか？", Program.SoftTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No) return; 
+            }
+
+            Cts.Cancel();  // キャンセル要求を伝える
+
+            ChangeSignalLightOn(LightState.NoLight, lbl_NGreen, lbl_NYellow, lbl_NRed, null);                // 北方向の車用信号機を無灯火にする
+            ChangeSignalLightOn(LightState.NoLight, lbl_SGreen, lbl_SYellow, lbl_SRed, null);                // 南方向の車用信号機を無灯火にする
+            ChangeSignalLightOn(LightState.NoLight, lbl_EGreen, lbl_EYellow, lbl_ERed, lbl_EArrow);          // 東方向の車用信号機を無灯火にする
+            ChangeSignalLightOn(LightState.NoLight, lbl_WGreen, lbl_WYellow, lbl_WRed, lbl_WArrow);          // 西方向の車用信号機を無灯火にする
+            ChangePedesLightOn(LightState.NoLight, lbl_PNGreOne, lbl_PNGreTwo, lbl_PNRedOne, lbl_PNRedTwo);  // 北方向の歩行者用信号機を無灯火にする
+            ChangePedesLightOn(LightState.NoLight, lbl_PSGreOne, lbl_PSGreTwo, lbl_PSRedOne, lbl_PSRedTwo);  // 南方向の歩行者用信号機を無灯火にする
+            ChangePedesLightOn(LightState.NoLight, lbl_PEGreOne, lbl_PEGreTwo, lbl_PERedOne, lbl_PERedTwo);  // 東方向の歩行者用信号機を無灯火にする
+            ChangePedesLightOn(LightState.NoLight, lbl_PWGreOne, lbl_PWGreTwo, lbl_PWRedOne, lbl_PWRedTwo);  // 西方向の歩行者用信号機を無灯火にする
+
             IsTrafficEnable = false;              // 信号機アルゴリズムが動かない場合のブール値に設定する
+            IsInterrupt     = false;              // 信号機アルゴリズムの中断を無効にする
             ChangeTextInterruptResumeBtn(false);  // 「中断/再開」ボタンのTextプロパティ値変更
             ChangeTextBoxEnabled(true);           // テキストボックスのEnabledプロパティ値変更
-            Cts?.Cancel();                        // キャンセル要求
-
-            ChangeSignalLightOn(LightState.NoLight, lbl_NGreen,   lbl_NYellow,  lbl_NRed,     null);          // 北方向の車用信号機を無灯火にする
-            ChangeSignalLightOn(LightState.NoLight, lbl_SGreen,   lbl_SYellow,  lbl_SRed,     null);          // 南方向の車用信号機を無灯火にする
-            ChangeSignalLightOn(LightState.NoLight, lbl_EGreen,   lbl_EYellow,  lbl_ERed,     lbl_EArrow);    // 東方向の車用信号機を無灯火にする
-            ChangeSignalLightOn(LightState.NoLight, lbl_WGreen,   lbl_WYellow,  lbl_WRed,     lbl_WArrow);    // 西方向の車用信号機を無灯火にする
-            ChangePedesLightOn(LightState.NoLight,  lbl_PNGreOne, lbl_PNGreTwo, lbl_PNRedOne, lbl_PNRedTwo);  // 北方向の歩行者用信号機を無灯火にする
-            ChangePedesLightOn(LightState.NoLight,  lbl_PSGreOne, lbl_PSGreTwo, lbl_PSRedOne, lbl_PSRedTwo);  // 南方向の歩行者用信号機を無灯火にする
-            ChangePedesLightOn(LightState.NoLight,  lbl_PEGreOne, lbl_PEGreTwo, lbl_PERedOne, lbl_PERedTwo);  // 東方向の歩行者用信号機を無灯火にする
-            ChangePedesLightOn(LightState.NoLight,  lbl_PWGreOne, lbl_PWGreTwo, lbl_PWRedOne, lbl_PWRedTwo);  // 西方向の歩行者用信号機を無灯火にする
         }
 
         /// <summary>
@@ -193,9 +211,8 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private void Btn_VersionShow_Click(object sender, EventArgs e)
         {
-            F_Version f_Version = new F_Version();
-
-            f_Version.Show();  // バージョン情報フォームを表示する
+            F_Version f_Version = new F_Version();  // バージョン情報フォームの初期化
+            f_Version.ShowDialog();                 // バージョン情報フォーム画面表示
         }
 
         /// <summary>
@@ -443,11 +460,11 @@ namespace TrafficLightAlgorithm
 
                     try
                     {
-                        await Task.Delay(phases[i].WaitMSec, Cts.Token);  // キャンセル要求がされていない場合、WaitMSecミリ秒待機する
+                        await Task.Delay(phases[i].WaitMSec, Cts.Token);  // キャンセルが要求されていない場合、WaitMSecミリ秒待機する
                     }
                     catch (TaskCanceledException)
-                    { 
-                        return;  // タスクが取り消された場合終了する
+                    {
+                        return;  // キャンセル要求で例外が発生した場合は終了する
                     }
                 }
                 
@@ -475,10 +492,10 @@ namespace TrafficLightAlgorithm
             if (state == LightState.Red || state == LightState.Arrow) redVisible = true;
             if (state == LightState.Arrow)  arwVisible = true;
 
-            lbl_green.Visible  = greVisible;                        // lbl_green の表示/非表示の設定
-            lbl_yellow.Visible = yelVisible;                        // lbl_yellowの表示/非表示の設定
-            lbl_red.Visible    = redVisible;                        // lbl_red   の表示/非表示の設定
-            if (lbl_arrow != null) lbl_arrow.Visible = arwVisible;  // lbl_arrow の表示/非表示の設定
+            lbl_green.Visible  = greVisible;                        // lbl_green のVisibleプロパティ値の設定
+            lbl_yellow.Visible = yelVisible;                        // lbl_yellowのVisibleプロパティ値の設定
+            lbl_red.Visible    = redVisible;                        // lbl_red   のVisibleプロパティ値の設定
+            if (lbl_arrow != null) lbl_arrow.Visible = arwVisible;  // lbl_arrow のVisibleプロパティ値の設定
         }
 
         /// <summary>
@@ -497,10 +514,10 @@ namespace TrafficLightAlgorithm
             if (state == LightState.Green) greVisible = true;
             if (state == LightState.Red)   redVisible = true;
 
-            lbl_greenOne.Visible = greVisible;  // lbl_greenOneの表示/非表示の設定
-            lbl_greenTwo.Visible = greVisible;  // lbl_greenTwoの表示/非表示の設定
-            lbl_redOne.Visible   = redVisible;  // lbl_redOne  の表示/非表示の設定
-            lbl_redTwo.Visible   = redVisible;  // lbl_redTwo  の表示/非表示の設定
+            lbl_greenOne.Visible = greVisible;  // lbl_greenOneのVisibleプロパティ値の設定
+            lbl_greenTwo.Visible = greVisible;  // lbl_greenTwoのVisibleプロパティ値の設定
+            lbl_redOne.Visible   = redVisible;  // lbl_redOne  のVisibleプロパティ値の設定
+            lbl_redTwo.Visible   = redVisible;  // lbl_redTwo  のVisibleプロパティ値の設定
         }
     }
 }

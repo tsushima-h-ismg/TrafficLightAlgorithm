@@ -136,6 +136,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(480, 210);
             this.Name = "F_Version";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "信号機プログラム";
             this.Load += new System.EventHandler(this.F_Version_Load);
