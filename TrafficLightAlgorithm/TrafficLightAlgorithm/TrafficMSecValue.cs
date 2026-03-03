@@ -1,7 +1,7 @@
 ﻿namespace TrafficLightAlgorithm
 {
     /// <summary>
-    /// 信号機アルゴリズムの設定値構造体
+    /// ミリ秒設定値構造体
     /// </summary>
     public readonly struct WaitMSec
     {

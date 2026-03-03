@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>TrafficLightAlgorithm.ico</ApplicationIcon>
+    <ApplicationIcon>Signal_Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -104,7 +104,8 @@
     <None Include="Resources\CarRightArrow.png" />
     <None Include="Resources\CarStraightLeftArrow.png" />
     <None Include="Resources\ArrowSignal.png" />
-    <Content Include="TrafficLightAlgorithm.ico" />
+    <None Include="Resources\VerInfo.png" />
+    <Content Include="Signal_Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

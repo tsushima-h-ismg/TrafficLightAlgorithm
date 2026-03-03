@@ -130,7 +130,7 @@
             this.Controls.Add(this.lbl_CopyRight);
             this.Controls.Add(this.lbl_FormTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(480, 210);
             this.MinimizeBox = false;
@@ -140,6 +140,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "信号機プログラム";
             this.Load += new System.EventHandler(this.F_Version_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_Version_KeyDown);
             this.ResumeLayout(false);
 
         }

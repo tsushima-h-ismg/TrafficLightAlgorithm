@@ -26,13 +26,13 @@
         Arrow,
 
         /// <summary>
-        /// 無灯火
+        /// 無灯火状態
         /// </summary>
         NoLight
     }
 
     /// <summary>
-    /// 信号機アルゴリズムで用いる信号機の種類
+    /// 信号機の種類
     /// </summary>
     public enum Signal
     {

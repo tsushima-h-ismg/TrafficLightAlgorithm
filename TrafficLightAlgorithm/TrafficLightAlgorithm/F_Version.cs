@@ -37,5 +37,13 @@ namespace TrafficLightAlgorithm
         {
             Close();
         }
+
+        /// <summary>
+        /// Enterキークリックでフォームを閉じる
+        /// </summary>
+        private void F_Version_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) Close();
+        }
     }
 }

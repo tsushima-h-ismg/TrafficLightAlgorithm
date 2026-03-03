@@ -167,7 +167,6 @@
             this.lbl_SouthDirection = new System.Windows.Forms.Label();
             this.lbl_WestDirection = new System.Windows.Forms.Label();
             this.lbl_EastDirection = new System.Windows.Forms.Label();
-            this.btn_VersionShow = new System.Windows.Forms.Button();
             this.lbl_SecOne = new System.Windows.Forms.Label();
             this.lbl_SecTwo = new System.Windows.Forms.Label();
             this.lbl_SecThr = new System.Windows.Forms.Label();
@@ -176,6 +175,7 @@
             this.lbl_SecSix = new System.Windows.Forms.Label();
             this.grb_TrafficShow = new System.Windows.Forms.GroupBox();
             this.grb_TrafficSet = new System.Windows.Forms.GroupBox();
+            this.btn_VerInfo = new System.Windows.Forms.Button();
             this.pnl_Traffic.SuspendLayout();
             this.grb_TrafficShow.SuspendLayout();
             this.grb_TrafficSet.SuspendLayout();
@@ -189,7 +189,7 @@
             this.btn_Start.FlatAppearance.BorderSize = 2;
             this.btn_Start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Start.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_Start.Location = new System.Drawing.Point(20, 124);
+            this.btn_Start.Location = new System.Drawing.Point(20, 60);
             this.btn_Start.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(80, 40);
@@ -206,7 +206,7 @@
             this.btn_Reset.FlatAppearance.BorderSize = 2;
             this.btn_Reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Reset.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_Reset.Location = new System.Drawing.Point(220, 124);
+            this.btn_Reset.Location = new System.Drawing.Point(220, 60);
             this.btn_Reset.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Reset.Name = "btn_Reset";
             this.btn_Reset.Size = new System.Drawing.Size(80, 40);
@@ -223,7 +223,7 @@
             this.btn_InterruptResume.FlatAppearance.BorderSize = 2;
             this.btn_InterruptResume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_InterruptResume.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_InterruptResume.Location = new System.Drawing.Point(120, 124);
+            this.btn_InterruptResume.Location = new System.Drawing.Point(120, 60);
             this.btn_InterruptResume.Margin = new System.Windows.Forms.Padding(0);
             this.btn_InterruptResume.Name = "btn_InterruptResume";
             this.btn_InterruptResume.Size = new System.Drawing.Size(80, 40);
@@ -236,7 +236,7 @@
             // 
             this.lbl_NAvaiSec.BackColor = System.Drawing.Color.White;
             this.lbl_NAvaiSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NAvaiSec.Location = new System.Drawing.Point(40, 194);
+            this.lbl_NAvaiSec.Location = new System.Drawing.Point(40, 140);
             this.lbl_NAvaiSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NAvaiSec.Name = "lbl_NAvaiSec";
             this.lbl_NAvaiSec.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -249,7 +249,7 @@
             // 
             this.lbl_SAvaiSec.BackColor = System.Drawing.Color.White;
             this.lbl_SAvaiSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SAvaiSec.Location = new System.Drawing.Point(40, 241);
+            this.lbl_SAvaiSec.Location = new System.Drawing.Point(40, 187);
             this.lbl_SAvaiSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SAvaiSec.Name = "lbl_SAvaiSec";
             this.lbl_SAvaiSec.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -262,7 +262,7 @@
             // 
             this.lbl_EAvaiSec.BackColor = System.Drawing.Color.White;
             this.lbl_EAvaiSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EAvaiSec.Location = new System.Drawing.Point(40, 288);
+            this.lbl_EAvaiSec.Location = new System.Drawing.Point(40, 234);
             this.lbl_EAvaiSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EAvaiSec.Name = "lbl_EAvaiSec";
             this.lbl_EAvaiSec.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -275,7 +275,7 @@
             // 
             this.lbl_WAvaiSec.BackColor = System.Drawing.Color.White;
             this.lbl_WAvaiSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WAvaiSec.Location = new System.Drawing.Point(40, 335);
+            this.lbl_WAvaiSec.Location = new System.Drawing.Point(40, 281);
             this.lbl_WAvaiSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WAvaiSec.Name = "lbl_WAvaiSec";
             this.lbl_WAvaiSec.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -288,7 +288,7 @@
             // 
             this.lbl_ArrowSec.BackColor = System.Drawing.Color.White;
             this.lbl_ArrowSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_ArrowSec.Location = new System.Drawing.Point(40, 382);
+            this.lbl_ArrowSec.Location = new System.Drawing.Point(40, 328);
             this.lbl_ArrowSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_ArrowSec.Name = "lbl_ArrowSec";
             this.lbl_ArrowSec.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -301,7 +301,7 @@
             // 
             this.txt_AllRedSec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_AllRedSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_AllRedSec.Location = new System.Drawing.Point(220, 429);
+            this.txt_AllRedSec.Location = new System.Drawing.Point(220, 375);
             this.txt_AllRedSec.Margin = new System.Windows.Forms.Padding(0);
             this.txt_AllRedSec.MaxLength = 5;
             this.txt_AllRedSec.Name = "txt_AllRedSec";
@@ -314,7 +314,7 @@
             // 
             this.lbl_AllRedSec.BackColor = System.Drawing.Color.White;
             this.lbl_AllRedSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_AllRedSec.Location = new System.Drawing.Point(40, 429);
+            this.lbl_AllRedSec.Location = new System.Drawing.Point(40, 375);
             this.lbl_AllRedSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_AllRedSec.Name = "lbl_AllRedSec";
             this.lbl_AllRedSec.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -327,7 +327,7 @@
             // 
             this.txt_ArrowSec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_ArrowSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_ArrowSec.Location = new System.Drawing.Point(220, 382);
+            this.txt_ArrowSec.Location = new System.Drawing.Point(220, 328);
             this.txt_ArrowSec.Margin = new System.Windows.Forms.Padding(0);
             this.txt_ArrowSec.MaxLength = 5;
             this.txt_ArrowSec.Name = "txt_ArrowSec";
@@ -340,7 +340,7 @@
             // 
             this.txt_WAvaiSec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_WAvaiSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_WAvaiSec.Location = new System.Drawing.Point(220, 335);
+            this.txt_WAvaiSec.Location = new System.Drawing.Point(220, 281);
             this.txt_WAvaiSec.Margin = new System.Windows.Forms.Padding(0);
             this.txt_WAvaiSec.MaxLength = 5;
             this.txt_WAvaiSec.Name = "txt_WAvaiSec";
@@ -353,7 +353,7 @@
             // 
             this.txt_EAvaiSec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_EAvaiSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_EAvaiSec.Location = new System.Drawing.Point(220, 288);
+            this.txt_EAvaiSec.Location = new System.Drawing.Point(220, 234);
             this.txt_EAvaiSec.Margin = new System.Windows.Forms.Padding(0);
             this.txt_EAvaiSec.MaxLength = 5;
             this.txt_EAvaiSec.Name = "txt_EAvaiSec";
@@ -366,7 +366,7 @@
             // 
             this.txt_SAvaiSec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_SAvaiSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_SAvaiSec.Location = new System.Drawing.Point(220, 241);
+            this.txt_SAvaiSec.Location = new System.Drawing.Point(220, 187);
             this.txt_SAvaiSec.Margin = new System.Windows.Forms.Padding(0);
             this.txt_SAvaiSec.MaxLength = 5;
             this.txt_SAvaiSec.Name = "txt_SAvaiSec";
@@ -379,7 +379,7 @@
             // 
             this.txt_NAvaiSec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_NAvaiSec.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_NAvaiSec.Location = new System.Drawing.Point(220, 194);
+            this.txt_NAvaiSec.Location = new System.Drawing.Point(220, 140);
             this.txt_NAvaiSec.Margin = new System.Windows.Forms.Padding(0);
             this.txt_NAvaiSec.MaxLength = 5;
             this.txt_NAvaiSec.Name = "txt_NAvaiSec";
@@ -509,7 +509,7 @@
             this.pnl_Traffic.Controls.Add(this.lbl_WestCrossWalkTwo);
             this.pnl_Traffic.Controls.Add(this.lbl_SNRoadway);
             this.pnl_Traffic.Controls.Add(this.lbl_EWRoadway);
-            this.pnl_Traffic.Location = new System.Drawing.Point(40, 50);
+            this.pnl_Traffic.Location = new System.Drawing.Point(50, 50);
             this.pnl_Traffic.Margin = new System.Windows.Forms.Padding(0);
             this.pnl_Traffic.Name = "pnl_Traffic";
             this.pnl_Traffic.Size = new System.Drawing.Size(521, 442);
@@ -1919,10 +1919,10 @@
             // 
             this.lbl_NorthDirection.BackColor = System.Drawing.Color.White;
             this.lbl_NorthDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthDirection.Location = new System.Drawing.Point(246, 20);
+            this.lbl_NorthDirection.Location = new System.Drawing.Point(256, 25);
             this.lbl_NorthDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthDirection.Name = "lbl_NorthDirection";
-            this.lbl_NorthDirection.Size = new System.Drawing.Size(110, 30);
+            this.lbl_NorthDirection.Size = new System.Drawing.Size(110, 25);
             this.lbl_NorthDirection.TabIndex = 7;
             this.lbl_NorthDirection.Text = "北方向";
             this.lbl_NorthDirection.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1931,10 +1931,10 @@
             // 
             this.lbl_SouthDirection.BackColor = System.Drawing.Color.White;
             this.lbl_SouthDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthDirection.Location = new System.Drawing.Point(246, 493);
+            this.lbl_SouthDirection.Location = new System.Drawing.Point(256, 493);
             this.lbl_SouthDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthDirection.Name = "lbl_SouthDirection";
-            this.lbl_SouthDirection.Size = new System.Drawing.Size(108, 30);
+            this.lbl_SouthDirection.Size = new System.Drawing.Size(108, 25);
             this.lbl_SouthDirection.TabIndex = 8;
             this.lbl_SouthDirection.Text = "南方向";
             this.lbl_SouthDirection.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1943,7 +1943,7 @@
             // 
             this.lbl_WestDirection.BackColor = System.Drawing.Color.White;
             this.lbl_WestDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestDirection.Location = new System.Drawing.Point(10, 207);
+            this.lbl_WestDirection.Location = new System.Drawing.Point(20, 206);
             this.lbl_WestDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestDirection.Name = "lbl_WestDirection";
             this.lbl_WestDirection.Size = new System.Drawing.Size(30, 132);
@@ -1955,7 +1955,7 @@
             // 
             this.lbl_EastDirection.BackColor = System.Drawing.Color.White;
             this.lbl_EastDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastDirection.Location = new System.Drawing.Point(561, 206);
+            this.lbl_EastDirection.Location = new System.Drawing.Point(571, 206);
             this.lbl_EastDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastDirection.Name = "lbl_EastDirection";
             this.lbl_EastDirection.Size = new System.Drawing.Size(30, 132);
@@ -1963,27 +1963,11 @@
             this.lbl_EastDirection.Text = "東\r\n方\r\n向";
             this.lbl_EastDirection.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btn_VersionShow
-            // 
-            this.btn_VersionShow.BackColor = System.Drawing.Color.Gainsboro;
-            this.btn_VersionShow.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.btn_VersionShow.FlatAppearance.BorderSize = 2;
-            this.btn_VersionShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_VersionShow.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_VersionShow.Location = new System.Drawing.Point(220, 50);
-            this.btn_VersionShow.Margin = new System.Windows.Forms.Padding(0);
-            this.btn_VersionShow.Name = "btn_VersionShow";
-            this.btn_VersionShow.Size = new System.Drawing.Size(80, 30);
-            this.btn_VersionShow.TabIndex = 15;
-            this.btn_VersionShow.Text = "バージョン";
-            this.btn_VersionShow.UseVisualStyleBackColor = false;
-            this.btn_VersionShow.Click += new System.EventHandler(this.Btn_VersionShow_Click);
-            // 
             // lbl_SecOne
             // 
             this.lbl_SecOne.BackColor = System.Drawing.Color.White;
             this.lbl_SecOne.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SecOne.Location = new System.Drawing.Point(280, 194);
+            this.lbl_SecOne.Location = new System.Drawing.Point(280, 140);
             this.lbl_SecOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SecOne.Name = "lbl_SecOne";
             this.lbl_SecOne.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -1996,7 +1980,7 @@
             // 
             this.lbl_SecTwo.BackColor = System.Drawing.Color.White;
             this.lbl_SecTwo.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SecTwo.Location = new System.Drawing.Point(280, 241);
+            this.lbl_SecTwo.Location = new System.Drawing.Point(280, 187);
             this.lbl_SecTwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SecTwo.Name = "lbl_SecTwo";
             this.lbl_SecTwo.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -2009,7 +1993,7 @@
             // 
             this.lbl_SecThr.BackColor = System.Drawing.Color.White;
             this.lbl_SecThr.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SecThr.Location = new System.Drawing.Point(280, 288);
+            this.lbl_SecThr.Location = new System.Drawing.Point(280, 234);
             this.lbl_SecThr.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SecThr.Name = "lbl_SecThr";
             this.lbl_SecThr.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -2022,7 +2006,7 @@
             // 
             this.lbl_SecFou.BackColor = System.Drawing.Color.White;
             this.lbl_SecFou.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SecFou.Location = new System.Drawing.Point(280, 335);
+            this.lbl_SecFou.Location = new System.Drawing.Point(280, 281);
             this.lbl_SecFou.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SecFou.Name = "lbl_SecFou";
             this.lbl_SecFou.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -2035,7 +2019,7 @@
             // 
             this.lbl_SecFiv.BackColor = System.Drawing.Color.White;
             this.lbl_SecFiv.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SecFiv.Location = new System.Drawing.Point(280, 382);
+            this.lbl_SecFiv.Location = new System.Drawing.Point(280, 328);
             this.lbl_SecFiv.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SecFiv.Name = "lbl_SecFiv";
             this.lbl_SecFiv.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -2048,7 +2032,7 @@
             // 
             this.lbl_SecSix.BackColor = System.Drawing.Color.White;
             this.lbl_SecSix.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SecSix.Location = new System.Drawing.Point(280, 429);
+            this.lbl_SecSix.Location = new System.Drawing.Point(280, 375);
             this.lbl_SecSix.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SecSix.Name = "lbl_SecSix";
             this.lbl_SecSix.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -2064,12 +2048,12 @@
             this.grb_TrafficShow.Controls.Add(this.lbl_WestDirection);
             this.grb_TrafficShow.Controls.Add(this.lbl_NorthDirection);
             this.grb_TrafficShow.Controls.Add(this.lbl_EastDirection);
-            this.grb_TrafficShow.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.grb_TrafficShow.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.grb_TrafficShow.Location = new System.Drawing.Point(40, 30);
             this.grb_TrafficShow.Margin = new System.Windows.Forms.Padding(0);
             this.grb_TrafficShow.Name = "grb_TrafficShow";
             this.grb_TrafficShow.Padding = new System.Windows.Forms.Padding(0);
-            this.grb_TrafficShow.Size = new System.Drawing.Size(601, 533);
+            this.grb_TrafficShow.Size = new System.Drawing.Size(621, 533);
             this.grb_TrafficShow.TabIndex = 23;
             this.grb_TrafficShow.TabStop = false;
             this.grb_TrafficShow.Text = "交差点イメージ図";
@@ -2077,12 +2061,13 @@
             // grb_TrafficSet
             // 
             this.grb_TrafficSet.BackColor = System.Drawing.Color.Transparent;
-            this.grb_TrafficSet.Controls.Add(this.btn_Start);
             this.grb_TrafficSet.Controls.Add(this.txt_WAvaiSec);
+            this.grb_TrafficSet.Controls.Add(this.btn_Start);
             this.grb_TrafficSet.Controls.Add(this.lbl_NAvaiSec);
+            this.grb_TrafficSet.Controls.Add(this.btn_Reset);
+            this.grb_TrafficSet.Controls.Add(this.btn_InterruptResume);
             this.grb_TrafficSet.Controls.Add(this.lbl_SecSix);
             this.grb_TrafficSet.Controls.Add(this.lbl_ArrowSec);
-            this.grb_TrafficSet.Controls.Add(this.btn_InterruptResume);
             this.grb_TrafficSet.Controls.Add(this.lbl_SecOne);
             this.grb_TrafficSet.Controls.Add(this.txt_AllRedSec);
             this.grb_TrafficSet.Controls.Add(this.txt_SAvaiSec);
@@ -2093,21 +2078,38 @@
             this.grb_TrafficSet.Controls.Add(this.lbl_AllRedSec);
             this.grb_TrafficSet.Controls.Add(this.lbl_EAvaiSec);
             this.grb_TrafficSet.Controls.Add(this.txt_ArrowSec);
-            this.grb_TrafficSet.Controls.Add(this.btn_Reset);
             this.grb_TrafficSet.Controls.Add(this.txt_EAvaiSec);
             this.grb_TrafficSet.Controls.Add(this.lbl_SecThr);
             this.grb_TrafficSet.Controls.Add(this.lbl_SecFou);
             this.grb_TrafficSet.Controls.Add(this.lbl_WAvaiSec);
-            this.grb_TrafficSet.Controls.Add(this.btn_VersionShow);
-            this.grb_TrafficSet.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.grb_TrafficSet.Location = new System.Drawing.Point(690, 30);
+            this.grb_TrafficSet.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.grb_TrafficSet.Location = new System.Drawing.Point(701, 80);
             this.grb_TrafficSet.Margin = new System.Windows.Forms.Padding(0);
             this.grb_TrafficSet.Name = "grb_TrafficSet";
             this.grb_TrafficSet.Padding = new System.Windows.Forms.Padding(0);
-            this.grb_TrafficSet.Size = new System.Drawing.Size(320, 533);
+            this.grb_TrafficSet.Size = new System.Drawing.Size(320, 483);
             this.grb_TrafficSet.TabIndex = 24;
             this.grb_TrafficSet.TabStop = false;
             this.grb_TrafficSet.Text = "設定表";
+            // 
+            // btn_VerInfo
+            // 
+            this.btn_VerInfo.BackColor = System.Drawing.Color.Gainsboro;
+            this.btn_VerInfo.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.btn_VerInfo.FlatAppearance.BorderSize = 2;
+            this.btn_VerInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_VerInfo.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btn_VerInfo.Image = global::TrafficLightAlgorithm.Properties.Resources.VerInfo;
+            this.btn_VerInfo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_VerInfo.Location = new System.Drawing.Point(920, 40);
+            this.btn_VerInfo.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_VerInfo.Name = "btn_VerInfo";
+            this.btn_VerInfo.Size = new System.Drawing.Size(80, 30);
+            this.btn_VerInfo.TabIndex = 25;
+            this.btn_VerInfo.Text = "Version";
+            this.btn_VerInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_VerInfo.UseVisualStyleBackColor = false;
+            this.btn_VerInfo.Click += new System.EventHandler(this.Btn_VerInfo_Click);
             // 
             // F_TrafficLight
             // 
@@ -2115,14 +2117,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1054, 601);
+            this.ClientSize = new System.Drawing.Size(1064, 601);
+            this.Controls.Add(this.btn_VerInfo);
             this.Controls.Add(this.grb_TrafficSet);
             this.Controls.Add(this.grb_TrafficShow);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1070, 640);
+            this.MaximumSize = new System.Drawing.Size(1080, 640);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1070, 640);
+            this.MinimumSize = new System.Drawing.Size(1080, 640);
             this.Name = "F_TrafficLight";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "信号機プログラム";
@@ -2191,7 +2194,6 @@
         private System.Windows.Forms.TextBox txt_NAvaiSec;
         private System.Windows.Forms.TextBox txt_AllRedSec;
         private System.Windows.Forms.Label lbl_AllRedSec;
-        private System.Windows.Forms.Button btn_VersionShow;
         private System.Windows.Forms.Label lbl_SecOne;
         private System.Windows.Forms.Label lbl_SecTwo;
         private System.Windows.Forms.Label lbl_SecThr;
@@ -2284,6 +2286,7 @@
         private System.Windows.Forms.Label lbl_EArrow;
         private System.Windows.Forms.GroupBox grb_TrafficShow;
         private System.Windows.Forms.GroupBox grb_TrafficSet;
+        private System.Windows.Forms.Button btn_VerInfo;
     }
 }
 
