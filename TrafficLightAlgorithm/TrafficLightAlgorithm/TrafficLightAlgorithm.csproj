@@ -45,6 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="F_SetSec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_SetSec.Designer.cs">
+      <DependentUpon>F_SetSec.cs</DependentUpon>
+    </Compile>
     <Compile Include="F_TrafficLight.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,12 @@
     <Compile Include="TrafficCommand.cs" />
     <Compile Include="TrafficPhase.cs" />
     <Compile Include="TrafficMSecValue.cs" />
+    <EmbeddedResource Include="F_SetSec.ff-Adlm-NE.resx">
+      <DependentUpon>F_SetSec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_SetSec.resx">
+      <DependentUpon>F_SetSec.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F_TrafficLight.resx">
       <DependentUpon>F_TrafficLight.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,10 +113,10 @@
     <None Include="Resources\PedesDefaultNS.png" />
     <None Include="Resources\PedesGreen.png" />
     <None Include="Resources\TrafficCorner.png" />
-    <None Include="Resources\CarRightArrow.png" />
-    <None Include="Resources\CarStraightLeftArrow.png" />
     <None Include="Resources\ArrowSignal.png" />
-    <None Include="Resources\VerInfo.png" />
+    <None Include="Resources\CarStraightLeftArrow.png" />
+    <None Include="Resources\CarRightArrow.png" />
+    <None Include="Resources\NSSignal.png" />
     <Content Include="Signal_Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

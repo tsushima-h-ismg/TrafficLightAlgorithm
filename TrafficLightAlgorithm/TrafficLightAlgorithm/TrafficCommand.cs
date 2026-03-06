@@ -16,7 +16,7 @@
         public readonly LightState State;
 
         /// <summary>
-        /// 信号機と点灯状態を表す値を取得する
+        /// 信号機の種類と点灯状態を表す値を取得する
         /// </summary>
         /// <param name="traffic"> 信号機の種類   　</param>
         /// <param name="state">   信号機の点灯状態 </param>

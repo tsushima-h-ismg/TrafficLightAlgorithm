@@ -34,7 +34,7 @@
             this.lbl_Company = new System.Windows.Forms.Label();
             this.lbl_SoftTitle = new System.Windows.Forms.Label();
             this.lbl_Version = new System.Windows.Forms.Label();
-            this.lbl_verInfo = new System.Windows.Forms.Label();
+            this.lbl_VerInfo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_FormTitle
@@ -103,19 +103,19 @@
             this.lbl_Version.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbl_Version.Click += new System.EventHandler(this.Lbl_VerInfo_Click);
             // 
-            // lbl_verInfo
+            // lbl_VerInfo
             // 
-            this.lbl_verInfo.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_verInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl_verInfo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_verInfo.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_verInfo.Location = new System.Drawing.Point(10, 75);
-            this.lbl_verInfo.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_verInfo.Name = "lbl_verInfo";
-            this.lbl_verInfo.Size = new System.Drawing.Size(444, 60);
-            this.lbl_verInfo.TabIndex = 2;
-            this.lbl_verInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_verInfo.Click += new System.EventHandler(this.Lbl_VerInfo_Click);
+            this.lbl_VerInfo.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_VerInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_VerInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_VerInfo.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_VerInfo.Location = new System.Drawing.Point(10, 75);
+            this.lbl_VerInfo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_VerInfo.Name = "lbl_VerInfo";
+            this.lbl_VerInfo.Size = new System.Drawing.Size(444, 60);
+            this.lbl_VerInfo.TabIndex = 2;
+            this.lbl_VerInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_VerInfo.Click += new System.EventHandler(this.Lbl_VerInfo_Click);
             // 
             // F_Version
             // 
@@ -126,7 +126,7 @@
             this.Controls.Add(this.lbl_Version);
             this.Controls.Add(this.lbl_SoftTitle);
             this.Controls.Add(this.lbl_Company);
-            this.Controls.Add(this.lbl_verInfo);
+            this.Controls.Add(this.lbl_VerInfo);
             this.Controls.Add(this.lbl_CopyRight);
             this.Controls.Add(this.lbl_FormTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -152,6 +152,6 @@
         private System.Windows.Forms.Label lbl_Company;
         private System.Windows.Forms.Label lbl_SoftTitle;
         private System.Windows.Forms.Label lbl_Version;
-        private System.Windows.Forms.Label lbl_verInfo;
+        private System.Windows.Forms.Label lbl_VerInfo;
     }
 }

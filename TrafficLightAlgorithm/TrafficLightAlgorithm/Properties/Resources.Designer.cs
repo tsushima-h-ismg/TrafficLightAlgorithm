@@ -123,6 +123,16 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap NSSignal {
+            get {
+                object obj = ResourceManager.GetObject("NSSignal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap PedesDefaultEW {
             get {
                 object obj = ResourceManager.GetObject("PedesDefaultEW", resourceCulture);
@@ -196,16 +206,6 @@ namespace TrafficLightAlgorithm.Properties {
         internal static System.Drawing.Bitmap TrafficCorner {
             get {
                 object obj = ResourceManager.GetObject("TrafficCorner", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap VerInfo {
-            get {
-                object obj = ResourceManager.GetObject("VerInfo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
