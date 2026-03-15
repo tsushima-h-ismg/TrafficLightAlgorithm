@@ -70,7 +70,7 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private void F_SetSec_Load(object sender, EventArgs e)
         {
-            lbl_SetValueName.Text = SetValueName;         // 設定値の名称を取得
+            lbl_SetValueName.Text = SetValueName + "：";  // 設定値の名称を取得
             txt_SetValue.Text     = SetValue.ToString();  // 設定値を取得
 
             txt_ArrowSec.Text    = ArrowSec.ToString();   // 矢印信号機点灯秒を取得

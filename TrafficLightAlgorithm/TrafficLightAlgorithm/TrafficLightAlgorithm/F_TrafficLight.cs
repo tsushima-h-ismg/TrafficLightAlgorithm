@@ -541,7 +541,7 @@ namespace TrafficLightAlgorithm
 
                         try
                         {
-                            CreateStateRecord(phases[i]);
+                            CreateStateRecord(phases[i], i);                  // リストボックスに点灯状態を書き込む
                             await Task.Delay(phases[i].WaitMSec, Cts.Token);  // キャンセルが要求されていない場合、WaitMSecミリ秒待機する
                         }
                         catch
@@ -564,14 +564,39 @@ namespace TrafficLightAlgorithm
         /// リストボックスに追加する状態変更履歴を表す文字列を追加する
         /// </summary>
         /// <param name="phase"> 信号機アルゴリズムの点灯フェーズ </param>
-        private void CreateStateRecord(TrafficPhase phase)
+        private void CreateStateRecord(TrafficPhase phase, int phaseNum)
         {
-            foreach (TrafficCommand cmd in phase.Commands)
+            try
             {
-                lbx_StateRecord.Items.Add(SignalStr(cmd.Signal) + "が" + LightOnStateStr(cmd.State));
-            }
+                foreach (TrafficCommand cmd in phase.Commands)
+                {
+                    string sigStr   = SignalStr(cmd.Signal);
+                    string stateStr = LightOnStateStr(cmd.State);
 
-            lbx_StateRecord.Items.Add(phase.WaitMSec + "ミリ秒待機します。");
+                    if (sigStr != "" || stateStr != "")
+                    {
+                        // 信号機の点灯状態変更履歴の追加
+                        lbx_StateRecord.Items.Add(phaseNum + "：" + sigStr + "が" + stateStr);
+                    }
+                    else
+                    {
+                        // 信号機か点灯状態の列挙型が取得できなかった場合は終了する
+                        lbx_StateRecord.Items.Add(phaseNum + "：点灯状態変更履歴が取得できませんでした。");
+                        return;
+                    }
+                }
+
+                // 待機時間を表示
+                lbx_StateRecord.Items.Add(phaseNum + "：" + phase.WaitMSec + "ミリ秒待機します。");  
+                
+                // 最新の履歴を表示する
+                lbx_StateRecord.TopIndex = lbx_StateRecord.Items.Count - 1;
+            }
+            catch (Exception ex)
+            {
+                string exStr = ex.Message + "\n信号機の点灯状態変更履歴の追加に失敗しました。";
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         /// <summary>
@@ -581,15 +606,22 @@ namespace TrafficLightAlgorithm
         /// <returns> 信号機の名称を表す文字列 </returns>
         private string SignalStr(Signal signal)
         {
-            if (signal == Signal.CarNorth)   return "北車用信号機";
-            if (signal == Signal.CarSouth)   return "南車用信号機";
-            if (signal == Signal.CarEast)    return "東車用信号機";
-            if (signal == Signal.CarWest)    return "西車用信号機";
-            if (signal == Signal.PedesNorth) return "北歩行者用信号機";
-            if (signal == Signal.PedesSouth) return "南歩行者用信号機";
-            if (signal == Signal.PedesEast)  return "東歩行者用信号機";
-            if (signal == Signal.PedesWest)  return "西歩行者用信号機";
-            return "";
+            try
+            {
+                if (signal == Signal.CarNorth)   return "北車用信号機";
+                if (signal == Signal.CarSouth)   return "南車用信号機";
+                if (signal == Signal.CarEast)    return "東車用信号機";
+                if (signal == Signal.CarWest)    return "西車用信号機";
+                if (signal == Signal.PedesNorth) return "北歩行者用信号機";
+                if (signal == Signal.PedesSouth) return "南歩行者用信号機";
+                if (signal == Signal.PedesEast)  return "東歩行者用信号機";
+                if (signal == Signal.PedesWest)  return "西歩行者用信号機";
+                return "";
+            }
+            catch
+            {
+                return "";
+            }
         }
 
         /// <summary>
@@ -599,12 +631,19 @@ namespace TrafficLightAlgorithm
         /// <returns> 点灯状態を表す文字列 </returns>
         private string LightOnStateStr(LightState state)
         {
-            if (state == LightState.Green)   return "緑に点灯しました。\n";
-            if (state == LightState.Yellow)  return "黄に点灯しました。\n";
-            if (state == LightState.Red)     return "赤に点灯しました。\n";
-            if (state == LightState.Arrow)   return "矢印に点灯しました。\n";
-            if (state == LightState.NoLight) return "無灯火になりました。\n";
-            return "";
+            try
+            {
+                if (state == LightState.Green)   return "緑に点灯しました。\n";
+                if (state == LightState.Yellow)  return "黄に点灯しました。\n";
+                if (state == LightState.Red)     return "赤に点灯しました。\n";
+                if (state == LightState.Arrow)   return "矢印に点灯しました。\n";
+                if (state == LightState.NoLight) return "無灯火になりました。\n";
+                return "";
+            }
+            catch
+            {
+                return "";
+            }
         }
 
         /// <summary>
