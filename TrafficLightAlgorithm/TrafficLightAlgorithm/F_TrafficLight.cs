@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Threading;
-using System.Windows.Forms;
-using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TrafficLightAlgorithm
 {
@@ -98,10 +99,36 @@ namespace TrafficLightAlgorithm
                 IsTrafficEnable = false;              // 信号機アルゴリズムが動かない場合のブール値に設定する
                 IsInterrupt     = false;              // 信号機アルゴリズムの中断を無効にする
                 Cts = new CancellationTokenSource();  // Ctsの初期化
+
+                // ラベルイメージの回転
+                RotateLabelImage(RotateFlipType.Rotate90FlipNone,  lbl_NECorner, lbl_ESignal, lbl_ERed, lbl_EYellow, lbl_EGreen, lbl_WRed, lbl_WYellow, lbl_WGreen);
+                RotateLabelImage(RotateFlipType.Rotate180FlipNone, lbl_SECorner, lbl_SSignal, lbl_WRArrow, lbl_WSLArrow, lbl_EArrow);
+                RotateLabelImage(RotateFlipType.Rotate270FlipNone, lbl_SWCorner, lbl_WSignal);
             }
             catch (Exception ex)
             {
                 string exStr = ex.Message + "\nフォームのロードに失敗しました。";
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// ラベルイメージを回転する
+        /// </summary>
+        /// <param name="rotate"> ラベルイメージの回転量と反転軸 </param>
+        /// <param name="labels"> イメージ回転を行うラベル       </param>
+        private void RotateLabelImage(RotateFlipType rotate, params Label[] labels)
+        {
+            try
+            {
+                foreach (Label label in labels)
+                {
+                    label.Image.RotateFlip(rotate);  // ラベルイメージを回転する
+                }
+            }
+            catch (Exception ex)
+            {
+                string exStr = ex.Message + "\nラベルイメージの回転に失敗しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

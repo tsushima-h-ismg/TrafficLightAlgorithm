@@ -118,6 +118,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lbl_SoftTitle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        oaWrAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="lbl_SECorner.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
