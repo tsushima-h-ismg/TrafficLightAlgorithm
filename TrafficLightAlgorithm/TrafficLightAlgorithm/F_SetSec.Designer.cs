@@ -122,6 +122,7 @@
             this.MinimizeBox = false;
             this.Name = "F_SetSec";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.Load += new System.EventHandler(this.F_SetSec_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

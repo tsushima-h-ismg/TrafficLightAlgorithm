@@ -8,7 +8,27 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 設定値の名称
         /// </summary>
-        private string SetValueName;
+        public string SetValueName { get; set; }
+
+        /// <summary>
+        /// 設定値
+        /// </summary>
+        public int SetValue { get; set; }
+
+        /// <summary>
+        /// 矢印信号機点灯秒
+        /// </summary>
+        public int ArrowSec { get; set; }
+
+        /// <summary>
+        /// 全信号機の赤点灯秒
+        /// </summary>
+        public int AllRedSec { get; set; }
+
+        /// <summary>
+        /// 矢印信号機が存在する場合はtrue、それ以外の場合はfalse
+        /// </summary>
+        public bool IsArrow { get; set; }
 
         /// <summary>
         /// 進行可能秒数の最大値
@@ -46,6 +66,20 @@ namespace TrafficLightAlgorithm
         }
         
         /// <summary>
+        /// フォームロードイベント
+        /// </summary>
+        private void F_SetSec_Load(object sender, EventArgs e)
+        {
+            lbl_SetValueName.Text = SetValueName + "：";  // 設定値の名称を取得
+            txt_SetValue.Text     = SetValue.ToString();  // 設定値を取得
+
+            txt_ArrowSec.Text    = ArrowSec.ToString();   // 矢印信号機点灯秒を取得
+            txt_ArrowSec.Enabled = IsArrow;               // 矢印信号機が存在する場合はtrue、それ以外の場合はfalse
+
+            txt_RedSec.Text = AllRedSec.ToString();     　// 全信号機の赤点灯秒を取得
+        }
+
+        /// <summary>
         /// 確定ボタンクリック時イベント
         /// </summary>
         private void Btn_Confirm_Click(object sender, EventArgs e)
@@ -61,12 +95,13 @@ namespace TrafficLightAlgorithm
             if (errMsg != "")
             {
                 MessageBox.Show(errMsg, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-            else
-            {
-                Close();
-                DialogResult = DialogResult.OK;
-            }
+
+            SetValue  = ConvertToInt(txt_SetValue.Text);  // 設定値の値を取得する
+            ArrowSec  = ConvertToInt(txt_ArrowSec.Text);  // 矢印信号機の点灯秒数を取得する
+            AllRedSec = ConvertToInt(txt_RedSec.Text);    // 全信号機の赤点灯秒を取得する
+            Close();
         }
 
         /// <summary>
