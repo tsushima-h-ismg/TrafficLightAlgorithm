@@ -93,16 +93,6 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap CarStraightLeftArrow1 {
-            get {
-                object obj = ResourceManager.GetObject("CarStraightLeftArrow1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
         internal static System.Drawing.Bitmap EWSignalPole {
             get {
                 object obj = ResourceManager.GetObject("EWSignalPole", resourceCulture);
@@ -143,6 +133,26 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap PedesSignalOne {
+            get {
+                object obj = ResourceManager.GetObject("PedesSignalOne", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap PedesSignalTwo {
+            get {
+                object obj = ResourceManager.GetObject("PedesSignalTwo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap SignalGreen {
             get {
                 object obj = ResourceManager.GetObject("SignalGreen", resourceCulture);
@@ -176,16 +186,6 @@ namespace TrafficLightAlgorithm.Properties {
         internal static System.Drawing.Bitmap SoftTitle {
             get {
                 object obj = ResourceManager.GetObject("SoftTitle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap TrafficCorner {
-            get {
-                object obj = ResourceManager.GetObject("TrafficCorner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

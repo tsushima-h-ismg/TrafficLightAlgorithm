@@ -104,23 +104,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\EastWestSignalDefault.png" />
-    <None Include="Resources\NorthSouthSignalDefault.png" />
-    <None Include="Resources\ArrowDefault.png" />
-    <None Include="Resources\PedesDefaultEW.png" />
-    <None Include="Resources\PedesDefaultNS.png" />
     <None Include="Resources\PedesGreen.png" />
-    <None Include="Resources\TrafficCorner.png" />
-    <None Include="Resources\ArrowSignal.png" />
-    <None Include="Resources\SoftTitle.png" />
     <None Include="Resources\SignalGreen.png" />
     <None Include="Resources\SignalYellow.png" />
     <None Include="Resources\SignalRed.png" />
     <None Include="Resources\EWSignalPole.png" />
-    <None Include="Resources\CarRightArrow1.png" />
-    <None Include="Resources\CarStraightLeftArrow1.png" />
+    <None Include="Resources\PedesSignalOne.png" />
+    <None Include="Resources\PedesSignalTwo.png" />
+    <None Include="Resources\CarRightArrow.png" />
     <None Include="Resources\CarStraightLeftArrow.png" />
-    <None Include="Resources\ArrowSignal1.png" />
+    <None Include="Resources\ArrowSignal.png" />
+    <None Include="Resources\SoftTitle.png" />
     <Content Include="Signal_Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

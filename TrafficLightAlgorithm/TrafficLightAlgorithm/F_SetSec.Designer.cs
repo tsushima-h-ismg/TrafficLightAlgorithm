@@ -31,8 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_SetSec));
             this.lbl_SetValueName = new System.Windows.Forms.Label();
             this.txt_SetValue = new System.Windows.Forms.TextBox();
-            this.lbl_Sec = new System.Windows.Forms.Label();
+            this.lbl_SecOne = new System.Windows.Forms.Label();
             this.btn_Confirm = new System.Windows.Forms.Button();
+            this.lbl_SecThr = new System.Windows.Forms.Label();
+            this.txt_RedSec = new System.Windows.Forms.TextBox();
+            this.lbl_RedSec = new System.Windows.Forms.Label();
+            this.lbl_SecTwo = new System.Windows.Forms.Label();
+            this.txt_ArrowSec = new System.Windows.Forms.TextBox();
+            this.lbl_ArrowSec = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_SetValueName
@@ -47,11 +53,11 @@
             resources.ApplyResources(this.txt_SetValue, "txt_SetValue");
             this.txt_SetValue.Name = "txt_SetValue";
             // 
-            // lbl_Sec
+            // lbl_SecOne
             // 
-            this.lbl_Sec.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.lbl_Sec, "lbl_Sec");
-            this.lbl_Sec.Name = "lbl_Sec";
+            this.lbl_SecOne.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.lbl_SecOne, "lbl_SecOne");
+            this.lbl_SecOne.Name = "lbl_SecOne";
             // 
             // btn_Confirm
             // 
@@ -61,13 +67,55 @@
             this.btn_Confirm.UseVisualStyleBackColor = false;
             this.btn_Confirm.Click += new System.EventHandler(this.Btn_Confirm_Click);
             // 
+            // lbl_SecThr
+            // 
+            this.lbl_SecThr.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.lbl_SecThr, "lbl_SecThr");
+            this.lbl_SecThr.Name = "lbl_SecThr";
+            // 
+            // txt_RedSec
+            // 
+            this.txt_RedSec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.txt_RedSec, "txt_RedSec");
+            this.txt_RedSec.Name = "txt_RedSec";
+            // 
+            // lbl_RedSec
+            // 
+            this.lbl_RedSec.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.lbl_RedSec, "lbl_RedSec");
+            this.lbl_RedSec.Name = "lbl_RedSec";
+            // 
+            // lbl_SecTwo
+            // 
+            this.lbl_SecTwo.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.lbl_SecTwo, "lbl_SecTwo");
+            this.lbl_SecTwo.Name = "lbl_SecTwo";
+            // 
+            // txt_ArrowSec
+            // 
+            this.txt_ArrowSec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.txt_ArrowSec, "txt_ArrowSec");
+            this.txt_ArrowSec.Name = "txt_ArrowSec";
+            // 
+            // lbl_ArrowSec
+            // 
+            this.lbl_ArrowSec.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.lbl_ArrowSec, "lbl_ArrowSec");
+            this.lbl_ArrowSec.Name = "lbl_ArrowSec";
+            // 
             // F_SetSec
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.lbl_SecTwo);
+            this.Controls.Add(this.txt_ArrowSec);
+            this.Controls.Add(this.lbl_ArrowSec);
+            this.Controls.Add(this.lbl_SecThr);
+            this.Controls.Add(this.txt_RedSec);
+            this.Controls.Add(this.lbl_RedSec);
             this.Controls.Add(this.btn_Confirm);
-            this.Controls.Add(this.lbl_Sec);
+            this.Controls.Add(this.lbl_SecOne);
             this.Controls.Add(this.txt_SetValue);
             this.Controls.Add(this.lbl_SetValueName);
             this.MaximizeBox = false;
@@ -83,7 +131,13 @@
 
         private System.Windows.Forms.Label lbl_SetValueName;
         private System.Windows.Forms.TextBox txt_SetValue;
-        private System.Windows.Forms.Label lbl_Sec;
+        private System.Windows.Forms.Label lbl_SecOne;
         private System.Windows.Forms.Button btn_Confirm;
+        private System.Windows.Forms.Label lbl_SecThr;
+        private System.Windows.Forms.TextBox txt_RedSec;
+        private System.Windows.Forms.Label lbl_RedSec;
+        private System.Windows.Forms.Label lbl_SecTwo;
+        private System.Windows.Forms.TextBox txt_ArrowSec;
+        private System.Windows.Forms.Label lbl_ArrowSec;
     }
 }

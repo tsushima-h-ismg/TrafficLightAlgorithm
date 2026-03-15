@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace TrafficLightAlgorithm
 {
@@ -84,6 +84,11 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private List<TrafficPhase> PhaseList;
 
+        /// <summary>
+        /// 設定値構造体
+        /// </summary>
+        private WaitMSec SetMSec;
+
         public F_TrafficLight()
         {
             InitializeComponent();
@@ -101,9 +106,15 @@ namespace TrafficLightAlgorithm
                 Cts = new CancellationTokenSource();  // Ctsの初期化
 
                 // ラベルイメージの回転
-                RotateLabelImage(RotateFlipType.Rotate90FlipNone,  lbl_NECorner, lbl_ESignal, lbl_ERed, lbl_EYellow, lbl_EGreen, lbl_WRed, lbl_WYellow, lbl_WGreen);
-                RotateLabelImage(RotateFlipType.Rotate180FlipNone, lbl_SECorner, lbl_SSignal, lbl_WRArrow, lbl_WSLArrow, lbl_EArrow);
-                RotateLabelImage(RotateFlipType.Rotate270FlipNone, lbl_SWCorner, lbl_WSignal);
+                RotateLabelImage(RotateFlipType.Rotate90FlipNone,  lbl_ERed, lbl_EYellow, lbl_EGreen, lbl_WRed, lbl_WYellow, lbl_WGreen, lbl_PNSignalOne, 
+                                                                   lbl_PSSignalOne, lbl_PNGreOne, lbl_PNRedOne, lbl_PSGreOne, lbl_PSRedOne);
+
+                RotateLabelImage(RotateFlipType.Rotate180FlipNone, lbl_SSignal, lbl_ESignal, lbl_WRArrow, lbl_WSLArrow, lbl_EArrow, lbl_PESignalTwo, lbl_PWSignalTwo,
+                                                                   lbl_PEGreTwo, lbl_PERedTwo, lbl_PWGreTwo, lbl_PWRedTwo);
+                
+                RotateLabelImage(RotateFlipType.Rotate270FlipNone, lbl_PNSignalTwo, lbl_PSSignalTwo, lbl_PNGreTwo, lbl_PNRedTwo, lbl_PSGreTwo, lbl_PSRedTwo);
+
+                SetMSec = new WaitMSec(5, 5, 5, 5, 1, 1);
             }
             catch (Exception ex)
             {
@@ -129,6 +140,57 @@ namespace TrafficLightAlgorithm
             catch (Exception ex)
             {
                 string exStr = ex.Message + "\nラベルイメージの回転に失敗しました。";
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// 信号機イメージ画像表示ラベルクリック時イベント
+        /// </summary>
+        private void Lbl_CarSignal_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (IsTrafficEnable) return;  // 信号機アルゴリズムが動いている場合は終了する
+
+                int    setValue      = AvaiSecMin;            // 設定値入力フォーム
+                int    arrowSec      = SetMSec.AMSec / 1000;  // 矢印信号機の点灯ミリ秒
+                int    redSec        = SetMSec.RMSec / 1000;  // 全信号機の赤点灯ミリ秒
+                string setName       = "";                    // 設定値の名称
+                bool   isArrowSignal = false;                 // 矢印信号機を持つ信号機ラベルがクリックされた場合はtrue、それ以外はfalse
+
+                F_SetSec f_SetSec    = new F_SetSec();        // 設定値入力フォームの初期化
+
+                if (sender == lbl_NSignal || sender == lbl_NGreen || sender == lbl_NYellow || sender == lbl_NRed)
+                {
+                    setName       = "北方向への進行可能時間";
+                    isArrowSignal = false;
+                    setValue      = SetMSec.NMSec / 1000;
+                }
+                else if (sender == lbl_SSignal || sender == lbl_SGreen || sender == lbl_SYellow || sender == lbl_SRed)
+                {
+                    setName       = "南方向への進行可能時間";
+                    isArrowSignal = false;
+                    setValue      = SetMSec.SMSec / 1000;
+                }
+                else if (sender == lbl_ESignal || sender == lbl_EGreen || sender == lbl_EYellow || sender == lbl_ERed)
+                {
+                    setName       = "東方向への進行可能時間";
+                    isArrowSignal = true;
+                    setValue      = SetMSec.EMSec / 1000;
+                }
+                else if (sender == lbl_WSignal || sender == lbl_WGreen || sender == lbl_WYellow || sender == lbl_WRed)
+                {
+                    setName       = "西方向への進行可能時間";
+                    isArrowSignal = true;
+                    setValue      = SetMSec.WMSec / 1000;
+                }
+
+                f_SetSec.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                string exStr = ex.Message + "\n設定値入力フォームの表示に失敗しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

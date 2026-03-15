@@ -61,7 +61,7 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                if (e.KeyCode == Keys.Enter) Close();  // Enterキーが押された場合は終了する
+                if (e.KeyCode == Keys.Enter) Close();  // Enterキークリックで終了する
             }
             catch (Exception ex)
             {
