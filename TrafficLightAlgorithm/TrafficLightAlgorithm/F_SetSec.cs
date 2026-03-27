@@ -6,11 +6,6 @@ namespace TrafficLightAlgorithm
     public partial class F_SetSec : Form
     {
         /// <summary>
-        /// 方角を表す文字列
-        /// </summary>
-        public string DirectionName { get; set; }
-
-        /// <summary>
         /// 設定値
         /// </summary>
         public int SetValue { get; set; }
@@ -36,24 +31,29 @@ namespace TrafficLightAlgorithm
         public bool IsEnable { get; set; }
 
         /// <summary>
+        /// 方角を表す文字列
+        /// </summary>
+        public string DirectionName { get; set; }
+
+        /// <summary>
         /// 進行可能秒数の最大値
         /// </summary>
-        private const int AvaiSecMax = 20;
+        private const int AvaiSecMax   = 20;
 
         /// <summary>
         /// 進行可能秒数の最小値
         /// </summary>
-        private const int AvaiSecMin = 5;
+        private const int AvaiSecMin   = 5;
 
         /// <summary>
         /// 矢印信号機の点灯秒数の最大値
         /// </summary>
-        private const int ArrowSecMax = 5;
+        private const int ArrowSecMax  = 5;
 
         /// <summary>
         /// 矢印信号機の点灯秒数の最小値
         /// </summary>
-        private const int ArrowSecMin = 1;
+        private const int ArrowSecMin  = 1;
 
         /// <summary>
         /// 全信号機の赤点灯秒数の最大値
@@ -64,11 +64,6 @@ namespace TrafficLightAlgorithm
         /// 全信号機の赤点灯秒数の最小値
         /// </summary>
         private const int AllRedSecMin = 1;
-
-        /// <summary>
-        /// フォームタイトルを表す文字列
-        /// </summary>
-        private string SetFormTitle;
 
         /// <summary>
         /// 設定値の名称
@@ -87,28 +82,22 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                SetFormTitle = DirectionName + "信号機の設定値入力";
+                bool arrowEnable = IsEnable;          // 矢印信号機点灯秒数を入力するテキストボックスのEnabledプロパティ値
+                if (IsEnable) arrowEnable = IsArrow;  // IsEnableがtrueの場合に矢印信号機が存在するか判定する
+
                 SetValueName = DirectionName + "方向への進行可能時間";
 
-                lbl_SoftTitle.Text = SetFormTitle;  // フォームタイトルを取得
+                lbl_SoftTitle.Text    = DirectionName + "信号機の設定値入力";  // フォームタイトルを取得
+                lbl_SetValueName.Text = SetValueName  + "：";                  // 設定値の名称を取得
+              
+                txt_SetValue.Text    = SetValue.ToString();  // 設定値入力欄テキストボックスのTextプロパティ値設定
+                txt_SetValue.Enabled = IsEnable;             // 設定値入力欄テキストボックスのEnabledプロパティ値設定
 
-                lbl_SetValueName.Text = SetValueName + "：";  // 設定値の名称を取得
-                txt_SetValue.Text     = SetValue.ToString();  // 設定値を取得
-                txt_SetValue.Enabled  = IsEnable;             // 信号機アルゴリズムが実行されている場合はtrue、それ以外の場合はfalse
+                txt_ArrowSec.Text    = ArrowSec.ToString();  // 矢印信号機点灯秒数テキストボックスのTextプロパティ値設定
+                txt_ArrowSec.Enabled = arrowEnable;          // 矢印信号機点灯秒数テキストボックスのEnabledプロパティ値設定
 
-                txt_ArrowSec.Text = ArrowSec.ToString();  // 矢印信号機の点灯秒を取得
-
-                if (IsEnable)
-                {
-                    txt_ArrowSec.Enabled = IsArrow;  // 矢印信号機が存在する場合はtrue、それ以外の場合はfalse
-                }
-                else
-                {
-                    txt_ArrowSec.Enabled = false;    // 信号機アルゴリズムが実行されている場合はtrue、それ以外の場合はfalse
-                }
-
-                txt_RedSec.Text = AllRedSec.ToString();  // 全信号機の赤点灯秒を取得
-                txt_RedSec.Enabled = IsEnable;           // 信号機アルゴリズムが実行されている場合はtrue、それ以外の場合はfalse
+                txt_RedSec.Text    = AllRedSec.ToString();  // 全信号機赤点灯秒数テキストボックスのTextプロパティ値設定
+                txt_RedSec.Enabled = IsEnable;              // 全信号機赤点灯秒数テキストボックスのEnabledプロパティ値設定
             }
             catch (Exception ex)
             {
@@ -161,15 +150,13 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                if (!double.TryParse(checktext, out double douvalue))       return false;  // チェック対象文字列がdouble型に変換できない場合は終了する
-                if (!int.TryParse(douvalue.ToString(), out int checkValue)) return false;  // double型から変換した文字列がint型に変換できない場合は終了する
+                if (!double.TryParse(checktext, out double dbevalue))       return false;  // チェック対象文字列がdouble型に変換できない場合は終了する
+                if (!int.TryParse(dbevalue.ToString(), out int checkValue)) return false;  // double型から変換した文字列がint型に変換できない場合は終了する
                 if (checkValue < minValue || checkValue > maxValue)         return false;  // int型に変換した値がminValueより小さい、もしくはmaxValueより大きい場合は終了する
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
-                string exStr = ex.Message + "\n入力値のチェックでエラーが発生しました。";
-                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
         }

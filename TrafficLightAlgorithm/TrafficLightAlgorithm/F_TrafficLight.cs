@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -92,7 +93,7 @@ namespace TrafficLightAlgorithm
                 RotateLabelImage(RotateFlipType.Rotate270FlipNone, pib_PNGreTwo, pib_PNRedTwo,    pib_PSGreTwo, pib_PSRedTwo, pib_PNSignalOne, pib_PSSignalOne);
 
                 SetMSec = new WaitMSec(5, 5, 5, 5, 1, 1);  // 信号機点灯時間の初期設定
-                
+
                 //ピクチャボックスをラベルの親コントロールに設定する
                 lbl_NSignal.Parent = pib_NSignal;
                 lbl_SSignal.Parent = pib_SSignal;
@@ -138,11 +139,87 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 信号機イメージ画像クリック時イベント
         /// </summary>
-        private void Lbl_CarSignal_MouseClick(object sender, MouseEventArgs e)
+        private void Lbl_CarSignal_Click(object sender, EventArgs e)
         {
             try
             {
-                Console.WriteLine(e.Location);
+                int nSec = SetMSec.NMSec / 1000;  // 北方向への進行可能秒数
+                int sSec = SetMSec.SMSec / 1000;  // 南方向への進行可能秒数
+                int eSec = SetMSec.EMSec / 1000;  // 東方向への進行可能秒数
+                int wSec = SetMSec.WMSec / 1000;  // 西方向への進行可能秒数
+
+                // 交差点イメージ図の左上端の座標
+                Point pnlTopLeft = new Point(Location.X + grb_TrafficShow.Location.X + pnl_Traffic.Location.X, 
+                                             Location.Y + grb_TrafficShow.Location.Y + pnl_Traffic.Location.Y);
+
+                F_SetSec f_SetSec = new F_SetSec
+                { 
+                    IsEnable  = !IsTrafficEnable,      // 信号機アルゴリズムの動作状態
+                    ArrowSec  = SetMSec.AMSec / 1000,  // 矢印信号機の点灯秒数
+                    AllRedSec = SetMSec.RMSec / 1000   // 全信号機の赤点灯秒数
+                };
+                
+                // 設定値入力フォームを表示し、値を受け取る
+                if (sender == lbl_NSignal || sender == pib_NGreen || sender == pib_NYellow || sender == pib_NRed)
+                {
+                    Image backImage = pib_NSignal.BackgroundImage;
+                    pib_NSignal.BackgroundImage = SignalHilight(backImage);
+
+                    f_SetSec.SetValue = nSec;
+                    f_SetSec.DirectionName = "北";
+                    f_SetSec.IsArrow = false;
+                    f_SetSec.Location = new Point(pnlTopLeft.X + pib_NSignal.Location.X - f_SetSec.Width,
+                                                  pnlTopLeft.Y + pib_NSignal.Location.Y + f_SetSec.Size.Height - f_SetSec.ClientSize.Height);
+                    f_SetSec.ShowDialog();
+                    nSec = f_SetSec.SetValue;
+                    pib_NSignal.BackgroundImage = backImage;
+                }
+                else if (sender == lbl_SSignal || sender == pib_SGreen || sender == pib_SYellow || sender == pib_SRed)
+                {
+                    Image backImage = pib_SSignal.BackgroundImage;
+                    pib_SSignal.BackgroundImage = SignalHilight(backImage);
+
+                    f_SetSec.SetValue = sSec;
+                    f_SetSec.DirectionName = "南";
+                    f_SetSec.IsArrow = false;
+                    f_SetSec.Location = new Point(pnlTopLeft.X + pib_SSignal.Location.X + pib_SSignal.Size.Width,
+                                                  pnlTopLeft.Y + pib_SSignal.Location.Y + f_SetSec.Size.Height - f_SetSec.ClientSize.Height);
+                    f_SetSec.ShowDialog();
+                    sSec = f_SetSec.SetValue;
+                    pib_SSignal.BackgroundImage = backImage;
+                }
+                else if (sender == lbl_ESignal || sender == lbl_EArrow  ||
+                         sender == pib_EGreen  || sender == pib_EYellow || sender == pib_ERed || sender == pib_EArrow)
+                {
+                    Image backImage = pib_ESignal.BackgroundImage;
+                    pib_ESignal.BackgroundImage = SignalHilight(backImage);
+
+                    f_SetSec.SetValue = eSec;
+                    f_SetSec.DirectionName = "東";
+                    f_SetSec.IsArrow = true;
+                    f_SetSec.Location = new Point(pnlTopLeft.X + pib_ESignal.Location.X,
+                                                  pnlTopLeft.Y + pib_ESignal.Location.Y - f_SetSec.ClientSize.Height);
+                    f_SetSec.ShowDialog();
+                    eSec = f_SetSec.SetValue;
+                    pib_ESignal.BackgroundImage = backImage;
+                }
+                else if (sender == lbl_WSignal || sender == lbl_WArrow  || 
+                         sender == pib_WGreen  || sender == pib_WYellow || sender == pib_WRed || sender == pib_WArrow)
+                {
+                    Image backImage = pib_WSignal.BackgroundImage;
+                    pib_WSignal.BackgroundImage = SignalHilight(backImage);
+
+                    f_SetSec.SetValue = wSec;
+                    f_SetSec.DirectionName = "西";
+                    f_SetSec.IsArrow = true;
+                    f_SetSec.Location = new Point(pnlTopLeft.X + pib_WSignal.Location.X,
+                                                  pnlTopLeft.Y + pib_WSignal.Location.Y + pib_WSignal.Size.Height + f_SetSec.Size.Height - f_SetSec.ClientSize.Height);
+                    f_SetSec.ShowDialog();
+                    wSec = f_SetSec.SetValue;
+                    pib_WSignal.BackgroundImage = backImage;
+                }
+
+                SetMSec = new WaitMSec(nSec, sSec, eSec, wSec, f_SetSec.ArrowSec, f_SetSec.AllRedSec);  // 設定値構造体の値を設定する
             }
             catch (Exception ex)
             {
@@ -151,20 +228,33 @@ namespace TrafficLightAlgorithm
             }
         }
 
-        private int SetFormShow(int setValue, string direction, bool isArrow)
+        /// <summary>
+        /// 信号機イメージ画像を強調表示する
+        /// </summary>
+        /// <param name="img"> 強調表示する元の画像 </param>
+        /// <returns> 強調表示実行後の画像 </returns>
+        private Image SignalHilight(Image img)
         {
-            F_SetSec f_SetSec = new F_SetSec
-            {
-                SetValue      = setValue,
-                ArrowSec      = SetMSec.AMSec / 1000,
-                AllRedSec     = SetMSec.RMSec / 1000,
-                DirectionName = direction,
-                IsEnable      = !IsTrafficEnable,
-                IsArrow       = isArrow
-            };
+            Bitmap bmp = new Bitmap(img.Width, img.Height);
 
-            f_SetSec.ShowDialog();
-            return f_SetSec.SetValue;
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                // カラーマトリックスを表す配列を作成
+                float[][] hilightArray = { new float[] { 2, 0, 0, 0, 0 },
+                                           new float[] { 0, 2, 0, 0, 0 },
+                                           new float[] { 0, 0, 2, 0, 0 },
+                                           new float[] { 0, 0, 0, 2, 0 },
+                                           new float[] { 0, 0, 0, 0, 2 }};
+
+                ImageAttributes ia = new ImageAttributes();
+                ColorMatrix cm = new ColorMatrix(hilightArray);  // カラーマトリックスを作成
+                ia.SetColorMatrix(cm);                           // カラー調整行列を設定
+
+                // 引数imgを強調表示する画像を作成
+                g.DrawImage(img, new Rectangle(0, 0, bmp.Width, bmp.Height), 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, ia);
+            }
+
+            return bmp;
         }
 
         /// <summary>

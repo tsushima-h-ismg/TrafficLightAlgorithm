@@ -37,6 +37,9 @@
             this.lbl_WestDirection = new System.Windows.Forms.Label();
             this.lbl_EastDirection = new System.Windows.Forms.Label();
             this.grb_TrafficShow = new System.Windows.Forms.GroupBox();
+            this.lbx_StateRecord = new System.Windows.Forms.ListBox();
+            this.grb_StateRecord = new System.Windows.Forms.GroupBox();
+            this.lbl_SoftTitle = new System.Windows.Forms.Label();
             this.pnl_Traffic = new System.Windows.Forms.Panel();
             this.lbl_ESignal = new System.Windows.Forms.Label();
             this.lbl_WSignal = new System.Windows.Forms.Label();
@@ -86,10 +89,8 @@
             this.pib_SSignal = new System.Windows.Forms.PictureBox();
             this.pib_PESignalOne = new System.Windows.Forms.PictureBox();
             this.pib_NSignal = new System.Windows.Forms.PictureBox();
-            this.lbx_StateRecord = new System.Windows.Forms.ListBox();
-            this.grb_StateRecord = new System.Windows.Forms.GroupBox();
-            this.lbl_SoftTitle = new System.Windows.Forms.Label();
             this.grb_TrafficShow.SuspendLayout();
+            this.grb_StateRecord.SuspendLayout();
             this.pnl_Traffic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pib_WArrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_NGreen)).BeginInit();
@@ -133,7 +134,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pib_SSignal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_NSignal)).BeginInit();
-            this.grb_StateRecord.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_Start
@@ -144,7 +144,7 @@
             this.btn_Start.FlatAppearance.BorderSize = 2;
             this.btn_Start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Start.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_Start.Location = new System.Drawing.Point(662, 125);
+            this.btn_Start.Location = new System.Drawing.Point(668, 125);
             this.btn_Start.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(100, 40);
@@ -161,7 +161,7 @@
             this.btn_Reset.FlatAppearance.BorderSize = 2;
             this.btn_Reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Reset.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_Reset.Location = new System.Drawing.Point(970, 125);
+            this.btn_Reset.Location = new System.Drawing.Point(976, 125);
             this.btn_Reset.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Reset.Name = "btn_Reset";
             this.btn_Reset.Size = new System.Drawing.Size(100, 40);
@@ -178,7 +178,7 @@
             this.btn_InterruptResume.FlatAppearance.BorderSize = 2;
             this.btn_InterruptResume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_InterruptResume.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_InterruptResume.Location = new System.Drawing.Point(816, 125);
+            this.btn_InterruptResume.Location = new System.Drawing.Point(822, 125);
             this.btn_InterruptResume.Margin = new System.Windows.Forms.Padding(0);
             this.btn_InterruptResume.Name = "btn_InterruptResume";
             this.btn_InterruptResume.Size = new System.Drawing.Size(100, 40);
@@ -191,7 +191,7 @@
             // 
             this.lbl_NorthDirection.BackColor = System.Drawing.Color.White;
             this.lbl_NorthDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthDirection.Location = new System.Drawing.Point(227, 15);
+            this.lbl_NorthDirection.Location = new System.Drawing.Point(228, 13);
             this.lbl_NorthDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthDirection.Name = "lbl_NorthDirection";
             this.lbl_NorthDirection.Size = new System.Drawing.Size(80, 30);
@@ -203,7 +203,7 @@
             // 
             this.lbl_SouthDirection.BackColor = System.Drawing.Color.White;
             this.lbl_SouthDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthDirection.Location = new System.Drawing.Point(227, 453);
+            this.lbl_SouthDirection.Location = new System.Drawing.Point(228, 455);
             this.lbl_SouthDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthDirection.Name = "lbl_SouthDirection";
             this.lbl_SouthDirection.Size = new System.Drawing.Size(80, 30);
@@ -215,7 +215,7 @@
             // 
             this.lbl_WestDirection.BackColor = System.Drawing.Color.White;
             this.lbl_WestDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestDirection.Location = new System.Drawing.Point(1, 205);
+            this.lbl_WestDirection.Location = new System.Drawing.Point(1, 204);
             this.lbl_WestDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestDirection.Name = "lbl_WestDirection";
             this.lbl_WestDirection.Size = new System.Drawing.Size(30, 90);
@@ -227,10 +227,10 @@
             // 
             this.lbl_EastDirection.BackColor = System.Drawing.Color.White;
             this.lbl_EastDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastDirection.Location = new System.Drawing.Point(501, 205);
+            this.lbl_EastDirection.Location = new System.Drawing.Point(505, 204);
             this.lbl_EastDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastDirection.Name = "lbl_EastDirection";
-            this.lbl_EastDirection.Size = new System.Drawing.Size(30, 90);
+            this.lbl_EastDirection.Size = new System.Drawing.Size(28, 90);
             this.lbl_EastDirection.TabIndex = 10;
             this.lbl_EastDirection.Text = "東\r\n方\r\n向";
             this.lbl_EastDirection.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -248,10 +248,50 @@
             this.grb_TrafficShow.Margin = new System.Windows.Forms.Padding(0);
             this.grb_TrafficShow.Name = "grb_TrafficShow";
             this.grb_TrafficShow.Padding = new System.Windows.Forms.Padding(0);
-            this.grb_TrafficShow.Size = new System.Drawing.Size(532, 485);
+            this.grb_TrafficShow.Size = new System.Drawing.Size(536, 487);
             this.grb_TrafficShow.TabIndex = 23;
             this.grb_TrafficShow.TabStop = false;
             this.grb_TrafficShow.Text = "交差点イメージ図";
+            // 
+            // lbx_StateRecord
+            // 
+            this.lbx_StateRecord.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbx_StateRecord.FormattingEnabled = true;
+            this.lbx_StateRecord.ItemHeight = 15;
+            this.lbx_StateRecord.Location = new System.Drawing.Point(32, 45);
+            this.lbx_StateRecord.Margin = new System.Windows.Forms.Padding(0);
+            this.lbx_StateRecord.Name = "lbx_StateRecord";
+            this.lbx_StateRecord.Size = new System.Drawing.Size(408, 319);
+            this.lbx_StateRecord.TabIndex = 27;
+            this.lbx_StateRecord.TabStop = false;
+            // 
+            // grb_StateRecord
+            // 
+            this.grb_StateRecord.Controls.Add(this.lbx_StateRecord);
+            this.grb_StateRecord.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.grb_StateRecord.Location = new System.Drawing.Point(636, 201);
+            this.grb_StateRecord.Margin = new System.Windows.Forms.Padding(0);
+            this.grb_StateRecord.Name = "grb_StateRecord";
+            this.grb_StateRecord.Padding = new System.Windows.Forms.Padding(0);
+            this.grb_StateRecord.Size = new System.Drawing.Size(472, 396);
+            this.grb_StateRecord.TabIndex = 29;
+            this.grb_StateRecord.TabStop = false;
+            this.grb_StateRecord.Text = "点灯状態変更履歴";
+            // 
+            // lbl_SoftTitle
+            // 
+            this.lbl_SoftTitle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_SoftTitle.Font = new System.Drawing.Font("Meiryo UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_SoftTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.lbl_SoftTitle.Image = global::TrafficLightAlgorithm.Properties.Resources.SoftTitle;
+            this.lbl_SoftTitle.Location = new System.Drawing.Point(50, 30);
+            this.lbl_SoftTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_SoftTitle.Name = "lbl_SoftTitle";
+            this.lbl_SoftTitle.Size = new System.Drawing.Size(1058, 60);
+            this.lbl_SoftTitle.TabIndex = 26;
+            this.lbl_SoftTitle.Text = "信号機プログラム";
+            this.lbl_SoftTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_SoftTitle.Click += new System.EventHandler(this.Lbl_SoftTitle_Click);
             // 
             // pnl_Traffic
             // 
@@ -306,7 +346,7 @@
             this.pnl_Traffic.Controls.Add(this.pib_SSignal);
             this.pnl_Traffic.Controls.Add(this.pib_PESignalOne);
             this.pnl_Traffic.Controls.Add(this.pib_NSignal);
-            this.pnl_Traffic.Location = new System.Drawing.Point(30, 45);
+            this.pnl_Traffic.Location = new System.Drawing.Point(32, 44);
             this.pnl_Traffic.Margin = new System.Windows.Forms.Padding(0);
             this.pnl_Traffic.Name = "pnl_Traffic";
             this.pnl_Traffic.Size = new System.Drawing.Size(472, 410);
@@ -320,7 +360,7 @@
             this.lbl_ESignal.Name = "lbl_ESignal";
             this.lbl_ESignal.Size = new System.Drawing.Size(23, 63);
             this.lbl_ESignal.TabIndex = 31;
-            this.lbl_ESignal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Lbl_CarSignal_MouseClick);
+            this.lbl_ESignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // lbl_WSignal
             // 
@@ -330,7 +370,7 @@
             this.lbl_WSignal.Name = "lbl_WSignal";
             this.lbl_WSignal.Size = new System.Drawing.Size(23, 63);
             this.lbl_WSignal.TabIndex = 33;
-            this.lbl_WSignal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Lbl_CarSignal_MouseClick);
+            this.lbl_WSignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // lbl_EArrow
             // 
@@ -340,7 +380,7 @@
             this.lbl_EArrow.Name = "lbl_EArrow";
             this.lbl_EArrow.Size = new System.Drawing.Size(16, 25);
             this.lbl_EArrow.TabIndex = 32;
-            this.lbl_EArrow.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Lbl_CarSignal_MouseClick);
+            this.lbl_EArrow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // lbl_WArrow
             // 
@@ -350,7 +390,7 @@
             this.lbl_WArrow.Name = "lbl_WArrow";
             this.lbl_WArrow.Size = new System.Drawing.Size(16, 25);
             this.lbl_WArrow.TabIndex = 34;
-            this.lbl_WArrow.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Lbl_CarSignal_MouseClick);
+            this.lbl_WArrow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // lbl_NSignal
             // 
@@ -360,7 +400,7 @@
             this.lbl_NSignal.Name = "lbl_NSignal";
             this.lbl_NSignal.Size = new System.Drawing.Size(63, 23);
             this.lbl_NSignal.TabIndex = 30;
-            this.lbl_NSignal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Lbl_CarSignal_MouseClick);
+            this.lbl_NSignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // lbl_SSignal
             // 
@@ -370,7 +410,7 @@
             this.lbl_SSignal.Name = "lbl_SSignal";
             this.lbl_SSignal.Size = new System.Drawing.Size(63, 23);
             this.lbl_SSignal.TabIndex = 32;
-            this.lbl_SSignal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Lbl_CarSignal_MouseClick);
+            this.lbl_SSignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_WArrow
             // 
@@ -385,6 +425,7 @@
             this.pib_WArrow.TabIndex = 230;
             this.pib_WArrow.TabStop = false;
             this.pib_WArrow.Visible = false;
+            this.pib_WArrow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_NGreen
             // 
@@ -400,6 +441,7 @@
             this.pib_NGreen.TabIndex = 229;
             this.pib_NGreen.TabStop = false;
             this.pib_NGreen.Visible = false;
+            this.pib_NGreen.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_NYellow
             // 
@@ -415,6 +457,7 @@
             this.pib_NYellow.TabIndex = 228;
             this.pib_NYellow.TabStop = false;
             this.pib_NYellow.Visible = false;
+            this.pib_NYellow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_NRed
             // 
@@ -430,6 +473,7 @@
             this.pib_NRed.TabIndex = 227;
             this.pib_NRed.TabStop = false;
             this.pib_NRed.Visible = false;
+            this.pib_NRed.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_WGreen
             // 
@@ -445,6 +489,7 @@
             this.pib_WGreen.TabIndex = 226;
             this.pib_WGreen.TabStop = false;
             this.pib_WGreen.Visible = false;
+            this.pib_WGreen.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_WYellow
             // 
@@ -460,6 +505,7 @@
             this.pib_WYellow.TabIndex = 225;
             this.pib_WYellow.TabStop = false;
             this.pib_WYellow.Visible = false;
+            this.pib_WYellow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_WRed
             // 
@@ -475,6 +521,7 @@
             this.pib_WRed.TabIndex = 224;
             this.pib_WRed.TabStop = false;
             this.pib_WRed.Visible = false;
+            this.pib_WRed.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_SGreen
             // 
@@ -490,6 +537,7 @@
             this.pib_SGreen.TabIndex = 223;
             this.pib_SGreen.TabStop = false;
             this.pib_SGreen.Visible = false;
+            this.pib_SGreen.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_SYellow
             // 
@@ -505,6 +553,7 @@
             this.pib_SYellow.TabIndex = 222;
             this.pib_SYellow.TabStop = false;
             this.pib_SYellow.Visible = false;
+            this.pib_SYellow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_SRed
             // 
@@ -520,6 +569,7 @@
             this.pib_SRed.TabIndex = 221;
             this.pib_SRed.TabStop = false;
             this.pib_SRed.Visible = false;
+            this.pib_SRed.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_EGreen
             // 
@@ -535,6 +585,7 @@
             this.pib_EGreen.TabIndex = 220;
             this.pib_EGreen.TabStop = false;
             this.pib_EGreen.Visible = false;
+            this.pib_EGreen.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_EYellow
             // 
@@ -550,6 +601,7 @@
             this.pib_EYellow.TabIndex = 206;
             this.pib_EYellow.TabStop = false;
             this.pib_EYellow.Visible = false;
+            this.pib_EYellow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_ERed
             // 
@@ -565,6 +617,7 @@
             this.pib_ERed.TabIndex = 205;
             this.pib_ERed.TabStop = false;
             this.pib_ERed.Visible = false;
+            this.pib_ERed.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_EArrow
             // 
@@ -579,6 +632,7 @@
             this.pib_EArrow.TabIndex = 219;
             this.pib_EArrow.TabStop = false;
             this.pib_EArrow.Visible = false;
+            this.pib_EArrow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // pib_PSRedOne
             // 
@@ -956,53 +1010,13 @@
             this.pib_NSignal.TabIndex = 30;
             this.pib_NSignal.TabStop = false;
             // 
-            // lbx_StateRecord
-            // 
-            this.lbx_StateRecord.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbx_StateRecord.FormattingEnabled = true;
-            this.lbx_StateRecord.ItemHeight = 15;
-            this.lbx_StateRecord.Location = new System.Drawing.Point(30, 45);
-            this.lbx_StateRecord.Margin = new System.Windows.Forms.Padding(0);
-            this.lbx_StateRecord.Name = "lbx_StateRecord";
-            this.lbx_StateRecord.Size = new System.Drawing.Size(408, 319);
-            this.lbx_StateRecord.TabIndex = 27;
-            this.lbx_StateRecord.TabStop = false;
-            // 
-            // grb_StateRecord
-            // 
-            this.grb_StateRecord.Controls.Add(this.lbx_StateRecord);
-            this.grb_StateRecord.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.grb_StateRecord.Location = new System.Drawing.Point(632, 202);
-            this.grb_StateRecord.Margin = new System.Windows.Forms.Padding(0);
-            this.grb_StateRecord.Name = "grb_StateRecord";
-            this.grb_StateRecord.Padding = new System.Windows.Forms.Padding(0);
-            this.grb_StateRecord.Size = new System.Drawing.Size(468, 394);
-            this.grb_StateRecord.TabIndex = 29;
-            this.grb_StateRecord.TabStop = false;
-            this.grb_StateRecord.Text = "点灯状態変更履歴";
-            // 
-            // lbl_SoftTitle
-            // 
-            this.lbl_SoftTitle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_SoftTitle.Font = new System.Drawing.Font("Meiryo UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SoftTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.lbl_SoftTitle.Image = global::TrafficLightAlgorithm.Properties.Resources.SoftTitle;
-            this.lbl_SoftTitle.Location = new System.Drawing.Point(50, 30);
-            this.lbl_SoftTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_SoftTitle.Name = "lbl_SoftTitle";
-            this.lbl_SoftTitle.Size = new System.Drawing.Size(1050, 60);
-            this.lbl_SoftTitle.TabIndex = 26;
-            this.lbl_SoftTitle.Text = "信号機プログラム";
-            this.lbl_SoftTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_SoftTitle.Click += new System.EventHandler(this.Lbl_SoftTitle_Click);
-            // 
             // F_TrafficLight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1150, 628);
+            this.ClientSize = new System.Drawing.Size(1158, 628);
             this.Controls.Add(this.grb_StateRecord);
             this.Controls.Add(this.btn_Start);
             this.Controls.Add(this.lbl_SoftTitle);
@@ -1011,14 +1025,15 @@
             this.Controls.Add(this.grb_TrafficShow);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1166, 667);
+            this.MaximumSize = new System.Drawing.Size(1174, 667);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1166, 667);
+            this.MinimumSize = new System.Drawing.Size(1174, 667);
             this.Name = "F_TrafficLight";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "信号機プログラム";
             this.Load += new System.EventHandler(this.F_TrafficLight_Load);
             this.grb_TrafficShow.ResumeLayout(false);
+            this.grb_StateRecord.ResumeLayout(false);
             this.pnl_Traffic.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pib_WArrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_NGreen)).EndInit();
@@ -1062,7 +1077,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pib_SSignal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalOne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_NSignal)).EndInit();
-            this.grb_StateRecord.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
