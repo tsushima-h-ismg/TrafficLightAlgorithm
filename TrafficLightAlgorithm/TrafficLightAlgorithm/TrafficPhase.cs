@@ -16,14 +16,14 @@
         public readonly TrafficCommand[] Commands;
 
         /// <summary>
-        /// 点灯状態変更後の待機ミリ秒・点灯する信号機の種類・点灯状態を取得する
+        /// 点灯状態変更内容を表す文字列・点灯状態変更後の待機ミリ秒・点灯する信号機の種類・点灯状態を取得する
         /// </summary>
-        /// <param name="waitMSec"> 点灯状態変更後の待機ミリ秒 </param>
-        /// <param name="commands"> 信号機の種類と点灯状態     </param>
+        /// <param name="waitMSec">  点灯状態変更後の待機ミリ秒   </param>
+        /// <param name="commands">  信号機の種類と点灯状態       </param>
         public TrafficPhase(int waitMSec, params TrafficCommand[] commands)
         { 
-            WaitMSec = waitMSec; 
-            Commands = commands; 
+            WaitMSec  = waitMSec; 
+            Commands  = commands; 
         }
     }
 }

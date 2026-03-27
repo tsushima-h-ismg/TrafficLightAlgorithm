@@ -55,6 +55,13 @@ namespace TrafficLightAlgorithm
         private List<TrafficPhase> PhaseList;
 
         /// <summary>
+        /// 信号機の点灯状態変更履歴
+        /// </summary>
+        private List<string> LightChangeLog;
+
+        private int LogPhase;
+
+        /// <summary>
         /// 設定値構造体
         /// </summary>
         private WaitMSec SetMSec;
@@ -332,20 +339,35 @@ namespace TrafficLightAlgorithm
                         Signal.CarNorth,   Signal.CarSouth,   Signal.PedesEast, Signal.PedesWest)   // 北南の車用・東西の歩行者用信号機の緑点灯フェーズ 
                 };
 
+                LightChangeLog = new List<string>
+                {
+                    "全信号機が赤に点灯しました。",
+                    "北南の車用・東西の歩行者用信号機が緑に点灯しました。"
+                };
+
                 phaseList.AddRange(PedesBlink(Signal.PedesEast, Signal.PedesWest));                        // 東西の歩行者用信号機の点滅フェーズリスト
                 phaseList.Add(CreatePhase(MinMSec, LightState.Red, Signal.PedesEast,  Signal.PedesWest));  // 東西の歩行者用信号機の赤点灯フェーズ
-                
+                LightChangeLog.AddRange(new List<string> { "東西の歩行者用信号機が点滅しました。", 
+                                                           "東西の歩行者用信号機が赤に点灯しました。"});
+
                 phaseList.AddRange(YelRedPhaseList(setMSec.RMSec, setMSec.NMSec - setMSec.SMSec, Signal.CarSouth, Signal.CarNorth));  // 北南の車用信号機の黄・赤点灯フェーズリスト
                 
+
                 phaseList.Add(CreatePhase(carEWpdNSMSec, LightState.Green, 
                     Signal.CarEast, Signal.CarWest, Signal.PedesNorth, Signal.PedesSouth));  // 東西の車用・北南の歩行者用信号機の緑点灯フェーズ
-                
+                LightChangeLog.Add("東西の車用・北南の歩行者用信号機が緑に点灯しました。");
+
                 phaseList.AddRange(PedesBlink(Signal.PedesNorth, Signal.PedesSouth));                       // 北南の歩行者用信号機の点滅フェーズリスト
                 phaseList.Add(CreatePhase(MinMSec, LightState.Red, Signal.PedesNorth, Signal.PedesSouth));  // 北南の歩行者用信号機の赤点灯フェーズ
-                
+                LightChangeLog.AddRange(new List<string> { "北南の歩行者用信号機が点滅しました。",
+                                                           "北南の歩行者用信号機が赤に点灯しました。"});
+
                 phaseList.AddRange(YelRedPhaseList(MinMSec, setMSec.EMSec - setMSec.WMSec, Signal.CarWest, Signal.CarEast));  // 東西の車用信号機の黄・赤点灯フェーズリスト
+
                 phaseList.Add(CreatePhase(setMSec.AMSec, LightState.Arrow,  Signal.CarEast, Signal.CarWest));                 // 東西の矢印信号機の点灯フェーズ
                 phaseList.Add(CreatePhase(YellowMSec,    LightState.Yellow, Signal.CarEast, Signal.CarWest));                 // 東西の車用信号機の黄点灯フェーズ
+                LightChangeLog.AddRange(new List<string> { "東西の矢印信号機が点灯しました。", 
+                                                           "東西の車用信号機が黄に点灯しました。" });
 
                 return phaseList;
             }
@@ -358,9 +380,9 @@ namespace TrafficLightAlgorithm
         }
 
         /// <summary>
-        /// 複数の車用・歩行者用信号機を同じ時間・同じ色に点灯するフェーズを作成
+        /// 複数の車用・歩行者用信号機を同じ時間待機・同じ色に点灯するフェーズを作成
         /// </summary>
-        /// <param name="mSec">    点灯間隔ミリ秒 </param>
+        /// <param name="mSec">    待機時間ミリ秒 </param>
         /// <param name="state">   点灯状態       </param>
         /// <param name="signals"> 点灯する信号機 </param>
         /// <returns> 作成したフェーズ </returns>
@@ -442,11 +464,16 @@ namespace TrafficLightAlgorithm
                     sigMax = sigOne;
                 }
 
+                string sigStr = "北南";
+                if (sigMin == Signal.CarWest || sigMin == Signal.CarEast) sigStr = "東西";
+
                 if (mSecDif == 0)  
                 {
                     // sigMinとsigMaxが表す車用信号機の緑点灯ミリ秒が一致する場合
                     pList.Add(CreatePhase(YellowMSec, LightState.Yellow, sigMin, sigMax));  // sigMinとsigMaxが表す車用信号機の黄点灯フェーズ
                     pList.Add(CreatePhase(redMSec,    LightState.Red,    sigMin, sigMax));  // sigMinとsigMaxが表す車用信号機の赤点灯フェーズ
+                    LightChangeLog.Add(sigStr + "の車用信号機が黄に点灯しました。");
+                    LightChangeLog.Add(sigStr + "の車用信号機が赤に点灯しました。");
                 }
                 else if (Math.Abs(mSecDif) == YellowMSec)  
                 {
@@ -455,6 +482,10 @@ namespace TrafficLightAlgorithm
                     pList.Add(new TrafficPhase(YellowMSec, new TrafficCommand(sigMin, LightState.Red),
                                                            new TrafficCommand(sigMax, LightState.Yellow)));  // sigMinが表す車用信号機の赤点灯、sigMaxが表す車用信号機の黄点灯フェーズ
                     pList.Add(new TrafficPhase(redMSec,    new TrafficCommand(sigMax, LightState.Red)));     // sigMaxが表す車用信号機の赤点灯フェーズ
+
+                    LightChangeLog.Add(SigStr(sigMin) + "の車用信号機が黄に点灯しました。");
+                    LightChangeLog.Add(SigStr(sigMin) + "の車用信号機が赤・" + SigStr(sigMax) + "の車用信号機が赤に点灯しました。");
+                    LightChangeLog.Add(SigStr(sigMax) + "の車用信号機が赤に点灯しました。");
                 }
                 else
                 {
@@ -462,6 +493,10 @@ namespace TrafficLightAlgorithm
                     pList.Add(new TrafficPhase(Math.Abs(mSecDif) - YellowMSec, new TrafficCommand(sigMin, LightState.Red)));     // sigMinが表す車用信号機の赤点灯フェーズ
                     pList.Add(new TrafficPhase(YellowMSec,                     new TrafficCommand(sigMax, LightState.Yellow)));  // sigMaxが表す車用信号機の黄点灯フェーズ
                     pList.Add(new TrafficPhase(redMSec,                        new TrafficCommand(sigMax, LightState.Red)));     // sigMaxが表す車用信号機の赤点灯フェーズ
+                    LightChangeLog.Add(sigMin + "の車用信号機が黄に点灯しました。");
+                    LightChangeLog.Add(sigMax + "の車用信号機が赤に点灯しました。");
+                    LightChangeLog.Add(sigMin + "の車用信号機が黄に点灯しました。");
+                    LightChangeLog.Add(sigMax + "の車用信号機が赤に点灯しました。");
                 }
 
                 return pList;
@@ -472,6 +507,15 @@ namespace TrafficLightAlgorithm
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
+        }
+
+        private string SigStr(Signal signal)
+        {
+            if (signal == Signal.CarNorth) return "北";
+            if (signal == Signal.CarSouth) return "南";
+            if (signal == Signal.CarEast)  return "東";
+            if (signal == Signal.CarWest)  return "西";
+            return "";
         }
 
         /// <summary>
@@ -485,6 +529,7 @@ namespace TrafficLightAlgorithm
             {
                 int  startPhase  = phaseNum;          // 最初に再生するフェーズの番号を取得する
                 bool isSucUpdate = false;             // 信号機点灯状態の更新に成功した場合はtrue、それ以外の場合はfalse
+                LogPhase = 0;
                 Cts = new CancellationTokenSource();  // Ctsの初期化
 
                 while (!Cts.IsCancellationRequested)
@@ -539,7 +584,7 @@ namespace TrafficLightAlgorithm
 
                         try
                         {
-                            CreateStateRecord(phases[i], i);                  // リストボックスに点灯状態を書き込む
+                            CreateStateRecord(phases[i]);                     // リストボックスに点灯状態を書き込む
                             await Task.Delay(phases[i].WaitMSec, Cts.Token);  // キャンセルが要求されていない場合、WaitMSecミリ秒待機する
                         }
                         catch
@@ -562,86 +607,29 @@ namespace TrafficLightAlgorithm
         /// リストボックスに追加する状態変更履歴を表す文字列を追加する
         /// </summary>
         /// <param name="phase">    信号機アルゴリズムの点灯フェーズ </param>
-        /// <param name="phaseNum"> 信号機アルゴリズムのフェーズ番号 </param>
-        private void CreateStateRecord(TrafficPhase phase, int phaseNum)
+        private void CreateStateRecord(TrafficPhase phase)
         {
             try
             {
-                foreach (TrafficCommand cmd in phase.Commands)
+                // 点灯状態の履歴を追加する
+                if (phase.WaitMSec >= MinMSec)
                 {
-                    string sigStr   = SignalStr(cmd.Signal);
-                    string stateStr = LightOnStateStr(cmd.State);
-
-                    if (sigStr != "" || stateStr != "")
-                    {
-                        // 信号機の点灯状態をリストボックスに追加する
-                        lbx_StateRecord.Items.Add(phaseNum + "：" + sigStr + "が" + stateStr);
-                    }
-                    else
-                    {
-                        // 信号機か点灯状態を表す文字列が取得できなかった場合は終了する
-                        lbx_StateRecord.Items.Add(phaseNum + "：点灯状態変更履歴が取得できませんでした。");
-                        return;
-                    }
+                    lbx_StateRecord.Items.Add(LogPhase + "：" + phase.WaitMSec + "ミリ秒待機します。" + LightChangeLog[LogPhase]);
+                    LogPhase++;
+                    if (LogPhase >= LightChangeLog.Count) LogPhase = 0;
+                }
+                else if (phase.Commands[0].State == LightState.NoLight)
+                {
+                    lbx_StateRecord.Items.Add(LogPhase + "：" + BlinkMSec * BlinkPhaseCount + "ミリ秒待機します。" + LightChangeLog[LogPhase]);
+                    LogPhase++;
                 }
 
-                // 待機時間の情報をリストボックスに追加する
-                lbx_StateRecord.Items.Add(phaseNum + "：" + phase.WaitMSec + "ミリ秒待機します。");  
-                
-                // 最新の履歴を表示する
-                lbx_StateRecord.TopIndex = lbx_StateRecord.Items.Count - 1;
+                lbx_StateRecord.TopIndex = lbx_StateRecord.Items.Count - 1;  // 最新の履歴を表示する
             }
             catch (Exception ex)
             {
                 string exStr = ex.Message + "\n信号機の点灯状態変更履歴の追加に失敗しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        /// <summary>
-        /// 列挙型から信号機の名称を返す
-        /// </summary>
-        /// <param name="signal"> 信号機の種類を表す列挙型 </param>
-        /// <returns> 信号機の名称を表す文字列 </returns>
-        private string SignalStr(Signal signal)
-        {
-            try
-            {
-                if (signal == Signal.CarNorth)   return "北車用信号機";
-                if (signal == Signal.CarSouth)   return "南車用信号機";
-                if (signal == Signal.CarEast)    return "東車用信号機";
-                if (signal == Signal.CarWest)    return "西車用信号機";
-                if (signal == Signal.PedesNorth) return "北歩行者用信号機";
-                if (signal == Signal.PedesSouth) return "南歩行者用信号機";
-                if (signal == Signal.PedesEast)  return "東歩行者用信号機";
-                if (signal == Signal.PedesWest)  return "西歩行者用信号機";
-                return "";
-            }
-            catch
-            {
-                return "";
-            }
-        }
-
-        /// <summary>
-        /// 列挙型から点灯状態を表す文字列を返す
-        /// </summary>
-        /// <param name="state"> 信号機の点灯状態を表す列挙型 </param>
-        /// <returns> 点灯状態を表す文字列 </returns>
-        private string LightOnStateStr(LightState state)
-        {
-            try
-            {
-                if (state == LightState.Green)   return "緑に点灯しました。";
-                if (state == LightState.Yellow)  return "黄に点灯しました。";
-                if (state == LightState.Red)     return "赤に点灯しました。";
-                if (state == LightState.Arrow)   return "矢印に点灯しました。";
-                if (state == LightState.NoLight) return "無灯火になりました。";
-                return "";
-            }
-            catch
-            {
-                return "";
             }
         }
 
