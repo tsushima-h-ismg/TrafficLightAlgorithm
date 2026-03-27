@@ -43,10 +43,10 @@
             this.lbl_FormTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_FormTitle.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lbl_FormTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_FormTitle.Location = new System.Drawing.Point(-1, 10);
+            this.lbl_FormTitle.Location = new System.Drawing.Point(0, 38);
             this.lbl_FormTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_FormTitle.Name = "lbl_FormTitle";
-            this.lbl_FormTitle.Size = new System.Drawing.Size(466, 30);
+            this.lbl_FormTitle.Size = new System.Drawing.Size(759, 74);
             this.lbl_FormTitle.TabIndex = 0;
             this.lbl_FormTitle.Text = "ー　バージョン情報　ー";
             this.lbl_FormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -55,10 +55,10 @@
             // 
             this.lbl_CopyRight.BackColor = System.Drawing.Color.Transparent;
             this.lbl_CopyRight.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_CopyRight.Location = new System.Drawing.Point(10, 40);
+            this.lbl_CopyRight.Location = new System.Drawing.Point(45, 122);
             this.lbl_CopyRight.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_CopyRight.Name = "lbl_CopyRight";
-            this.lbl_CopyRight.Size = new System.Drawing.Size(444, 35);
+            this.lbl_CopyRight.Size = new System.Drawing.Size(636, 37);
             this.lbl_CopyRight.TabIndex = 1;
             this.lbl_CopyRight.Text = "Copyright";
             this.lbl_CopyRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -67,10 +67,10 @@
             // 
             this.lbl_Company.BackColor = System.Drawing.Color.Transparent;
             this.lbl_Company.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_Company.Location = new System.Drawing.Point(10, 135);
+            this.lbl_Company.Location = new System.Drawing.Point(45, 316);
             this.lbl_Company.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_Company.Name = "lbl_Company";
-            this.lbl_Company.Size = new System.Drawing.Size(444, 33);
+            this.lbl_Company.Size = new System.Drawing.Size(636, 55);
             this.lbl_Company.TabIndex = 3;
             this.lbl_Company.Text = "Company";
             this.lbl_Company.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -80,10 +80,10 @@
             this.lbl_SoftTitle.BackColor = System.Drawing.Color.Transparent;
             this.lbl_SoftTitle.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_SoftTitle.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SoftTitle.Location = new System.Drawing.Point(157, 80);
+            this.lbl_SoftTitle.Location = new System.Drawing.Point(247, 184);
             this.lbl_SoftTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SoftTitle.Name = "lbl_SoftTitle";
-            this.lbl_SoftTitle.Size = new System.Drawing.Size(150, 20);
+            this.lbl_SoftTitle.Size = new System.Drawing.Size(243, 49);
             this.lbl_SoftTitle.TabIndex = 4;
             this.lbl_SoftTitle.Text = "SoftTitle";
             this.lbl_SoftTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -94,10 +94,10 @@
             this.lbl_Version.BackColor = System.Drawing.Color.Transparent;
             this.lbl_Version.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_Version.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_Version.Location = new System.Drawing.Point(157, 108);
+            this.lbl_Version.Location = new System.Drawing.Point(247, 245);
             this.lbl_Version.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_Version.Name = "lbl_Version";
-            this.lbl_Version.Size = new System.Drawing.Size(150, 20);
+            this.lbl_Version.Size = new System.Drawing.Size(243, 49);
             this.lbl_Version.TabIndex = 5;
             this.lbl_Version.Text = "Version";
             this.lbl_Version.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -109,20 +109,20 @@
             this.lbl_VerInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_VerInfo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_VerInfo.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_VerInfo.Location = new System.Drawing.Point(10, 75);
+            this.lbl_VerInfo.Location = new System.Drawing.Point(45, 169);
             this.lbl_VerInfo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_VerInfo.Name = "lbl_VerInfo";
-            this.lbl_VerInfo.Size = new System.Drawing.Size(444, 60);
+            this.lbl_VerInfo.Size = new System.Drawing.Size(636, 141);
             this.lbl_VerInfo.TabIndex = 2;
             this.lbl_VerInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbl_VerInfo.Click += new System.EventHandler(this.Lbl_VerInfo_Click);
             // 
             // F_Version
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(464, 171);
+            this.ClientSize = new System.Drawing.Size(495, 249);
             this.Controls.Add(this.lbl_Version);
             this.Controls.Add(this.lbl_SoftTitle);
             this.Controls.Add(this.lbl_Company);
@@ -130,11 +130,11 @@
             this.Controls.Add(this.lbl_CopyRight);
             this.Controls.Add(this.lbl_FormTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(0, 7, 0, 7);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(480, 210);
+            this.MaximumSize = new System.Drawing.Size(765, 430);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(480, 210);
+            this.MinimumSize = new System.Drawing.Size(765, 430);
             this.Name = "F_Version";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
