@@ -6,9 +6,9 @@ namespace TrafficLightAlgorithm
     public partial class F_SetSec : Form
     {
         /// <summary>
-        /// 設定値の名称
+        /// 方角を表す文字列
         /// </summary>
-        public string SetValueName { get; set; }
+        public string DirectionName { get; set; }
 
         /// <summary>
         /// 設定値
@@ -29,6 +29,11 @@ namespace TrafficLightAlgorithm
         /// 矢印信号機が存在する場合はtrue、それ以外の場合はfalse
         /// </summary>
         public bool IsArrow { get; set; }
+
+        /// <summary>
+        /// 信号機アルゴリズムが動いていない状態でフォームが呼び出された場合はtrue、それ以外の場合はfalse
+        /// </summary>
+        public bool IsEnable { get; set; }
 
         /// <summary>
         /// 進行可能秒数の最大値
@@ -60,6 +65,16 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private const int AllRedSecMin = 1;
 
+        /// <summary>
+        /// フォームタイトルを表す文字列
+        /// </summary>
+        private string SetFormTitle;
+
+        /// <summary>
+        /// 設定値の名称
+        /// </summary>
+        private string SetValueName;
+
         public F_SetSec()
         {
             InitializeComponent();
@@ -70,13 +85,36 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private void F_SetSec_Load(object sender, EventArgs e)
         {
-            lbl_SetValueName.Text = SetValueName + "：";  // 設定値の名称を取得
-            txt_SetValue.Text     = SetValue.ToString();  // 設定値を取得
+            try
+            {
+                SetFormTitle = DirectionName + "信号機の設定値入力";
+                SetValueName = DirectionName + "方向への進行可能時間";
 
-            txt_ArrowSec.Text    = ArrowSec.ToString();   // 矢印信号機点灯秒を取得
-            txt_ArrowSec.Enabled = IsArrow;               // 矢印信号機が存在する場合はtrue、それ以外の場合はfalse
+                lbl_SoftTitle.Text = SetFormTitle;  // フォームタイトルを取得
 
-            txt_RedSec.Text = AllRedSec.ToString();     　// 全信号機の赤点灯秒を取得
+                lbl_SetValueName.Text = SetValueName + "：";  // 設定値の名称を取得
+                txt_SetValue.Text     = SetValue.ToString();  // 設定値を取得
+                txt_SetValue.Enabled  = IsEnable;             // 信号機アルゴリズムが実行されている場合はtrue、それ以外の場合はfalse
+
+                txt_ArrowSec.Text = ArrowSec.ToString();  // 矢印信号機の点灯秒を取得
+
+                if (IsEnable)
+                {
+                    txt_ArrowSec.Enabled = IsArrow;  // 矢印信号機が存在する場合はtrue、それ以外の場合はfalse
+                }
+                else
+                {
+                    txt_ArrowSec.Enabled = false;    // 信号機アルゴリズムが実行されている場合はtrue、それ以外の場合はfalse
+                }
+
+                txt_RedSec.Text = AllRedSec.ToString();  // 全信号機の赤点灯秒を取得
+                txt_RedSec.Enabled = IsEnable;           // 信号機アルゴリズムが実行されている場合はtrue、それ以外の場合はfalse
+            }
+            catch (Exception ex)
+            {
+                string exStr = ex.Message + "\n設定値入力フォームのロードでエラーが発生しました。";
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         /// <summary>
@@ -84,31 +122,39 @@ namespace TrafficLightAlgorithm
         /// </summary>
         private void Btn_Confirm_Click(object sender, EventArgs e)
         {
-            string errMsg = "";  // エラーメッセージが入る
-
-            // テキストボックスに入力した値のチェック
-            if (!CheckSecText(txt_SetValue.Text, AvaiSecMin,   AvaiSecMax))   errMsg += $"「{SetValueName}」には{AvaiSecMin}から{AvaiSecMax}の整数を入力してください。\n";
-            if (!CheckSecText(txt_ArrowSec.Text, ArrowSecMin,  ArrowSecMax))  errMsg += $"「矢印信号機の点灯時間」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
-            if (!CheckSecText(txt_RedSec.Text,   AllRedSecMin, AllRedSecMax)) errMsg += $"「全信号機の赤点灯時間」には{AllRedSecMin}から{AllRedSecMax}の整数を入力してください。\n";
-
-            // エラーメッセージ表示
-            if (errMsg != "")
+            try
             {
-                MessageBox.Show(errMsg, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+                string errMsg = "";  // エラーメッセージが入る
 
-            SetValue  = ConvertToInt(txt_SetValue.Text);  // 設定値の値を取得する
-            ArrowSec  = ConvertToInt(txt_ArrowSec.Text);  // 矢印信号機の点灯秒数を取得する
-            AllRedSec = ConvertToInt(txt_RedSec.Text);    // 全信号機の赤点灯秒を取得する
-            Close();
+                // テキストボックスに入力した値のチェック
+                if (!CheckSecText(txt_SetValue.Text, AvaiSecMin,   AvaiSecMax))   errMsg += $"「{SetValueName}」には{AvaiSecMin}から{AvaiSecMax}の整数を入力してください。\n";
+                if (!CheckSecText(txt_ArrowSec.Text, ArrowSecMin,  ArrowSecMax))  errMsg += $"「矢印信号機の点灯時間」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
+                if (!CheckSecText(txt_RedSec.Text,   AllRedSecMin, AllRedSecMax)) errMsg += $"「全信号機の赤点灯時間」には{AllRedSecMin}から{AllRedSecMax}の整数を入力してください。\n";
+
+                // エラーメッセージ表示
+                if (errMsg != "")
+                {
+                    MessageBox.Show(errMsg, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                SetValue  = ConvertToInt(txt_SetValue.Text);  // 設定値の値を取得する
+                ArrowSec  = ConvertToInt(txt_ArrowSec.Text);  // 矢印信号機の点灯秒数を取得する
+                AllRedSec = ConvertToInt(txt_RedSec.Text);    // 全信号機の赤点灯秒を取得する
+                Close();
+            }
+            catch (Exception ex)
+            {
+                string exStr = ex.Message + "\n「確定」ボタンクリックでエラーが発生しました。";
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         /// <summary>
         /// 文字列が最大値と最小値の範囲内の整数を表す値かチェックを行う
         /// </summary>
         /// <param name="checktext"> チェック対象の文字列         </param>
-        /// <param name="minValue">  チェックを満たす整数の最小値 </param>        
+        /// <param name="minValue">  チェックを満たす整数の最小値 </param> 
         /// <param name="maxValue">  チェックを満たす整数の最大値 </param>
         /// <returns> checkTextをint型に変換した値がminValue以上でmaxValue以下の整数の場合はtrue、それ以外の場合はfalse </returns>
         private bool CheckSecText(string checktext, int minValue, int maxValue)
@@ -122,7 +168,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\n文字列のチェックに失敗しました。";
+                string exStr = ex.Message + "\n入力値のチェックでエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }

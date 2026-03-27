@@ -84,18 +84,32 @@ namespace TrafficLightAlgorithm
                 IsTrafficEnable = false;              // 信号機アルゴリズムが動かない場合のブール値に設定する
                 IsInterrupt     = false;              // 信号機アルゴリズムの中断を無効にする
                 Cts = new CancellationTokenSource();  // Ctsの初期化
-
-                // ピクチャボックスイメージの回転
-                RotateLabelImage(RotateFlipType.Rotate90FlipNone,  pib_PNGreOne, pib_PNRedOne, pib_PSGreOne, pib_PSRedOne, pib_PSSignalTwo, pib_PNSignalTwo);
-                RotateLabelImage(RotateFlipType.Rotate180FlipNone, pib_EArrow,   pib_PEGreTwo, pib_PERedTwo, pib_PWGreTwo, pib_PWRedTwo,    pib_SSignal,  
+                
+                //ピクチャボックスイメージの回転
+                RotateLabelImage(RotateFlipType.Rotate90FlipNone,  pib_PNGreOne, pib_PNRedOne,    pib_PSGreOne, pib_PSRedOne, pib_PSSignalTwo, pib_PNSignalTwo);
+                RotateLabelImage(RotateFlipType.Rotate180FlipNone, pib_EArrow,   pib_PEGreTwo,    pib_PERedTwo, pib_PWGreTwo, pib_PWRedTwo,    pib_SSignal,
                                                                    pib_ESignal,  pib_PESignalTwo, pib_PWSignalTwo);
-                RotateLabelImage(RotateFlipType.Rotate270FlipNone, pib_PNGreTwo, pib_PNRedTwo, pib_PSGreTwo, pib_PSRedTwo, pib_PNSignalOne, pib_PSSignalOne);
+                RotateLabelImage(RotateFlipType.Rotate270FlipNone, pib_PNGreTwo, pib_PNRedTwo,    pib_PSGreTwo, pib_PSRedTwo, pib_PNSignalOne, pib_PSSignalOne);
 
-                SetMSec = new WaitMSec(5, 5, 5, 5, 1, 1);
+                SetMSec = new WaitMSec(5, 5, 5, 5, 1, 1);  // 信号機点灯時間の初期設定
+                
+                //ピクチャボックスをラベルの親コントロールに設定する
+                lbl_NSignal.Parent = pib_NSignal;
+                lbl_SSignal.Parent = pib_SSignal;
+                lbl_ESignal.Parent = pib_ESignal;
+                lbl_EArrow.Parent  = pib_ESignal;
+                lbl_WSignal.Parent = pib_WSignal;
+                lbl_WArrow.Parent  = pib_WSignal;
+
+                //ピクチャボックスのコントロールコレクションにラベルを追加する
+                pib_NSignal.Controls.Add(lbl_NSignal);
+                pib_SSignal.Controls.Add(lbl_SSignal);
+                pib_ESignal.Controls.AddRange(new Control[] { lbl_ESignal, lbl_EArrow });
+                pib_WSignal.Controls.AddRange(new Control[] { lbl_WSignal, lbl_WArrow });
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\nフォームのロードに失敗しました。";
+                string exStr = ex.Message + "\nフォームのロードでエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -104,85 +118,53 @@ namespace TrafficLightAlgorithm
         /// ピクチャボックスのイメージを回転する
         /// </summary>
         /// <param name="rotate"> イメージの回転量と反転軸           </param>
-        /// <param name="pibs"> イメージ回転を行うピクチャボックス </param>
+        /// <param name="pibs">   イメージ回転を行うピクチャボックス </param>
         private void RotateLabelImage(RotateFlipType rotate, params PictureBox[] pibs)
         {
             try
             {
                 foreach (PictureBox pib in pibs)
                 {
-                    pib.Image.RotateFlip(rotate);  // ピクチャボックスイメージを回転する
+                    pib.BackgroundImage.RotateFlip(rotate);  // ピクチャボックスのバックグラウンドイメージを回転する
                 }
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\nピクチャボックスイメージの回転に失敗しました。";
+                string exStr = ex.Message + "\nピクチャボックスイメージの回転でエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         /// <summary>
-        /// 信号機イメージ画像表示ピクチャボックスクリック時イベント
+        /// 信号機イメージ画像クリック時イベント
         /// </summary>
-        private void Pib_CarSignal_Click(object sender, EventArgs e)
+        private void Lbl_CarSignal_MouseClick(object sender, MouseEventArgs e)
         {
             try
             {
-                if (IsTrafficEnable) return;  // 信号機アルゴリズムが動いている場合は終了する
-
-                int nSec = SetMSec.NMSec / 1000;  // 北方向車用信号機の秒数
-                int sSec = SetMSec.SMSec / 1000;  // 南方向車用信号機の秒数
-                int eSec = SetMSec.EMSec / 1000;  // 東方向車用信号機の秒数
-                int wSec = SetMSec.WMSec / 1000;  // 西方向車用信号機の秒数
-
-                // 設定値入力フォームの初期化
-                F_SetSec f_SetSec = new F_SetSec
-                {
-                    ArrowSec  = SetMSec.AMSec / 1000,  // 矢印信号機の点灯秒
-                    AllRedSec = SetMSec.RMSec / 1000   // 全信号機の赤点灯秒
-                };
-
-                // 設定値入力フォームを表示し、入力した値を取得する
-                if (sender == pib_NSignal || sender == pib_NGreen || sender == pib_NYellow || sender == pib_NRed)
-                {
-                    f_SetSec.SetValueName = "北方向への進行可能時間";
-                    f_SetSec.IsArrow = false;
-                    f_SetSec.SetValue = nSec;
-                    f_SetSec.ShowDialog();
-                    nSec = f_SetSec.SetValue;
-                }
-                else if (sender == pib_SSignal || sender == pib_SGreen || sender == pib_SYellow || sender == pib_SRed)
-                {
-                    f_SetSec.SetValueName = "南方向への進行可能時間";
-                    f_SetSec.IsArrow = false;
-                    f_SetSec.SetValue = sSec;
-                    f_SetSec.ShowDialog();
-                    sSec = f_SetSec.SetValue;
-                }
-                else if (sender == pib_ESignal || sender == pib_EGreen || sender == pib_EYellow || sender == pib_ERed)
-                {
-                    f_SetSec.SetValueName = "東方向への進行可能時間";
-                    f_SetSec.IsArrow = true;
-                    f_SetSec.SetValue = eSec;
-                    f_SetSec.ShowDialog();
-                    eSec = f_SetSec.SetValue;
-                }
-                else if (sender == pib_WSignal || sender == pib_WGreen || sender == pib_WYellow || sender == pib_WRed)
-                {
-                    f_SetSec.SetValueName = "西方向への進行可能時間";
-                    f_SetSec.IsArrow = true;
-                    f_SetSec.SetValue = wSec;
-                    f_SetSec.ShowDialog();
-                    wSec = f_SetSec.SetValue;
-                }
-
-                SetMSec = new WaitMSec(nSec, sSec, eSec, wSec, f_SetSec.ArrowSec, f_SetSec.AllRedSec);
+                Console.WriteLine(e.Location);
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\n設定値入力フォームの表示に失敗しました。";
+                string exStr = ex.Message + "\n設定値入力フォームの表示でエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private int SetFormShow(int setValue, string direction, bool isArrow)
+        {
+            F_SetSec f_SetSec = new F_SetSec
+            {
+                SetValue      = setValue,
+                ArrowSec      = SetMSec.AMSec / 1000,
+                AllRedSec     = SetMSec.RMSec / 1000,
+                DirectionName = direction,
+                IsEnable      = !IsTrafficEnable,
+                IsArrow       = isArrow
+            };
+
+            f_SetSec.ShowDialog();
+            return f_SetSec.SetValue;
         }
 
         /// <summary>
@@ -198,19 +180,19 @@ namespace TrafficLightAlgorithm
                     string msgStr = "信号機プログラムを最初から実行しますか？";
                     if (MessageBox.Show(msgStr, Program.SoftTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No) return;
 
-                    Cts.Cancel();  // 先に実行した信号機アルゴリズムのキャンセル要求を伝える                        
+                    Cts.Cancel();  // 先に実行した信号機アルゴリズムのキャンセル要求を伝える
                 }
 
-                LogEleNum       = 0;
-                IsTrafficEnable = true;                       // 信号機アルゴリズムが動く場合のブール値に設定する
-                IsInterrupt     = false;                      // 信号機アルゴリズムの中断を無効にする
-                ChangeTextInterruptResumeBtn(false);          // 「中断/再開」ボタンのTextプロパティ値変更
-                PhaseList = CreateTrafficPhaseList(SetMSec);  // フェーズリスト作成
-                LoopTrafficPhase(0, PhaseList);               // フェーズリストを最初のフェーズから再生する
+                LogEleNum       = 0;                                    // 参照するリストの要素の番号を０に設定する
+                IsTrafficEnable = true;                                 // 信号機アルゴリズムが動く場合のブール値に設定する
+                IsInterrupt     = false;                                // 信号機アルゴリズムの中断を無効にする
+                ChangeTextInterruptResumeBtn(false);                    // 「中断/再開」ボタンのTextプロパティ値変更
+                PhaseList = CreateTrafficPhaseList(SetMSec);            // フェーズリスト作成
+                if (PhaseList != null) LoopTrafficPhase(0, PhaseList);  // フェーズリストを最初のフェーズから再生する
             }
             catch (Exception ex) 
             {
-                string exStr = ex.Message + "\n信号機プログラムの開始に失敗しました。";
+                string exStr = ex.Message + "\n信号機の点灯を開始する前にエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -239,7 +221,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\n信号機プログラムの" + btn_InterruptResume.Text + "に失敗しました。";
+                string exStr = ex.Message + "\n信号機プログラムの" + btn_InterruptResume.Text + "でエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -275,7 +257,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\n点灯状態のリセットに失敗しました。";
+                string exStr = ex.Message + "\n信号機の点灯状態のリセットでエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -292,10 +274,10 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\nバージョン情報フォーム画面の表示に失敗しました。";
+                string exStr = ex.Message + "\nバージョン情報フォーム画面の表示でエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }        
+        }
         
         /// <summary>
         /// 「中断/再開」ボタンのtextプロパティ値変更
@@ -316,7 +298,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\n「中断/再開」ボタンテキストの変更に失敗しました。";
+                string exStr = ex.Message + "\n「中断/再開」ボタンテキストの変更でエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -356,7 +338,6 @@ namespace TrafficLightAlgorithm
 
                 phaseList.AddRange(YelRedPhaseList(setMSec.RMSec, setMSec.NMSec - setMSec.SMSec, Signal.CarSouth, Signal.CarNorth));  // 北南の車用信号機の黄・赤点灯フェーズリスト
                 
-
                 phaseList.Add(CreatePhase(carEWpdNSMSec, LightState.Green, 
                     Signal.CarEast, Signal.CarWest, Signal.PedesNorth, Signal.PedesSouth));  // 東西の車用・北南の歩行者用信号機の緑点灯フェーズ
                 LightChangeLog.Add("東西車用・北南歩行者用信号機が緑に点灯しました。");
@@ -368,8 +349,8 @@ namespace TrafficLightAlgorithm
 
                 phaseList.AddRange(YelRedPhaseList(MinMSec, setMSec.EMSec - setMSec.WMSec, Signal.CarWest, Signal.CarEast));  // 東西の車用信号機の黄・赤点灯フェーズリスト
 
-                phaseList.Add(CreatePhase(setMSec.AMSec, LightState.Arrow,  Signal.CarEast, Signal.CarWest));                 // 東西の矢印信号機の点灯フェーズ
-                phaseList.Add(CreatePhase(YellowMSec,    LightState.Yellow, Signal.CarEast, Signal.CarWest));                 // 東西の車用信号機の黄点灯フェーズ
+                phaseList.Add(CreatePhase(setMSec.AMSec, LightState.Arrow,  Signal.CarEast, Signal.CarWest));  // 東西の矢印信号機の点灯フェーズ
+                phaseList.Add(CreatePhase(YellowMSec,    LightState.Yellow, Signal.CarEast, Signal.CarWest));  // 東西の車用信号機の黄点灯フェーズ
                 LightChangeLog.AddRange(new List<string> { "東西矢印信号機が点灯しました。", 
                                                            "東西車用信号機が黄に点灯しました。" });
 
@@ -377,7 +358,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\nフェーズリストの作成に失敗しました。";
+                string exStr = ex.Message + "\n信号機点灯フェーズリストの作成でエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
@@ -405,7 +386,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\nフェーズの作成に失敗しました。";
+                string exStr = ex.Message + "\n信号機点灯フェーズの作成でエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
@@ -439,7 +420,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\n歩行者用信号機点滅フェーズリストの作成に失敗しました。" ;
+                string exStr = ex.Message + "\n歩行者用信号機点滅フェーズリストの作成でエラーが発生しました。" ;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
@@ -458,7 +439,7 @@ namespace TrafficLightAlgorithm
             try
             {
                 List<TrafficPhase> pList = new List<TrafficPhase>();  // sigOneとsigTwoが表す車用信号機の黄・赤点灯フェーズが入るフェーズリスト
-
+                
                 Signal sigMin = sigOne;  // 進行可能時間が短い方の車用信号機を表す列挙型が入る
                 Signal sigMax = sigTwo;  // 進行可能時間が長い方の車用信号機を表す列挙型が入る
 
@@ -486,9 +467,8 @@ namespace TrafficLightAlgorithm
                     pList.Add(new TrafficPhase(YellowMSec, new TrafficCommand(sigMin, LightState.Red),
                                                            new TrafficCommand(sigMax, LightState.Yellow)));  // sigMinが表す車用信号機の赤点灯、sigMaxが表す車用信号機の黄点灯フェーズ
                     pList.Add(new TrafficPhase(redMSec,    new TrafficCommand(sigMax, LightState.Red)));     // sigMaxが表す車用信号機の赤点灯フェーズ
-
                     LightChangeLog.Add(SigStr(sigMin) + "車用信号機が黄に点灯しました。");
-                    LightChangeLog.Add(SigStr(sigMin) + "車用信号機が赤・" + SigStr(sigMax) + "車用信号機が赤に点灯しました。");
+                    LightChangeLog.Add(SigStr(sigMin) + "車用信号機が赤・" + SigStr(sigMax) + "車用信号機が黄に点灯しました。");
                     LightChangeLog.Add(SigStr(sigMax) + "車用信号機が赤に点灯しました。");
                 }
                 else
@@ -497,18 +477,16 @@ namespace TrafficLightAlgorithm
                     pList.Add(new TrafficPhase(Math.Abs(mSecDif) - YellowMSec, new TrafficCommand(sigMin, LightState.Red)));     // sigMinが表す車用信号機の赤点灯フェーズ
                     pList.Add(new TrafficPhase(YellowMSec,                     new TrafficCommand(sigMax, LightState.Yellow)));  // sigMaxが表す車用信号機の黄点灯フェーズ
                     pList.Add(new TrafficPhase(redMSec,                        new TrafficCommand(sigMax, LightState.Red)));     // sigMaxが表す車用信号機の赤点灯フェーズ
-                    LightChangeLog.Add(sigMin + "車用信号機が黄に点灯しました。");
-                    LightChangeLog.Add(sigMax + "車用信号機が赤に点灯しました。");
-                    LightChangeLog.Add(sigMin + "車用信号機が黄に点灯しました。");
-                    LightChangeLog.Add(sigMax + "車用信号機が赤に点灯しました。");
+                    LightChangeLog.Add(SigStr(sigMin) + "車用信号機が黄に点灯しました。");
+                    LightChangeLog.Add(SigStr(sigMax) + "車用信号機が赤に点灯しました。");
+                    LightChangeLog.Add(SigStr(sigMin) + "車用信号機が黄に点灯しました。");
+                    LightChangeLog.Add(SigStr(sigMax) + "車用信号機が赤に点灯しました。");
                 }
 
                 return pList;
             }
-            catch (Exception ex)
+            catch
             {
-                string exStr = ex.Message + "\n車用信号機の黄・赤点灯フェーズリストの作成に失敗しました。";
-                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -520,11 +498,18 @@ namespace TrafficLightAlgorithm
         /// <returns> 方角を表す文字列 </returns>
         private string SigStr(Signal signal)
         {
-            if (signal == Signal.CarNorth) return "北";
-            if (signal == Signal.CarSouth) return "南";
-            if (signal == Signal.CarEast)  return "東";
-            if (signal == Signal.CarWest)  return "西";
-            return "";
+            try
+            {
+                if (signal == Signal.CarNorth) return "北";
+                if (signal == Signal.CarSouth) return "南";
+                if (signal == Signal.CarEast)  return "東";
+                if (signal == Signal.CarWest)  return "西";
+                return "";
+            }
+            catch
+            {
+                return "";
+            }
         }
 
         /// <summary>
@@ -581,18 +566,12 @@ namespace TrafficLightAlgorithm
                                 isSucUpdate = ChangePedesLightOn(command.State, pib_PWGreOne, pib_PWGreTwo, pib_PWRedOne, pib_PWRedTwo);  // 西方向の歩行者用信号機の点灯状態更新
                             }
 
-                            // 信号機点灯状態の更新に失敗した場合
-                            if (!isSucUpdate)
-                            {
-                                string failStr = "信号機点灯状態の更新に失敗しました。";
-                                MessageBox.Show(failStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                return;
-                            }
+                            if (!isSucUpdate) return;  // 信号機点灯状態の更新に失敗した場合は終了する
                         }
 
                         try
                         {
-                            CreateStateRecord(phases, i);                     // リストボックスに点灯状態を書き込む
+                            if (!CreateStateRecord(i, phases)) return;        // 点灯状態変更履歴の追加に失敗した場合は終了する
                             await Task.Delay(phases[i].WaitMSec, Cts.Token);  // キャンセルが要求されていない場合、WaitMSecミリ秒待機する
                         }
                         catch
@@ -607,17 +586,18 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\nフェーズリストの再生に失敗しました。";
+                string exStr = ex.Message + "\n信号機の点灯でエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         /// <summary>
-        /// リストボックスに追加する状態変更履歴を表す文字列を追加する
+        /// リストボックスに状態変更履歴を表す文字列を追加する
         /// </summary>
-        /// <param name="phases">   信号機アルゴリズムの点灯フェーズリスト     </param>
         /// <param name="phaseNum"> 信号機アルゴリズムの点灯フェーズを表す番号 </param>
-        private void CreateStateRecord(List<TrafficPhase> phases, int phaseNum)
+        /// <param name="phases">   信号機アルゴリズムの点灯フェーズリスト     </param>
+        /// <returns> 状態変更履歴の追加に成功した場合はtrue、それ以外の場合はfalse </returns>
+        private bool CreateStateRecord(int phaseNum, List<TrafficPhase> phases)
         {
             try
             {
@@ -627,38 +607,42 @@ namespace TrafficLightAlgorithm
                 if (phases[phaseNum].WaitMSec > BlinkMSec)
                 {
                     // 点灯フェーズ phases[phaseNum] の待機ミリ秒がBlinkMSecより大きい場合
+                    // 現在の点灯フェーズの待機ミリ秒と点灯状態変更内容を追加する
                     lbx_StateRecord.Items.Add(LogEleNum + "：" + phases[phaseNum].WaitMSec + "ミリ秒待機。" + LightChangeLog[LogEleNum]);
                 }
-                else if (phases[phaseNum - 1].WaitMSec > BlinkMSec)
+                else if (phases[phaseNum].WaitMSec == BlinkMSec && phases[phaseNum - 1].WaitMSec > BlinkMSec)
                 {
-                    // phaseNumより１つ前の点灯フェーズの待機ミリ秒がBlinkMSecより大きい場合
-                    // 点滅を表すフェーズは１行にまとめて履歴に追加する
+                    // 現在の点灯フェーズの待機ミリ秒がBlinkMSecと等しく、１つ前の点灯フェーズの待機ミリ秒がBlinkMSecより大きい場合
+                    // 点滅を表すフェーズを１行の文字列にまとめて履歴に追加する
                     lbx_StateRecord.Items.Add(LogEleNum + "：" + BlinkMSec * BlinkPhaseCount + "ミリ秒待機。" + LightChangeLog[LogEleNum]);
-                }             
+                }
 
-                // リストボックスの項目数が増えた場合LogEleNumの値を更新する
+                // リストボックスの項目数が増えた場合にLogEleNumの値を更新する
                 if (lbx_StateRecord.Items.Count > listItemCount)
                 {
                     LogEleNum++;
-                    if (LogEleNum >= LightChangeLog.Count) LogEleNum = 0;        // LogEleNumを０に戻す
+                    if (LogEleNum >= LightChangeLog.Count) LogEleNum = 0;        // LogEleNumがリストの項目数以上の場合０に戻す
                     lbx_StateRecord.TopIndex = lbx_StateRecord.Items.Count - 1;  // 最新の履歴を表示する
                 }
+
+                return true;
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\n信号機の点灯状態変更履歴の追加に失敗しました。";
+                string exStr = ex.Message + "\n信号機の点灯状態変更履歴の追加でエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
             }
         }
 
         /// <summary>
         /// 車用信号機の点灯状態更新
         /// </summary>
-        /// <param name="state">      点灯状態を表す列挙型                         </param>
-        /// <param name="pib_green">  車用信号機の緑ランプを表すピクチャボックス   </param>
-        /// <param name="pib_yellow"> 車用信号機の黄ランプを表すピクチャボックス   </param>
-        /// <param name="pib_red">    車用信号機の赤ランプを表すピクチャボックス   </param>
-        /// <param name="pib_arrow">  矢印信号機の矢印ランプを表すピクチャボックス </param>
+        /// <param name="state">      点灯状態を表す列挙型                       </param>
+        /// <param name="pib_green">  車用信号機の緑ランプを表すピクチャボックス </param>
+        /// <param name="pib_yellow"> 車用信号機の黄ランプを表すピクチャボックス </param>
+        /// <param name="pib_red">    車用信号機の赤ランプを表すピクチャボックス </param>
+        /// <param name="pib_arrow">  矢印信号機を表すピクチャボックス           </param>
         /// <returns> 点灯状態更新に成功した場合はtrue、それ以外の場合はfalse </returns>
         private bool ChangeSignalLightOn(LightState state, PictureBox pib_green, PictureBox pib_yellow, PictureBox pib_red, PictureBox pib_arrow)
         {
@@ -668,7 +652,7 @@ namespace TrafficLightAlgorithm
                 bool yelVisible = false;  // pib_yellowのVisibleプロパティ値
                 bool redVisible = false;  // pib_red   のVisibleプロパティ値
                 bool arwVisible = false;  // pib_arrow のVisibleプロパティ値
-
+                
                 if (state == LightState.Green) greVisible = true;
                 if (state == LightState.Yellow) yelVisible = true;
                 if (state == LightState.Red || state == LightState.Arrow) redVisible = true;
@@ -679,11 +663,13 @@ namespace TrafficLightAlgorithm
                 pib_red.Visible    = redVisible;                        // pib_red   のVisibleプロパティ値の設定
                 if (pib_arrow != null) pib_arrow.Visible = arwVisible;  // pib_arrow のVisibleプロパティ値の設定
 
-                return true;   // 点灯状態更新成功
+                return true; 
             }
-            catch
+            catch (Exception ex)
             {
-                return false;  // 点灯状態更新失敗
+                string failStr = ex.Message +"\n車用信号機点灯状態の更新でエラーが発生しました。";
+                MessageBox.Show(failStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
             }
         }
 
@@ -711,11 +697,13 @@ namespace TrafficLightAlgorithm
                 pib_redOne.Visible   = redVisible;  // pib_redOne  のVisibleプロパティ値の設定
                 pib_redTwo.Visible   = redVisible;  // pib_redTwo  のVisibleプロパティ値の設定
 
-                return true;   // 点灯状態更新成功
+                return true;
             }
-            catch
+            catch (Exception ex)
             {
-                return false;  // 点灯状態更新失敗
+                string failStr = ex.Message + "\n歩行者用信号機点灯状態の更新でエラーが発生しました。";
+                MessageBox.Show(failStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
             }
         }
     }

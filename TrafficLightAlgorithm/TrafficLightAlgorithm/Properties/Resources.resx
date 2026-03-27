@@ -118,40 +118,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SignalYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SignalYellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PedesGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PedesGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SignalPoleEW" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SignalPoleEW.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SignalPedesOne" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SignalPedesOne.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TrafficBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TrafficBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ArrowSignal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ArrowSignal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SignalGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SignalGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SignalPoleNS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SignalPoleNS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SignalRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SignalRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PedesGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SoftTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SoftTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TrafficBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TrafficBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SignalPedesTwo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SignalPedesTwo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SignalYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalYellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArrowSignal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArrowSignal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SignalRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SignalGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SoftTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SoftTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="PedesRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PedesRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SignalPoleEW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalPoleEW.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SetFormTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SetFormTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
