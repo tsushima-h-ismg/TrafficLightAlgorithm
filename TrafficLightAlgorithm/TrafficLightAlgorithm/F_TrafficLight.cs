@@ -86,10 +86,10 @@ namespace TrafficLightAlgorithm
                 Cts = new CancellationTokenSource();  // Ctsの初期化
 
                 // ピクチャボックスイメージの回転
-                RotateLabelImage(RotateFlipType.Rotate90FlipNone,  pib_PNGreOne, pib_PNRedOne, pib_PSGreOne, pib_PSRedOne,    pib_PSSignalTwo, pib_PNSignalTwo);
-                RotateLabelImage(RotateFlipType.Rotate180FlipNone, pib_WRArrow,  pib_WSLArrow, pib_EArrow,   pib_PEGreTwo,    pib_PERedTwo,    pib_PWGreTwo, 
-                                                                   pib_PWRedTwo, pib_SSignal,  pib_ESignal,  pib_PESignalTwo, pib_PWSignalTwo);
-                RotateLabelImage(RotateFlipType.Rotate270FlipNone, pib_PNGreTwo, pib_PNRedTwo, pib_PSGreTwo, pib_PSRedTwo,    pib_PNSignalOne, pib_PSSignalOne);
+                RotateLabelImage(RotateFlipType.Rotate90FlipNone,  pib_PNGreOne, pib_PNRedOne, pib_PSGreOne, pib_PSRedOne, pib_PSSignalTwo, pib_PNSignalTwo);
+                RotateLabelImage(RotateFlipType.Rotate180FlipNone, pib_EArrow,   pib_PEGreTwo, pib_PERedTwo, pib_PWGreTwo, pib_PWRedTwo,    pib_SSignal,  
+                                                                   pib_ESignal,  pib_PESignalTwo, pib_PWSignalTwo);
+                RotateLabelImage(RotateFlipType.Rotate270FlipNone, pib_PNGreTwo, pib_PNRedTwo, pib_PSGreTwo, pib_PSRedTwo, pib_PNSignalOne, pib_PSSignalOne);
 
                 SetMSec = new WaitMSec(5, 5, 5, 5, 1, 1);
             }
