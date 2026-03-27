@@ -85,15 +85,15 @@ namespace TrafficLightAlgorithm
                 IsInterrupt     = false;              // 信号機アルゴリズムの中断を無効にする
                 Cts = new CancellationTokenSource();  // Ctsの初期化
 
-                // ピクチャボックスイメージの回転
+                //ピクチャボックスイメージの回転
                 RotateLabelImage(RotateFlipType.Rotate90FlipNone,  pib_PNGreOne, pib_PNRedOne, pib_PSGreOne, pib_PSRedOne, pib_PSSignalTwo, pib_PNSignalTwo);
-                RotateLabelImage(RotateFlipType.Rotate180FlipNone, pib_EArrow,   pib_PEGreTwo, pib_PERedTwo, pib_PWGreTwo, pib_PWRedTwo,    pib_SSignal,  
+                RotateLabelImage(RotateFlipType.Rotate180FlipNone, pib_EArrow,   pib_PEGreTwo, pib_PERedTwo, pib_PWGreTwo, pib_PWRedTwo,    pib_SSignal,
                                                                    pib_ESignal,  pib_PESignalTwo, pib_PWSignalTwo);
                 RotateLabelImage(RotateFlipType.Rotate270FlipNone, pib_PNGreTwo, pib_PNRedTwo, pib_PSGreTwo, pib_PSRedTwo, pib_PNSignalOne, pib_PSSignalOne);
 
                 SetMSec = new WaitMSec(5, 5, 5, 5, 1, 1);  // 信号機点灯時間の初期設定
 
-                // ピクチャボックスをラベルの親コントロールに設定する
+                //ピクチャボックスをラベルの親コントロールに設定する
                 lbl_NSignal.Parent = pib_NSignal;
                 lbl_SSignal.Parent = pib_SSignal;
                 lbl_ESignal.Parent = pib_ESignal;
@@ -101,11 +101,11 @@ namespace TrafficLightAlgorithm
                 lbl_WSignal.Parent = pib_WSignal;
                 lbl_WArrow.Parent  = pib_WSignal;
 
-                // ピクチャボックスのコントロールコレクションにラベルを追加する
+                //ピクチャボックスのコントロールコレクションにラベルを追加する
                 pib_NSignal.Controls.Add(lbl_NSignal);
                 pib_SSignal.Controls.Add(lbl_SSignal);
-                pib_ESignal.Controls.AddRange(new Control[] {lbl_ESignal, lbl_EArrow});
-                pib_WSignal.Controls.AddRange(new Control[] {lbl_WSignal, lbl_WArrow});
+                pib_ESignal.Controls.AddRange(new Control[] { lbl_ESignal, lbl_EArrow });
+                pib_WSignal.Controls.AddRange(new Control[] { lbl_WSignal, lbl_WArrow });
             }
             catch (Exception ex)
             {
@@ -136,14 +136,12 @@ namespace TrafficLightAlgorithm
         }
 
         /// <summary>
-        /// 信号機イメージ画像表示ピクチャボックスクリック時イベント
+        /// 信号機イメージ画像表示ラベルクリック時イベント
         /// </summary>
-        private void Pib_CarSignal_Click(object sender, EventArgs e)
+        private void Lbl_CarSignal_Click(object sender, EventArgs e)
         {
             try
             {
-                if (IsTrafficEnable) return;  // 信号機アルゴリズムが動いている場合は終了する
-                
                 int nSec = SetMSec.NMSec / 1000;  // 北方向車用信号機の秒数
                 int sSec = SetMSec.SMSec / 1000;  // 南方向車用信号機の秒数
                 int eSec = SetMSec.EMSec / 1000;  // 東方向車用信号機の秒数
@@ -152,6 +150,7 @@ namespace TrafficLightAlgorithm
                 // 設定値入力フォームの初期化
                 F_SetSec f_SetSec = new F_SetSec
                 {
+                    IsEnable  = !IsTrafficEnable,      // 信号機アルゴリズム実行状態
                     ArrowSec  = SetMSec.AMSec / 1000,  // 矢印信号機の点灯秒
                     AllRedSec = SetMSec.RMSec / 1000   // 全信号機の赤点灯秒
                 };

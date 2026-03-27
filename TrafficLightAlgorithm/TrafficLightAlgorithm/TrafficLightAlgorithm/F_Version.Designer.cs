@@ -43,7 +43,7 @@
             this.lbl_FormTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_FormTitle.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lbl_FormTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_FormTitle.Location = new System.Drawing.Point(0, 25);
+            this.lbl_FormTitle.Location = new System.Drawing.Point(-1, 25);
             this.lbl_FormTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_FormTitle.Name = "lbl_FormTitle";
             this.lbl_FormTitle.Size = new System.Drawing.Size(456, 50);
@@ -137,10 +137,9 @@
             this.MinimumSize = new System.Drawing.Size(465, 300);
             this.Name = "F_Version";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "信号機プログラム";
             this.Load += new System.EventHandler(this.F_Version_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_Version_KeyDown);
             this.ResumeLayout(false);
 
         }

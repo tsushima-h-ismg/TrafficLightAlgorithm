@@ -53,21 +53,5 @@ namespace TrafficLightAlgorithm
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        /// <summary>
-        /// Enterキークリックでフォームを閉じる
-        /// </summary>
-        private void F_Version_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) Close();  // Enterキークリックで終了する
-            }
-            catch (Exception ex)
-            {
-                string exStr = ex.Message + "\nフォーム終了に失敗しました。";
-                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
     }
 }
