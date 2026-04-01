@@ -26,10 +26,10 @@ namespace TrafficLightAlgorithm
                 AssemblyCopyrightAttribute copyRight = (AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyCopyrightAttribute));
                 AssemblyCompanyAttribute   company   = (AssemblyCompanyAttribute)  Attribute.GetCustomAttribute(assembly, typeof(AssemblyCompanyAttribute));
 
-                lbl_SoftTitle.Text = Program.SoftTitle;    // ラベルテキストをプログラムのタイトルに設定する
-                lbl_Version.Text   = verStr;               // ラベルテキストをバージョン情報に設定する
-                lbl_CopyRight.Text = copyRight.Copyright;  // ラベルテキストを著作権情報に設定する
-                lbl_Company.Text   = company.Company;      // ラベルテキストを会社名情報に設定する
+                lbl_SoftTitle.Text = Program.SoftTitle;    // プログラムのタイトルに取得する
+                lbl_Version.Text   = verStr;               // バージョン情報を取得する
+                lbl_CopyRight.Text = copyRight.Copyright;  // 著作権情報を取得する
+                lbl_Company.Text   = company.Company;      // 会社名情報を取得する
             }
             catch (Exception ex)
             {

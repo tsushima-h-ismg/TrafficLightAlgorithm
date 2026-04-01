@@ -6,6 +6,26 @@ namespace TrafficLightAlgorithm
     public partial class F_SetSec : Form
     {
         /// <summary>
+        /// 進行可能秒数の最大値
+        /// </summary>
+        private const int AvaiSecMax   = 20;
+
+        /// <summary>
+        /// 進行可能秒数の最小値
+        /// </summary>
+        private const int AvaiSecMin   = 5;
+
+        /// <summary>
+        /// 矢印信号機の点灯秒数の最大値
+        /// </summary>
+        private const int ArrowSecMax  = 5;
+
+        /// <summary>
+        /// 矢印信号機の点灯秒数の最小値
+        /// </summary>
+        private const int ArrowSecMin  = 1;
+
+        /// <summary>
         /// 進行可能秒数
         /// </summary>
         public int AvaiSec;
@@ -29,26 +49,6 @@ namespace TrafficLightAlgorithm
         /// 方角を表す文字列
         /// </summary>
         public string DirectionName;
-
-        /// <summary>
-        /// 進行可能秒数の最大値
-        /// </summary>
-        private const int AvaiSecMax   = 20;
-
-        /// <summary>
-        /// 進行可能秒数の最小値
-        /// </summary>
-        private const int AvaiSecMin   = 5;
-
-        /// <summary>
-        /// 矢印信号機の点灯秒数の最大値
-        /// </summary>
-        private const int ArrowSecMax  = 5;
-
-        /// <summary>
-        /// 矢印信号機の点灯秒数の最小値
-        /// </summary>
-        private const int ArrowSecMin  = 1;
 
         public F_SetSec()
         {
