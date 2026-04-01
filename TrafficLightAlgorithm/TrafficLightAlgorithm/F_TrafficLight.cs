@@ -97,7 +97,7 @@ namespace TrafficLightAlgorithm
                                                                    pib_ESignal,  pib_PESignalTwo, pib_PWSignalTwo);
                 RotateLabelImage(RotateFlipType.Rotate270FlipNone, pib_PNGreTwo, pib_PNRedTwo, pib_PSGreTwo, pib_PSRedTwo, pib_PNSignalOne, pib_PSSignalOne);
 
-                SetMSec = new WaitMSec(5, 5, 5, 5, 1);  // 信号機点灯時間の初期設定
+                SetMSec = new WaitMSec(5000, 5000, 5000, 5000, 1000);  // 信号機点灯時間の初期設定
 
                 //ピクチャボックスのコントロールコレクションにラベルを追加する
                 pib_NSignal.Controls.Add(lbl_NSignal);
@@ -140,109 +140,88 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                int nSec = SetMSec.NMSec / 1000;  // 北方向への進行可能秒数
-                int sSec = SetMSec.SMSec / 1000;  // 南方向への進行可能秒数
-                int eSec = SetMSec.EMSec / 1000;  // 東方向への進行可能秒数
-                int wSec = SetMSec.WMSec / 1000;  // 西方向への進行可能秒数
-
-                // 交差点イメージ図の左上端の座標
-                Point pnlTopLeft = new Point(Location.X + grb_TrafficShow.Location.X + pnl_Traffic.Location.X, 
-                                             Location.Y + grb_TrafficShow.Location.Y + pnl_Traffic.Location.Y);
-                
-                F_SetSec f_SetSec = new F_SetSec
-                { 
-                    IsEnable  = !IsTrafficEnable,      // 信号機アルゴリズムの動作状態
-                    ArrowSec  = SetMSec.AMSec / 1000,  // 矢印信号機の点灯秒数
-                };
-
-                Rectangle scArea = Screen.FromPoint(Location).WorkingArea;  // フォームを表示するスクリーンの作業領域を取得
+                bool result = false; // 設定フォーム表示の結果
 
                 // 設定値入力フォームを表示し、値を受け取る
                 if (sender == lbl_NSignal || sender == pib_NGreen || sender == pib_NYellow || sender == pib_NRed)
                 {
-                    // 北車用信号機の設定値入力
-                    Image backImage = pib_NSignal.BackgroundImage;           // 強調表示前の背景画像を取得
-                    pib_NSignal.BackgroundImage = SignalHilight(backImage);  // ピクチャボックスの背景画像を強調表示
-                    
-                    int xlocation = pnlTopLeft.X + pib_NSignal.Location.X + pib_NSignal.Width;  // 初期表示位置のx座標
-                    int ylocation = pnlTopLeft.Y + pib_NSignal.Location.Y;                      // 初期表示位置のy座標
-                    if (xlocation > scArea.Right  - f_SetSec.Width)  xlocation = scArea.Right  - f_SetSec.Width;
-                    if (ylocation > scArea.Bottom - f_SetSec.Height) ylocation = scArea.Bottom - f_SetSec.Height;
-
-                    f_SetSec.AvaiSec = nSec;
-                    f_SetSec.DirectionName = "北";
-                    f_SetSec.IsArrow = false;
-                    f_SetSec.Location = new Point(xlocation, ylocation);
-                    f_SetSec.ShowDialog();
-                    nSec = f_SetSec.AvaiSec;                  // 北方向への進行可能秒数を取得
-                    pib_NSignal.BackgroundImage = backImage;  // ピクチャボックスの背景画像を元に戻す
+                    result = SetFormShow(SetMSec.NMSec, SetMSec.AMSec, "北", false, pib_NSignal);  // 北車用信号機の設定値入力
                 }
                 else if (sender == lbl_SSignal || sender == pib_SGreen || sender == pib_SYellow || sender == pib_SRed)
                 {
-                    // 南車用信号機の設定値入力
-                    Image backImage = pib_SSignal.BackgroundImage;           // 強調表示前の背景画像を取得
-                    pib_SSignal.BackgroundImage = SignalHilight(backImage);  // ピクチャボックスの背景画像を強調表示
-
-                    int xlocation = pnlTopLeft.X + pib_SSignal.Location.X + pib_SSignal.Width;  // 初期表示位置のx座標
-                    int ylocation = pnlTopLeft.Y + pib_SSignal.Location.Y;                      // 初期表示位置のy座標
-                    if (xlocation > scArea.Right  - f_SetSec.Width)  xlocation = scArea.Right  - f_SetSec.Width;
-                    if (ylocation > scArea.Bottom - f_SetSec.Height) ylocation = scArea.Bottom - f_SetSec.Height;
-
-                    f_SetSec.AvaiSec = sSec;
-                    f_SetSec.DirectionName = "南";
-                    f_SetSec.IsArrow = false;
-                    f_SetSec.Location = new Point(xlocation, ylocation);
-                    f_SetSec.ShowDialog();
-                    sSec = f_SetSec.AvaiSec;                  // 南方向への進行可能秒数を取得
-                    pib_SSignal.BackgroundImage = backImage;  // ピクチャボックスの背景画像を元に戻す
+                    result = SetFormShow(SetMSec.SMSec, SetMSec.AMSec, "南", false, pib_SSignal);  // 南車用信号機の設定値入力
                 }
-                else if (sender == lbl_ESignal || sender == lbl_EArrow  ||
-                         sender == pib_EGreen  || sender == pib_EYellow || sender == pib_ERed || sender == pib_EArrow)
+                else if (sender == lbl_ESignal || sender == lbl_EArrow || sender == pib_EGreen || sender == pib_EYellow || sender == pib_ERed || sender == pib_EArrow)
                 {
-                    // 東車用信号機の設定値入力
-                    Image backImage = pib_ESignal.BackgroundImage;           // 強調表示前の背景画像を取得
-                    pib_ESignal.BackgroundImage = SignalHilight(backImage);  // ピクチャボックスの背景画像を強調表示
-
-                    int xlocation = pnlTopLeft.X + pib_ESignal.Location.X + pib_ESignal.Width;  // 初期表示位置のx座標
-                    int ylocation = pnlTopLeft.Y + pib_ESignal.Location.Y;                      // 初期表示位置のy座標
-                    if (xlocation > scArea.Right  - f_SetSec.Width)  xlocation = scArea.Right  - f_SetSec.Width;
-                    if (ylocation > scArea.Bottom - f_SetSec.Height) ylocation = scArea.Bottom - f_SetSec.Height;
-
-                    f_SetSec.AvaiSec = eSec;
-                    f_SetSec.DirectionName = "東";
-                    f_SetSec.IsArrow = true;
-                    f_SetSec.Location = new Point(xlocation, ylocation);
-                    f_SetSec.ShowDialog();
-                    eSec = f_SetSec.AvaiSec;                  // 東方向への進行可能秒数を取得
-                    pib_ESignal.BackgroundImage = backImage;  // ピクチャボックスの背景画像を元に戻す
+                    result = SetFormShow(SetMSec.EMSec, SetMSec.AMSec, "東", true,  pib_ESignal);  // 東車用信号機の設定値入力
                 }
-                else if (sender == lbl_WSignal || sender == lbl_WArrow  || 
-                         sender == pib_WGreen  || sender == pib_WYellow || sender == pib_WRed || sender == pib_WArrow)
+                else if (sender == lbl_WSignal || sender == lbl_WArrow || sender == pib_WGreen || sender == pib_WYellow || sender == pib_WRed || sender == pib_WArrow)
                 {
-                    // 西車用信号機の設定値入力
-                    Image backImage = pib_WSignal.BackgroundImage;           // 強調表示前の背景画像を取得
-                    pib_WSignal.BackgroundImage = SignalHilight(backImage);  // ピクチャボックスの背景画像を強調表示
-
-                    int xlocation = pnlTopLeft.X + pib_WSignal.Location.X + pib_WSignal.Width;  // 初期表示位置のx座標
-                    int ylocation = pnlTopLeft.Y + pib_WSignal.Location.Y;                      // 初期表示位置のy座標
-                    if (xlocation > scArea.Right  - f_SetSec.Width)  xlocation = scArea.Right  - f_SetSec.Width;
-                    if (ylocation > scArea.Bottom - f_SetSec.Height) ylocation = scArea.Bottom - f_SetSec.Height;
-
-                    f_SetSec.AvaiSec = wSec;
-                    f_SetSec.DirectionName = "西";
-                    f_SetSec.IsArrow = true;
-                    f_SetSec.Location = new Point(xlocation, ylocation);
-                    f_SetSec.ShowDialog();
-                    wSec = f_SetSec.AvaiSec;                  // 西方向への進行可能秒数を取得
-                    pib_WSignal.BackgroundImage = backImage;  // ピクチャボックスの背景画像を元に戻す
+                    result = SetFormShow(SetMSec.WMSec, SetMSec.AMSec, "西", true,  pib_WSignal);  // 西車用信号機の設定値入力
                 }
 
-                SetMSec = new WaitMSec(nSec, sSec, eSec, wSec, f_SetSec.ArrowSec);  // 設定値構造体の値を設定する
+                if (!result) MessageBox.Show("設定値入力フォームの表示でエラーが発生しました。", Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 string exStr = ex.Message + "\n設定値入力フォームの表示でエラーが発生しました。";
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// 設定値入力フォームを表示する
+        /// </summary>
+        /// <param name="avaiMSec"> 進行可能ミリ秒数                                </param>
+        /// <param name="arrMSec">  矢印信号機の点灯ミリ秒数                        </param>
+        /// <param name="dir">      方角を表す文字列                                </param>
+        /// <param name="isArrow">  trueで矢印信号機を有する、それ以外の場合はfalse </param>
+        /// <param name="pib">      背景画像の強調表示を行うピクチャボックス        </param>
+        /// <returns> 設定値入力フォームの表示に成功した場合はtrue、それ以外の場合はfalse </returns>
+        private bool SetFormShow(int avaiMSec, int arrMSec, string dir, bool isArrow, PictureBox pib)
+        {
+            try
+            {
+                // 交差点イメージ図の左上端の座標
+                Point pnlTopLeft = new Point(Location.X + grb_TrafficShow.Location.X + pnl_Traffic.Location.X,
+                                             Location.Y + grb_TrafficShow.Location.Y + pnl_Traffic.Location.Y);
+
+                int xlocation = pnlTopLeft.X + pib.Location.X + pib.Width;  // 初期表示位置のx座標
+                int ylocation = pnlTopLeft.Y + pib.Location.Y;              // 初期表示位置のy座標
+                Rectangle scArea = Screen.FromPoint(Location).WorkingArea;  // フォームを表示するスクリーンの作業領域を取得
+
+                Image backImage     = pib.BackgroundImage;       // 強調表示前の背景画像を取得
+                pib.BackgroundImage = SignalHilight(backImage);  // ピクチャボックスの背景画像を強調表示
+
+                // 設定値入力フォームを初期化
+                F_SetSec f_SetSec = new F_SetSec
+                {
+                    AvaiSec       = avaiMSec / 1000,
+                    ArrowSec      = arrMSec  / 1000,
+                    DirectionName = dir,
+                    IsArrow       = isArrow,
+                    IsEnable      = !IsTrafficEnable
+                };
+
+                // フォームの初期位置がスクリーンに収めるように初期位置を設定する
+                if (xlocation > scArea.Right  - f_SetSec.Width)  xlocation = scArea.Right  - f_SetSec.Width;
+                if (ylocation > scArea.Bottom - f_SetSec.Height) ylocation = scArea.Bottom - f_SetSec.Height; 
+                f_SetSec.Location = new Point(xlocation, ylocation);
+
+                f_SetSec.ShowDialog();  // 設定値入力フォームを表示
+
+                // 設定値構造体を初期化
+                if (pib == pib_NSignal) SetMSec = new WaitMSec(f_SetSec.AvaiSec * 1000, SetMSec.SMSec, SetMSec.EMSec, SetMSec.WMSec, f_SetSec.ArrowSec * 1000);
+                if (pib == pib_SSignal) SetMSec = new WaitMSec(SetMSec.NMSec, f_SetSec.AvaiSec * 1000, SetMSec.EMSec, SetMSec.WMSec, f_SetSec.ArrowSec * 1000);
+                if (pib == pib_ESignal) SetMSec = new WaitMSec(SetMSec.NMSec, SetMSec.SMSec, f_SetSec.AvaiSec * 1000, SetMSec.WMSec, f_SetSec.ArrowSec * 1000);
+                if (pib == pib_WSignal) SetMSec = new WaitMSec(SetMSec.NMSec, SetMSec.SMSec, SetMSec.EMSec, f_SetSec.AvaiSec * 1000, f_SetSec.ArrowSec * 1000);
+
+                pib.BackgroundImage = backImage;  // ピクチャボックスの背景画像を元に戻す
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 

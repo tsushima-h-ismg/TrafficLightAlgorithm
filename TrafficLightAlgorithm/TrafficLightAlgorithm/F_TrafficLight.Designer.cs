@@ -38,11 +38,11 @@
             this.lbl_EastDirection = new System.Windows.Forms.Label();
             this.grb_TrafficShow = new System.Windows.Forms.GroupBox();
             this.pnl_Traffic = new System.Windows.Forms.Panel();
+            this.lbl_NSignal = new System.Windows.Forms.Label();
             this.lbl_ESignal = new System.Windows.Forms.Label();
             this.lbl_WSignal = new System.Windows.Forms.Label();
             this.lbl_EArrow = new System.Windows.Forms.Label();
             this.lbl_WArrow = new System.Windows.Forms.Label();
-            this.lbl_NSignal = new System.Windows.Forms.Label();
             this.lbl_SSignal = new System.Windows.Forms.Label();
             this.pib_WArrow = new System.Windows.Forms.PictureBox();
             this.pib_NGreen = new System.Windows.Forms.PictureBox();
@@ -312,6 +312,16 @@
             this.pnl_Traffic.Size = new System.Drawing.Size(472, 410);
             this.pnl_Traffic.TabIndex = 5;
             // 
+            // lbl_NSignal
+            // 
+            this.lbl_NSignal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_NSignal.Location = new System.Drawing.Point(10, 0);
+            this.lbl_NSignal.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_NSignal.Name = "lbl_NSignal";
+            this.lbl_NSignal.Size = new System.Drawing.Size(63, 23);
+            this.lbl_NSignal.TabIndex = 30;
+            this.lbl_NSignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            // 
             // lbl_ESignal
             // 
             this.lbl_ESignal.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -351,16 +361,6 @@
             this.lbl_WArrow.Size = new System.Drawing.Size(16, 25);
             this.lbl_WArrow.TabIndex = 34;
             this.lbl_WArrow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
-            // 
-            // lbl_NSignal
-            // 
-            this.lbl_NSignal.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_NSignal.Location = new System.Drawing.Point(10, 0);
-            this.lbl_NSignal.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_NSignal.Name = "lbl_NSignal";
-            this.lbl_NSignal.Size = new System.Drawing.Size(63, 23);
-            this.lbl_NSignal.TabIndex = 30;
-            this.lbl_NSignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
             // lbl_SSignal
             // 
