@@ -41,11 +41,11 @@
         public WaitMSec(int nMSec, int sMSec, int eMSec, int wMSec, int aMSec)
         {
             // 秒数からミリ秒を算出する
-            NMSec = nMSec * 1000;
-            SMSec = sMSec * 1000;
-            EMSec = eMSec * 1000;
-            WMSec = wMSec * 1000;
-            AMSec = aMSec * 1000;
+            NMSec = nMSec;
+            SMSec = sMSec;
+            EMSec = eMSec;
+            WMSec = wMSec;
+            AMSec = aMSec;
         }
     }
 }

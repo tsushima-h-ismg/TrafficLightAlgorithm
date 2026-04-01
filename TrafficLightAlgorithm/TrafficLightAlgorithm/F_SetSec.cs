@@ -66,10 +66,10 @@ namespace TrafficLightAlgorithm
                 if (IsEnable) arrowEnable = IsArrow;  // IsEnableがtrueの場合に矢印信号機が存在するか判定する
 
                 lbl_SoftTitle.Text   = DirectionName + "信号機の設定値";  // フォームタイトルを取得
-              
+
                 txt_AvaiSec.Text     = AvaiSec.ToString();   // 進行可能秒数を取得
                 txt_AvaiSec.Enabled  = IsEnable;             // 設定値入力欄テキストボックスのEnabledプロパティ値設定
-
+                
                 txt_ArrowSec.Text    = ArrowSec.ToString();  // 矢印信号機点灯秒数を取得
                 txt_ArrowSec.Enabled = arrowEnable;          // 矢印信号機点灯秒数テキストボックスのEnabledプロパティ値設定
             }
@@ -93,16 +93,16 @@ namespace TrafficLightAlgorithm
                 if (!CheckSecText(txt_AvaiSec,  out int AvaiVal))  errMsg += $"「進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を入力してください。\n";
                 if (!CheckSecText(txt_ArrowSec, out int ArrowVal)) errMsg += $"「矢印信号機の点灯時間」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
 
-                // エラーメッセージ表示
-                if (errMsg != "")
+                if (errMsg == "")
                 {
-                    MessageBox.Show(errMsg, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                    AvaiSec  = AvaiVal;   // 設定値の値を取得する
+                    ArrowSec = ArrowVal;  // 矢印信号機の点灯秒数を取得する
+                    Close();
                 }
-
-                AvaiSec  = AvaiVal;   // 設定値の値を取得する
-                ArrowSec = ArrowVal;  // 矢印信号機の点灯秒数を取得する
-                Close();
+                else
+                {
+                    MessageBox.Show(errMsg, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);  // エラーメッセージ表示
+                }
             }
             catch (Exception ex)
             {
@@ -126,7 +126,7 @@ namespace TrafficLightAlgorithm
                 int maxVal = AvaiSecMax;  // 進行可能秒数の最大値を取得
                 int minVal = AvaiSecMin;  // 進行可能秒数の最小値を取得
 
-                // チェック対象テキストボックスが矢印信号機の点灯秒数入力欄の場合
+                // チェック対象テキストボックスが矢印信号機点灯秒数の入力欄の場合
                 if (txtBox == txt_ArrowSec)
                 {
                     maxVal = ArrowSecMax;  // 矢印信号機点灯秒数の最大値を取得
