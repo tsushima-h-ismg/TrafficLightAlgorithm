@@ -133,7 +133,7 @@ namespace TrafficLightAlgorithm
                     minVal = ArrowSecMin;  // 矢印信号機点灯秒数の最小値を取得
                 }
 
-                if (!double.TryParse(txtBox.Text, out double dbevalue)) return false;  // チェック対象文字列がdouble型に変換できない場合は終了する
+                if (!double.TryParse(txtBox.Text, out double dbevalue)) return false;  // Textプロパティ値がdouble型に変換できない場合は終了する
                 if (!int.TryParse(dbevalue.ToString(), out resultVal))  return false;  // double型から変換した文字列がint型に変換できない場合は終了する
                 if (resultVal < minVal || resultVal > maxVal)           return false;  // int型に変換した値がminValより小さい、もしくはmaxValより大きい場合は終了する
                 return true;
