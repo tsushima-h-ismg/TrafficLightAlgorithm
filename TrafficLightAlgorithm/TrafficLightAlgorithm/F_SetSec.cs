@@ -95,7 +95,7 @@ namespace TrafficLightAlgorithm
 
                 if (errMsg == "")
                 {
-                    AvaiSec  = AvaiVal;   // 設定値の値を取得する
+                    AvaiSec  = AvaiVal;   // 進行可能秒数を取得する
                     ArrowSec = ArrowVal;  // 矢印信号機の点灯秒数を取得する
                     Close();
                 }

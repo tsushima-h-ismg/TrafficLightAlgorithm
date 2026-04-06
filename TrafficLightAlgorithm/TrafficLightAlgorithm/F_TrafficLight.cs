@@ -16,7 +16,7 @@ namespace TrafficLightAlgorithm
         private const int YellowMSec      = 1000;
 
         /// <summary>
-        /// 車用信号機の点滅間隔ミリ秒
+        /// 歩行者用信号機の点滅間隔ミリ秒
         /// </summary>
         private const int BlinkMSec       = 500;
 
@@ -130,7 +130,7 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                // 設定値入力フォームを表示し、値を受け取る
+                // 設定値入力フォームを表示する
                 if (sender == lbl_NSignal || sender == pib_NGreen || sender == pib_NYellow || sender == pib_NRed)
                 {
                     SetFormShow(SetMSec.NMSec, SetMSec.AMSec, "北", false, pib_NSignal);  // 北車用信号機の設定値入力
@@ -162,7 +162,7 @@ namespace TrafficLightAlgorithm
         /// <param name="arrMSec">  矢印信号機の点灯ミリ秒数                        </param>
         /// <param name="dir">      方角を表す文字列                                </param>
         /// <param name="isArrow">  trueで矢印信号機を有する、それ以外の場合はfalse </param>
-        /// <param name="pib">      背景画像の強調表示を行うピクチャボックス        </param>
+        /// <param name="pib">      信号機イメージ画像を表示するピクチャボックス    </param>
         private void SetFormShow(int avaiMSec, int arrMSec, string dir, bool isArrow, PictureBox pib)
         {
             try
@@ -170,7 +170,7 @@ namespace TrafficLightAlgorithm
                 int clientleft = (Width - ClientSize.Width) / 2;                               // メインフォーム左端からクライアント領域左端までの横幅
                 int clientTop  = Height - ClientSize.Height - (Width - ClientSize.Width) / 2;  // メインフォーム上端からクライアント領域上端までの縦幅
 
-                // 信号機イメージ図の左上端の座標
+                // ピクチャボックスの左上端の座標
                 Point pibTopLeft = new Point(Location.X + clientleft + grb_TrafficShow.Location.X + pnl_Traffic.Location.X + pib.Location.X,
                                              Location.Y + clientTop  + grb_TrafficShow.Location.Y + pnl_Traffic.Location.Y + pib.Location.Y);
                 
@@ -190,10 +190,10 @@ namespace TrafficLightAlgorithm
                     ArrowSec      = arrMSec  / 1000,
                     DirectionName = dir,
                     IsArrow       = isArrow,
-                    IsEnable      = !IsTrafficEnable
+                    IsEnable      = !IsTrafficEnable 
                 };
                 
-                // 設定値入力フォームの画面全体がスクリーン内に収めるように初期位置を設定する
+                // 設定値入力フォームの画面全体がスクリーン内に収まるように初期位置を設定する
                 if (xlocation > scArea.Right  - f_SetSec.Width)  xlocation = scArea.Right  - f_SetSec.Width;
                 if (ylocation > scArea.Bottom - f_SetSec.Height) ylocation = scArea.Bottom - f_SetSec.Height; 
                 f_SetSec.Location = new Point(xlocation, ylocation);
@@ -209,7 +209,7 @@ namespace TrafficLightAlgorithm
                 if (pib == pib_ESignal) SetMSec = new WaitMSec(SetMSec.NMSec, SetMSec.SMSec, avaimsec,      SetMSec.WMSec, arrmsec);
                 if (pib == pib_WSignal) SetMSec = new WaitMSec(SetMSec.NMSec, SetMSec.SMSec, SetMSec.EMSec, avaimsec,      arrmsec);
 
-                pib.BackgroundImage = backImage;  // ピクチャボックスの背景画像を元に戻す
+                pib.BackgroundImage = backImage;  // ピクチャボックスの背景画像を強調表示前の画像に戻す
             }
             catch (Exception ex)
             {
@@ -273,7 +273,7 @@ namespace TrafficLightAlgorithm
 
                 ChangeTextInterruptResumeBtn(false);          // 「中断/再開」ボタンのTextプロパティ値変更
                 PhaseList = CreateTrafficPhaseList(SetMSec);  // フェーズリスト作成
-                if (PhaseList == null) return;
+                if (PhaseList == null) return;                // フェーズリストが作成できなかった場合は終了する
                 
                 IsTrafficEnable = true;          // 信号機アルゴリズムが動く場合のブール値に設定する
                 IsInterrupt     = false;         // 信号機アルゴリズムの中断を無効にする
@@ -573,7 +573,6 @@ namespace TrafficLightAlgorithm
 
                         foreach (TrafficCommand command in phases[i].Commands)
                         {
-                            // 点灯状態の更新でfalseが戻り値の場合は終了する
                             if (command.Signal == Signal.CarNorth)
                             {
                                 if (!ChangeSignalLightOn(command.State, pib_NGreen, pib_NYellow, pib_NRed, null)) return;  // 北方向の車用信号機の点灯状態更新
@@ -630,20 +629,20 @@ namespace TrafficLightAlgorithm
         }
 
         /// <summary>
-        /// リストボックスに状態変更履歴を表す文字列を追加する
+        /// リストボックスに点灯状態変更の内容を表す文字列を追加する
         /// </summary>
         /// <param name="phaseNum"> 信号機アルゴリズムの点灯フェーズを表す番号 </param>
         /// <param name="phases">   信号機アルゴリズムの点灯フェーズリスト     </param>
-        /// <returns> 状態変更履歴の追加に成功した場合はtrue、それ以外の場合はfalse </returns>
+        /// <returns> 文字列追加に成功した場合はtrue、それ以外の場合はfalse </returns>
         private bool AddStateRecord(int phaseNum, List<TrafficPhase> phases)
         {
             try
             {
-                // 待機ミリ秒がBlinkMSecより大きい、もしくは最初の点滅フェーズの場合、点灯状態変更履歴をリストボックスに追加する
+                // 待機ミリ秒がBlinkMSecより大きい、もしくは最初の点滅フェーズの場合、点灯状態変更の内容をリストボックスに追加する
                 if (phases[phaseNum].WaitMSec > BlinkMSec || 
                     (phases[phaseNum - 1].WaitMSec > BlinkMSec && phases[phaseNum].WaitMSec == BlinkMSec))
                 {
-                    lbx_StateRecord.Items.Add(lbx_StateRecord.Items.Count + "：" + ReturnRecord(phases[phaseNum]));  // 点灯状態変更履歴をリストボックスに追加する
+                    lbx_StateRecord.Items.Add(lbx_StateRecord.Items.Count + "：" + ReturnRecord(phases[phaseNum]));  // 点灯状態変更の内容をリストボックスに追加する
                     lbx_StateRecord.TopIndex = lbx_StateRecord.Items.Count - 1;                                      // 最新の履歴を表示する
                 }
 
@@ -680,9 +679,9 @@ namespace TrafficLightAlgorithm
                 if (signals.Length >= 2 && states[0] == states[1])
                 {
                     // 点灯状態が変わる信号機の数が２以上、点灯状態が１種類の場合
-                    string sigStr   = SignalToStr(states[0], signals);  // 信号機を表す文字列
-                    string stateStr = LightStateToStr(states[0]);       // 信号機の点灯色を表す文字列
-                    if (sigStr == "" || stateStr == "") return "";      // 信号機や点灯色を表す文字列のどちらかが空白の場合は終了する
+                    string sigStr   = SignalToStr(states[0], signals);  // 信号機を表す文字列を取得する
+                    string stateStr = LightStateToStr(states[0]);       // 信号機の点灯色を表す文字列を取得する
+                    if (sigStr == "" || stateStr == "") return "";      // 信号機と点灯色のどちらかが取得できなかった場合は終了する
 
                     if (mSec == BlinkMSec)
                     {
@@ -701,9 +700,9 @@ namespace TrafficLightAlgorithm
 
                     for (int j = 0; j < states.Length; j++)
                     {
-                        string sigStr   = SignalToStr(states[j], signals[j]);  // 信号機を表す文字列
-                        string stateStr = LightStateToStr(states[j]);          // 信号機の点灯色を表す文字列
-                        if (sigStr == "" || stateStr == "") return "";         // 信号機や点灯色を表す文字列のどちらかが空白の場合は終了する
+                        string sigStr   = SignalToStr(states[j], signals[j]);  // 信号機を表す文字列を取得する
+                        string stateStr = LightStateToStr(states[j]);          // 信号機の点灯色を表す文字列を取得する
+                        if (sigStr == "" || stateStr == "") return "";         // 信号機と点灯色のどちらかが取得できなかった場合は終了する
 
                         recStr += sigStr + "が" + stateStr;          // 信号機と色を表す文字列を追加
                         if (j != states.Length - 1) recStr += "・";  // 「・」で信号機の名称と点灯状態を区切る
@@ -732,7 +731,7 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                if (signals.Length == Enum.GetValues(typeof(Signal)).Length) return "全信号機";  // 配列の長さが列挙型の値の個数と一致する場合は終了する
+                if (signals.Length == Enum.GetValues(typeof(Signal)).Length) return "全信号機";  // 配列の長さが列挙型の値の数と一致する場合は終了する
 
                 List<Signal> sigList = new List<Signal>(signals);  // 配列をリストに変換する
                 string carSigStr = "";                             // 車用信号機を表す文字列が入る
