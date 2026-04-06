@@ -75,7 +75,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\n設定値入力フォームのロードでエラーが発生しました。";
+                string exStr = "設定値入力フォームのロードでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -106,7 +106,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\n「確定」ボタンクリックでエラーが発生しました。";
+                string exStr = "「確定」ボタンクリックでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

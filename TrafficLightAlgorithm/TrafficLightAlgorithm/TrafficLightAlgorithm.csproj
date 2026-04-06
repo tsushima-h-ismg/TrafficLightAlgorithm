@@ -108,14 +108,17 @@
     <None Include="Resources\SignalGreen.png" />
     <None Include="Resources\SignalYellow.png" />
     <None Include="Resources\SignalRed.png" />
-    <None Include="Resources\ArrowSignal.png" />
     <None Include="Resources\SoftTitle.png" />
-    <None Include="Resources\SignalPoleNS.png" />
-    <None Include="Resources\SignalPoleEW.png" />
-    <None Include="Resources\SignalPedesTwo.png" />
-    <None Include="Resources\SignalPedesOne.png" />
     <None Include="Resources\TrafficBackground.png" />
     <None Include="Resources\SetFormTitle.png" />
+    <None Include="Resources\ArrowWSignal.png" />
+    <None Include="Resources\ArrowESignal.png" />
+    <None Include="Resources\PedesGreenRotate180.png" />
+    <None Include="Resources\PedesRedRotate180.png" />
+    <None Include="Resources\PedesRedRotate90.png" />
+    <None Include="Resources\PedesGreenRotate90.png" />
+    <None Include="Resources\PedesGreenRotate270.png" />
+    <None Include="Resources\PedesRedRotate270.png" />
     <Content Include="Signal_Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

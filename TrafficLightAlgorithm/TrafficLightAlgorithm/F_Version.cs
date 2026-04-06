@@ -33,7 +33,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\nバージョン情報フォームのロードでエラーが発生しました。";
+                string exStr = "バージョン情報フォームのロードでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -49,7 +49,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\nバージョン情報フォーム終了でエラーが発生しました。";
+                string exStr = "バージョン情報フォーム終了でエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
