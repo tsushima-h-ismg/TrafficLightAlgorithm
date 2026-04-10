@@ -121,23 +121,26 @@
   <data name="SignalYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SignalYellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PedesGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PedesGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SetFormTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SetFormTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ArrowESignal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ArrowESignal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PedesRedRotate90" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PedesRedRotate90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="TrafficBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TrafficBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SignalPoleN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalPoleN.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SignalGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SignalGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SignalPoleW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalPoleW.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SignalPoleE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalPoleE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SignalRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SignalRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,25 +148,22 @@
   <data name="SoftTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SoftTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SignalPoleS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalPoleS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NSignalHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NSignalHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ArrowWSignal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ArrowWSignal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PedesGreenRotate180" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PedesGreenRotate180.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ESignalHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ESignalHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PedesGreenRotate270" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PedesGreenRotate270.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SSignalHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SSignalHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PedesRedRotate180" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PedesRedRotate180.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PedesRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PedesRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PedesGreenRotate90" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PedesGreenRotate90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PedesRedRotate270" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PedesRedRotate270.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="WSignalHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WSignalHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

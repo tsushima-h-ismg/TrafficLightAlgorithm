@@ -70,10 +70,14 @@
             this.pib_PEGreOne = new System.Windows.Forms.PictureBox();
             this.lbl_NSignal = new System.Windows.Forms.Label();
             this.lbl_ESignal = new System.Windows.Forms.Label();
-            this.lbl_WSignal = new System.Windows.Forms.Label();
-            this.lbl_SSignal = new System.Windows.Forms.Label();
             this.lbl_EArrow = new System.Windows.Forms.Label();
+            this.lbl_WSignal = new System.Windows.Forms.Label();
             this.lbl_WArrow = new System.Windows.Forms.Label();
+            this.lbl_SSignal = new System.Windows.Forms.Label();
+            this.pib_NSignal = new System.Windows.Forms.PictureBox();
+            this.pib_ESignal = new System.Windows.Forms.PictureBox();
+            this.pib_SSignal = new System.Windows.Forms.PictureBox();
+            this.pib_WSignal = new System.Windows.Forms.PictureBox();
             this.lbx_StateRecord = new System.Windows.Forms.ListBox();
             this.grb_StateRecord = new System.Windows.Forms.GroupBox();
             this.lbl_SoftTitle = new System.Windows.Forms.Label();
@@ -109,6 +113,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pib_PWGreOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PERedOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PEGreOne)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_NSignal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_ESignal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_SSignal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_WSignal)).BeginInit();
             this.grb_StateRecord.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -266,10 +274,14 @@
             this.pnl_Traffic.Controls.Add(this.pib_PEGreOne);
             this.pnl_Traffic.Controls.Add(this.lbl_NSignal);
             this.pnl_Traffic.Controls.Add(this.lbl_ESignal);
-            this.pnl_Traffic.Controls.Add(this.lbl_WSignal);
-            this.pnl_Traffic.Controls.Add(this.lbl_SSignal);
             this.pnl_Traffic.Controls.Add(this.lbl_EArrow);
+            this.pnl_Traffic.Controls.Add(this.lbl_WSignal);
             this.pnl_Traffic.Controls.Add(this.lbl_WArrow);
+            this.pnl_Traffic.Controls.Add(this.lbl_SSignal);
+            this.pnl_Traffic.Controls.Add(this.pib_NSignal);
+            this.pnl_Traffic.Controls.Add(this.pib_ESignal);
+            this.pnl_Traffic.Controls.Add(this.pib_SSignal);
+            this.pnl_Traffic.Controls.Add(this.pib_WSignal);
             this.pnl_Traffic.Location = new System.Drawing.Point(32, 44);
             this.pnl_Traffic.Margin = new System.Windows.Forms.Padding(0);
             this.pnl_Traffic.Name = "pnl_Traffic";
@@ -297,7 +309,7 @@
             this.pib_NGreen.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_NGreen.BackgroundImage")));
             this.pib_NGreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_NGreen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pib_NGreen.Location = new System.Drawing.Point(189, 108);
+            this.pib_NGreen.Location = new System.Drawing.Point(4, 8);
             this.pib_NGreen.Margin = new System.Windows.Forms.Padding(0);
             this.pib_NGreen.Name = "pib_NGreen";
             this.pib_NGreen.Size = new System.Drawing.Size(16, 12);
@@ -313,7 +325,7 @@
             this.pib_NYellow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_NYellow.BackgroundImage")));
             this.pib_NYellow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_NYellow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pib_NYellow.Location = new System.Drawing.Point(208, 108);
+            this.pib_NYellow.Location = new System.Drawing.Point(23, 8);
             this.pib_NYellow.Margin = new System.Windows.Forms.Padding(0);
             this.pib_NYellow.Name = "pib_NYellow";
             this.pib_NYellow.Size = new System.Drawing.Size(16, 12);
@@ -329,7 +341,7 @@
             this.pib_NRed.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_NRed.BackgroundImage")));
             this.pib_NRed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_NRed.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pib_NRed.Location = new System.Drawing.Point(227, 108);
+            this.pib_NRed.Location = new System.Drawing.Point(43, 8);
             this.pib_NRed.Margin = new System.Windows.Forms.Padding(0);
             this.pib_NRed.Name = "pib_NRed";
             this.pib_NRed.Size = new System.Drawing.Size(16, 12);
@@ -345,7 +357,7 @@
             this.pib_WGreen.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_WGreen.BackgroundImage")));
             this.pib_WGreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_WGreen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pib_WGreen.Location = new System.Drawing.Point(137, 235);
+            this.pib_WGreen.Location = new System.Drawing.Point(8, 44);
             this.pib_WGreen.Margin = new System.Windows.Forms.Padding(0);
             this.pib_WGreen.Name = "pib_WGreen";
             this.pib_WGreen.Size = new System.Drawing.Size(12, 16);
@@ -361,7 +373,7 @@
             this.pib_WYellow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_WYellow.BackgroundImage")));
             this.pib_WYellow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_WYellow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pib_WYellow.Location = new System.Drawing.Point(137, 216);
+            this.pib_WYellow.Location = new System.Drawing.Point(8, 24);
             this.pib_WYellow.Margin = new System.Windows.Forms.Padding(0);
             this.pib_WYellow.Name = "pib_WYellow";
             this.pib_WYellow.Size = new System.Drawing.Size(12, 16);
@@ -377,7 +389,7 @@
             this.pib_WRed.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_WRed.BackgroundImage")));
             this.pib_WRed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_WRed.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pib_WRed.Location = new System.Drawing.Point(137, 197);
+            this.pib_WRed.Location = new System.Drawing.Point(8, 5);
             this.pib_WRed.Margin = new System.Windows.Forms.Padding(0);
             this.pib_WRed.Name = "pib_WRed";
             this.pib_WRed.Size = new System.Drawing.Size(12, 16);
@@ -393,7 +405,7 @@
             this.pib_SGreen.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_SGreen.BackgroundImage")));
             this.pib_SGreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_SGreen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pib_SGreen.Location = new System.Drawing.Point(267, 292);
+            this.pib_SGreen.Location = new System.Drawing.Point(43, 2);
             this.pib_SGreen.Margin = new System.Windows.Forms.Padding(0);
             this.pib_SGreen.Name = "pib_SGreen";
             this.pib_SGreen.Size = new System.Drawing.Size(16, 12);
@@ -409,7 +421,7 @@
             this.pib_SYellow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_SYellow.BackgroundImage")));
             this.pib_SYellow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_SYellow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pib_SYellow.Location = new System.Drawing.Point(248, 292);
+            this.pib_SYellow.Location = new System.Drawing.Point(24, 2);
             this.pib_SYellow.Margin = new System.Windows.Forms.Padding(0);
             this.pib_SYellow.Name = "pib_SYellow";
             this.pib_SYellow.Size = new System.Drawing.Size(16, 12);
@@ -425,7 +437,7 @@
             this.pib_SRed.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_SRed.BackgroundImage")));
             this.pib_SRed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_SRed.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pib_SRed.Location = new System.Drawing.Point(229, 292);
+            this.pib_SRed.Location = new System.Drawing.Point(5, 2);
             this.pib_SRed.Margin = new System.Windows.Forms.Padding(0);
             this.pib_SRed.Name = "pib_SRed";
             this.pib_SRed.Size = new System.Drawing.Size(16, 12);
@@ -441,7 +453,7 @@
             this.pib_EGreen.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_EGreen.BackgroundImage")));
             this.pib_EGreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_EGreen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pib_EGreen.Location = new System.Drawing.Point(323, 159);
+            this.pib_EGreen.Location = new System.Drawing.Point(3, 3);
             this.pib_EGreen.Margin = new System.Windows.Forms.Padding(0);
             this.pib_EGreen.Name = "pib_EGreen";
             this.pib_EGreen.Size = new System.Drawing.Size(12, 16);
@@ -457,7 +469,7 @@
             this.pib_EYellow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_EYellow.BackgroundImage")));
             this.pib_EYellow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_EYellow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pib_EYellow.Location = new System.Drawing.Point(323, 178);
+            this.pib_EYellow.Location = new System.Drawing.Point(3, 22);
             this.pib_EYellow.Margin = new System.Windows.Forms.Padding(0);
             this.pib_EYellow.Name = "pib_EYellow";
             this.pib_EYellow.Size = new System.Drawing.Size(12, 16);
@@ -473,7 +485,7 @@
             this.pib_ERed.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_ERed.BackgroundImage")));
             this.pib_ERed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_ERed.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pib_ERed.Location = new System.Drawing.Point(323, 197);
+            this.pib_ERed.Location = new System.Drawing.Point(3, 41);
             this.pib_ERed.Margin = new System.Windows.Forms.Padding(0);
             this.pib_ERed.Name = "pib_ERed";
             this.pib_ERed.Size = new System.Drawing.Size(12, 16);
@@ -501,231 +513,199 @@
             // pib_PSRedOne
             // 
             this.pib_PSRedOne.BackColor = System.Drawing.Color.Black;
-            this.pib_PSRedOne.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_PSRedOne.BackgroundImage")));
             this.pib_PSRedOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_PSRedOne.Location = new System.Drawing.Point(321, 344);
             this.pib_PSRedOne.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PSRedOne.Name = "pib_PSRedOne";
-            this.pib_PSRedOne.Size = new System.Drawing.Size(11, 14);
+            this.pib_PSRedOne.Size = new System.Drawing.Size(12, 14);
             this.pib_PSRedOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PSRedOne.TabIndex = 217;
             this.pib_PSRedOne.TabStop = false;
-            this.pib_PSRedOne.Visible = false;
             // 
             // pib_PSGreOne
             // 
             this.pib_PSGreOne.BackColor = System.Drawing.Color.Black;
-            this.pib_PSGreOne.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_PSGreOne.BackgroundImage")));
             this.pib_PSGreOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PSGreOne.Location = new System.Drawing.Point(308, 344);
+            this.pib_PSGreOne.Location = new System.Drawing.Point(307, 344);
             this.pib_PSGreOne.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PSGreOne.Name = "pib_PSGreOne";
-            this.pib_PSGreOne.Size = new System.Drawing.Size(11, 14);
+            this.pib_PSGreOne.Size = new System.Drawing.Size(12, 14);
             this.pib_PSGreOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PSGreOne.TabIndex = 216;
             this.pib_PSGreOne.TabStop = false;
-            this.pib_PSGreOne.Visible = false;
             // 
             // pib_PSRedTwo
             // 
             this.pib_PSRedTwo.BackColor = System.Drawing.Color.Black;
-            this.pib_PSRedTwo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_PSRedTwo.BackgroundImage")));
             this.pib_PSRedTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PSRedTwo.Location = new System.Drawing.Point(140, 344);
+            this.pib_PSRedTwo.Location = new System.Drawing.Point(139, 344);
             this.pib_PSRedTwo.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PSRedTwo.Name = "pib_PSRedTwo";
-            this.pib_PSRedTwo.Size = new System.Drawing.Size(11, 14);
+            this.pib_PSRedTwo.Size = new System.Drawing.Size(12, 14);
             this.pib_PSRedTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PSRedTwo.TabIndex = 215;
             this.pib_PSRedTwo.TabStop = false;
-            this.pib_PSRedTwo.Visible = false;
             // 
             // pib_PSGreTwo
             // 
             this.pib_PSGreTwo.BackColor = System.Drawing.Color.Black;
-            this.pib_PSGreTwo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_PSGreTwo.BackgroundImage")));
             this.pib_PSGreTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_PSGreTwo.Location = new System.Drawing.Point(153, 344);
             this.pib_PSGreTwo.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PSGreTwo.Name = "pib_PSGreTwo";
-            this.pib_PSGreTwo.Size = new System.Drawing.Size(11, 14);
+            this.pib_PSGreTwo.Size = new System.Drawing.Size(12, 14);
             this.pib_PSGreTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PSGreTwo.TabIndex = 214;
             this.pib_PSGreTwo.TabStop = false;
-            this.pib_PSGreTwo.Visible = false;
             // 
             // pib_PNRedOne
             // 
             this.pib_PNRedOne.BackColor = System.Drawing.Color.Black;
-            this.pib_PNRedOne.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesRedRotate90;
             this.pib_PNRedOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_PNRedOne.Location = new System.Drawing.Point(321, 52);
             this.pib_PNRedOne.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PNRedOne.Name = "pib_PNRedOne";
-            this.pib_PNRedOne.Size = new System.Drawing.Size(11, 14);
+            this.pib_PNRedOne.Size = new System.Drawing.Size(12, 14);
             this.pib_PNRedOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PNRedOne.TabIndex = 213;
             this.pib_PNRedOne.TabStop = false;
-            this.pib_PNRedOne.Visible = false;
             // 
             // pib_PNGreOne
             // 
             this.pib_PNGreOne.BackColor = System.Drawing.Color.Black;
-            this.pib_PNGreOne.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesGreenRotate90;
             this.pib_PNGreOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PNGreOne.Location = new System.Drawing.Point(308, 52);
+            this.pib_PNGreOne.Location = new System.Drawing.Point(307, 52);
             this.pib_PNGreOne.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PNGreOne.Name = "pib_PNGreOne";
-            this.pib_PNGreOne.Size = new System.Drawing.Size(11, 14);
+            this.pib_PNGreOne.Size = new System.Drawing.Size(12, 14);
             this.pib_PNGreOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PNGreOne.TabIndex = 212;
             this.pib_PNGreOne.TabStop = false;
-            this.pib_PNGreOne.Visible = false;
             // 
             // pib_PNRedTwo
             // 
             this.pib_PNRedTwo.BackColor = System.Drawing.Color.Black;
-            this.pib_PNRedTwo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_PNRedTwo.BackgroundImage")));
             this.pib_PNRedTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PNRedTwo.Location = new System.Drawing.Point(140, 52);
+            this.pib_PNRedTwo.Location = new System.Drawing.Point(139, 52);
             this.pib_PNRedTwo.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PNRedTwo.Name = "pib_PNRedTwo";
-            this.pib_PNRedTwo.Size = new System.Drawing.Size(11, 14);
+            this.pib_PNRedTwo.Size = new System.Drawing.Size(12, 14);
             this.pib_PNRedTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PNRedTwo.TabIndex = 206;
             this.pib_PNRedTwo.TabStop = false;
-            this.pib_PNRedTwo.Visible = false;
             // 
             // pib_PNGreTwo
             // 
             this.pib_PNGreTwo.BackColor = System.Drawing.Color.Black;
-            this.pib_PNGreTwo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_PNGreTwo.BackgroundImage")));
             this.pib_PNGreTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_PNGreTwo.Location = new System.Drawing.Point(153, 52);
             this.pib_PNGreTwo.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PNGreTwo.Name = "pib_PNGreTwo";
-            this.pib_PNGreTwo.Size = new System.Drawing.Size(11, 14);
+            this.pib_PNGreTwo.Size = new System.Drawing.Size(12, 14);
             this.pib_PNGreTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PNGreTwo.TabIndex = 205;
             this.pib_PNGreTwo.TabStop = false;
-            this.pib_PNGreTwo.Visible = false;
             // 
             // pib_PERedTwo
             // 
             this.pib_PERedTwo.BackColor = System.Drawing.Color.Black;
-            this.pib_PERedTwo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_PERedTwo.BackgroundImage")));
             this.pib_PERedTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_PERedTwo.Location = new System.Drawing.Point(376, 291);
             this.pib_PERedTwo.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PERedTwo.Name = "pib_PERedTwo";
-            this.pib_PERedTwo.Size = new System.Drawing.Size(14, 11);
+            this.pib_PERedTwo.Size = new System.Drawing.Size(14, 12);
             this.pib_PERedTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PERedTwo.TabIndex = 211;
             this.pib_PERedTwo.TabStop = false;
-            this.pib_PERedTwo.Visible = false;
             // 
             // pib_PEGreTwo
             // 
             this.pib_PEGreTwo.BackColor = System.Drawing.Color.Black;
-            this.pib_PEGreTwo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_PEGreTwo.BackgroundImage")));
             this.pib_PEGreTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PEGreTwo.Location = new System.Drawing.Point(376, 277);
+            this.pib_PEGreTwo.Location = new System.Drawing.Point(376, 276);
             this.pib_PEGreTwo.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PEGreTwo.Name = "pib_PEGreTwo";
-            this.pib_PEGreTwo.Size = new System.Drawing.Size(14, 11);
+            this.pib_PEGreTwo.Size = new System.Drawing.Size(14, 12);
             this.pib_PEGreTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PEGreTwo.TabIndex = 210;
             this.pib_PEGreTwo.TabStop = false;
-            this.pib_PEGreTwo.Visible = false;
             // 
             // pib_PWRedTwo
             // 
             this.pib_PWRedTwo.BackColor = System.Drawing.Color.Black;
-            this.pib_PWRedTwo.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesRedRotate180;
             this.pib_PWRedTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_PWRedTwo.Location = new System.Drawing.Point(82, 291);
             this.pib_PWRedTwo.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PWRedTwo.Name = "pib_PWRedTwo";
-            this.pib_PWRedTwo.Size = new System.Drawing.Size(14, 11);
+            this.pib_PWRedTwo.Size = new System.Drawing.Size(14, 12);
             this.pib_PWRedTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PWRedTwo.TabIndex = 209;
             this.pib_PWRedTwo.TabStop = false;
-            this.pib_PWRedTwo.Visible = false;
             // 
             // pib_PWGreTwo
             // 
             this.pib_PWGreTwo.BackColor = System.Drawing.Color.Black;
-            this.pib_PWGreTwo.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesGreenRotate180;
             this.pib_PWGreTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PWGreTwo.Location = new System.Drawing.Point(82, 277);
+            this.pib_PWGreTwo.Location = new System.Drawing.Point(82, 276);
             this.pib_PWGreTwo.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PWGreTwo.Name = "pib_PWGreTwo";
-            this.pib_PWGreTwo.Size = new System.Drawing.Size(14, 11);
+            this.pib_PWGreTwo.Size = new System.Drawing.Size(14, 12);
             this.pib_PWGreTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PWGreTwo.TabIndex = 208;
             this.pib_PWGreTwo.TabStop = false;
-            this.pib_PWGreTwo.Visible = false;
             // 
             // pib_PWRedOne
             // 
             this.pib_PWRedOne.BackColor = System.Drawing.Color.Black;
-            this.pib_PWRedOne.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_PWRedOne.BackgroundImage")));
             this.pib_PWRedOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_PWRedOne.Location = new System.Drawing.Point(82, 110);
             this.pib_PWRedOne.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PWRedOne.Name = "pib_PWRedOne";
-            this.pib_PWRedOne.Size = new System.Drawing.Size(14, 11);
+            this.pib_PWRedOne.Size = new System.Drawing.Size(14, 12);
             this.pib_PWRedOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PWRedOne.TabIndex = 206;
             this.pib_PWRedOne.TabStop = false;
-            this.pib_PWRedOne.Visible = false;
             // 
             // pib_PWGreOne
             // 
             this.pib_PWGreOne.BackColor = System.Drawing.Color.Black;
-            this.pib_PWGreOne.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_PWGreOne.BackgroundImage")));
             this.pib_PWGreOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_PWGreOne.Location = new System.Drawing.Point(82, 124);
             this.pib_PWGreOne.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PWGreOne.Name = "pib_PWGreOne";
-            this.pib_PWGreOne.Size = new System.Drawing.Size(14, 11);
+            this.pib_PWGreOne.Size = new System.Drawing.Size(14, 12);
             this.pib_PWGreOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PWGreOne.TabIndex = 205;
             this.pib_PWGreOne.TabStop = false;
-            this.pib_PWGreOne.Visible = false;
             // 
             // pib_PERedOne
             // 
             this.pib_PERedOne.BackColor = System.Drawing.Color.Black;
-            this.pib_PERedOne.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesRed;
             this.pib_PERedOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_PERedOne.Location = new System.Drawing.Point(376, 110);
             this.pib_PERedOne.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PERedOne.Name = "pib_PERedOne";
-            this.pib_PERedOne.Size = new System.Drawing.Size(14, 11);
+            this.pib_PERedOne.Size = new System.Drawing.Size(14, 12);
             this.pib_PERedOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PERedOne.TabIndex = 204;
             this.pib_PERedOne.TabStop = false;
-            this.pib_PERedOne.Visible = false;
             // 
             // pib_PEGreOne
             // 
             this.pib_PEGreOne.BackColor = System.Drawing.Color.Black;
-            this.pib_PEGreOne.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesGreen;
             this.pib_PEGreOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pib_PEGreOne.Location = new System.Drawing.Point(376, 124);
             this.pib_PEGreOne.Margin = new System.Windows.Forms.Padding(0);
             this.pib_PEGreOne.Name = "pib_PEGreOne";
-            this.pib_PEGreOne.Size = new System.Drawing.Size(14, 11);
+            this.pib_PEGreOne.Size = new System.Drawing.Size(14, 12);
             this.pib_PEGreOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_PEGreOne.TabIndex = 203;
             this.pib_PEGreOne.TabStop = false;
-            this.pib_PEGreOne.Visible = false;
             // 
             // lbl_NSignal
             // 
             this.lbl_NSignal.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_NSignal.Location = new System.Drawing.Point(185, 102);
+            this.lbl_NSignal.Location = new System.Drawing.Point(10, 0);
             this.lbl_NSignal.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NSignal.Name = "lbl_NSignal";
             this.lbl_NSignal.Size = new System.Drawing.Size(63, 20);
@@ -735,52 +715,92 @@
             // lbl_ESignal
             // 
             this.lbl_ESignal.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_ESignal.Location = new System.Drawing.Point(321, 156);
+            this.lbl_ESignal.Location = new System.Drawing.Point(29, 12);
             this.lbl_ESignal.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_ESignal.Name = "lbl_ESignal";
             this.lbl_ESignal.Size = new System.Drawing.Size(20, 63);
             this.lbl_ESignal.TabIndex = 31;
             this.lbl_ESignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
-            // lbl_WSignal
-            // 
-            this.lbl_WSignal.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_WSignal.Location = new System.Drawing.Point(130, 193);
-            this.lbl_WSignal.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_WSignal.Name = "lbl_WSignal";
-            this.lbl_WSignal.Size = new System.Drawing.Size(20, 63);
-            this.lbl_WSignal.TabIndex = 33;
-            this.lbl_WSignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
-            // 
-            // lbl_SSignal
-            // 
-            this.lbl_SSignal.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_SSignal.Location = new System.Drawing.Point(224, 290);
-            this.lbl_SSignal.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_SSignal.Name = "lbl_SSignal";
-            this.lbl_SSignal.Size = new System.Drawing.Size(63, 20);
-            this.lbl_SSignal.TabIndex = 32;
-            this.lbl_SSignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
-            // 
             // lbl_EArrow
             // 
             this.lbl_EArrow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_EArrow.Location = new System.Drawing.Point(306, 195);
+            this.lbl_EArrow.Location = new System.Drawing.Point(14, 51);
             this.lbl_EArrow.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EArrow.Name = "lbl_EArrow";
             this.lbl_EArrow.Size = new System.Drawing.Size(16, 20);
             this.lbl_EArrow.TabIndex = 32;
             this.lbl_EArrow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
             // 
+            // lbl_WSignal
+            // 
+            this.lbl_WSignal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_WSignal.Location = new System.Drawing.Point(0, 0);
+            this.lbl_WSignal.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_WSignal.Name = "lbl_WSignal";
+            this.lbl_WSignal.Size = new System.Drawing.Size(20, 63);
+            this.lbl_WSignal.TabIndex = 33;
+            this.lbl_WSignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            // 
             // lbl_WArrow
             // 
             this.lbl_WArrow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_WArrow.Location = new System.Drawing.Point(151, 197);
+            this.lbl_WArrow.Location = new System.Drawing.Point(23, 5);
             this.lbl_WArrow.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WArrow.Name = "lbl_WArrow";
             this.lbl_WArrow.Size = new System.Drawing.Size(16, 20);
             this.lbl_WArrow.TabIndex = 34;
             this.lbl_WArrow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            // 
+            // lbl_SSignal
+            // 
+            this.lbl_SSignal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_SSignal.Location = new System.Drawing.Point(0, 30);
+            this.lbl_SSignal.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_SSignal.Name = "lbl_SSignal";
+            this.lbl_SSignal.Size = new System.Drawing.Size(63, 20);
+            this.lbl_SSignal.TabIndex = 32;
+            this.lbl_SSignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            // 
+            // pib_NSignal
+            // 
+            this.pib_NSignal.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.SignalPoleN;
+            this.pib_NSignal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pib_NSignal.Location = new System.Drawing.Point(175, 100);
+            this.pib_NSignal.Name = "pib_NSignal";
+            this.pib_NSignal.Size = new System.Drawing.Size(75, 52);
+            this.pib_NSignal.TabIndex = 231;
+            this.pib_NSignal.TabStop = false;
+            // 
+            // pib_ESignal
+            // 
+            this.pib_ESignal.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.SignalPoleE;
+            this.pib_ESignal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pib_ESignal.Location = new System.Drawing.Point(292, 144);
+            this.pib_ESignal.Name = "pib_ESignal";
+            this.pib_ESignal.Size = new System.Drawing.Size(52, 75);
+            this.pib_ESignal.TabIndex = 232;
+            this.pib_ESignal.TabStop = false;
+            // 
+            // pib_SSignal
+            // 
+            this.pib_SSignal.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.SignalPoleS;
+            this.pib_SSignal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pib_SSignal.Location = new System.Drawing.Point(224, 260);
+            this.pib_SSignal.Name = "pib_SSignal";
+            this.pib_SSignal.Size = new System.Drawing.Size(75, 52);
+            this.pib_SSignal.TabIndex = 234;
+            this.pib_SSignal.TabStop = false;
+            // 
+            // pib_WSignal
+            // 
+            this.pib_WSignal.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.SignalPoleW;
+            this.pib_WSignal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pib_WSignal.Location = new System.Drawing.Point(128, 192);
+            this.pib_WSignal.Name = "pib_WSignal";
+            this.pib_WSignal.Size = new System.Drawing.Size(52, 75);
+            this.pib_WSignal.TabIndex = 233;
+            this.pib_WSignal.TabStop = false;
             // 
             // lbx_StateRecord
             // 
@@ -876,6 +896,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pib_PWGreOne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PERedOne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PEGreOne)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_NSignal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_ESignal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_SSignal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_WSignal)).EndInit();
             this.grb_StateRecord.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -941,6 +965,10 @@
         private System.Windows.Forms.Label lbl_WSignal;
         private System.Windows.Forms.Label lbl_EArrow;
         private System.Windows.Forms.Label lbl_WArrow;
+        private System.Windows.Forms.PictureBox pib_NSignal;
+        private System.Windows.Forms.PictureBox pib_ESignal;
+        private System.Windows.Forms.PictureBox pib_WSignal;
+        private System.Windows.Forms.PictureBox pib_SSignal;
     }
 }
 

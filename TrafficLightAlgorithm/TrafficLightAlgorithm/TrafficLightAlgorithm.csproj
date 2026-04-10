@@ -104,7 +104,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PedesGreen.png" />
     <None Include="Resources\SignalGreen.png" />
     <None Include="Resources\SignalYellow.png" />
     <None Include="Resources\SignalRed.png" />
@@ -113,12 +112,13 @@
     <None Include="Resources\SetFormTitle.png" />
     <None Include="Resources\ArrowWSignal.png" />
     <None Include="Resources\ArrowESignal.png" />
-    <None Include="Resources\PedesGreenRotate180.png" />
-    <None Include="Resources\PedesRedRotate180.png" />
-    <None Include="Resources\PedesRedRotate90.png" />
-    <None Include="Resources\PedesGreenRotate90.png" />
-    <None Include="Resources\PedesGreenRotate270.png" />
-    <None Include="Resources\PedesRedRotate270.png" />
+    <None Include="Resources\SignalPoleE.png" />
+    <None Include="Resources\SignalPoleW.png" />
+    <None Include="Resources\SignalPoleS.png" />
+    <None Include="Resources\NSignalHilight.png" />
+    <None Include="Resources\ESignalHilight.png" />
+    <None Include="Resources\SSignalHilight.png" />
+    <None Include="Resources\WSignalHilight.png" />
     <Content Include="Signal_Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

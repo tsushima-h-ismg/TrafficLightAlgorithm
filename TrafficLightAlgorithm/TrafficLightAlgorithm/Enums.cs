@@ -30,7 +30,7 @@
         /// </summary>
         NoLight
     }
-
+    
     /// <summary>
     /// 信号機の種類
     /// </summary>
