@@ -6,6 +6,26 @@ namespace TrafficLightAlgorithm
     public partial class F_SetSec : Form
     {
         /// <summary>
+        /// 進行可能秒数の最大値
+        /// </summary>
+        private const int AvaiSecMax   = 20;
+
+        /// <summary>
+        /// 進行可能秒数の最小値
+        /// </summary>
+        private const int AvaiSecMin   = 5;
+
+        /// <summary>
+        /// 矢印信号機の点灯秒数の最大値
+        /// </summary>
+        private const int ArrowSecMax  = 5;
+
+        /// <summary>
+        /// 矢印信号機の点灯秒数の最小値
+        /// </summary>
+        private const int ArrowSecMin  = 1;
+
+        /// <summary>
         /// 進行可能秒数
         /// </summary>
         public int AvaiSec;
@@ -29,26 +49,6 @@ namespace TrafficLightAlgorithm
         /// 方角を表す文字列
         /// </summary>
         public string DirectionName;
-
-        /// <summary>
-        /// 進行可能秒数の最大値
-        /// </summary>
-        private const int AvaiSecMax   = 20;
-
-        /// <summary>
-        /// 進行可能秒数の最小値
-        /// </summary>
-        private const int AvaiSecMin   = 5;
-
-        /// <summary>
-        /// 矢印信号機の点灯秒数の最大値
-        /// </summary>
-        private const int ArrowSecMax  = 5;
-
-        /// <summary>
-        /// 矢印信号機の点灯秒数の最小値
-        /// </summary>
-        private const int ArrowSecMin  = 1;
 
         public F_SetSec()
         {
@@ -75,7 +75,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\n設定値入力フォームのロードでエラーが発生しました。";
+                string exStr = "設定値入力フォームのロードでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -95,7 +95,7 @@ namespace TrafficLightAlgorithm
 
                 if (errMsg == "")
                 {
-                    AvaiSec  = AvaiVal;   // 設定値の値を取得する
+                    AvaiSec  = AvaiVal;   // 進行可能秒数を取得する
                     ArrowSec = ArrowVal;  // 矢印信号機の点灯秒数を取得する
                     Close();
                 }
@@ -106,7 +106,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\n「確定」ボタンクリックでエラーが発生しました。";
+                string exStr = "「確定」ボタンクリックでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -133,7 +133,7 @@ namespace TrafficLightAlgorithm
                     minVal = ArrowSecMin;  // 矢印信号機点灯秒数の最小値を取得
                 }
 
-                if (!double.TryParse(txtBox.Text, out double dbevalue)) return false;  // チェック対象文字列がdouble型に変換できない場合は終了する
+                if (!double.TryParse(txtBox.Text, out double dbevalue)) return false;  // Textプロパティ値がdouble型に変換できない場合は終了する
                 if (!int.TryParse(dbevalue.ToString(), out resultVal))  return false;  // double型から変換した文字列がint型に変換できない場合は終了する
                 if (resultVal < minVal || resultVal > maxVal)           return false;  // int型に変換した値がminValより小さい、もしくはmaxValより大きい場合は終了する
                 return true;

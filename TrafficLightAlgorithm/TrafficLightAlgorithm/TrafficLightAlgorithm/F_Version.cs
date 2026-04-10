@@ -26,14 +26,14 @@ namespace TrafficLightAlgorithm
                 AssemblyCopyrightAttribute copyRight = (AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyCopyrightAttribute));
                 AssemblyCompanyAttribute   company   = (AssemblyCompanyAttribute)  Attribute.GetCustomAttribute(assembly, typeof(AssemblyCompanyAttribute));
 
-                lbl_SoftTitle.Text = Program.SoftTitle;    // ラベルテキストをプログラムのタイトルに設定する
-                lbl_Version.Text   = verStr;               // ラベルテキストをバージョン情報に設定する
-                lbl_CopyRight.Text = copyRight.Copyright;  // ラベルテキストを著作権情報に設定する
-                lbl_Company.Text   = company.Company;      // ラベルテキストを会社名情報に設定する
+                lbl_SoftTitle.Text = Program.SoftTitle;    // プログラムのタイトルを取得する
+                lbl_Version.Text   = verStr;               // バージョン情報を取得する
+                lbl_CopyRight.Text = copyRight.Copyright;  // 著作権情報を取得する
+                lbl_Company.Text   = company.Company;      // 会社名情報を取得する
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\nバージョン情報フォームのロードでエラーが発生しました。";
+                string exStr = "バージョン情報フォームのロードでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -49,7 +49,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = ex.Message + "\nバージョン情報フォーム終了でエラーが発生しました。";
+                string exStr = "バージョン情報フォーム終了でエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

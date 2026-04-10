@@ -63,9 +63,9 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap ArrowSignal {
+        internal static System.Drawing.Bitmap ArrowESignal {
             get {
-                object obj = ResourceManager.GetObject("ArrowSignal", resourceCulture);
+                object obj = ResourceManager.GetObject("ArrowESignal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap PedesGreen {
+        internal static System.Drawing.Bitmap ArrowWSignal {
             get {
-                object obj = ResourceManager.GetObject("PedesGreen", resourceCulture);
+                object obj = ResourceManager.GetObject("ArrowWSignal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,19 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap PedesRed {
+        internal static System.Drawing.Bitmap ESignalHilight {
             get {
-                object obj = ResourceManager.GetObject("PedesRed", resourceCulture);
+                object obj = ResourceManager.GetObject("ESignalHilight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap NSignalHilight {
+            get {
+                object obj = ResourceManager.GetObject("NSignalHilight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +123,9 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap SignalPedesOne {
+        internal static System.Drawing.Bitmap SignalPoleE {
             get {
-                object obj = ResourceManager.GetObject("SignalPedesOne", resourceCulture);
+                object obj = ResourceManager.GetObject("SignalPoleE", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +133,9 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap SignalPedesTwo {
+        internal static System.Drawing.Bitmap SignalPoleN {
             get {
-                object obj = ResourceManager.GetObject("SignalPedesTwo", resourceCulture);
+                object obj = ResourceManager.GetObject("SignalPoleN", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +143,9 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap SignalPoleEW {
+        internal static System.Drawing.Bitmap SignalPoleS {
             get {
-                object obj = ResourceManager.GetObject("SignalPoleEW", resourceCulture);
+                object obj = ResourceManager.GetObject("SignalPoleS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +153,9 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap SignalPoleNS {
+        internal static System.Drawing.Bitmap SignalPoleW {
             get {
-                object obj = ResourceManager.GetObject("SignalPoleNS", resourceCulture);
+                object obj = ResourceManager.GetObject("SignalPoleW", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +193,29 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap SSignalHilight {
+            get {
+                object obj = ResourceManager.GetObject("SSignalHilight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap TrafficBackground {
             get {
                 object obj = ResourceManager.GetObject("TrafficBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap WSignalHilight {
+            get {
+                object obj = ResourceManager.GetObject("WSignalHilight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
