@@ -334,46 +334,40 @@ namespace TrafficLightAlgorithm
                 List<TrafficPhase> phaseList = new List<TrafficPhase>
                 {
                     // 全ての車用・歩行者用信号機の赤点灯フェーズ
-                    CreatePhase(0, AllRedMSec, MSecToSec(AllRedMSec) + "秒待機。全信号機が赤に点灯しました。",
-                        LightState.Red, Signal.CarNorth,   Signal.CarSouth,   Signal.CarEast,   Signal.CarWest,
-                                        Signal.PedesNorth, Signal.PedesSouth, Signal.PedesEast, Signal.PedesWest),
+                    CreatePhase(0, AllRedMSec, LightState.Red, Signal.CarNorth,   Signal.CarSouth,   Signal.CarEast,   Signal.CarWest,
+                                                               Signal.PedesNorth, Signal.PedesSouth, Signal.PedesEast, Signal.PedesWest),
                     
                     // 北南車用・東西歩行者用信号機の緑点灯フェーズ 
-                    CreatePhase(1, carNSpdEWMSec, MSecToSec(carNSpdEWMSec) + "秒待機。北南車用・東西歩行者用信号機が緑に点灯しました。",
-                        LightState.Green, Signal.CarNorth, Signal.CarSouth, Signal.PedesEast, Signal.PedesWest)
+                    CreatePhase(1, carNSpdEWMSec, LightState.Green, Signal.CarNorth, Signal.CarSouth, Signal.PedesEast, Signal.PedesWest)
                 };
-                
+
                 // 東西歩行者用信号機の点滅フェーズリスト
                 phaseList.AddRange(PedesBlink(2, Signal.PedesEast, Signal.PedesWest));
                 
                 // 東西歩行者用信号機の赤点灯フェーズ
-                phaseList.Add(CreatePhase(3, MinMSec, MSecToSec(MinMSec) + "秒待機。東西歩行者用信号機が赤に点灯しました。", 
-                    LightState.Red, Signal.PedesEast, Signal.PedesWest));
+                phaseList.Add(CreatePhase(3, MinMSec, LightState.Red, Signal.PedesEast, Signal.PedesWest));
                 
                 // 北南車用信号機の黄・赤点灯フェーズリスト
                 phaseList.AddRange(YelRedPhaseList(4, AllRedMSec, setMSec.NMSec - setMSec.SMSec, Signal.CarNorth, Signal.CarSouth));
 
                 // 東西車用・北南歩行者用信号機の緑点灯フェーズ 
-                phaseList.Add(CreatePhase(phaseList[phaseList.Count - 1].PhaseNum + 1, carEWpdNSMSec, MSecToSec(carEWpdNSMSec) + "秒待機。東西車用・北南歩行者用信号機が緑に点灯しました。",
+                phaseList.Add(CreatePhase(phaseList[phaseList.Count - 1].PhaseNum + 1, carEWpdNSMSec, 
                     LightState.Green, Signal.CarEast, Signal.CarWest, Signal.PedesNorth, Signal.PedesSouth));
                 
                 // 北南歩行者用信号機の点滅フェーズリスト
                 phaseList.AddRange(PedesBlink(phaseList[phaseList.Count - 1].PhaseNum + 1, Signal.PedesNorth, Signal.PedesSouth));
                 
                 // 北南歩行者用信号機の赤点灯フェーズ 
-                phaseList.Add(CreatePhase(phaseList[phaseList.Count - 1].PhaseNum + 1, MinMSec, MSecToSec(MinMSec) + "秒待機。北南歩行者用信号機が赤に点灯しました。", 
-                    LightState.Red, Signal.PedesNorth, Signal.PedesSouth));
+                phaseList.Add(CreatePhase(phaseList[phaseList.Count - 1].PhaseNum + 1, MinMSec, LightState.Red, Signal.PedesNorth, Signal.PedesSouth));
                 
                 // 東西車用信号機の黄・赤点灯フェーズリスト
                 phaseList.AddRange(YelRedPhaseList(phaseList[phaseList.Count - 1].PhaseNum + 1, MinMSec, setMSec.EMSec - setMSec.WMSec, Signal.CarEast, Signal.CarWest));
 
                 // 東西矢印信号機の点灯フェーズ
-                phaseList.Add(CreatePhase(phaseList[phaseList.Count - 1].PhaseNum + 1, setMSec.AMSec, MSecToSec(setMSec.AMSec) + "秒待機。東西矢印信号機が点灯しました。",
-                    LightState.Arrow,  Signal.CarEast, Signal.CarWest));
+                phaseList.Add(CreatePhase(phaseList[phaseList.Count - 1].PhaseNum + 1, setMSec.AMSec, LightState.Arrow,  Signal.CarEast, Signal.CarWest));
                 
                 // 東西車用信号機の黄点灯フェーズ
-                phaseList.Add(CreatePhase(phaseList[phaseList.Count - 1].PhaseNum + 1, YellowMSec, MSecToSec(YellowMSec) + "秒待機。東西車用信号機が黄に点灯しました。",
-                    LightState.Yellow, Signal.CarEast, Signal.CarWest));
+                phaseList.Add(CreatePhase(phaseList[phaseList.Count - 1].PhaseNum + 1, YellowMSec, LightState.Yellow, Signal.CarEast, Signal.CarWest));
 
                 return phaseList;
             }
@@ -392,18 +386,19 @@ namespace TrafficLightAlgorithm
         /// <param name="state">   点灯状態を表す列挙型       </param>
         /// <param name="signals"> 点灯する信号機を表す列挙型 </param>
         /// <returns> 作成したフェーズ </returns>
-        private TrafficPhase CreatePhase(int num, int mSec, string msg, LightState state, params Signal[] signals)
+        private TrafficPhase CreatePhase(int num, int mSec, LightState state, params Signal[] signals)
         {
             try
             {
                 TrafficCommand[] commands = new TrafficCommand[signals.Length];
-                
+                string msgStr = MSecToSec(mSec) + "秒待機。" + SigToStr(signals) + "が" + StateToStr(state) + "に点灯しました。";
+
                 for (int i = 0; i < commands.Length; i++)
                 {
                     commands[i] = new TrafficCommand(signals[i], state);  // 信号機を表す列挙型と点灯状態を表す列挙型が入る
                 }
 
-                return new TrafficPhase(num, mSec, msg, commands);
+                return new TrafficPhase(num, mSec, msgStr, commands);
             }
             catch (Exception ex)
             {
@@ -424,14 +419,22 @@ namespace TrafficLightAlgorithm
             try
             {
                 // 歩行者用信号機の点滅を表す文字列
-                string pBlinkStr = MSecToSec(BlinkMSec * BlinkPhaseCount) + "秒待機。" + SigToStr(pSigOne) + SigToStr(pSigTwo) + "歩行者用信号機が点滅しました。";
+                string pBlinkStr = MSecToSec(BlinkMSec * BlinkPhaseCount) + "秒待機。" + SigToStr(pSigOne, pSigTwo) + "が点滅しました。";
                 
                 List<TrafficPhase> phaseList = new List<TrafficPhase>();  // 歩行者用信号機点滅フェーズが入るリスト
                 
                 for (int i = 0; i < BlinkPhaseCount; i++)
                 {
-                    if (i % 2 == 0) phaseList.Add(CreatePhase(num, BlinkMSec, pBlinkStr, LightState.NoLight, pSigOne, pSigTwo));  // 歩行者用信号機を無灯火にするフェーズ
-                    else            phaseList.Add(CreatePhase(num, BlinkMSec, pBlinkStr, LightState.Green,   pSigOne, pSigTwo));  // 歩行者用信号機を緑に点灯するフェーズ
+                    if (i % 2 == 0)
+                    {
+                        phaseList.Add(new TrafficPhase(num, BlinkMSec, pBlinkStr, new TrafficCommand(pSigOne, LightState.NoLight),
+                                                                                  new TrafficCommand(pSigTwo, LightState.NoLight)));  // 歩行者用信号機を無灯火にするフェーズ
+                    }
+                    else
+                    {
+                        phaseList.Add(new TrafficPhase(num, BlinkMSec, pBlinkStr, new TrafficCommand(pSigOne, LightState.Green),
+                                                                                  new TrafficCommand(pSigTwo, LightState.Green)));    // 歩行者用信号機を緑に点灯するフェーズ
+                    }
                 }
 
                 return phaseList;
@@ -468,10 +471,8 @@ namespace TrafficLightAlgorithm
                 if (mSecDif == 0)
                 {
                     // sigMinとsigMaxが表す車用信号機の進行可能ミリ秒数が一致する場合
-                    string sigDir = SigToStr(sigMax) + SigToStr(sigMin) + "車用信号機";  // ２つの車用信号機を表す文字列
-
-                    phases.Add(CreatePhase(num,     YellowMSec, yelSecStr + sigDir + "が黄に点灯しました。", LightState.Yellow, sigMax, sigMin));  // sigMinとsigMaxの黄点灯
-                    phases.Add(CreatePhase(num + 1, redMSec,    redSecStr + sigDir + "が赤に点灯しました。", LightState.Red,    sigMax, sigMin));  // sigMinとsigMaxの赤点灯
+                    phases.Add(CreatePhase(num,     YellowMSec, LightState.Yellow, sigMax, sigMin));  // sigMinとsigMaxの黄点灯
+                    phases.Add(CreatePhase(num + 1, redMSec,    LightState.Red,    sigMax, sigMin));  // sigMinとsigMaxの赤点灯
                 }
                 else
                 {
@@ -518,20 +519,63 @@ namespace TrafficLightAlgorithm
         {
             return mSec / 1000F;
         }
-
+        
         /// <summary>
         /// 信号機を表す列挙型から方角を表す文字列を作成する
         /// </summary>
-        /// <param name="signal"> 信号機の名称を表す列挙型 </param>
+        /// <param name="signals"> 信号機の名称を表す列挙型 </param>
         /// <returns> 作成した文字列 </returns>
-        private string SigToStr(Signal signal)
+        private string SigToStr(params Signal[] signals)
         {
             try
             {
-                if      (signal == Signal.CarNorth || signal == Signal.PedesNorth) return "北";  // 北方向の信号機の場合は「北」を返す
-                else if (signal == Signal.CarSouth || signal == Signal.PedesSouth) return "南";  // 南方向の信号機の場合は「南」を返す
-                else if (signal == Signal.CarEast  || signal == Signal.PedesEast)  return "東";  // 東方向の信号機の場合は「東」を返す
-                else if (signal == Signal.CarWest  || signal == Signal.PedesWest)  return "西";  // 西方向の信号機の場合は「西」を返す
+                List<Signal> sigList = new List<Signal>(signals);
+
+                if (sigList.Contains(Signal.CarNorth)   && sigList.Contains(Signal.CarSouth)   && 
+                    sigList.Contains(Signal.CarWest)    && sigList.Contains(Signal.CarEast)    &&
+                    sigList.Contains(Signal.PedesNorth) && sigList.Contains(Signal.PedesSouth) && 
+                    sigList.Contains(Signal.PedesEast)  && sigList.Contains(Signal.PedesWest)) return "全信号機";
+
+                if      (sigList.Contains(Signal.CarNorth)   && sigList.Contains(Signal.CarSouth) &&
+                         sigList.Contains(Signal.PedesEast)  && sigList.Contains(Signal.PedesWest))  return "北南車用・東西歩行者用信号機";
+                else if (sigList.Contains(Signal.CarWest)    && sigList.Contains(Signal.CarEast)  &&
+                         sigList.Contains(Signal.PedesNorth) && sigList.Contains(Signal.PedesSouth)) return "東西車用・北南歩行者用信号機";
+
+                if      (sigList.Contains(Signal.CarNorth)   && sigList.Contains(Signal.CarSouth))   return "北南車用信号機";
+                else if (sigList.Contains(Signal.CarWest)    && sigList.Contains(Signal.CarEast))    return "東西車用信号機";
+                else if (sigList.Contains(Signal.PedesNorth) && sigList.Contains(Signal.PedesSouth)) return "北南歩行者用信号機";
+                else if (sigList.Contains(Signal.PedesEast)  && sigList.Contains(Signal.PedesWest))  return "東西歩行者用信号機";
+
+                if      (sigList[0] == Signal.CarNorth)   return "北車用信号機";
+                else if (sigList[0] == Signal.CarSouth)   return "南車用信号機";
+                else if (sigList[0] == Signal.CarEast)    return "東車用信号機";
+                else if (sigList[0] == Signal.CarWest)    return "西車用信号機";
+                else if (sigList[0] == Signal.PedesNorth) return "北歩行者用信号機";
+                else if (sigList[0] == Signal.PedesSouth) return "南歩行者用信号機";
+                else if (sigList[0] == Signal.PedesEast)  return "東歩行者用信号機";
+                else if (sigList[0] == Signal.PedesWest)  return "西歩行者用信号機";
+                return "";
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// 点灯状態を表す列挙型から文字列を作成する
+        /// </summary>
+        /// <param name="state"> 点灯状態を表す列挙型 </param>
+        /// <returns> 作成した文字列 </returns>
+        private string StateToStr(LightState state)
+        {
+            try
+            {
+                if      (state == LightState.Green)   return "緑";
+                else if (state == LightState.Yellow)  return "黄";
+                else if (state == LightState.Red)     return "赤";
+                else if (state == LightState.Arrow)   return "矢印";
+                else if (state == LightState.NoLight) return "無灯火";
                 return "";
             }
             catch
