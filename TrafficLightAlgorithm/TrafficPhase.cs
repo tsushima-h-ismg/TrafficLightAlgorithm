@@ -26,7 +26,7 @@
         public readonly TrafficCommand[] Commands;
 
         /// <summary>
-        /// 点灯状態変更内容を表す文字列・点灯状態変更後の待機ミリ秒・点灯する信号機の種類・点灯状態を取得する
+        /// 点灯フェーズを表す番号・点灯状態変更内容を表す文字列・点灯状態変更後の待機ミリ秒・点灯する信号機の種類・点灯状態を取得する
         /// </summary>
         /// <param name="phaseNum"> 点灯フェーズの番号         </param>
         /// <param name="waitMSec"> 点灯状態変更後の待機ミリ秒 </param>

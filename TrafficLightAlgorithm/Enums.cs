@@ -59,21 +59,21 @@
         /// <summary>
         /// 北歩行者用信号機
         /// </summary>
-        PedesNorth,
+        PedNorth,
         
         /// <summary>
         /// 南歩行者用信号機
         /// </summary>
-        PedesSouth,
+        PedSouth,
         
         /// <summary>
         /// 東歩行者用信号機
         /// </summary>
-        PedesEast,
+        PedEast,
         
         /// <summary>
         /// 西歩行者用信号機
         /// </summary>
-        PedesWest
+        PedWest
     }
 }
