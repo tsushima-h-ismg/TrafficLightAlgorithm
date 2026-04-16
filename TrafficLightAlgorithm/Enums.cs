@@ -32,48 +32,64 @@
     }
     
     /// <summary>
+    /// 方角
+    /// </summary>
+    public enum Direction
+    {
+        /// <summary>
+        /// 北方向
+        /// </summary>
+        North,
+
+        /// <summary>
+        /// 南方向
+        /// </summary>
+        South,
+
+        /// <summary>
+        /// 東方向
+        /// </summary>
+        East,
+
+        /// <summary>
+        /// 西方向
+        /// </summary>
+        West,
+
+        /// <summary>
+        /// 北南方向
+        /// </summary>
+        NorthSouth,
+
+        /// <summary>
+        /// 東西方向
+        /// </summary>
+        EastWest,
+
+        /// <summary>
+        /// 全方向
+        /// </summary>
+        All
+    }
+
+    /// <summary>
     /// 信号機の種類
     /// </summary>
     public enum Signal
     {
         /// <summary>
-        /// 北車用信号機
+        /// 車用信号機
         /// </summary>
-        CarNorth,
+        Car,
 
         /// <summary>
-        /// 南車用信号機
+        /// 歩行者用信号機
         /// </summary>
-        CarSouth,
-        
-        /// <summary>
-        /// 東車用信号機
-        /// </summary>
-        CarEast,
-        
-        /// <summary>
-        /// 西車用信号機
-        /// </summary>
-        CarWest,
+        Pedes,
 
         /// <summary>
-        /// 北歩行者用信号機
+        /// 全信号機
         /// </summary>
-        PedNorth,
-        
-        /// <summary>
-        /// 南歩行者用信号機
-        /// </summary>
-        PedSouth,
-        
-        /// <summary>
-        /// 東歩行者用信号機
-        /// </summary>
-        PedEast,
-        
-        /// <summary>
-        /// 西歩行者用信号機
-        /// </summary>
-        PedWest
+        All
     }
 }

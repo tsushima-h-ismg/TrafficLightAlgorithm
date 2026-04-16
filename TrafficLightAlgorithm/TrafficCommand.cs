@@ -16,14 +16,20 @@
         public readonly Signal Signal;
 
         /// <summary>
+        /// 信号機の方角
+        /// </summary>
+        public readonly Direction Direction;
+
+        /// <summary>
         /// 信号機の種類と点灯状態を表す値を取得する
         /// </summary>
         /// <param name="traffic"> 信号機の種類   　</param>
         /// <param name="state">   信号機の点灯状態 </param>
-        public TrafficCommand(LightState state, Signal signal)
+        public TrafficCommand(LightState state, Signal signal, Direction direction)
         {
-            State  = state;
-            Signal = signal;
+            State     = state;
+            Signal    = signal;
+            Direction = direction;
         }
     }
 }
