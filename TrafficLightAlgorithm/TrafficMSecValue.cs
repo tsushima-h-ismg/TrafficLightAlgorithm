@@ -33,11 +33,11 @@
         /// <summary>
         /// 構造体の各値を設定する
         /// </summary>
-        /// <param name="nSec"> 北方向への進行可能ミリ秒数 </param>
-        /// <param name="sSec"> 南方向への進行可能ミリ秒数 </param>
-        /// <param name="eSec"> 東方向への進行可能ミリ秒数 </param>
-        /// <param name="wSec"> 西方向への進行可能ミリ秒数 </param>
-        /// <param name="aSec"> 矢印信号機の点灯ミリ秒数   </param>
+        /// <param name="nMSec"> 北方向への進行可能ミリ秒数 </param>
+        /// <param name="sMSec"> 南方向への進行可能ミリ秒数 </param>
+        /// <param name="eMSec"> 東方向への進行可能ミリ秒数 </param>
+        /// <param name="wMSec"> 西方向への進行可能ミリ秒数 </param>
+        /// <param name="aMSec"> 矢印信号機の点灯ミリ秒数   </param>
         public WaitMSec(int nMSec, int sMSec, int eMSec, int wMSec, int aMSec)
         {
             // 秒数からミリ秒を算出する

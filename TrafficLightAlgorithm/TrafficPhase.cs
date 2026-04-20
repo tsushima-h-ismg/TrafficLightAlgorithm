@@ -44,7 +44,7 @@
         }
 
         /// <summary>
-        /// 歩行者用信号機の点滅開始フェーズ
+        /// 歩行者用信号機の点滅フェーズ
         /// </summary>
         /// <param name="waitMSec">     点灯状態変更後の待機ミリ秒 </param>
         /// <param name="phaseCount">   点滅を行う合計フェーズ数   </param>
@@ -65,9 +65,8 @@
         /// <returns> 点灯状態変更内容を表す文字列 </returns>
         public string GetMsg()
         {
-            string msg = WaitMSec / 1000F + "秒待機。";
-            if (IsBlinkStart) msg = BlinkMSec / 1000F + "秒待機。";
-            
+            string msg = "";
+
             for(int i = 0; i < Commands.Length; i++)
             {
                 // 方角
@@ -101,6 +100,10 @@
                     else msg += "・";
                 }
             }
+
+            int mSecValue = WaitMSec;                 // 待機するミリ秒数
+            if (IsBlinkStart) mSecValue = BlinkMSec;  // 点滅開始フェーズの場合、点滅にかける待機ミリ秒の合計が入る
+            msg += mSecValue / 1000F + "秒待機します。";
 
             return msg;
         }

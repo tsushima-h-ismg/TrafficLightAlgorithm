@@ -36,19 +36,19 @@ namespace TrafficLightAlgorithm
         public int ArrowSec;
 
         /// <summary>
-        /// 矢印信号機が存在する場合はtrue、それ以外の場合はfalse
+        /// 方角を表す文字列
         /// </summary>
-        public bool IsArrow;
+        public string DirectionName;
 
         /// <summary>
-        /// 信号機アルゴリズムが動いていない状態でフォームが呼び出された場合はtrue、それ以外の場合はfalse
+        /// 設定値の変更が有効の場合はtrue、それ以外の場合はfalse
         /// </summary>
         public bool IsEnable;
 
         /// <summary>
-        /// 方角を表す文字列
+        /// 矢印信号機を持つ場合はtrue、それ以外の場合はfalse
         /// </summary>
-        public string DirectionName;
+        public bool IsArrow;
 
         public F_SetSec()
         {
@@ -68,8 +68,8 @@ namespace TrafficLightAlgorithm
                 lbl_SoftTitle.Text   = DirectionName + "信号機の設定値";  // フォームタイトルを取得
 
                 txt_AvaiSec.Text     = AvaiSec.ToString();   // 進行可能秒数を取得
-                txt_AvaiSec.Enabled  = IsEnable;             // 設定値入力欄テキストボックスのEnabledプロパティ値設定
-                
+                txt_AvaiSec.Enabled  = IsEnable;             // 進行可能秒数入力欄テキストボックスのEnabledプロパティ値設定
+
                 txt_ArrowSec.Text    = ArrowSec.ToString();  // 矢印信号機点灯秒数を取得
                 txt_ArrowSec.Enabled = arrowEnable;          // 矢印信号機点灯秒数テキストボックスのEnabledプロパティ値設定
             }
@@ -90,13 +90,13 @@ namespace TrafficLightAlgorithm
                 string errMsg = "";  // エラーメッセージが入る
 
                 // テキストボックスに入力した値のチェック
-                if (!CheckSecText(txt_AvaiSec,  out int AvaiVal))  errMsg += $"「進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を入力してください。\n";
-                if (!CheckSecText(txt_ArrowSec, out int ArrowVal)) errMsg += $"「矢印信号機の点灯時間」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
+                if (!CheckSecText(txt_AvaiSec,  out int avaiVal))  errMsg += $"「進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を入力してください。\n";
+                if (!CheckSecText(txt_ArrowSec, out int arrowVal)) errMsg += $"「矢印信号機の点灯時間」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
 
                 if (errMsg == "")
                 {
-                    AvaiSec  = AvaiVal;   // 進行可能秒数を取得する
-                    ArrowSec = ArrowVal;  // 矢印信号機の点灯秒数を取得する
+                    AvaiSec  = avaiVal;   // テキストボックスに入力した進行可能秒数を取得する
+                    ArrowSec = arrowVal;  // テキストボックスに入力した矢印信号機の点灯秒数を取得する
                     Close();
                 }
                 else
