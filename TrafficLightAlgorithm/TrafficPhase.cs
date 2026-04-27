@@ -35,28 +35,13 @@
         /// </summary>
         /// <param name="waitMSec"> 点灯状態変更後の待機ミリ秒 </param>
         /// <param name="commands"> 信号機の種類と点灯状態     </param>
-        public TrafficPhase(int waitMSec, params TrafficCommand[] commands)
+        public TrafficPhase(int waitMSec, TrafficCommand[] commands, bool isBlinkStart = false, bool isBlink = false, int phaseCount = 0)
         { 
             WaitMSec     = waitMSec;
-            IsBlinkStart = false;
-            IsBlink      = false;
             Commands     = commands;
-        }
-
-        /// <summary>
-        /// 歩行者用信号機の点滅フェーズ
-        /// </summary>
-        /// <param name="waitMSec">     点灯状態変更後の待機ミリ秒 </param>
-        /// <param name="phaseCount">   点滅を行う合計フェーズ数   </param>
-        /// <param name="isBlinkStart"> 点滅開始状態               </param>
-        /// <param name="commands">     信号機の種類と点灯状態     </param>
-        public TrafficPhase(int waitMSec, int phaseCount, bool isBlinkStart, params TrafficCommand[] commands)
-        {
-            WaitMSec     = waitMSec;
-            BlinkMSec    = waitMSec * phaseCount;
             IsBlinkStart = isBlinkStart;
-            IsBlink      = true;
-            Commands     = commands;
+            IsBlink      = isBlink;
+            BlinkMSec    = waitMSec * phaseCount;
         }
 
         /// <summary>
@@ -80,7 +65,8 @@
 
                 // 信号機
                 if      (Commands[i].Signal == Signal.All)   msg += "車用・歩行者用信号が";
-                else if (Commands[i].Signal == Signal.Car)   msg += "車用信号が";
+                else if (Commands[i].Signal == Signal.Car && Commands[i].State != LightState.ArrowRed) msg += "車用信号が";
+                else if (Commands[i].Signal == Signal.Car && Commands[i].State == LightState.ArrowRed) msg += "矢印信号が";
                 else if (Commands[i].Signal == Signal.Pedes) msg += "歩行者用信号が";
 
                 // 点灯状態
@@ -88,16 +74,26 @@
                 {
                     msg += "点滅しました。";
                 }
+                else if (Commands[i].State == LightState.ArrowRed)
+                {
+                    msg += "点灯しました。";
+                }
                 else
                 {
                     if      (Commands[i].State == LightState.Green)   msg += "緑";
                     else if (Commands[i].State == LightState.Yellow)  msg += "黄";
                     else if (Commands[i].State == LightState.Red)     msg += "赤";
-                    else if (Commands[i].State == LightState.Arrow)   msg += "矢印";
                     else if (Commands[i].State == LightState.NoLight) msg += "無灯火";
 
-                    if (i == Commands.Length - 1) msg += "に点灯しました。";
-                    else msg += "・";
+                    if (i == Commands.Length - 1)
+                    {
+                        if      (Commands[i].State != LightState.NoLight) msg += "に点灯しました。";
+                        else if (Commands[i].State == LightState.NoLight) msg += "になりました。";
+                    }
+                    else
+                    {
+                        msg += "・";
+                    }
                 }
             }
 

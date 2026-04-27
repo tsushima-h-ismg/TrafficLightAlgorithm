@@ -3,48 +3,62 @@
     /// <summary>
     /// ミリ秒設定値構造体
     /// </summary>
-    public readonly struct WaitMSec
+    public struct TrafficMSecValue
     {
         /// <summary>
-        /// 北方向への進行可能ミリ秒
+        /// 北方向車用信号機の進行可能ミリ秒
         /// </summary>
-        public readonly int NMSec;
+        public int CarNMSec;
 
         /// <summary>
-        /// 南方向への進行可能ミリ秒
+        /// 南方向車用信号機の進行可能ミリ秒
         /// </summary>
-        public readonly int SMSec;
+        public int CarSMSec;
 
         /// <summary>
-        /// 東方向への進行可能ミリ秒
+        /// 東方向車用信号機の進行可能ミリ秒
         /// </summary>
-        public readonly int EMSec;
+        public int CarEMSec;
 
         /// <summary>
-        /// 西方向への進行可能ミリ秒
+        /// 西方向車用信号機の進行可能ミリ秒
         /// </summary>
-        public readonly int WMSec;
+        public int CarWMSec;
 
         /// <summary>
-        /// 矢印信号機の点灯ミリ秒
+        /// 北南方向歩行者用信号機の進行可能ミリ秒数
         /// </summary>
-        public readonly int AMSec;
+        public int PedNSMSec;
+
+        /// <summary>
+        /// 東西方向歩行者用信号機の進行可能ミリ秒数
+        /// </summary>
+        public int PedEWMSec;
+
+        /// <summary>
+        /// 矢印信号機の点灯ミリ秒数
+        /// </summary>
+        public int ArwMSec;
 
         /// <summary>
         /// 構造体の各値を設定する
         /// </summary>
-        /// <param name="nMSec"> 北方向への進行可能ミリ秒数 </param>
-        /// <param name="sMSec"> 南方向への進行可能ミリ秒数 </param>
-        /// <param name="eMSec"> 東方向への進行可能ミリ秒数 </param>
-        /// <param name="wMSec"> 西方向への進行可能ミリ秒数 </param>
-        /// <param name="aMSec"> 矢印信号機の点灯ミリ秒数   </param>
-        public WaitMSec(int nMSec, int sMSec, int eMSec, int wMSec, int aMSec)
+        /// <param name="carNMSec">  北方向車用信号機の進行可能ミリ秒数       </param>
+        /// <param name="carSMSec">  南方向車用信号機の進行可能ミリ秒数       </param>
+        /// <param name="carEMSec">  東方向車用信号機の進行可能ミリ秒数       </param>
+        /// <param name="carWMSec">  西方向車用信号機の進行可能ミリ秒数       </param>
+        /// <param name="pedNSMSec"> 北南方向歩行者用信号機の進行可能ミリ秒数 </param>
+        /// <param name="pedEWMSec"> 東西方向歩行者用信号機の進行可能ミリ秒数 </param>
+        /// <param name="arrowMSec"> 矢印信号機の点灯ミリ秒数                 </param>
+        public TrafficMSecValue(int carNMSec, int carSMSec, int carEMSec, int carWMSec, int pedNSMSec, int pedEWMSec, int arrowMSec)
         {
-            NMSec = nMSec;
-            SMSec = sMSec;
-            EMSec = eMSec;
-            WMSec = wMSec;
-            AMSec = aMSec;
+            CarNMSec  = carNMSec;
+            CarSMSec  = carSMSec;
+            CarEMSec  = carEMSec;
+            CarWMSec  = carWMSec;
+            PedNSMSec = pedNSMSec;
+            PedEWMSec = pedEWMSec;
+            ArwMSec   = arrowMSec;
         }
     }
 }

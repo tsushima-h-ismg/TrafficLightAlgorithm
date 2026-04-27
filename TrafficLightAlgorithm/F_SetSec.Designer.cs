@@ -36,7 +36,9 @@
             this.lbl_SecTwo = new System.Windows.Forms.Label();
             this.txt_ArrowSec = new System.Windows.Forms.TextBox();
             this.lbl_ArrowSec = new System.Windows.Forms.Label();
-            this.lbl_SoftTitle = new System.Windows.Forms.Label();
+            this.lbl_FormTitle = new System.Windows.Forms.Label();
+            this.lbl_SupplementAvai = new System.Windows.Forms.Label();
+            this.lbl_SupplementArrow = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_AvaiSec
@@ -82,7 +84,7 @@
             this.btn_Confirm.FlatAppearance.BorderSize = 2;
             this.btn_Confirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Confirm.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_Confirm.Location = new System.Drawing.Point(240, 186);
+            this.btn_Confirm.Location = new System.Drawing.Point(240, 206);
             this.btn_Confirm.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Confirm.Name = "btn_Confirm";
             this.btn_Confirm.Size = new System.Drawing.Size(90, 40);
@@ -95,7 +97,7 @@
             // 
             this.lbl_SecTwo.BackColor = System.Drawing.Color.Transparent;
             this.lbl_SecTwo.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SecTwo.Location = new System.Drawing.Point(300, 138);
+            this.lbl_SecTwo.Location = new System.Drawing.Point(300, 148);
             this.lbl_SecTwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SecTwo.Name = "lbl_SecTwo";
             this.lbl_SecTwo.Size = new System.Drawing.Size(30, 28);
@@ -107,7 +109,7 @@
             // 
             this.txt_ArrowSec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_ArrowSec.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_ArrowSec.Location = new System.Drawing.Point(219, 138);
+            this.txt_ArrowSec.Location = new System.Drawing.Point(219, 148);
             this.txt_ArrowSec.Margin = new System.Windows.Forms.Padding(0);
             this.txt_ArrowSec.MaxLength = 5;
             this.txt_ArrowSec.Name = "txt_ArrowSec";
@@ -119,7 +121,7 @@
             // 
             this.lbl_ArrowSec.BackColor = System.Drawing.Color.White;
             this.lbl_ArrowSec.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_ArrowSec.Location = new System.Drawing.Point(30, 138);
+            this.lbl_ArrowSec.Location = new System.Drawing.Point(30, 148);
             this.lbl_ArrowSec.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_ArrowSec.Name = "lbl_ArrowSec";
             this.lbl_ArrowSec.Size = new System.Drawing.Size(190, 28);
@@ -127,19 +129,41 @@
             this.lbl_ArrowSec.Text = "矢印信号機の点灯時間：";
             this.lbl_ArrowSec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lbl_SoftTitle
+            // lbl_FormTitle
             // 
-            this.lbl_SoftTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_SoftTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl_SoftTitle.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SoftTitle.Image = global::TrafficLightAlgorithm.Properties.Resources.SetFormTitle;
-            this.lbl_SoftTitle.Location = new System.Drawing.Point(30, 20);
-            this.lbl_SoftTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_SoftTitle.Name = "lbl_SoftTitle";
-            this.lbl_SoftTitle.Size = new System.Drawing.Size(300, 50);
-            this.lbl_SoftTitle.TabIndex = 0;
-            this.lbl_SoftTitle.Text = "北信号機の設定値";
-            this.lbl_SoftTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_FormTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_FormTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_FormTitle.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_FormTitle.Image = global::TrafficLightAlgorithm.Properties.Resources.SetFormTitle;
+            this.lbl_FormTitle.Location = new System.Drawing.Point(30, 20);
+            this.lbl_FormTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_FormTitle.Name = "lbl_FormTitle";
+            this.lbl_FormTitle.Size = new System.Drawing.Size(300, 50);
+            this.lbl_FormTitle.TabIndex = 0;
+            this.lbl_FormTitle.Text = "北信号機の設定値";
+            this.lbl_FormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_SupplementAvai
+            // 
+            this.lbl_SupplementAvai.BackColor = System.Drawing.Color.White;
+            this.lbl_SupplementAvai.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_SupplementAvai.Location = new System.Drawing.Point(30, 118);
+            this.lbl_SupplementAvai.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_SupplementAvai.Name = "lbl_SupplementAvai";
+            this.lbl_SupplementAvai.Size = new System.Drawing.Size(300, 20);
+            this.lbl_SupplementAvai.TabIndex = 10;
+            this.lbl_SupplementAvai.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl_SupplementArrow
+            // 
+            this.lbl_SupplementArrow.BackColor = System.Drawing.Color.White;
+            this.lbl_SupplementArrow.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_SupplementArrow.Location = new System.Drawing.Point(30, 176);
+            this.lbl_SupplementArrow.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_SupplementArrow.Name = "lbl_SupplementArrow";
+            this.lbl_SupplementArrow.Size = new System.Drawing.Size(300, 20);
+            this.lbl_SupplementArrow.TabIndex = 11;
+            this.lbl_SupplementArrow.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // F_SetSec
             // 
@@ -147,8 +171,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(360, 247);
-            this.Controls.Add(this.lbl_SoftTitle);
+            this.ClientSize = new System.Drawing.Size(360, 267);
+            this.Controls.Add(this.lbl_SupplementArrow);
+            this.Controls.Add(this.lbl_SupplementAvai);
+            this.Controls.Add(this.lbl_FormTitle);
             this.Controls.Add(this.lbl_SecTwo);
             this.Controls.Add(this.txt_ArrowSec);
             this.Controls.Add(this.lbl_ArrowSec);
@@ -158,9 +184,9 @@
             this.Controls.Add(this.lbl_AvaiSec);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(376, 286);
+            this.MaximumSize = new System.Drawing.Size(376, 306);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(376, 286);
+            this.MinimumSize = new System.Drawing.Size(376, 258);
             this.Name = "F_SetSec";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -180,6 +206,8 @@
         private System.Windows.Forms.Label lbl_SecTwo;
         private System.Windows.Forms.TextBox txt_ArrowSec;
         private System.Windows.Forms.Label lbl_ArrowSec;
-        private System.Windows.Forms.Label lbl_SoftTitle;
+        private System.Windows.Forms.Label lbl_FormTitle;
+        private System.Windows.Forms.Label lbl_SupplementAvai;
+        private System.Windows.Forms.Label lbl_SupplementArrow;
     }
 }

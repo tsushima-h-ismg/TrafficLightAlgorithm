@@ -118,29 +118,47 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SignalYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SignalYellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SignalPoleN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalPoleN.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SetFormTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SetFormTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="WSignalHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WSignalHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PedesEastOneHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesEastOneHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SignalPoleE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalPoleE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ArrowESignal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ArrowESignal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TrafficBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TrafficBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PedesWestTwoDefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesWestTwoDefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SignalPoleN" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SignalPoleN.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PedesEastOneDefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesEastOneDefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SignalPoleS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalPoleS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PedesWestOneHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesWestOneHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PedesWestOneDefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesWestOneDefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PedesEastTwoDefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesEastTwoDefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PedesNorthOneDefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesNorthOneDefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SignalGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SignalGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SignalPoleW" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SignalPoleW.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SignalPoleE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SignalPoleE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PedesSouthOneDefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesSouthOneDefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SignalRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SignalRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,22 +166,52 @@
   <data name="SoftTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SoftTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SignalPoleS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SignalPoleS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TrafficBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TrafficBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NSignalHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NSignalHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ArrowWSignal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ArrowWSignal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PedesNorthOneHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesNorthOneHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ESignalHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ESignalHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SignalYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalYellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PedesSouthTwoHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesSouthTwoHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PedesWestTwoHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesWestTwoHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PedesNorthTwoDefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesNorthTwoDefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SignalPoleW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SignalPoleW.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArrowWSignal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArrowWSignal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NSignalHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NSignalHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PedesSouthTwoDefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesSouthTwoDefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SetFormTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SetFormTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PedesNorthTwoHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesNorthTwoHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PedesSouthOneHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesSouthOneHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SSignalHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SSignalHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WSignalHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WSignalHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PedesEastTwoHilight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PedesEastTwoHilight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

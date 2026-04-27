@@ -21,9 +21,9 @@
         Red,
 
         /// <summary>
-        /// 矢印信号機点灯状態
+        /// 矢印信号機と車用信号機の赤ランプが点灯する状態
         /// </summary>
-        Arrow,
+        ArrowRed,
 
         /// <summary>
         /// 無灯火状態

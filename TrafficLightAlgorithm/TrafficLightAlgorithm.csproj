@@ -119,6 +119,22 @@
     <None Include="Resources\ESignalHilight.png" />
     <None Include="Resources\SSignalHilight.png" />
     <None Include="Resources\WSignalHilight.png" />
+    <None Include="Resources\PedesWestOneDefault.png" />
+    <None Include="Resources\PedesWestTwoDefault.png" />
+    <None Include="Resources\PedesNorthOneDefault.png" />
+    <None Include="Resources\PedesNorthTwoDefault.png" />
+    <None Include="Resources\PedesEastOneDefault.png" />
+    <None Include="Resources\PedesEastTwoDefault.png" />
+    <None Include="Resources\PedesSouthOneDefault.png" />
+    <None Include="Resources\PedesSouthTwoDefault.png" />
+    <None Include="Resources\PedesNorthOneHilight.png" />
+    <None Include="Resources\PedesNorthTwoHilight.png" />
+    <None Include="Resources\PedesSouthOneHilight.png" />
+    <None Include="Resources\PedesSouthTwoHilight.png" />
+    <None Include="Resources\PedesWestOneHilight.png" />
+    <None Include="Resources\PedesWestTwoHilight.png" />
+    <None Include="Resources\PedesEastOneHilight.png" />
+    <None Include="Resources\PedesEastTwoHilight.png" />
     <Content Include="Signal_Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
