@@ -18,12 +18,12 @@
         /// <summary>
         /// 点滅開始フェーズの場合はtrue、それ以外の場合はfalse
         /// </summary>
-        public bool IsBlinkStart;
+        public readonly bool IsBlinkStart;
 
         /// <summary>
         /// 点滅を行うフェーズの場合はtrue、それ以外の場合はfalse
         /// </summary>
-        public bool IsBlink;
+        public readonly bool IsBlink;
 
         /// <summary>
         /// 信号機の種類と点灯状態
@@ -33,8 +33,11 @@
         /// <summary>
         /// 点灯状態変更後の待機ミリ秒・点灯する信号機の種類・点灯状態を取得する
         /// </summary>
-        /// <param name="waitMSec"> 点灯状態変更後の待機ミリ秒 </param>
-        /// <param name="commands"> 信号機の種類と点灯状態     </param>
+        /// <param name="waitMSec">     点灯状態変更後の待機ミリ秒                                        </param>
+        /// <param name="commands">     信号機の種類と点灯状態                                            </param>
+        /// <param name="isBlinkStart"> 信号機の点滅を開始するフェーズの場合はtrue、それ以外の場合はfalse </param>
+        /// <param name="isBlink">      信号機の点滅を行うフォームの場合はtrue、それ以外の場合はfalse     </param>
+        /// <param name="phaseCount">   点滅を行うフェーズの数                                            </param>
         public TrafficPhase(int waitMSec, TrafficCommand[] commands, bool isBlinkStart = false, bool isBlink = false, int phaseCount = 0)
         { 
             WaitMSec     = waitMSec;
@@ -97,7 +100,7 @@
                 }
             }
 
-            int mSecValue = WaitMSec;                 // 待機するミリ秒数
+            int mSecValue = WaitMSec;                 // ミリ秒数の値が入る
             if (IsBlinkStart) mSecValue = BlinkMSec;  // 点滅開始フェーズの場合、点滅にかける待機ミリ秒の合計が入る
             msg += mSecValue / 1000F + "秒待機します。";
 

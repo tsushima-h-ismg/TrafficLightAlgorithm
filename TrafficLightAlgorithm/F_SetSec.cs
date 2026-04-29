@@ -8,22 +8,22 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 進行可能秒数の最大値
         /// </summary>
-        private const int AvaiSecMax   = 20;
+        private const int AvaiSecMax  = 20;
 
         /// <summary>
         /// 進行可能秒数の最小値
         /// </summary>
-        private const int AvaiSecMin   = 5;
+        private const int AvaiSecMin  = 5;
 
         /// <summary>
         /// 矢印信号機の点灯秒数の最大値
         /// </summary>
-        private const int ArrowSecMax  = 5;
+        private const int ArrowSecMax = 5;
 
         /// <summary>
         /// 矢印信号機の点灯秒数の最小値
         /// </summary>
-        private const int ArrowSecMin  = 1;
+        private const int ArrowSecMin = 1;
 
         /// <summary>
         /// 進行可能秒数
@@ -70,25 +70,27 @@ namespace TrafficLightAlgorithm
                 bool arrowEnable = IsEnable;          // 矢印信号機点灯秒数を入力するテキストボックスのEnabledプロパティ値
                 if (IsEnable) arrowEnable = IsArrow;  // IsEnableがtrueの場合に矢印信号機が存在するか判定する
 
-                string oppositeDirStr = "北";  // SetSignalの反対方向を表す文字列
+                // SetDirectionの反対方向を表す文字列
+                string oppositeDirStr = "北";
                 if      (SetDirection == Direction.North) oppositeDirStr = CreateDirStr(Direction.South);
                 else if (SetDirection == Direction.East)  oppositeDirStr = CreateDirStr(Direction.West);
                 else if (SetDirection == Direction.West)  oppositeDirStr = CreateDirStr(Direction.East);
-
+                
                 lbl_FormTitle.Text  = CreateDirStr(SetDirection) + CreateSigStr(SetSignal) + "信号機の設定値";  // フォームタイトルを取得
 
                 txt_AvaiSec.Text    = AvaiSec.ToString();  // 進行可能秒数を取得
-                txt_AvaiSec.Enabled = IsEnable;            // 進行可能秒数入力欄テキストボックスのEnabledプロパティ値設定
+                txt_AvaiSec.Enabled = IsEnable;            // テキストボックスのEnabledプロパティ値設定
 
                 if (SetSignal == Signal.Pedes)
                 {
-                    lbl_SupplementAvai.Text = "※" + oppositeDirStr + "方向の" + CreateSigStr(SetSignal) + "信号機の点灯時間と共通設定";
+                    lbl_SupplementAvai.Text = "※" + oppositeDirStr + "方向の" + CreateSigStr(SetSignal) + "信号機の進行可能時間と共通設定";
                 }
 
                 if (IsArrow)
                 {
-                    txt_ArrowSec.Text    = ArrowSec.ToString();  // 矢印信号機点灯秒数を取得
-                    txt_ArrowSec.Enabled = arrowEnable;          // 矢印信号機点灯秒数テキストボックスのEnabledプロパティ値設定
+                    // 矢印信号機が存在する場合、矢印信号機の点灯秒数を取得する
+                    txt_ArrowSec.Text    = ArrowSec.ToString();  // 矢印信号機の点灯秒数を取得
+                    txt_ArrowSec.Enabled = arrowEnable;          // テキストボックスのEnabledプロパティ値設定
 
                     lbl_SupplementArrow.Text = "※" + oppositeDirStr + "方向の矢印信号機の点灯時間と共通設定";
                 }
@@ -100,13 +102,13 @@ namespace TrafficLightAlgorithm
                     lbl_SecTwo.Visible          = false;
                     lbl_SupplementArrow.Visible = false;
 
-                    btn_Confirm.Top -= (txt_ArrowSec.Location.Y - txt_AvaiSec.Location.Y);  // 確定ボタンを上に詰める
-                    Height          -= (txt_ArrowSec.Location.Y - txt_AvaiSec.Location.Y);  // フォーム画面を上に詰める
+                    btn_Confirm.Top -= txt_ArrowSec.Location.Y - txt_AvaiSec.Location.Y;  // 確定ボタンを上に詰める
+                    Height          -= txt_ArrowSec.Location.Y - txt_AvaiSec.Location.Y;  // フォーム画面を上に詰める
                 }
             }
             catch (Exception ex)
             {
-                string exStr = "設定値入力フォームのロードでエラーが発生しました。\n" + ex.Message;
+                string exStr = "設定値入力画面の読み込みでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -158,16 +160,22 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                string errMsg = "";  // エラーメッセージが入る
+                int    arrowVal = ArrowSec;  // 矢印信号機の点灯時間が入る
+                string errMsg   = "";        // エラーメッセージが入る
 
-                // テキストボックスに入力した値のチェック
-                if (!CheckSecText(txt_AvaiSec,  out int avaiVal))             errMsg += $"「進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を入力してください。\n";
-                if (!CheckSecText(txt_ArrowSec, out int arrowVal) && IsArrow) errMsg += $"「矢印信号機の点灯時間」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
+                // 進行可能時間の入力チェック
+                if (!CheckSecText(txt_AvaiSec, out int avaiVal))   errMsg += $"「進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を入力してください。\n";                
+
+                // 矢印信号機の点灯時間の入力チェック
+                if (IsArrow)
+                {
+                    if (!CheckSecText(txt_ArrowSec, out arrowVal)) errMsg += $"「矢印信号機の点灯時間」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
+                }
 
                 if (errMsg == "")
                 {
-                    AvaiSec  = avaiVal;                // テキストボックスに入力した進行可能秒数を取得する
-                    if (IsArrow) ArrowSec = arrowVal;  // テキストボックスに入力した矢印信号機の点灯秒数を取得する
+                    AvaiSec  = avaiVal;   // 進行可能秒数を取得する
+                    ArrowSec = arrowVal;  // 矢印信号機の点灯時間を取得する
                     Close();
                 }
                 else
@@ -177,7 +185,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = "「確定」ボタンクリックでエラーが発生しました。\n" + ex.Message;
+                string exStr = "「確定」ボタンのクリックでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -193,7 +201,7 @@ namespace TrafficLightAlgorithm
             try
             {
                 resultVal = 0;
-
+                
                 int maxVal = AvaiSecMax;  // 進行可能秒数の最大値を取得
                 int minVal = AvaiSecMin;  // 進行可能秒数の最小値を取得
 
@@ -209,8 +217,10 @@ namespace TrafficLightAlgorithm
                 if (resultVal < minVal || resultVal > maxVal)           return false;  // int型に変換した値がminValより小さい、もしくはmaxValより大きい場合は終了する
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                string exStr = "入力値のチェックでエラーが発生しました。\n" + ex.Message;
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 resultVal = 0;
                 return false;
             }

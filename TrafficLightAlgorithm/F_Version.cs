@@ -20,7 +20,7 @@ namespace TrafficLightAlgorithm
             {
                 Version ver    = typeof(F_Version).Assembly.GetName().Version;      // バージョン情報を取得する
                 string  verStr = $"Version {ver.Minor}.{ver.Build}{ver.Revision}";  // 「Version {マイナー番号}.{ビルド番号}{リビジョン番号}」形式の文字列を取得する
-
+                
                 // 著作権と会社名のカスタム属性を取得する
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 AssemblyCopyrightAttribute copyRight = (AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyCopyrightAttribute));
@@ -33,7 +33,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = "バージョン情報フォームのロードでエラーが発生しました。\n" + ex.Message;
+                string exStr = "バージョン情報画面の読み込みでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -49,7 +49,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = "バージョン情報フォーム終了でエラーが発生しました。\n" + ex.Message;
+                string exStr = "バージョン情報表示部分のクリックでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

@@ -146,7 +146,7 @@
             // lbl_SupplementAvai
             // 
             this.lbl_SupplementAvai.BackColor = System.Drawing.Color.White;
-            this.lbl_SupplementAvai.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_SupplementAvai.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lbl_SupplementAvai.Location = new System.Drawing.Point(30, 118);
             this.lbl_SupplementAvai.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SupplementAvai.Name = "lbl_SupplementAvai";
@@ -157,7 +157,7 @@
             // lbl_SupplementArrow
             // 
             this.lbl_SupplementArrow.BackColor = System.Drawing.Color.White;
-            this.lbl_SupplementArrow.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_SupplementArrow.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lbl_SupplementArrow.Location = new System.Drawing.Point(30, 176);
             this.lbl_SupplementArrow.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SupplementArrow.Name = "lbl_SupplementArrow";
@@ -171,7 +171,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(360, 267);
+            this.ClientSize = new System.Drawing.Size(360, 266);
             this.Controls.Add(this.lbl_SupplementArrow);
             this.Controls.Add(this.lbl_SupplementAvai);
             this.Controls.Add(this.lbl_FormTitle);
@@ -184,9 +184,9 @@
             this.Controls.Add(this.lbl_AvaiSec);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(376, 306);
+            this.MaximumSize = new System.Drawing.Size(376, 305);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(376, 258);
+            this.MinimumSize = new System.Drawing.Size(376, 247);
             this.Name = "F_SetSec";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

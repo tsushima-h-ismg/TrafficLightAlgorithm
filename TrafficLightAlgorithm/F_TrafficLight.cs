@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using TrafficLightAlgorithm.Properties;
 
 namespace TrafficLightAlgorithm
 {
@@ -76,23 +77,32 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                IsTrafficEnable = false;                                       // 信号機アルゴリズムが動かない場合のブール値に設定する
-                IsInterrupt     = false;                                       // 信号機アルゴリズムの中断を無効にする
-                Cts             = new CancellationTokenSource();               // Ctsの初期化
-                SetMSec         = new TrafficMSecValue(5000, 5000, 5000, 5000, 1500, 1500, 1000);  // 設定値構造体の初期設定
+                IsInterrupt     = false;  // 信号機アルゴリズムの中断を無効にする
+                IsTrafficEnable = false;  // 中断ボタンとリセットボタンがクリックされたときの動作を実行しないようにfalseに設定する
+                
+                Cts = new CancellationTokenSource();  // Ctsの初期化
+                
+                SetMSec = new TrafficMSecValue(5000, 5000, 5000, 5000, 1500, 1500, 1000);  // 設定値構造体の初期設定
 
-                //ピクチャボックスのコントロールコレクションにラベルを追加する
+                // 車用信号機イメージ画像を表示するピクチャボックスのコントロールコレクションにラベルを追加する
+                // ラベルを追加することで、ラベルはピクチャボックスが表示する信号機部分を囲うように配置し、「ラベルクリック = 信号機部分をクリック」としてクリック時イベントを実行する
+                // ラベルを追加しない場合、信号機部分をクリックしても設定値入力フォーム表示イベントが実行されない
                 pib_NSignal.Controls.Add(lbl_NSignal);
                 pib_SSignal.Controls.Add(lbl_SSignal);
                 pib_ESignal.Controls.AddRange(new Control[] { lbl_ESignal, lbl_EArrow });
                 pib_WSignal.Controls.AddRange(new Control[] { lbl_WSignal, lbl_WArrow });
 
                 // ラベルのコントロールコレクションに信号機の緑・黄・赤点灯イメージ表示ピクチャボックスを追加する
+                // ラベルを信号機点灯イメージピクチャボックスの親にすることで、ラベル背景色とピクチャボックス背景色を同じ色に連動して変化させることができる
+                // ラベルを追加しない場合、ピクチャボックスの背景色は交差点イメージ画像を参照し、信号機イメージ画像の色と一致しなくなる
                 lbl_NSignal.Controls.AddRange(new Control[] { pib_NGreen, pib_NYellow, pib_NRed });
                 lbl_SSignal.Controls.AddRange(new Control[] { pib_SGreen, pib_SYellow, pib_SRed });
                 lbl_ESignal.Controls.AddRange(new Control[] { pib_EGreen, pib_EYellow, pib_ERed });
                 lbl_WSignal.Controls.AddRange(new Control[] { pib_WGreen, pib_WYellow, pib_WRed });
 
+                // 歩行者用信号機イメージ画像を表示するピクチャボックスのコントロールコレクションにラベルを追加する
+                // ラベルを追加することで、ラベルはピクチャボックスが表示する信号機部分を囲うように配置し、「ラベルクリック = 信号機部分をクリック」としてクリック時イベントを実行する
+                // ラベルを追加しない場合、信号機部分をクリックしても設定値入力フォーム表示イベントが実行されない
                 pib_PNSignalOne.Controls.Add(lbl_PNOne);
                 pib_PNSignalTwo.Controls.Add(lbl_PNTwo);
                 pib_PSSignalOne.Controls.Add(lbl_PSOne);
@@ -104,7 +114,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = "フォームのロードでエラーが発生しました。\n" + ex.Message;
+                string exStr = "メイン画面の読み込みでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -112,63 +122,81 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 信号機イメージ画像クリック時イベント
         /// </summary>
-        private void Lbl_CarSignal_Click(object sender, EventArgs e)
+        private void Lbl_Signal_Click(object sender, EventArgs e)
         {
             try
             {
                 // 設定値入力フォームを表示する
                 if (sender == lbl_NSignal || sender == pib_NGreen || sender == pib_NYellow || sender == pib_NRed)
                 {
-                    SetFormShow(SetMSec.CarNMSec, false, Signal.Car, Direction.North, pib_NSignal, Properties.Resources.NSignalHilight);  // 北車用信号機の設定値入力
+                    SetFormShow(SetMSec.CarNMSec, false, Signal.Car, Direction.North, pib_NSignal);  // 北車用信号機の設定値入力
                 }
                 else if (sender == lbl_SSignal || sender == pib_SGreen || sender == pib_SYellow || sender == pib_SRed)
                 {
-                    SetFormShow(SetMSec.CarSMSec, false, Signal.Car, Direction.South, pib_SSignal, Properties.Resources.SSignalHilight);  // 南車用信号機の設定値入力
+                    SetFormShow(SetMSec.CarSMSec, false, Signal.Car, Direction.South, pib_SSignal);  // 南車用信号機の設定値入力
                 }
                 else if (sender == lbl_ESignal || sender == lbl_EArrow || sender == pib_EGreen || sender == pib_EYellow || sender == pib_ERed || sender == pib_EArrow)
                 {
-                    SetFormShow(SetMSec.CarEMSec, true, Signal.Car, Direction.East, pib_ESignal, Properties.Resources.ESignalHilight);  // 東車用信号機の設定値入力
+                    SetFormShow(SetMSec.CarEMSec, true, Signal.Car, Direction.East, pib_ESignal);  // 東車用信号機の設定値入力
                 }
                 else if (sender == lbl_WSignal || sender == lbl_WArrow || sender == pib_WGreen || sender == pib_WYellow || sender == pib_WRed || sender == pib_WArrow)
                 {
-                    SetFormShow(SetMSec.CarWMSec, true, Signal.Car, Direction.West, pib_WSignal, Properties.Resources.WSignalHilight);  // 西車用信号機の設定値入力
+                    SetFormShow(SetMSec.CarWMSec, true, Signal.Car, Direction.West, pib_WSignal);  // 西車用信号機の設定値入力
                 }
-                else if (sender == lbl_PNOne || sender == lbl_PNGreOne || sender == lbl_PNRedOne)
+                else if (sender == lbl_PNOne || sender == lbl_PNGreOne || sender == lbl_PNRedOne ||
+                         sender == lbl_PNTwo || sender == lbl_PNGreTwo || sender == lbl_PNRedTwo ||
+                         sender == lbl_PSOne || sender == lbl_PSGreOne || sender == lbl_PSRedOne ||
+                         sender == lbl_PSTwo || sender == lbl_PSGreTwo || sender == lbl_PSRedTwo)
                 {
-                    SetFormShow(SetMSec.PedNSMSec, false, Signal.Pedes, Direction.North, pib_PNSignalOne, Properties.Resources.PedesNorthOneHilight);  // １つ目の北歩行者用信号機の設定値入力
+                    PictureBox pictureBox = pib_PNSignalOne;
+                    Direction dir = Direction.North;
+
+                    if (sender == lbl_PNTwo || sender == lbl_PNGreTwo || sender == lbl_PNRedTwo)
+                    {
+                        pictureBox = pib_PNSignalTwo;
+                    }
+                    else if (sender == lbl_PSOne || sender == lbl_PSGreOne || sender == lbl_PSRedOne)
+                    {
+                        pictureBox = pib_PSSignalOne;
+                        dir = Direction.South;
+                    }
+                    else if (sender == lbl_PSTwo || sender == lbl_PSGreTwo || sender == lbl_PSRedTwo)
+                    {
+                        pictureBox = pib_PSSignalTwo;
+                        dir = Direction.South;
+                    }
+
+                    SetFormShow(SetMSec.PedNSMSec, false, Signal.Pedes, dir, pictureBox);  // 北南歩行者用信号機の設定値入力
                 }
-                else if (sender == lbl_PNTwo || sender == lbl_PNGreTwo || sender == lbl_PNRedTwo)
+                else if (sender == lbl_PEOne || sender == lbl_PEGreOne || sender == lbl_PERedOne ||
+                         sender == lbl_PETwo || sender == lbl_PEGreTwo || sender == lbl_PERedTwo ||
+                         sender == lbl_PWOne || sender == lbl_PWGreOne || sender == lbl_PWRedOne ||
+                         sender == lbl_PWTwo || sender == lbl_PWGreTwo || sender == lbl_PWRedTwo)
                 {
-                    SetFormShow(SetMSec.PedNSMSec, false, Signal.Pedes, Direction.North, pib_PNSignalTwo, Properties.Resources.PedesNorthTwoHilight);  // ２つ目の北歩行者用信号機の設定値入力
-                }
-                else if (sender == lbl_PSOne || sender == lbl_PSGreOne || sender == lbl_PSRedOne)
-                {
-                    SetFormShow(SetMSec.PedNSMSec, false, Signal.Pedes, Direction.South, pib_PSSignalOne, Properties.Resources.PedesSouthOneHilight);  // １つ目の南歩行者用信号機の設定値入力
-                }
-                else if (sender == lbl_PSTwo || sender == lbl_PSGreTwo || sender == lbl_PSRedTwo)
-                {
-                    SetFormShow(SetMSec.PedNSMSec, false, Signal.Pedes, Direction.South, pib_PSSignalTwo, Properties.Resources.PedesSouthTwoHilight);  // ２つ目の南歩行者用信号機の設定値入力
-                }
-                else if (sender == lbl_PEOne || sender == lbl_PEGreOne || sender == lbl_PERedOne)
-                {
-                    SetFormShow(SetMSec.PedEWMSec, false, Signal.Pedes, Direction.East, pib_PESignalOne, Properties.Resources.PedesEastOneHilight);  // １つ目の東歩行者用信号機の設定値入力
-                }
-                else if (sender == lbl_PETwo || sender == lbl_PEGreTwo || sender == lbl_PERedTwo)
-                {
-                    SetFormShow(SetMSec.PedEWMSec, false, Signal.Pedes, Direction.East, pib_PESignalTwo, Properties.Resources.PedesEastTwoHilight);  // ２つ目の東歩行者用信号機の設定値入力
-                }
-                else if (sender == lbl_PWOne || sender == lbl_PWGreOne || sender == lbl_PWRedOne)
-                {
-                    SetFormShow(SetMSec.PedEWMSec, false, Signal.Pedes, Direction.West, pib_PWSignalOne, Properties.Resources.PedesWestOneHilight);  // １つ目の西歩行者用信号機の設定値入力
-                }
-                else if (sender == lbl_PWTwo || sender == lbl_PWGreTwo || sender == lbl_PWRedTwo)
-                {
-                    SetFormShow(SetMSec.PedEWMSec, false, Signal.Pedes, Direction.West, pib_PWSignalTwo, Properties.Resources.PedesWestTwoHilight);  // ２つ目の西歩行者用信号機の設定値入力
+                    PictureBox pictureBox = pib_PESignalOne;
+                    Direction dir = Direction.East;
+
+                    if (sender == lbl_PETwo || sender == lbl_PEGreTwo || sender == lbl_PERedTwo)
+                    {
+                        pictureBox = pib_PESignalTwo;
+                    }
+                    else if (sender == lbl_PWOne || sender == lbl_PWGreOne || sender == lbl_PWRedOne)
+                    {
+                        pictureBox = pib_PWSignalOne;
+                        dir = Direction.West;
+                    }
+                    else if (sender == lbl_PWTwo || sender == lbl_PWGreTwo || sender == lbl_PWRedTwo)
+                    {
+                        pictureBox = pib_PWSignalTwo;
+                        dir = Direction.West;
+                    }
+
+                    SetFormShow(SetMSec.PedEWMSec, false, Signal.Pedes, dir, pictureBox);  // 東西歩行者用信号機の設定値入力
                 }
             }
             catch (Exception ex)
             {
-                string exStr = "設定値入力フォームの表示でエラーが発生しました。\n" + ex.Message;
+                string exStr = "信号機イメージ画像のクリックでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -182,13 +210,12 @@ namespace TrafficLightAlgorithm
         /// <param name="direction">    信号機が存在する方角                                </param>
         /// <param name="pib">          信号機イメージ画像を表示するピクチャボックス        </param>
         /// <param name="highlightImg"> 強調表示した信号機イメージ画像                      </param>
-        private void SetFormShow(int avaiMSec, bool isArrow, Signal signal, Direction direction, PictureBox pib, Image highlightImg)
+        private void SetFormShow(int avaiMSec, bool isArrow, Signal signal, Direction direction, PictureBox pib)
         {
             try
             {
-                Image defaultImage  = pib.BackgroundImage;  // ピクチャボックスの背景画像をデフォルト背景画像として取得する
-                pib.BackgroundImage = highlightImg;         // ピクチャボックスの背景画像を強調表示した信号機イメージ画像にする
-                
+                if (!ChangeSignalImage(signal, direction, true)) return;  // 信号機イメージ画像を強調表示した画像に変更する
+
                 // 設定値入力フォームを初期化
                 F_SetSec f_SetSec = new F_SetSec
                 {
@@ -213,23 +240,95 @@ namespace TrafficLightAlgorithm
                 
                 int avaimsec = f_SetSec.AvaiSec  * 1000;  // 設定値入力フォームから進行可能秒数を取得してミリ秒に変換する
                 int arrmsec  = f_SetSec.ArrowSec * 1000;  // 設定値入力フォームから矢印信号機点灯秒数を取得してミリ秒に変換する
-
+                
                 // 設定値構造体の値を更新
-                if      (signal == Signal.Car   && direction == Direction.North)      SetMSec.CarNMSec  = avaimsec;
-                else if (signal == Signal.Car   && direction == Direction.South)      SetMSec.CarSMSec  = avaimsec;
-                else if (signal == Signal.Car   && direction == Direction.East)       SetMSec.CarEMSec  = avaimsec;
-                else if (signal == Signal.Car   && direction == Direction.West)       SetMSec.CarWMSec  = avaimsec;
-                else if (signal == Signal.Pedes && direction == Direction.NorthSouth) SetMSec.PedNSMSec = avaimsec;
-                else if (signal == Signal.Pedes && direction == Direction.EastWest)   SetMSec.PedEWMSec = avaimsec;
+                if      (signal == Signal.Car   && direction == Direction.North)      SetMSec.CarNMSec  = avaimsec;  // 北方向車用信号機
+                else if (signal == Signal.Car   && direction == Direction.South)      SetMSec.CarSMSec  = avaimsec;  // 南方向車用信号機
+                else if (signal == Signal.Car   && direction == Direction.East)       SetMSec.CarEMSec  = avaimsec;  // 東方向車用信号機
+                else if (signal == Signal.Car   && direction == Direction.West)       SetMSec.CarWMSec  = avaimsec;  // 西方向車用信号機
+                else if (signal == Signal.Pedes && direction == Direction.NorthSouth) SetMSec.PedNSMSec = avaimsec;  // 北南方向歩行者用信号機
+                else if (signal == Signal.Pedes && direction == Direction.EastWest)   SetMSec.PedEWMSec = avaimsec;  // 東西方向歩行者用信号機
 
-                if (isArrow) SetMSec.ArwMSec = arrmsec;
-
-                pib.BackgroundImage = defaultImage;  // ピクチャボックスの背景画像をデフォルト背景画像にする
+                if (isArrow) SetMSec.ArwMSec = arrmsec;  // 矢印信号機
+                
+                if (!ChangeSignalImage(signal, direction, false)) return;  // 信号機イメージ画像をデフォルトの画像に変更する
             }
             catch (Exception ex)
             {
-                string exStr = "設定値入力フォームの表示でエラーが発生しました。\n" + ex.Message;
+                string exStr = "設定値の入力でエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// 信号機イメージ画像の変更
+        /// </summary>
+        /// <param name="signal">    信号機の種類                                            </param>
+        /// <param name="direction"> 信号機を設置した方角                                    </param>
+        /// <param name="isHilight"> 信号機の強調表示を行う場合はtrue、それ以外の場合はfalse </param>
+        /// <returns> 信号機イメージ画像の変更に成功した場合はtrue、それ以外の場合はfalse </returns>
+        private bool ChangeSignalImage(Signal signal, Direction direction, bool isHilight)
+        {
+            try
+            {
+                if (signal == Signal.Car)
+                {
+                    // 車用信号機イメージ画像の変更
+                    if      (direction == Direction.North) pib_NSignal.BackgroundImage = GetHilightImg(Resources.NSignalHilight, Resources.SignalPoleN, isHilight);
+                    else if (direction == Direction.South) pib_SSignal.BackgroundImage = GetHilightImg(Resources.SSignalHilight, Resources.SignalPoleS, isHilight);
+                    else if (direction == Direction.East)  pib_ESignal.BackgroundImage = GetHilightImg(Resources.ESignalHilight, Resources.SignalPoleE, isHilight);
+                    else if (direction == Direction.West)  pib_WSignal.BackgroundImage = GetHilightImg(Resources.WSignalHilight, Resources.SignalPoleW, isHilight);
+                    return true;
+                }
+                else if (signal == Signal.Pedes)
+                {
+                    if (direction == Direction.North || direction == Direction.South)
+                    {
+                        // 北南歩行者用信号機イメージ画像の変更
+                        pib_PNSignalOne.BackgroundImage = GetHilightImg(Resources.PedesNorthOneHilight, Resources.PedesNorthOneDefault, isHilight);
+                        pib_PNSignalTwo.BackgroundImage = GetHilightImg(Resources.PedesNorthTwoHilight, Resources.PedesNorthTwoDefault, isHilight);
+                        pib_PSSignalOne.BackgroundImage = GetHilightImg(Resources.PedesSouthOneHilight, Resources.PedesSouthOneDefault, isHilight);
+                        pib_PSSignalTwo.BackgroundImage = GetHilightImg(Resources.PedesSouthTwoHilight, Resources.PedesSouthTwoDefault, isHilight);
+                    }
+                    else if (direction == Direction.East || direction == Direction.West)
+                    {
+                        // 東西歩行者用信号機イメージ画像の変更
+                        pib_PESignalOne.BackgroundImage = GetHilightImg(Resources.PedesEastOneHilight, Resources.PedesEastOneDefault, isHilight);
+                        pib_PESignalTwo.BackgroundImage = GetHilightImg(Resources.PedesEastTwoHilight, Resources.PedesEastTwoDefault, isHilight);
+                        pib_PWSignalOne.BackgroundImage = GetHilightImg(Resources.PedesWestOneHilight, Resources.PedesWestOneDefault, isHilight);
+                        pib_PWSignalTwo.BackgroundImage = GetHilightImg(Resources.PedesWestTwoHilight, Resources.PedesWestTwoDefault, isHilight);
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                string exStr = "信号機イメージ画像の変更でエラーが発生しました。\n" + ex.Message;
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 信号機イメージ画像を返す
+        /// </summary>
+        /// <param name="hilightImg"> 強調表示した信号機イメージ画像                  </param>
+        /// <param name="defaultImg"> デフォルトの信号機イメージ画像                  </param>
+        /// <param name="isHilight">  強調表示を行う場合はtrue、それ以外の場合はfalse </param>
+        /// <returns> 引数isHilightがtrueの場合はhilightImg、それ以外の場合は引数defaultImg </returns>
+        private Bitmap GetHilightImg(Bitmap hilightImg, Bitmap defaultImg, bool isHilight)
+        {
+            try
+            {
+                if (isHilight) return hilightImg;  // 強調表示した信号機イメージ画像を返す
+                return defaultImg;                 // デフォルトの信号機イメージ画像を返す
+            }
+            catch
+            {
+                return defaultImg;
             }
         }
 
@@ -259,7 +358,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex) 
             {
-                string exStr = "信号機の点灯を開始する前にエラーが発生しました。\n" + ex.Message;
+                string exStr = "「開始」ボタンのクリックでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -289,7 +388,7 @@ namespace TrafficLightAlgorithm
                             }
                         }
                     }
-
+                    
                     LoopTrafficPhase(InterruptPhase, PhaseList);  // 中断したフェーズからフェーズリストを再生する
                 }
                 else
@@ -302,9 +401,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string irtext = "再開";
-                if (IsInterrupt) irtext = "中断";
-                string exStr = "信号機プログラムの" + irtext + "でエラーが発生しました。\n" + ex.Message;
+                string exStr = "「中断/再開」ボタンのクリックでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -321,9 +418,13 @@ namespace TrafficLightAlgorithm
                     string msgStr = "信号機プログラムを停止し、信号機の点灯状態をリセットしますか？";
                     if (MessageBox.Show(msgStr, Program.SoftTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No) return; 
                 }
+                else
+                {
+                    return;
+                }
 
                 Cts.Cancel();  // キャンセル要求を伝える
-                
+
                 ChangeSignalLightOn(LightState.NoLight, pib_NGreen,   pib_NYellow,  pib_NRed,     null);          // 北方向の車用信号機を無灯火にする
                 ChangeSignalLightOn(LightState.NoLight, pib_SGreen,   pib_SYellow,  pib_SRed,     null);          // 南方向の車用信号機を無灯火にする
                 ChangeSignalLightOn(LightState.NoLight, pib_EGreen,   pib_EYellow,  pib_ERed,     pib_EArrow);    // 東方向の車用信号機を無灯火にする
@@ -340,7 +441,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = "信号機の点灯状態のリセットでエラーが発生しました。\n" + ex.Message;
+                string exStr = "「リセット」ボタンのクリックでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -348,7 +449,7 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// タイトル表示ラベルクリック時イベント
         /// </summary>
-        private void Lbl_SoftTitle_Click(object sender, EventArgs e)
+        private void Lbl_FormTitle_Click(object sender, EventArgs e)
         {
             try
             {
@@ -357,7 +458,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = "バージョン情報フォーム画面の表示でエラーが発生しました。\n" + ex.Message;
+                string exStr = "タイトル部分のクリックでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -394,7 +495,7 @@ namespace TrafficLightAlgorithm
                 {
                     new TrafficPhase(AllRedMSec, new TrafficCommand[]{ new TrafficCommand() })  // 全信号機の赤点灯フェーズ
                 };
-
+                
                 phases.AddRange(DirectionPhaseList(setMSec, Direction.NorthSouth, false));  // 交差点北南道路の信号機点灯フェーズ
                 phases.AddRange(DirectionPhaseList(setMSec, Direction.EastWest,   true));   // 交差点東西道路の信号機点灯フェーズ
                 return phases;
@@ -442,7 +543,7 @@ namespace TrafficLightAlgorithm
                     new TrafficPhase(greMSec, new TrafficCommand[] { new TrafficCommand(direction,    Signal.Car,   LightState.Green),
                                                                      new TrafficCommand(pedDirection, Signal.Pedes, LightState.Green)} )
                 };
-
+                
                 // 歩行者用信号機の点滅
                 for (int i = 0; i < BlinkPhaseCount; i++)
                 {
@@ -532,7 +633,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex) 
             {
-                string exStr = "信号機点灯フェーズリストの作成でエラーが発生しました。\n" + ex.Message;
+                string exStr = "信号機点灯の順番表の作成でエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
@@ -549,7 +650,7 @@ namespace TrafficLightAlgorithm
             {
                 int startPhase = phaseNum;            // 最初に再生するフェーズのインデックス番号が入る
                 Cts = new CancellationTokenSource();  // Ctsの初期化
-
+                
                 while (!Cts.IsCancellationRequested)
                 {
                     for (int i = startPhase; i < phases.Count; i++)
@@ -559,7 +660,7 @@ namespace TrafficLightAlgorithm
                         foreach (TrafficCommand cmd in phases[i].Commands)
                         {
                             // 点灯状態更新の結果を取得し、結果がfalseの場合は終了する
-
+                            
                             // 車用信号機の点灯状態更新
                             if (cmd.Signal == Signal.All || cmd.Signal == Signal.Car)
                             {
@@ -623,7 +724,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = "信号機の点灯でエラーが発生しました。\n" + ex.Message;
+                string exStr = "信号機の点灯状態の変更でエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -658,7 +759,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = "車用信号機点灯状態の更新でエラーが発生しました。\n" + ex.Message;
+                string exStr = "車用信号機の点灯状態の更新でエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
@@ -691,7 +792,7 @@ namespace TrafficLightAlgorithm
             }
             catch (Exception ex)
             {
-                string exStr = "歩行者用信号機点灯状態の更新でエラーが発生しました。\n" + ex.Message;
+                string exStr = "歩行者用信号機の点灯状態の更新でエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }

@@ -71,32 +71,32 @@
             this.lbl_NSignal = new System.Windows.Forms.Label();
             this.lbl_ESignal = new System.Windows.Forms.Label();
             this.lbl_EArrow = new System.Windows.Forms.Label();
-            this.lbl_WSignal = new System.Windows.Forms.Label();
             this.lbl_WArrow = new System.Windows.Forms.Label();
             this.lbl_SSignal = new System.Windows.Forms.Label();
             this.pib_NSignal = new System.Windows.Forms.PictureBox();
             this.pib_ESignal = new System.Windows.Forms.PictureBox();
             this.pib_SSignal = new System.Windows.Forms.PictureBox();
             this.pib_WSignal = new System.Windows.Forms.PictureBox();
-            this.lbx_SignalControlLog = new System.Windows.Forms.ListBox();
-            this.grb_SignalControlLog = new System.Windows.Forms.GroupBox();
-            this.lbl_SoftTitle = new System.Windows.Forms.Label();
+            this.lbl_PNTwo = new System.Windows.Forms.Label();
+            this.lbl_PSOne = new System.Windows.Forms.Label();
+            this.lbl_PWOne = new System.Windows.Forms.Label();
+            this.lbl_PNOne = new System.Windows.Forms.Label();
+            this.lbl_PEOne = new System.Windows.Forms.Label();
+            this.lbl_PETwo = new System.Windows.Forms.Label();
+            this.lbl_PWTwo = new System.Windows.Forms.Label();
+            this.lbl_PSTwo = new System.Windows.Forms.Label();
+            this.lbl_WSignal = new System.Windows.Forms.Label();
             this.pib_PWSignalOne = new System.Windows.Forms.PictureBox();
-            this.pib_PWSignalTwo = new System.Windows.Forms.PictureBox();
-            this.pib_PESignalTwo = new System.Windows.Forms.PictureBox();
-            this.pib_PESignalOne = new System.Windows.Forms.PictureBox();
-            this.pib_PNSignalTwo = new System.Windows.Forms.PictureBox();
-            this.pib_PNSignalOne = new System.Windows.Forms.PictureBox();
             this.pib_PSSignalTwo = new System.Windows.Forms.PictureBox();
             this.pib_PSSignalOne = new System.Windows.Forms.PictureBox();
-            this.lbl_PWOne = new System.Windows.Forms.Label();
-            this.lbl_PWTwo = new System.Windows.Forms.Label();
-            this.lbl_PETwo = new System.Windows.Forms.Label();
-            this.lbl_PEOne = new System.Windows.Forms.Label();
-            this.lbl_PNTwo = new System.Windows.Forms.Label();
-            this.lbl_PNOne = new System.Windows.Forms.Label();
-            this.lbl_PSTwo = new System.Windows.Forms.Label();
-            this.lbl_PSOne = new System.Windows.Forms.Label();
+            this.pib_PNSignalTwo = new System.Windows.Forms.PictureBox();
+            this.pib_PNSignalOne = new System.Windows.Forms.PictureBox();
+            this.pib_PESignalTwo = new System.Windows.Forms.PictureBox();
+            this.pib_PESignalOne = new System.Windows.Forms.PictureBox();
+            this.pib_PWSignalTwo = new System.Windows.Forms.PictureBox();
+            this.lbx_SignalControlLog = new System.Windows.Forms.ListBox();
+            this.grb_SignalControlLog = new System.Windows.Forms.GroupBox();
+            this.lbl_FormTitle = new System.Windows.Forms.Label();
             this.grb_TrafficShow.SuspendLayout();
             this.pnl_Traffic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pib_WArrow)).BeginInit();
@@ -117,15 +117,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pib_ESignal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_SSignal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_WSignal)).BeginInit();
-            this.grb_SignalControlLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PWSignalOne)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pib_PWSignalTwo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalTwo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalOne)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pib_PNSignalTwo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pib_PNSignalOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PSSignalTwo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PSSignalOne)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_PNSignalTwo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_PNSignalOne)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalTwo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalOne)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_PWSignalTwo)).BeginInit();
+            this.grb_SignalControlLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_Start
@@ -323,7 +323,7 @@
             this.lbl_PSRedTwo.Size = new System.Drawing.Size(12, 14);
             this.lbl_PSRedTwo.TabIndex = 242;
             this.lbl_PSRedTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PSRedTwo.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PSRedTwo.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PSGreTwo
             // 
@@ -336,7 +336,7 @@
             this.lbl_PSGreTwo.Size = new System.Drawing.Size(12, 14);
             this.lbl_PSGreTwo.TabIndex = 241;
             this.lbl_PSGreTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PSGreTwo.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PSGreTwo.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PSRedOne
             // 
@@ -349,7 +349,7 @@
             this.lbl_PSRedOne.Size = new System.Drawing.Size(12, 14);
             this.lbl_PSRedOne.TabIndex = 238;
             this.lbl_PSRedOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PSRedOne.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PSRedOne.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PSGreOne
             // 
@@ -362,7 +362,7 @@
             this.lbl_PSGreOne.Size = new System.Drawing.Size(12, 14);
             this.lbl_PSGreOne.TabIndex = 237;
             this.lbl_PSGreOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PSGreOne.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PSGreOne.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PNRedTwo
             // 
@@ -375,7 +375,7 @@
             this.lbl_PNRedTwo.Size = new System.Drawing.Size(12, 14);
             this.lbl_PNRedTwo.TabIndex = 240;
             this.lbl_PNRedTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PNRedTwo.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PNRedTwo.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PNGreTwo
             // 
@@ -388,7 +388,7 @@
             this.lbl_PNGreTwo.Size = new System.Drawing.Size(12, 14);
             this.lbl_PNGreTwo.TabIndex = 239;
             this.lbl_PNGreTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PNGreTwo.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PNGreTwo.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PNRedOne
             // 
@@ -401,7 +401,7 @@
             this.lbl_PNRedOne.Size = new System.Drawing.Size(12, 14);
             this.lbl_PNRedOne.TabIndex = 236;
             this.lbl_PNRedOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PNRedOne.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PNRedOne.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PNGreOne
             // 
@@ -414,7 +414,7 @@
             this.lbl_PNGreOne.Size = new System.Drawing.Size(12, 14);
             this.lbl_PNGreOne.TabIndex = 235;
             this.lbl_PNGreOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PNGreOne.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PNGreOne.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PEGreTwo
             // 
@@ -427,7 +427,7 @@
             this.lbl_PEGreTwo.Size = new System.Drawing.Size(14, 12);
             this.lbl_PEGreTwo.TabIndex = 33;
             this.lbl_PEGreTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PEGreTwo.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PEGreTwo.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PERedOne
             // 
@@ -440,7 +440,7 @@
             this.lbl_PERedOne.Size = new System.Drawing.Size(14, 12);
             this.lbl_PERedOne.TabIndex = 31;
             this.lbl_PERedOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PERedOne.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PERedOne.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PERedTwo
             // 
@@ -453,7 +453,7 @@
             this.lbl_PERedTwo.Size = new System.Drawing.Size(14, 12);
             this.lbl_PERedTwo.TabIndex = 32;
             this.lbl_PERedTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PERedTwo.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PERedTwo.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PEGreOne
             // 
@@ -466,7 +466,7 @@
             this.lbl_PEGreOne.Size = new System.Drawing.Size(14, 12);
             this.lbl_PEGreOne.TabIndex = 30;
             this.lbl_PEGreOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PEGreOne.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PEGreOne.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PWGreTwo
             // 
@@ -479,7 +479,7 @@
             this.lbl_PWGreTwo.Size = new System.Drawing.Size(14, 12);
             this.lbl_PWGreTwo.TabIndex = 37;
             this.lbl_PWGreTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PWGreTwo.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PWGreTwo.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PWRedTwo
             // 
@@ -492,7 +492,7 @@
             this.lbl_PWRedTwo.Size = new System.Drawing.Size(14, 12);
             this.lbl_PWRedTwo.TabIndex = 36;
             this.lbl_PWRedTwo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PWRedTwo.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PWRedTwo.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PWRedOne
             // 
@@ -505,7 +505,7 @@
             this.lbl_PWRedOne.Size = new System.Drawing.Size(14, 12);
             this.lbl_PWRedOne.TabIndex = 35;
             this.lbl_PWRedOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PWRedOne.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PWRedOne.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_PWGreOne
             // 
@@ -518,7 +518,7 @@
             this.lbl_PWGreOne.Size = new System.Drawing.Size(14, 12);
             this.lbl_PWGreOne.TabIndex = 34;
             this.lbl_PWGreOne.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_PWGreOne.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_PWGreOne.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_WArrow
             // 
@@ -533,7 +533,7 @@
             this.pib_WArrow.TabIndex = 230;
             this.pib_WArrow.TabStop = false;
             this.pib_WArrow.Visible = false;
-            this.pib_WArrow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_WArrow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_NGreen
             // 
@@ -549,7 +549,7 @@
             this.pib_NGreen.TabIndex = 229;
             this.pib_NGreen.TabStop = false;
             this.pib_NGreen.Visible = false;
-            this.pib_NGreen.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_NGreen.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_NYellow
             // 
@@ -565,7 +565,7 @@
             this.pib_NYellow.TabIndex = 228;
             this.pib_NYellow.TabStop = false;
             this.pib_NYellow.Visible = false;
-            this.pib_NYellow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_NYellow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_NRed
             // 
@@ -581,7 +581,7 @@
             this.pib_NRed.TabIndex = 227;
             this.pib_NRed.TabStop = false;
             this.pib_NRed.Visible = false;
-            this.pib_NRed.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_NRed.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_WGreen
             // 
@@ -597,7 +597,7 @@
             this.pib_WGreen.TabIndex = 226;
             this.pib_WGreen.TabStop = false;
             this.pib_WGreen.Visible = false;
-            this.pib_WGreen.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_WGreen.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_WYellow
             // 
@@ -613,7 +613,7 @@
             this.pib_WYellow.TabIndex = 225;
             this.pib_WYellow.TabStop = false;
             this.pib_WYellow.Visible = false;
-            this.pib_WYellow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_WYellow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_WRed
             // 
@@ -629,7 +629,7 @@
             this.pib_WRed.TabIndex = 224;
             this.pib_WRed.TabStop = false;
             this.pib_WRed.Visible = false;
-            this.pib_WRed.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_WRed.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_SGreen
             // 
@@ -645,7 +645,7 @@
             this.pib_SGreen.TabIndex = 223;
             this.pib_SGreen.TabStop = false;
             this.pib_SGreen.Visible = false;
-            this.pib_SGreen.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_SGreen.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_SYellow
             // 
@@ -661,7 +661,7 @@
             this.pib_SYellow.TabIndex = 222;
             this.pib_SYellow.TabStop = false;
             this.pib_SYellow.Visible = false;
-            this.pib_SYellow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_SYellow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_SRed
             // 
@@ -677,7 +677,7 @@
             this.pib_SRed.TabIndex = 221;
             this.pib_SRed.TabStop = false;
             this.pib_SRed.Visible = false;
-            this.pib_SRed.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_SRed.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_EGreen
             // 
@@ -693,7 +693,7 @@
             this.pib_EGreen.TabIndex = 220;
             this.pib_EGreen.TabStop = false;
             this.pib_EGreen.Visible = false;
-            this.pib_EGreen.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_EGreen.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_EYellow
             // 
@@ -709,7 +709,7 @@
             this.pib_EYellow.TabIndex = 206;
             this.pib_EYellow.TabStop = false;
             this.pib_EYellow.Visible = false;
-            this.pib_EYellow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_EYellow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_ERed
             // 
@@ -725,7 +725,7 @@
             this.pib_ERed.TabIndex = 205;
             this.pib_ERed.TabStop = false;
             this.pib_ERed.Visible = false;
-            this.pib_ERed.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_ERed.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_EArrow
             // 
@@ -740,7 +740,7 @@
             this.pib_EArrow.TabIndex = 219;
             this.pib_EArrow.TabStop = false;
             this.pib_EArrow.Visible = false;
-            this.pib_EArrow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.pib_EArrow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_NSignal
             // 
@@ -750,7 +750,7 @@
             this.lbl_NSignal.Name = "lbl_NSignal";
             this.lbl_NSignal.Size = new System.Drawing.Size(63, 20);
             this.lbl_NSignal.TabIndex = 30;
-            this.lbl_NSignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_NSignal.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_ESignal
             // 
@@ -760,7 +760,7 @@
             this.lbl_ESignal.Name = "lbl_ESignal";
             this.lbl_ESignal.Size = new System.Drawing.Size(20, 63);
             this.lbl_ESignal.TabIndex = 31;
-            this.lbl_ESignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_ESignal.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_EArrow
             // 
@@ -770,17 +770,7 @@
             this.lbl_EArrow.Name = "lbl_EArrow";
             this.lbl_EArrow.Size = new System.Drawing.Size(16, 20);
             this.lbl_EArrow.TabIndex = 32;
-            this.lbl_EArrow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
-            // 
-            // lbl_WSignal
-            // 
-            this.lbl_WSignal.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_WSignal.Location = new System.Drawing.Point(0, 0);
-            this.lbl_WSignal.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_WSignal.Name = "lbl_WSignal";
-            this.lbl_WSignal.Size = new System.Drawing.Size(20, 63);
-            this.lbl_WSignal.TabIndex = 33;
-            this.lbl_WSignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_EArrow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_WArrow
             // 
@@ -790,7 +780,7 @@
             this.lbl_WArrow.Name = "lbl_WArrow";
             this.lbl_WArrow.Size = new System.Drawing.Size(16, 20);
             this.lbl_WArrow.TabIndex = 34;
-            this.lbl_WArrow.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_WArrow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_SSignal
             // 
@@ -800,7 +790,7 @@
             this.lbl_SSignal.Name = "lbl_SSignal";
             this.lbl_SSignal.Size = new System.Drawing.Size(63, 20);
             this.lbl_SSignal.TabIndex = 32;
-            this.lbl_SSignal.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_SSignal.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_NSignal
             // 
@@ -846,6 +836,184 @@
             this.pib_WSignal.TabIndex = 233;
             this.pib_WSignal.TabStop = false;
             // 
+            // lbl_PNTwo
+            // 
+            this.lbl_PNTwo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PNTwo.Location = new System.Drawing.Point(11, 1);
+            this.lbl_PNTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_PNTwo.Name = "lbl_PNTwo";
+            this.lbl_PNTwo.Size = new System.Drawing.Size(37, 23);
+            this.lbl_PNTwo.TabIndex = 261;
+            this.lbl_PNTwo.Click += new System.EventHandler(this.Lbl_Signal_Click);
+            // 
+            // lbl_PSOne
+            // 
+            this.lbl_PSOne.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PSOne.Location = new System.Drawing.Point(1, 11);
+            this.lbl_PSOne.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_PSOne.Name = "lbl_PSOne";
+            this.lbl_PSOne.Size = new System.Drawing.Size(37, 23);
+            this.lbl_PSOne.TabIndex = 262;
+            this.lbl_PSOne.Click += new System.EventHandler(this.Lbl_Signal_Click);
+            // 
+            // lbl_PWOne
+            // 
+            this.lbl_PWOne.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PWOne.Location = new System.Drawing.Point(1, 1);
+            this.lbl_PWOne.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_PWOne.Name = "lbl_PWOne";
+            this.lbl_PWOne.Size = new System.Drawing.Size(23, 37);
+            this.lbl_PWOne.TabIndex = 32;
+            this.lbl_PWOne.Click += new System.EventHandler(this.Lbl_Signal_Click);
+            // 
+            // lbl_PNOne
+            // 
+            this.lbl_PNOne.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PNOne.Location = new System.Drawing.Point(1, 11);
+            this.lbl_PNOne.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_PNOne.Name = "lbl_PNOne";
+            this.lbl_PNOne.Size = new System.Drawing.Size(37, 23);
+            this.lbl_PNOne.TabIndex = 260;
+            this.lbl_PNOne.Click += new System.EventHandler(this.Lbl_Signal_Click);
+            // 
+            // lbl_PEOne
+            // 
+            this.lbl_PEOne.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PEOne.Location = new System.Drawing.Point(11, 1);
+            this.lbl_PEOne.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_PEOne.Name = "lbl_PEOne";
+            this.lbl_PEOne.Size = new System.Drawing.Size(23, 37);
+            this.lbl_PEOne.TabIndex = 258;
+            this.lbl_PEOne.Click += new System.EventHandler(this.Lbl_Signal_Click);
+            // 
+            // lbl_PETwo
+            // 
+            this.lbl_PETwo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PETwo.Location = new System.Drawing.Point(11, 11);
+            this.lbl_PETwo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_PETwo.Name = "lbl_PETwo";
+            this.lbl_PETwo.Size = new System.Drawing.Size(23, 37);
+            this.lbl_PETwo.TabIndex = 259;
+            this.lbl_PETwo.Click += new System.EventHandler(this.Lbl_Signal_Click);
+            // 
+            // lbl_PWTwo
+            // 
+            this.lbl_PWTwo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PWTwo.Location = new System.Drawing.Point(1, 11);
+            this.lbl_PWTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_PWTwo.Name = "lbl_PWTwo";
+            this.lbl_PWTwo.Size = new System.Drawing.Size(23, 37);
+            this.lbl_PWTwo.TabIndex = 257;
+            this.lbl_PWTwo.Click += new System.EventHandler(this.Lbl_Signal_Click);
+            // 
+            // lbl_PSTwo
+            // 
+            this.lbl_PSTwo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PSTwo.Location = new System.Drawing.Point(11, 11);
+            this.lbl_PSTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_PSTwo.Name = "lbl_PSTwo";
+            this.lbl_PSTwo.Size = new System.Drawing.Size(37, 23);
+            this.lbl_PSTwo.TabIndex = 263;
+            this.lbl_PSTwo.Click += new System.EventHandler(this.Lbl_Signal_Click);
+            // 
+            // lbl_WSignal
+            // 
+            this.lbl_WSignal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_WSignal.Location = new System.Drawing.Point(0, 0);
+            this.lbl_WSignal.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_WSignal.Name = "lbl_WSignal";
+            this.lbl_WSignal.Size = new System.Drawing.Size(20, 63);
+            this.lbl_WSignal.TabIndex = 33;
+            this.lbl_WSignal.Click += new System.EventHandler(this.Lbl_Signal_Click);
+            // 
+            // pib_PWSignalOne
+            // 
+            this.pib_PWSignalOne.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesWestOneDefault;
+            this.pib_PWSignalOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pib_PWSignalOne.Location = new System.Drawing.Point(76, 103);
+            this.pib_PWSignalOne.Margin = new System.Windows.Forms.Padding(0);
+            this.pib_PWSignalOne.Name = "pib_PWSignalOne";
+            this.pib_PWSignalOne.Size = new System.Drawing.Size(35, 49);
+            this.pib_PWSignalOne.TabIndex = 249;
+            this.pib_PWSignalOne.TabStop = false;
+            // 
+            // pib_PSSignalTwo
+            // 
+            this.pib_PSSignalTwo.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesSouthTwoDefault;
+            this.pib_PSSignalTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pib_PSSignalTwo.Location = new System.Drawing.Point(290, 328);
+            this.pib_PSSignalTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.pib_PSSignalTwo.Name = "pib_PSSignalTwo";
+            this.pib_PSSignalTwo.Size = new System.Drawing.Size(49, 35);
+            this.pib_PSSignalTwo.TabIndex = 256;
+            this.pib_PSSignalTwo.TabStop = false;
+            // 
+            // pib_PSSignalOne
+            // 
+            this.pib_PSSignalOne.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesSouthOneDefault;
+            this.pib_PSSignalOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pib_PSSignalOne.Location = new System.Drawing.Point(133, 328);
+            this.pib_PSSignalOne.Margin = new System.Windows.Forms.Padding(0);
+            this.pib_PSSignalOne.Name = "pib_PSSignalOne";
+            this.pib_PSSignalOne.Size = new System.Drawing.Size(49, 35);
+            this.pib_PSSignalOne.TabIndex = 255;
+            this.pib_PSSignalOne.TabStop = false;
+            // 
+            // pib_PNSignalTwo
+            // 
+            this.pib_PNSignalTwo.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesNorthTwoDefault;
+            this.pib_PNSignalTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pib_PNSignalTwo.Location = new System.Drawing.Point(290, 46);
+            this.pib_PNSignalTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.pib_PNSignalTwo.Name = "pib_PNSignalTwo";
+            this.pib_PNSignalTwo.Size = new System.Drawing.Size(49, 35);
+            this.pib_PNSignalTwo.TabIndex = 254;
+            this.pib_PNSignalTwo.TabStop = false;
+            // 
+            // pib_PNSignalOne
+            // 
+            this.pib_PNSignalOne.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesNorthOneDefault;
+            this.pib_PNSignalOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pib_PNSignalOne.Location = new System.Drawing.Point(133, 46);
+            this.pib_PNSignalOne.Margin = new System.Windows.Forms.Padding(0);
+            this.pib_PNSignalOne.Name = "pib_PNSignalOne";
+            this.pib_PNSignalOne.Size = new System.Drawing.Size(49, 35);
+            this.pib_PNSignalOne.TabIndex = 253;
+            this.pib_PNSignalOne.TabStop = false;
+            // 
+            // pib_PESignalTwo
+            // 
+            this.pib_PESignalTwo.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesEastTwoDefault;
+            this.pib_PESignalTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pib_PESignalTwo.Location = new System.Drawing.Point(361, 260);
+            this.pib_PESignalTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.pib_PESignalTwo.Name = "pib_PESignalTwo";
+            this.pib_PESignalTwo.Size = new System.Drawing.Size(35, 49);
+            this.pib_PESignalTwo.TabIndex = 252;
+            this.pib_PESignalTwo.TabStop = false;
+            // 
+            // pib_PESignalOne
+            // 
+            this.pib_PESignalOne.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesEastOneDefault;
+            this.pib_PESignalOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pib_PESignalOne.Location = new System.Drawing.Point(361, 103);
+            this.pib_PESignalOne.Margin = new System.Windows.Forms.Padding(0);
+            this.pib_PESignalOne.Name = "pib_PESignalOne";
+            this.pib_PESignalOne.Size = new System.Drawing.Size(35, 49);
+            this.pib_PESignalOne.TabIndex = 251;
+            this.pib_PESignalOne.TabStop = false;
+            // 
+            // pib_PWSignalTwo
+            // 
+            this.pib_PWSignalTwo.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesWestTwoDefault;
+            this.pib_PWSignalTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pib_PWSignalTwo.Location = new System.Drawing.Point(76, 260);
+            this.pib_PWSignalTwo.Margin = new System.Windows.Forms.Padding(0);
+            this.pib_PWSignalTwo.Name = "pib_PWSignalTwo";
+            this.pib_PWSignalTwo.Size = new System.Drawing.Size(35, 49);
+            this.pib_PWSignalTwo.TabIndex = 250;
+            this.pib_PWSignalTwo.TabStop = false;
+            // 
             // lbx_SignalControlLog
             // 
             this.lbx_SignalControlLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -872,188 +1040,20 @@
             this.grb_SignalControlLog.TabStop = false;
             this.grb_SignalControlLog.Text = "信号機制御ログ";
             // 
-            // lbl_SoftTitle
+            // lbl_FormTitle
             // 
-            this.lbl_SoftTitle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_SoftTitle.Font = new System.Drawing.Font("Meiryo UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SoftTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.lbl_SoftTitle.Image = global::TrafficLightAlgorithm.Properties.Resources.SoftTitle;
-            this.lbl_SoftTitle.Location = new System.Drawing.Point(50, 30);
-            this.lbl_SoftTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_SoftTitle.Name = "lbl_SoftTitle";
-            this.lbl_SoftTitle.Size = new System.Drawing.Size(1088, 60);
-            this.lbl_SoftTitle.TabIndex = 26;
-            this.lbl_SoftTitle.Text = "信号機プログラム";
-            this.lbl_SoftTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_SoftTitle.Click += new System.EventHandler(this.Lbl_SoftTitle_Click);
-            // 
-            // pib_PWSignalOne
-            // 
-            this.pib_PWSignalOne.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesWestOneDefault;
-            this.pib_PWSignalOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PWSignalOne.Location = new System.Drawing.Point(76, 103);
-            this.pib_PWSignalOne.Margin = new System.Windows.Forms.Padding(0);
-            this.pib_PWSignalOne.Name = "pib_PWSignalOne";
-            this.pib_PWSignalOne.Size = new System.Drawing.Size(35, 49);
-            this.pib_PWSignalOne.TabIndex = 249;
-            this.pib_PWSignalOne.TabStop = false;
-            // 
-            // pib_PWSignalTwo
-            // 
-            this.pib_PWSignalTwo.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesWestTwoDefault;
-            this.pib_PWSignalTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PWSignalTwo.Location = new System.Drawing.Point(76, 260);
-            this.pib_PWSignalTwo.Margin = new System.Windows.Forms.Padding(0);
-            this.pib_PWSignalTwo.Name = "pib_PWSignalTwo";
-            this.pib_PWSignalTwo.Size = new System.Drawing.Size(35, 49);
-            this.pib_PWSignalTwo.TabIndex = 250;
-            this.pib_PWSignalTwo.TabStop = false;
-            // 
-            // pib_PESignalTwo
-            // 
-            this.pib_PESignalTwo.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesEastTwoDefault;
-            this.pib_PESignalTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PESignalTwo.Location = new System.Drawing.Point(361, 260);
-            this.pib_PESignalTwo.Margin = new System.Windows.Forms.Padding(0);
-            this.pib_PESignalTwo.Name = "pib_PESignalTwo";
-            this.pib_PESignalTwo.Size = new System.Drawing.Size(35, 49);
-            this.pib_PESignalTwo.TabIndex = 252;
-            this.pib_PESignalTwo.TabStop = false;
-            // 
-            // pib_PESignalOne
-            // 
-            this.pib_PESignalOne.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesEastOneDefault;
-            this.pib_PESignalOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PESignalOne.Location = new System.Drawing.Point(361, 103);
-            this.pib_PESignalOne.Margin = new System.Windows.Forms.Padding(0);
-            this.pib_PESignalOne.Name = "pib_PESignalOne";
-            this.pib_PESignalOne.Size = new System.Drawing.Size(35, 49);
-            this.pib_PESignalOne.TabIndex = 251;
-            this.pib_PESignalOne.TabStop = false;
-            // 
-            // pib_PNSignalTwo
-            // 
-            this.pib_PNSignalTwo.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesNorthTwoDefault;
-            this.pib_PNSignalTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PNSignalTwo.Location = new System.Drawing.Point(290, 46);
-            this.pib_PNSignalTwo.Margin = new System.Windows.Forms.Padding(0);
-            this.pib_PNSignalTwo.Name = "pib_PNSignalTwo";
-            this.pib_PNSignalTwo.Size = new System.Drawing.Size(49, 35);
-            this.pib_PNSignalTwo.TabIndex = 254;
-            this.pib_PNSignalTwo.TabStop = false;
-            // 
-            // pib_PNSignalOne
-            // 
-            this.pib_PNSignalOne.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesNorthOneDefault;
-            this.pib_PNSignalOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PNSignalOne.Location = new System.Drawing.Point(133, 46);
-            this.pib_PNSignalOne.Margin = new System.Windows.Forms.Padding(0);
-            this.pib_PNSignalOne.Name = "pib_PNSignalOne";
-            this.pib_PNSignalOne.Size = new System.Drawing.Size(49, 35);
-            this.pib_PNSignalOne.TabIndex = 253;
-            this.pib_PNSignalOne.TabStop = false;
-            // 
-            // pib_PSSignalTwo
-            // 
-            this.pib_PSSignalTwo.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesSouthTwoDefault;
-            this.pib_PSSignalTwo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PSSignalTwo.Location = new System.Drawing.Point(290, 328);
-            this.pib_PSSignalTwo.Margin = new System.Windows.Forms.Padding(0);
-            this.pib_PSSignalTwo.Name = "pib_PSSignalTwo";
-            this.pib_PSSignalTwo.Size = new System.Drawing.Size(49, 35);
-            this.pib_PSSignalTwo.TabIndex = 256;
-            this.pib_PSSignalTwo.TabStop = false;
-            // 
-            // pib_PSSignalOne
-            // 
-            this.pib_PSSignalOne.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.PedesSouthOneDefault;
-            this.pib_PSSignalOne.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_PSSignalOne.Location = new System.Drawing.Point(133, 328);
-            this.pib_PSSignalOne.Margin = new System.Windows.Forms.Padding(0);
-            this.pib_PSSignalOne.Name = "pib_PSSignalOne";
-            this.pib_PSSignalOne.Size = new System.Drawing.Size(49, 35);
-            this.pib_PSSignalOne.TabIndex = 255;
-            this.pib_PSSignalOne.TabStop = false;
-            // 
-            // lbl_PWOne
-            // 
-            this.lbl_PWOne.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_PWOne.Location = new System.Drawing.Point(1, 1);
-            this.lbl_PWOne.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_PWOne.Name = "lbl_PWOne";
-            this.lbl_PWOne.Size = new System.Drawing.Size(23, 37);
-            this.lbl_PWOne.TabIndex = 32;
-            this.lbl_PWOne.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
-            // 
-            // lbl_PWTwo
-            // 
-            this.lbl_PWTwo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_PWTwo.Location = new System.Drawing.Point(1, 11);
-            this.lbl_PWTwo.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_PWTwo.Name = "lbl_PWTwo";
-            this.lbl_PWTwo.Size = new System.Drawing.Size(23, 37);
-            this.lbl_PWTwo.TabIndex = 257;
-            this.lbl_PWTwo.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
-            // 
-            // lbl_PETwo
-            // 
-            this.lbl_PETwo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_PETwo.Location = new System.Drawing.Point(11, 11);
-            this.lbl_PETwo.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_PETwo.Name = "lbl_PETwo";
-            this.lbl_PETwo.Size = new System.Drawing.Size(23, 37);
-            this.lbl_PETwo.TabIndex = 259;
-            this.lbl_PETwo.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
-            // 
-            // lbl_PEOne
-            // 
-            this.lbl_PEOne.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_PEOne.Location = new System.Drawing.Point(11, 1);
-            this.lbl_PEOne.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_PEOne.Name = "lbl_PEOne";
-            this.lbl_PEOne.Size = new System.Drawing.Size(23, 37);
-            this.lbl_PEOne.TabIndex = 258;
-            this.lbl_PEOne.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
-            // 
-            // lbl_PNTwo
-            // 
-            this.lbl_PNTwo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_PNTwo.Location = new System.Drawing.Point(11, 1);
-            this.lbl_PNTwo.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_PNTwo.Name = "lbl_PNTwo";
-            this.lbl_PNTwo.Size = new System.Drawing.Size(37, 23);
-            this.lbl_PNTwo.TabIndex = 261;
-            this.lbl_PNTwo.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
-            // 
-            // lbl_PNOne
-            // 
-            this.lbl_PNOne.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_PNOne.Location = new System.Drawing.Point(1, 11);
-            this.lbl_PNOne.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_PNOne.Name = "lbl_PNOne";
-            this.lbl_PNOne.Size = new System.Drawing.Size(37, 23);
-            this.lbl_PNOne.TabIndex = 260;
-            this.lbl_PNOne.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
-            // 
-            // lbl_PSTwo
-            // 
-            this.lbl_PSTwo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_PSTwo.Location = new System.Drawing.Point(11, 11);
-            this.lbl_PSTwo.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_PSTwo.Name = "lbl_PSTwo";
-            this.lbl_PSTwo.Size = new System.Drawing.Size(37, 23);
-            this.lbl_PSTwo.TabIndex = 263;
-            this.lbl_PSTwo.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
-            // 
-            // lbl_PSOne
-            // 
-            this.lbl_PSOne.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_PSOne.Location = new System.Drawing.Point(1, 11);
-            this.lbl_PSOne.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_PSOne.Name = "lbl_PSOne";
-            this.lbl_PSOne.Size = new System.Drawing.Size(37, 23);
-            this.lbl_PSOne.TabIndex = 262;
-            this.lbl_PSOne.Click += new System.EventHandler(this.Lbl_CarSignal_Click);
+            this.lbl_FormTitle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_FormTitle.Font = new System.Drawing.Font("Meiryo UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_FormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.lbl_FormTitle.Image = global::TrafficLightAlgorithm.Properties.Resources.SoftTitle;
+            this.lbl_FormTitle.Location = new System.Drawing.Point(50, 30);
+            this.lbl_FormTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_FormTitle.Name = "lbl_FormTitle";
+            this.lbl_FormTitle.Size = new System.Drawing.Size(1088, 60);
+            this.lbl_FormTitle.TabIndex = 26;
+            this.lbl_FormTitle.Text = "信号機プログラム";
+            this.lbl_FormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_FormTitle.Click += new System.EventHandler(this.Lbl_FormTitle_Click);
             // 
             // F_TrafficLight
             // 
@@ -1064,7 +1064,7 @@
             this.ClientSize = new System.Drawing.Size(1188, 628);
             this.Controls.Add(this.grb_SignalControlLog);
             this.Controls.Add(this.btn_Start);
-            this.Controls.Add(this.lbl_SoftTitle);
+            this.Controls.Add(this.lbl_FormTitle);
             this.Controls.Add(this.btn_Reset);
             this.Controls.Add(this.btn_InterruptResume);
             this.Controls.Add(this.grb_TrafficShow);
@@ -1097,15 +1097,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pib_ESignal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_SSignal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_WSignal)).EndInit();
-            this.grb_SignalControlLog.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pib_PWSignalOne)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pib_PWSignalTwo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalTwo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalOne)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pib_PNSignalTwo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pib_PNSignalOne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PSSignalTwo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PSSignalOne)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_PNSignalTwo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_PNSignalOne)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalTwo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalOne)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pib_PWSignalTwo)).EndInit();
+            this.grb_SignalControlLog.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1131,7 +1131,7 @@
         private System.Windows.Forms.Label lbl_SouthDirection;
         private System.Windows.Forms.Label lbl_EastDirection;
         private System.Windows.Forms.GroupBox grb_TrafficShow;
-        private System.Windows.Forms.Label lbl_SoftTitle;
+        private System.Windows.Forms.Label lbl_FormTitle;
         private System.Windows.Forms.ListBox lbx_SignalControlLog;
         private System.Windows.Forms.GroupBox grb_SignalControlLog;
         private System.Windows.Forms.PictureBox pib_EArrow;
