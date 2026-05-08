@@ -13,7 +13,7 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 進行可能秒数の最小値
         /// </summary>
-        private const int AvaiSecMin  = 5;
+        private const int AvaiSecMin  = 1;
 
         /// <summary>
         /// 矢印信号機の点灯秒数の最大値

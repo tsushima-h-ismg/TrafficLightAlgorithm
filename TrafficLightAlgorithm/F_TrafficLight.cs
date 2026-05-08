@@ -82,7 +82,7 @@ namespace TrafficLightAlgorithm
                 
                 Cts = new CancellationTokenSource();  // Ctsの初期化
                 
-                SetMSec = new TrafficMSecValue(5000, 5000, 5000, 5000, 1500, 1500, 1000);  // 設定値構造体の初期設定
+                SetMSec = new TrafficMSecValue(5000, 5000, 5000, 5000, 1000, 1000, 1000);  // 設定値構造体の初期設定
 
                 // 車用信号機イメージ画像を表示するピクチャボックスのコントロールコレクションにラベルを追加する
                 // ラベルを追加することで、ラベルはピクチャボックスが表示する信号機部分を囲うように配置し、「ラベルクリック = 信号機部分をクリック」としてクリック時イベントを実行する
@@ -143,55 +143,37 @@ namespace TrafficLightAlgorithm
                 {
                     SetFormShow(SetMSec.CarWMSec, true, Signal.Car, Direction.West, pib_WSignal);  // 西車用信号機の設定値入力
                 }
-                else if (sender == lbl_PNOne || sender == lbl_PNGreOne || sender == lbl_PNRedOne ||
-                         sender == lbl_PNTwo || sender == lbl_PNGreTwo || sender == lbl_PNRedTwo ||
-                         sender == lbl_PSOne || sender == lbl_PSGreOne || sender == lbl_PSRedOne ||
-                         sender == lbl_PSTwo || sender == lbl_PSGreTwo || sender == lbl_PSRedTwo)
+                else if (sender == lbl_PNOne || sender == lbl_PNGreOne || sender == lbl_PNRedOne)
                 {
-                    PictureBox pictureBox = pib_PNSignalOne;
-                    Direction dir = Direction.North;
-
-                    if (sender == lbl_PNTwo || sender == lbl_PNGreTwo || sender == lbl_PNRedTwo)
-                    {
-                        pictureBox = pib_PNSignalTwo;
-                    }
-                    else if (sender == lbl_PSOne || sender == lbl_PSGreOne || sender == lbl_PSRedOne)
-                    {
-                        pictureBox = pib_PSSignalOne;
-                        dir = Direction.South;
-                    }
-                    else if (sender == lbl_PSTwo || sender == lbl_PSGreTwo || sender == lbl_PSRedTwo)
-                    {
-                        pictureBox = pib_PSSignalTwo;
-                        dir = Direction.South;
-                    }
-
-                    SetFormShow(SetMSec.PedNSMSec, false, Signal.Pedes, dir, pictureBox);  // 北南歩行者用信号機の設定値入力
+                    SetFormShow(SetMSec.PedNSMSec, false, Signal.Pedes, Direction.North, pib_PNSignalOne);  // 北歩行者用信号機の設定値入力
                 }
-                else if (sender == lbl_PEOne || sender == lbl_PEGreOne || sender == lbl_PERedOne ||
-                         sender == lbl_PETwo || sender == lbl_PEGreTwo || sender == lbl_PERedTwo ||
-                         sender == lbl_PWOne || sender == lbl_PWGreOne || sender == lbl_PWRedOne ||
-                         sender == lbl_PWTwo || sender == lbl_PWGreTwo || sender == lbl_PWRedTwo)
+                else if (sender == lbl_PNTwo || sender == lbl_PNGreTwo || sender == lbl_PNRedTwo)
                 {
-                    PictureBox pictureBox = pib_PESignalOne;
-                    Direction dir = Direction.East;
-
-                    if (sender == lbl_PETwo || sender == lbl_PEGreTwo || sender == lbl_PERedTwo)
-                    {
-                        pictureBox = pib_PESignalTwo;
-                    }
-                    else if (sender == lbl_PWOne || sender == lbl_PWGreOne || sender == lbl_PWRedOne)
-                    {
-                        pictureBox = pib_PWSignalOne;
-                        dir = Direction.West;
-                    }
-                    else if (sender == lbl_PWTwo || sender == lbl_PWGreTwo || sender == lbl_PWRedTwo)
-                    {
-                        pictureBox = pib_PWSignalTwo;
-                        dir = Direction.West;
-                    }
-
-                    SetFormShow(SetMSec.PedEWMSec, false, Signal.Pedes, dir, pictureBox);  // 東西歩行者用信号機の設定値入力
+                    SetFormShow(SetMSec.PedNSMSec, false, Signal.Pedes, Direction.North, pib_PNSignalTwo);  // 北歩行者用信号機の設定値入力
+                }
+                else if (sender == lbl_PSOne || sender == lbl_PSGreOne || sender == lbl_PSRedOne)
+                {
+                    SetFormShow(SetMSec.PedNSMSec, false, Signal.Pedes, Direction.South, pib_PSSignalOne);  // 南歩行者用信号機の設定値入力
+                }
+                else if (sender == lbl_PSTwo || sender == lbl_PSGreTwo || sender == lbl_PSRedTwo)
+                {
+                    SetFormShow(SetMSec.PedNSMSec, false, Signal.Pedes, Direction.South, pib_PSSignalTwo);  // 南歩行者用信号機の設定値入力
+                }
+                else if (sender == lbl_PEOne || sender == lbl_PEGreOne || sender == lbl_PERedOne)
+                {
+                    SetFormShow(SetMSec.PedEWMSec, false, Signal.Pedes, Direction.East, pib_PESignalOne);  // 東歩行者用信号機の設定値入力
+                }
+                else if (sender == lbl_PETwo || sender == lbl_PEGreTwo || sender == lbl_PERedTwo)
+                {
+                    SetFormShow(SetMSec.PedEWMSec, false, Signal.Pedes, Direction.East, pib_PESignalTwo);  // 東歩行者用信号機の設定値入力
+                }
+                else if (sender == lbl_PWOne || sender == lbl_PWGreOne || sender == lbl_PWRedOne)
+                {
+                    SetFormShow(SetMSec.PedEWMSec, false, Signal.Pedes, Direction.West, pib_PWSignalOne);  // 西歩行者用信号機の設定値入力
+                }
+                else if (sender == lbl_PWTwo || sender == lbl_PWGreTwo || sender == lbl_PWRedTwo)
+                {
+                    SetFormShow(SetMSec.PedEWMSec, false, Signal.Pedes, Direction.West, pib_PWSignalTwo);  // 西歩行者用信号機の設定値入力
                 }
             }
             catch (Exception ex)
@@ -242,12 +224,12 @@ namespace TrafficLightAlgorithm
                 int arrmsec  = f_SetSec.ArrowSec * 1000;  // 設定値入力フォームから矢印信号機点灯秒数を取得してミリ秒に変換する
                 
                 // 設定値構造体の値を更新
-                if      (signal == Signal.Car   && direction == Direction.North)      SetMSec.CarNMSec  = avaimsec;  // 北方向車用信号機
-                else if (signal == Signal.Car   && direction == Direction.South)      SetMSec.CarSMSec  = avaimsec;  // 南方向車用信号機
-                else if (signal == Signal.Car   && direction == Direction.East)       SetMSec.CarEMSec  = avaimsec;  // 東方向車用信号機
-                else if (signal == Signal.Car   && direction == Direction.West)       SetMSec.CarWMSec  = avaimsec;  // 西方向車用信号機
-                else if (signal == Signal.Pedes && direction == Direction.NorthSouth) SetMSec.PedNSMSec = avaimsec;  // 北南方向歩行者用信号機
-                else if (signal == Signal.Pedes && direction == Direction.EastWest)   SetMSec.PedEWMSec = avaimsec;  // 東西方向歩行者用信号機
+                if      (signal == Signal.Car   && direction == Direction.North) SetMSec.CarNMSec = avaimsec;  // 北方向車用信号機
+                else if (signal == Signal.Car   && direction == Direction.South) SetMSec.CarSMSec = avaimsec;  // 南方向車用信号機
+                else if (signal == Signal.Car   && direction == Direction.East)  SetMSec.CarEMSec = avaimsec;  // 東方向車用信号機
+                else if (signal == Signal.Car   && direction == Direction.West)  SetMSec.CarWMSec = avaimsec;  // 西方向車用信号機
+                else if (signal == Signal.Pedes && direction == Direction.North || direction == Direction.South) SetMSec.PedNSMSec = avaimsec;  // 北南方向歩行者用信号機
+                else if (signal == Signal.Pedes && direction == Direction.East  || direction == Direction.West)  SetMSec.PedEWMSec = avaimsec;  // 東西方向歩行者用信号機
 
                 if (isArrow) SetMSec.ArwMSec = arrmsec;  // 矢印信号機
                 
@@ -493,7 +475,7 @@ namespace TrafficLightAlgorithm
             {
                 List<TrafficPhase> phases = new List<TrafficPhase>
                 {
-                    new TrafficPhase(AllRedMSec, new TrafficCommand[]{ new TrafficCommand() })  // 全信号機の赤点灯フェーズ
+                    new TrafficPhase(AllRedMSec, new TrafficCommand[]{ new TrafficCommand(Direction.All, Signal.All, LightState.Red) })  // 全信号機の赤点灯フェーズ
                 };
                 
                 phases.AddRange(DirectionPhaseList(setMSec, Direction.NorthSouth, false));  // 交差点北南道路の信号機点灯フェーズ
@@ -527,23 +509,106 @@ namespace TrafficLightAlgorithm
                     carTwoMSec = setMSec.CarWMSec;
                 }
 
-                // 車用・歩行者用信号機が同時に緑に点灯するミリ秒を取得する
-                int greMSec = Math.Min(carOneMSec, carTwoMSec) - BlinkMSec * BlinkPhaseCount - MinMSec;
-                
-                // 車用信号機の進行可能ミリ秒の差を取得する
-                int difMSec = carOneMSec - carTwoMSec;
-                
+                Direction cOneDir = Direction.North;
+                Direction cTwoDir = Direction.South;
+                if (direction == Direction.EastWest)
+                {
+                    cOneDir = Direction.East;
+                    cTwoDir = Direction.West;
+                }
+
                 // 操作対象の歩行者用信号機の方角を取得する
                 Direction pedDirection = Direction.EastWest;  
                 if (direction == Direction.EastWest) pedDirection = Direction.NorthSouth;
+
+                // 歩行者用信号機の進行可能ミリ秒を取得する
+                int pedMSec = SetMSec.PedNSMSec;
+                if (pedDirection == Direction.EastWest) pedMSec = setMSec.PedEWMSec;
+
+                // 車用・歩行者用信号機が同時に緑に点灯するミリ秒を取得する
+                int greMSec = Math.Min(Math.Min(carOneMSec, carTwoMSec), pedMSec);
+
+                int carOneTotalMSec = carOneMSec + YellowMSec + MinMSec;                    // １つ目の車用信号機の緑点灯時間と黄点灯時間の合計
+                int carTwoTotalMSec = carTwoMSec + YellowMSec + MinMSec;                    // ２つ目の車用信号機の緑点灯時間と黄点灯時間の合計
+                int pedTotalMSec    = pedMSec    + BlinkMSec  * BlinkPhaseCount + MinMSec;  // 歩行者用信号機の緑点灯時間と点滅時間の合計
+
+                List<TrafficPhase> pList = new List<TrafficPhase>();
+
+                List<LightState> cOneSList = new List<LightState>();
+                List<LightState> cTwoSList = new List<LightState>();
+                List<LightState> pSList = new List<LightState>();
+                int waitMsec = 0;
+
+                int phaseToTal = Math.Max(Math.Max(carOneTotalMSec, carTwoTotalMSec), pedTotalMSec) / 500;
+                bool isStart = true;
+
+                for (int i = 0; i < phaseToTal; i ++)
+                {
+                    int progMSec = 500 * i;
+                    List<TrafficCommand> cmdList = new List<TrafficCommand>();
+
+                    if (progMSec < carOneMSec) cOneSList.Add(LightState.Green);
+                    else if (progMSec >= carOneMSec && progMSec < carOneMSec + YellowMSec) cOneSList.Add(LightState.Yellow);
+                    else cOneSList.Add(LightState.Red);
+
+                    if (progMSec < carTwoMSec) cTwoSList.Add(LightState.Green);
+                    else if (progMSec >= carTwoMSec && progMSec < carTwoMSec + YellowMSec) cTwoSList.Add(LightState.Yellow);
+                    else cTwoSList.Add(LightState.Red);
+
+                    if (progMSec < pedMSec) pSList.Add(LightState.Green);
+                    else if (progMSec >= pedMSec && progMSec < pedMSec + BlinkMSec * BlinkPhaseCount && i % 2 == 0) pSList.Add(LightState.NoLight);
+                    else if (progMSec >= pedMSec && progMSec < pedMSec + BlinkMSec * BlinkPhaseCount && i % 2 != 0) pSList.Add(LightState.Green);
+                    else pSList.Add(LightState.Red);
+                    
+                    if (i > 0 && (cOneSList[i] != cOneSList[i - 1] || cTwoSList[i] != cTwoSList[i - 1] || pSList[i] != pSList[i - 1]))
+                    {
+                        // 車用信号機の点灯
+                        if (cOneSList[i - 2] == cTwoSList[i - 2])
+                        {
+                            cmdList.Add(new TrafficCommand(direction, Signal.Car, cOneSList[i - 2]));
+                        }
+                        else
+                        {
+                            if (cOneSList[i - 1] != cOneSList[i - 3]) cmdList.Add(new TrafficCommand(cOneDir, Signal.Car, cOneSList[i - 1]));
+                            if (cTwoSList[i - 1] != cTwoSList[i - 3]) cmdList.Add(new TrafficCommand(cTwoDir, Signal.Car, cTwoSList[i - 1]));
+                        }
+
+                        cmdList.Add(new TrafficCommand(pedDirection, Signal.Pedes, pSList[i - 1]));
+                    }
+
+                    if (i == 0 || (cOneSList[i] == cOneSList[i - 1] && cTwoSList[i] == cTwoSList[i - 1] && pSList[i] == pSList[i - 1]))
+                    {
+                        waitMsec += 500;
+                    }
+                    else
+                    {
+                        if (waitMsec != BlinkMSec)
+                        {
+                            TrafficPhase phase = new TrafficPhase(waitMsec, cmdList.ToArray());
+                            pList.Add(phase);
+                        }
+                        else
+                        {
+                            TrafficPhase phase = new TrafficPhase(BlinkMSec, cmdList.ToArray(), isStart, true, BlinkPhaseCount);
+                            pList.Add(phase);
+                            isStart = false;
+                        }
+
+                        waitMsec = 500;
+                    }
+                }
+
+                if (direction == Direction.NorthSouth) pList.Add(new TrafficPhase(MinMSec, new TrafficCommand[] {new TrafficCommand()}));
+                
+                return pList;
 
                 // 車用・歩行者用信号機の緑点灯
                 List<TrafficPhase> phases = new List<TrafficPhase>
                 { 
                     new TrafficPhase(greMSec, new TrafficCommand[] { new TrafficCommand(direction,    Signal.Car,   LightState.Green),
-                                                                     new TrafficCommand(pedDirection, Signal.Pedes, LightState.Green)} )
+                                                                     new TrafficCommand(pedDirection, Signal.Pedes, LightState.Green) } )
                 };
-                
+
                 // 歩行者用信号機の点滅
                 for (int i = 0; i < BlinkPhaseCount; i++)
                 {
@@ -554,33 +619,38 @@ namespace TrafficLightAlgorithm
                     // 無灯火と緑点灯を交互に繰り返す
                     if (i % 2 == 0)
                     {
-                        phases.Add(new TrafficPhase(BlinkMSec, new TrafficCommand[] { new TrafficCommand(pedDirection, Signal.Pedes, LightState.NoLight) }, 
+                        phases.Add(new TrafficPhase(BlinkMSec, 
+                            new TrafficCommand[] { new TrafficCommand(pedDirection, Signal.Pedes, LightState.NoLight) }, 
                             isBlinkStart, true, BlinkPhaseCount));  // 無灯火
                     }
                     else
                     { 
-                        phases.Add(new TrafficPhase(BlinkMSec, new TrafficCommand[] { new TrafficCommand(pedDirection, Signal.Pedes, LightState.Green) }, 
+                        phases.Add(new TrafficPhase(BlinkMSec, 
+                            new TrafficCommand[] { new TrafficCommand(pedDirection, Signal.Pedes, LightState.Green) }, 
                             isBlinkStart, true, BlinkPhaseCount));  // 緑点灯
                     }
                 }
-
+                
                 // 歩行者用信号機の赤点灯
                 phases.Add(new TrafficPhase(MinMSec, 
-                    new TrafficCommand[] { new TrafficCommand(pedDirection, Signal.Pedes) }));
+                    new TrafficCommand[] { new TrafficCommand(pedDirection, Signal.Pedes, LightState.Red) }));
 
                 // 車用信号機の黄・赤点灯
                 if (carOneMSec == carTwoMSec)
                 {
                     // 進行可能秒数に差がない場合は同時に２つの信号機を黄・赤に点灯
                     phases.Add(new TrafficPhase(YellowMSec,
-                        new TrafficCommand[] { new TrafficCommand(direction, Signal.Car, LightState.Yellow) }));
+                        new TrafficCommand[] { new TrafficCommand(direction, Signal.Car, LightState.Yellow) }));  // 黄点灯
 
                     phases.Add(new TrafficPhase(MinMSec,
-                        new TrafficCommand[] { new TrafficCommand(direction, Signal.Car) }));
+                        new TrafficCommand[] { new TrafficCommand(direction, Signal.Car, LightState.Red) }));  // 赤点灯
                 }
                 else
                 {
                     // 進行可能秒数に差がある場合、点灯順は差の大きさに合わせて変更
+
+                    // 車用信号機の進行可能ミリ秒の差を取得する
+                    int difMSec = carOneMSec - carTwoMSec;
 
                     // 車用信号機が存在する方角を取得する
                     Direction dirLate  = Direction.North;
@@ -602,13 +672,13 @@ namespace TrafficLightAlgorithm
                     if (Math.Abs(difMSec) == YellowMSec)
                     {
                         phases.Add(new TrafficPhase(YellowMSec, 
-                            new TrafficCommand[] { new TrafficCommand(dirEarly, Signal.Car),
+                            new TrafficCommand[] { new TrafficCommand(dirEarly, Signal.Car, LightState.Red),
                                                    new TrafficCommand(dirLate,  Signal.Car, LightState.Yellow)}));
                     }
                     else
                     {
                         phases.Add(new TrafficPhase(Math.Abs(difMSec) - YellowMSec, 
-                            new TrafficCommand[] { new TrafficCommand(dirEarly, Signal.Car) }));
+                            new TrafficCommand[] { new TrafficCommand(dirEarly, Signal.Car, LightState.Red) }));
                         
                         phases.Add(new TrafficPhase(YellowMSec,                     
                             new TrafficCommand[] { new TrafficCommand(dirLate,  Signal.Car, LightState.Yellow) }));
@@ -616,7 +686,7 @@ namespace TrafficLightAlgorithm
 
                     // 進行可能ミリ秒が長い車用信号機の赤点灯
                     phases.Add(new TrafficPhase(MinMSec,
-                        new TrafficCommand[] { new TrafficCommand(dirLate, Signal.Car) }));
+                        new TrafficCommand[] { new TrafficCommand(dirLate, Signal.Car, LightState.Red) }));
                 }
 
                 // 矢印信号機が存在する場合は点灯する

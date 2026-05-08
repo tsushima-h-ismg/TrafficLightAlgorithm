@@ -57,6 +57,8 @@
 
             for(int i = 0; i < Commands.Length; i++)
             {
+                if (!IsBlinkStart && IsBlink) continue;
+
                 // 方角
                 if      (Commands[i].Direction == Direction.All)        msg += "全";
                 else if (Commands[i].Direction == Direction.NorthSouth) msg += "北南";
