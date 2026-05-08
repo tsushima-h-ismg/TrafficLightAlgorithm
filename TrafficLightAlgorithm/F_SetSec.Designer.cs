@@ -39,6 +39,10 @@
             this.lbl_FormTitle = new System.Windows.Forms.Label();
             this.lbl_SupplementAvai = new System.Windows.Forms.Label();
             this.lbl_SupplementArrow = new System.Windows.Forms.Label();
+            this.lbl_FormTitleLeft = new System.Windows.Forms.Label();
+            this.lbl_FormTitleUnder = new System.Windows.Forms.Label();
+            this.lbl_FormTitleAbove = new System.Windows.Forms.Label();
+            this.lbl_FormTitleRight = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_AvaiSec
@@ -79,7 +83,7 @@
             // 
             // btn_Confirm
             // 
-            this.btn_Confirm.BackColor = System.Drawing.Color.SpringGreen;
+            this.btn_Confirm.BackColor = System.Drawing.Color.PaleGreen;
             this.btn_Confirm.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.btn_Confirm.FlatAppearance.BorderSize = 2;
             this.btn_Confirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -109,7 +113,7 @@
             // 
             this.txt_ArrowSec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_ArrowSec.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txt_ArrowSec.Location = new System.Drawing.Point(219, 148);
+            this.txt_ArrowSec.Location = new System.Drawing.Point(220, 148);
             this.txt_ArrowSec.Margin = new System.Windows.Forms.Padding(0);
             this.txt_ArrowSec.MaxLength = 5;
             this.txt_ArrowSec.Name = "txt_ArrowSec";
@@ -131,10 +135,10 @@
             // 
             // lbl_FormTitle
             // 
-            this.lbl_FormTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_FormTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(255)))), ((int)(((byte)(152)))));
             this.lbl_FormTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_FormTitle.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_FormTitle.Image = global::TrafficLightAlgorithm.Properties.Resources.SetFormTitle;
+            this.lbl_FormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.lbl_FormTitle.Location = new System.Drawing.Point(30, 20);
             this.lbl_FormTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_FormTitle.Name = "lbl_FormTitle";
@@ -165,6 +169,50 @@
             this.lbl_SupplementArrow.TabIndex = 11;
             this.lbl_SupplementArrow.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // lbl_FormTitleLeft
+            // 
+            this.lbl_FormTitleLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.lbl_FormTitleLeft.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_FormTitleLeft.Location = new System.Drawing.Point(36, 26);
+            this.lbl_FormTitleLeft.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_FormTitleLeft.Name = "lbl_FormTitleLeft";
+            this.lbl_FormTitleLeft.Size = new System.Drawing.Size(1, 38);
+            this.lbl_FormTitleLeft.TabIndex = 44;
+            this.lbl_FormTitleLeft.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl_FormTitleUnder
+            // 
+            this.lbl_FormTitleUnder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.lbl_FormTitleUnder.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_FormTitleUnder.Location = new System.Drawing.Point(36, 64);
+            this.lbl_FormTitleUnder.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_FormTitleUnder.Name = "lbl_FormTitleUnder";
+            this.lbl_FormTitleUnder.Size = new System.Drawing.Size(288, 1);
+            this.lbl_FormTitleUnder.TabIndex = 43;
+            this.lbl_FormTitleUnder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl_FormTitleAbove
+            // 
+            this.lbl_FormTitleAbove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.lbl_FormTitleAbove.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_FormTitleAbove.Location = new System.Drawing.Point(36, 26);
+            this.lbl_FormTitleAbove.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_FormTitleAbove.Name = "lbl_FormTitleAbove";
+            this.lbl_FormTitleAbove.Size = new System.Drawing.Size(288, 1);
+            this.lbl_FormTitleAbove.TabIndex = 42;
+            this.lbl_FormTitleAbove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl_FormTitleRight
+            // 
+            this.lbl_FormTitleRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.lbl_FormTitleRight.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_FormTitleRight.Location = new System.Drawing.Point(324, 26);
+            this.lbl_FormTitleRight.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_FormTitleRight.Name = "lbl_FormTitleRight";
+            this.lbl_FormTitleRight.Size = new System.Drawing.Size(1, 39);
+            this.lbl_FormTitleRight.TabIndex = 41;
+            this.lbl_FormTitleRight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // F_SetSec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -172,6 +220,10 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(360, 266);
+            this.Controls.Add(this.lbl_FormTitleLeft);
+            this.Controls.Add(this.lbl_FormTitleUnder);
+            this.Controls.Add(this.lbl_FormTitleAbove);
+            this.Controls.Add(this.lbl_FormTitleRight);
             this.Controls.Add(this.lbl_SupplementArrow);
             this.Controls.Add(this.lbl_SupplementAvai);
             this.Controls.Add(this.lbl_FormTitle);
@@ -209,5 +261,9 @@
         private System.Windows.Forms.Label lbl_FormTitle;
         private System.Windows.Forms.Label lbl_SupplementAvai;
         private System.Windows.Forms.Label lbl_SupplementArrow;
+        private System.Windows.Forms.Label lbl_FormTitleLeft;
+        private System.Windows.Forms.Label lbl_FormTitleUnder;
+        private System.Windows.Forms.Label lbl_FormTitleAbove;
+        private System.Windows.Forms.Label lbl_FormTitleRight;
     }
 }

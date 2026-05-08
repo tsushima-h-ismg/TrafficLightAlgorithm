@@ -429,6 +429,29 @@ namespace TrafficLightAlgorithm
         }
 
         /// <summary>
+        /// 「編集画面表示」ボタンクリック時イベント
+        /// </summary>
+        private void Btn_SetAllValueShow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                F_SetAllValue f_SetAllValue = new F_SetAllValue
+                { 
+                    MSecValue = SetMSec,
+                    IsEnable  = !IsTrafficEnable
+                };
+
+                f_SetAllValue.ShowDialog();         // 全設定値編集フォーム表示
+                SetMSec = f_SetAllValue.MSecValue;  // 設定値構造体を更新する
+            }
+            catch (Exception ex)
+            {
+                string exStr = "「編集画面表示」ボタンのクリックでエラーが発生しました。\n" + ex.Message;
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
         /// タイトル表示ラベルクリック時イベント
         /// </summary>
         private void Lbl_FormTitle_Click(object sender, EventArgs e)
@@ -502,13 +525,13 @@ namespace TrafficLightAlgorithm
                 // ２つの車用信号機の進行可能ミリ秒を取得する
                 int carOneMSec = setMSec.CarNMSec;
                 int carTwoMSec = setMSec.CarSMSec;
-
                 if (direction == Direction.EastWest)
                 {
                     carOneMSec = setMSec.CarEMSec;
                     carTwoMSec = setMSec.CarWMSec;
                 }
 
+                // ２つの車用信号機の方角を取得する
                 Direction cOneDir = Direction.North;
                 Direction cTwoDir = Direction.South;
                 if (direction == Direction.EastWest)
@@ -517,189 +540,144 @@ namespace TrafficLightAlgorithm
                     cTwoDir = Direction.West;
                 }
 
-                // 操作対象の歩行者用信号機の方角を取得する
+                // 歩行者用信号機の方角を取得する
                 Direction pedDirection = Direction.EastWest;  
                 if (direction == Direction.EastWest) pedDirection = Direction.NorthSouth;
 
                 // 歩行者用信号機の進行可能ミリ秒を取得する
-                int pedMSec = SetMSec.PedNSMSec;
+                int pedMSec = setMSec.PedNSMSec;
                 if (pedDirection == Direction.EastWest) pedMSec = setMSec.PedEWMSec;
-
-                // 車用・歩行者用信号機が同時に緑に点灯するミリ秒を取得する
-                int greMSec = Math.Min(Math.Min(carOneMSec, carTwoMSec), pedMSec);
 
                 int carOneTotalMSec = carOneMSec + YellowMSec + MinMSec;                    // １つ目の車用信号機の緑点灯時間と黄点灯時間の合計
                 int carTwoTotalMSec = carTwoMSec + YellowMSec + MinMSec;                    // ２つ目の車用信号機の緑点灯時間と黄点灯時間の合計
                 int pedTotalMSec    = pedMSec    + BlinkMSec  * BlinkPhaseCount + MinMSec;  // 歩行者用信号機の緑点灯時間と点滅時間の合計
+
+                if (isArrow)
+                {
+                    carOneTotalMSec += YellowMSec + setMSec.ArwMSec;
+                    carTwoTotalMSec += YellowMSec + setMSec.ArwMSec;
+                }
 
                 List<TrafficPhase> pList = new List<TrafficPhase>();
 
                 List<LightState> cOneSList = new List<LightState>();
                 List<LightState> cTwoSList = new List<LightState>();
                 List<LightState> pSList = new List<LightState>();
-                int waitMsec = 0;
 
+                int waitMsec    = 0;
+                int carOneIndex = 0;
+                int carTwoIndex = 0;
                 int phaseToTal = Math.Max(Math.Max(carOneTotalMSec, carTwoTotalMSec), pedTotalMSec) / 500;
                 bool isStart = true;
+
+                int carOneListIndex = 0;
+                List<int> carOneMSecList = new List<int> { carOneMSec, carOneMSec + YellowMSec, carOneMSec + YellowMSec + AllRedMSec};
+                if (isArrow) carOneMSecList.AddRange(new List<int> { carOneMSec + 2 * YellowMSec + AllRedMSec, carOneMSec + 2 * YellowMSec + 2 * AllRedMSec });
+
+                int carTwoListIndex = 0;
+                List<int> carTwoMSecList = new List<int> { carTwoMSec, carTwoMSec + YellowMSec, carTwoMSec + YellowMSec + AllRedMSec };
+                if (isArrow) carOneMSecList.AddRange(new List<int> { carTwoMSec + 2 * YellowMSec + AllRedMSec, carTwoMSec + 2 * YellowMSec + 2 * AllRedMSec });
+
+                List<LightState> sList = new List<LightState> { LightState.Green, LightState.Yellow, LightState.Red };
+                if (isArrow) sList.AddRange(new List<LightState> { LightState.ArrowRed, LightState.Yellow});
 
                 for (int i = 0; i < phaseToTal; i ++)
                 {
                     int progMSec = 500 * i;
                     List<TrafficCommand> cmdList = new List<TrafficCommand>();
 
-                    if (progMSec < carOneMSec) cOneSList.Add(LightState.Green);
-                    else if (progMSec >= carOneMSec && progMSec < carOneMSec + YellowMSec) cOneSList.Add(LightState.Yellow);
-                    else cOneSList.Add(LightState.Red);
+                    //if (progMSec < carOneMSecList[0] || progMSec >= carOneMSecList[carOneListIndex] && progMSec < carOneMSecList[carOneListIndex + 1])
+                    //{
+                    //    cOneSList.Add(sList[carOneListIndex]);
+                    //    carOneListIndex++;
+                    //}
 
-                    if (progMSec < carTwoMSec) cTwoSList.Add(LightState.Green);
-                    else if (progMSec >= carTwoMSec && progMSec < carTwoMSec + YellowMSec) cTwoSList.Add(LightState.Yellow);
-                    else cTwoSList.Add(LightState.Red);
+                    //if (progMSec < carTwoMSecList[0] || progMSec >= carTwoMSecList[carTwoListIndex] && progMSec < carTwoMSecList[carTwoListIndex + 1])
+                    //{
+                    //    cTwoSList.Add(sList[carTwoListIndex]); 
+                    //    carTwoListIndex++;
+                    //}
 
-                    if (progMSec < pedMSec) pSList.Add(LightState.Green);
-                    else if (progMSec >= pedMSec && progMSec < pedMSec + BlinkMSec * BlinkPhaseCount && i % 2 == 0) pSList.Add(LightState.NoLight);
-                    else if (progMSec >= pedMSec && progMSec < pedMSec + BlinkMSec * BlinkPhaseCount && i % 2 != 0) pSList.Add(LightState.Green);
-                    else pSList.Add(LightState.Red);
-                    
-                    if (i > 0 && (cOneSList[i] != cOneSList[i - 1] || cTwoSList[i] != cTwoSList[i - 1] || pSList[i] != pSList[i - 1]))
+                    //if (progMSec < pedMSec) pSList.Add(LightState.Green);
+                    //else if (progMSec >= pedMSec && progMSec < pedMSec + BlinkMSec * BlinkPhaseCount && i % 2 == 0) pSList.Add(LightState.NoLight);
+                    //else if (progMSec >= pedMSec && progMSec < pedMSec + BlinkMSec * BlinkPhaseCount && i % 2 != 0) pSList.Add(LightState.Green);
+                    //else pSList.Add(LightState.Red);
+
+                    if (cOneSList.Count > 0 && cTwoSList.Count > 0)
                     {
-                        // 車用信号機の点灯
-                        if (cOneSList[i - 2] == cTwoSList[i - 2])
+                        // 車用信号機の点灯状態を取得
+                        if (cOneSList[i] != cOneSList[i - 1] || cTwoSList[i] != cTwoSList[i - 1])
                         {
-                            cmdList.Add(new TrafficCommand(direction, Signal.Car, cOneSList[i - 2]));
-                        }
-                        else
-                        {
-                            if (cOneSList[i - 1] != cOneSList[i - 3]) cmdList.Add(new TrafficCommand(cOneDir, Signal.Car, cOneSList[i - 1]));
-                            if (cTwoSList[i - 1] != cTwoSList[i - 3]) cmdList.Add(new TrafficCommand(cTwoDir, Signal.Car, cTwoSList[i - 1]));
+                            if (cOneSList[i - 1] == cTwoSList[i - 1])
+                            { 
+                                cmdList.Add(new TrafficCommand(direction, Signal.Car, cOneSList[i - 1]));
+                                carOneIndex = i;
+                                carTwoIndex = i;
+                            }
+                            else
+                            {
+                                if (cOneSList[carOneIndex - 1] != cOneSList[i - 1])
+                                { 
+                                    cmdList.Add(new TrafficCommand(cOneDir, Signal.Car, cOneSList[i - 1]));
+                                    carOneIndex = i;
+                                }
+                                
+                                if (cTwoSList[carTwoIndex - 1] != cTwoSList[i - 1])
+                                { 
+                                    cmdList.Add(new TrafficCommand(cTwoDir, Signal.Car, cTwoSList[i - 1]));
+                                    carTwoIndex = i;
+                                }
+                            }
                         }
 
-                        cmdList.Add(new TrafficCommand(pedDirection, Signal.Pedes, pSList[i - 1]));
+                        // 歩行者用信号機の点灯状態を取得
                     }
 
-                    if (i == 0 || (cOneSList[i] == cOneSList[i - 1] && cTwoSList[i] == cTwoSList[i - 1] && pSList[i] == pSList[i - 1]))
+                    Console.WriteLine(carOneIndex + " " + carTwoIndex);
+
+                    if (i == 0 || (cOneSList[i] == cOneSList[i - 1] && cTwoSList[i] == cTwoSList[i - 1]))
                     {
                         waitMsec += 500;
                     }
                     else
                     {
-                        if (waitMsec != BlinkMSec)
-                        {
-                            TrafficPhase phase = new TrafficPhase(waitMsec, cmdList.ToArray());
-                            pList.Add(phase);
-                        }
-                        else
-                        {
-                            TrafficPhase phase = new TrafficPhase(BlinkMSec, cmdList.ToArray(), isStart, true, BlinkPhaseCount);
-                            pList.Add(phase);
-                            isStart = false;
-                        }
-
+                        pList.Add(new TrafficPhase(waitMsec, cmdList.ToArray()));
                         waitMsec = 500;
                     }
+
+                    //if (i == 0 || (cOneSList[i] == cOneSList[i - 1] && cTwoSList[i] == cTwoSList[i - 1] && pSList[i] == pSList[i - 1]))
+                    //{
+                    //    waitMsec += 500;
+                    //}
+                    //else
+                    //{
+                    //    if (waitMsec != BlinkMSec)
+                    //    {
+                    //        TrafficPhase phase = new TrafficPhase(waitMsec, cmdList.ToArray());
+                    //        pList.Add(phase);
+                    //    }
+                    //    else
+                    //    {
+                    //        TrafficPhase phase = new TrafficPhase(BlinkMSec, cmdList.ToArray(), isStart, true, BlinkPhaseCount);
+                    //        pList.Add(phase);
+                    //        isStart = false;
+                    //    }
+
+                    //    waitMsec = 500;
+                    //}
                 }
 
-                if (direction == Direction.NorthSouth) pList.Add(new TrafficPhase(MinMSec, new TrafficCommand[] {new TrafficCommand()}));
-                
-                return pList;
-
-                // 車用・歩行者用信号機の緑点灯
-                List<TrafficPhase> phases = new List<TrafficPhase>
-                { 
-                    new TrafficPhase(greMSec, new TrafficCommand[] { new TrafficCommand(direction,    Signal.Car,   LightState.Green),
-                                                                     new TrafficCommand(pedDirection, Signal.Pedes, LightState.Green) } )
-                };
-
-                // 歩行者用信号機の点滅
-                for (int i = 0; i < BlinkPhaseCount; i++)
+                if (isArrow)
                 {
-                    // 点滅開始フェーズの場合はtrue、それ以外の場合はfalse
-                    bool        isBlinkStart = false;
-                    if (i == 0) isBlinkStart = true;
-
-                    // 無灯火と緑点灯を交互に繰り返す
-                    if (i % 2 == 0)
-                    {
-                        phases.Add(new TrafficPhase(BlinkMSec, 
-                            new TrafficCommand[] { new TrafficCommand(pedDirection, Signal.Pedes, LightState.NoLight) }, 
-                            isBlinkStart, true, BlinkPhaseCount));  // 無灯火
-                    }
-                    else
-                    { 
-                        phases.Add(new TrafficPhase(BlinkMSec, 
-                            new TrafficCommand[] { new TrafficCommand(pedDirection, Signal.Pedes, LightState.Green) }, 
-                            isBlinkStart, true, BlinkPhaseCount));  // 緑点灯
-                    }
-                }
-                
-                // 歩行者用信号機の赤点灯
-                phases.Add(new TrafficPhase(MinMSec, 
-                    new TrafficCommand[] { new TrafficCommand(pedDirection, Signal.Pedes, LightState.Red) }));
-
-                // 車用信号機の黄・赤点灯
-                if (carOneMSec == carTwoMSec)
-                {
-                    // 進行可能秒数に差がない場合は同時に２つの信号機を黄・赤に点灯
-                    phases.Add(new TrafficPhase(YellowMSec,
-                        new TrafficCommand[] { new TrafficCommand(direction, Signal.Car, LightState.Yellow) }));  // 黄点灯
-
-                    phases.Add(new TrafficPhase(MinMSec,
-                        new TrafficCommand[] { new TrafficCommand(direction, Signal.Car, LightState.Red) }));  // 赤点灯
+                    pList.Add(new TrafficPhase(SetMSec.ArwMSec, new TrafficCommand[] { new TrafficCommand(direction, Signal.Car, LightState.ArrowRed)}));
+                    pList.Add(new TrafficPhase(MinMSec, new TrafficCommand[] { new TrafficCommand(direction, Signal.Car, LightState.Yellow) }));
                 }
                 else
                 {
-                    // 進行可能秒数に差がある場合、点灯順は差の大きさに合わせて変更
-
-                    // 車用信号機の進行可能ミリ秒の差を取得する
-                    int difMSec = carOneMSec - carTwoMSec;
-
-                    // 車用信号機が存在する方角を取得する
-                    Direction dirLate  = Direction.North;
-                    Direction dirEarly = Direction.South;
-                    
-                    if (direction == Direction.EastWest)
-                    {
-                        dirLate  = Direction.East;
-                        dirEarly = Direction.West;
-                    }
-
-                    if (difMSec < 0) (dirEarly, dirLate) = (dirLate, dirEarly);
-
-                    // 進行可能ミリ秒が短い車用信号機の黄点灯
-                    phases.Add(new TrafficPhase(YellowMSec, 
-                        new TrafficCommand[] { new TrafficCommand(dirEarly, Signal.Car, LightState.Yellow) }));  
-
-                    // 進行可能ミリ秒が短い車用信号機の赤点灯、進行可能ミリ秒が長い車用信号機の黄点灯
-                    if (Math.Abs(difMSec) == YellowMSec)
-                    {
-                        phases.Add(new TrafficPhase(YellowMSec, 
-                            new TrafficCommand[] { new TrafficCommand(dirEarly, Signal.Car, LightState.Red),
-                                                   new TrafficCommand(dirLate,  Signal.Car, LightState.Yellow)}));
-                    }
-                    else
-                    {
-                        phases.Add(new TrafficPhase(Math.Abs(difMSec) - YellowMSec, 
-                            new TrafficCommand[] { new TrafficCommand(dirEarly, Signal.Car, LightState.Red) }));
-                        
-                        phases.Add(new TrafficPhase(YellowMSec,                     
-                            new TrafficCommand[] { new TrafficCommand(dirLate,  Signal.Car, LightState.Yellow) }));
-                    }
-
-                    // 進行可能ミリ秒が長い車用信号機の赤点灯
-                    phases.Add(new TrafficPhase(MinMSec,
-                        new TrafficCommand[] { new TrafficCommand(dirLate, Signal.Car, LightState.Red) }));
+                    pList.Add(new TrafficPhase(MinMSec, new TrafficCommand[] {new TrafficCommand()}));
                 }
 
-                // 矢印信号機が存在する場合は点灯する
-                if (isArrow)
-                {
-                    phases.Add(new TrafficPhase(setMSec.ArwMSec,
-                        new TrafficCommand[] { new TrafficCommand(direction, Signal.Car, LightState.ArrowRed) }));  // 矢印信号機の点灯
-
-                    phases.Add(new TrafficPhase(YellowMSec,
-                        new TrafficCommand[] { new TrafficCommand(direction, Signal.Car, LightState.Yellow) }));    // 黄点灯
-                }
-
-                return phases;
+                return pList;
             }
             catch (Exception ex) 
             {

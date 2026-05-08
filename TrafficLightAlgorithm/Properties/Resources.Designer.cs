@@ -263,16 +263,6 @@ namespace TrafficLightAlgorithm.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap SetFormTitle {
-            get {
-                object obj = ResourceManager.GetObject("SetFormTitle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
         internal static System.Drawing.Bitmap SignalGreen {
             get {
                 object obj = ResourceManager.GetObject("SignalGreen", resourceCulture);
@@ -336,16 +326,6 @@ namespace TrafficLightAlgorithm.Properties {
         internal static System.Drawing.Bitmap SignalYellow {
             get {
                 object obj = ResourceManager.GetObject("SignalYellow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap SoftTitle {
-            get {
-                object obj = ResourceManager.GetObject("SoftTitle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

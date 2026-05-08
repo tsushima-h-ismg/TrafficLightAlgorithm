@@ -45,6 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="F_SetAllValue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_SetAllValue.Designer.cs">
+      <DependentUpon>F_SetAllValue.cs</DependentUpon>
+    </Compile>
     <Compile Include="F_SetSec.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,9 @@
     <Compile Include="TrafficCommand.cs" />
     <Compile Include="TrafficPhase.cs" />
     <Compile Include="TrafficMSecValue.cs" />
+    <EmbeddedResource Include="F_SetAllValue.resx">
+      <DependentUpon>F_SetAllValue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F_SetSec.ff-Adlm-NE.resx">
       <DependentUpon>F_SetSec.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,9 +116,7 @@
     <None Include="Resources\SignalGreen.png" />
     <None Include="Resources\SignalYellow.png" />
     <None Include="Resources\SignalRed.png" />
-    <None Include="Resources\SoftTitle.png" />
     <None Include="Resources\TrafficBackground.png" />
-    <None Include="Resources\SetFormTitle.png" />
     <None Include="Resources\ArrowWSignal.png" />
     <None Include="Resources\ArrowESignal.png" />
     <None Include="Resources\SignalPoleE.png" />
