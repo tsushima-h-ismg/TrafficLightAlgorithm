@@ -503,6 +503,7 @@ namespace TrafficLightAlgorithm
                 
                 phases.AddRange(DirectionPhaseList(setMSec, Direction.NorthSouth, false));  // 交差点北南道路の信号機点灯フェーズ
                 phases.AddRange(DirectionPhaseList(setMSec, Direction.EastWest,   true));   // 交差点東西道路の信号機点灯フェーズ
+
                 return phases;
             }
             catch
@@ -554,127 +555,150 @@ namespace TrafficLightAlgorithm
 
                 if (isArrow)
                 {
-                    carOneTotalMSec += YellowMSec + setMSec.ArwMSec;
-                    carTwoTotalMSec += YellowMSec + setMSec.ArwMSec;
+                    carOneTotalMSec += setMSec.ArwMSec + YellowMSec;
+                    carTwoTotalMSec += setMSec.ArwMSec + YellowMSec;
                 }
 
                 List<TrafficPhase> pList = new List<TrafficPhase>();
 
-                List<LightState> cOneSList = new List<LightState>();
-                List<LightState> cTwoSList = new List<LightState>();
-                List<LightState> pSList = new List<LightState>();
-
-                int waitMsec    = 0;
-                int carOneIndex = 0;
-                int carTwoIndex = 0;
-                int phaseToTal = Math.Max(Math.Max(carOneTotalMSec, carTwoTotalMSec), pedTotalMSec) / 500;
+                int waitMsec = 0;
+                int phaseTotal = Math.Max(Math.Max(carOneTotalMSec, carTwoTotalMSec), pedTotalMSec) / 500;
                 bool isStart = true;
+                bool isBlink = false;
 
+                // １つ目の車用信号機
                 int carOneListIndex = 0;
-                List<int> carOneMSecList = new List<int> { carOneMSec, carOneMSec + YellowMSec, carOneMSec + YellowMSec + AllRedMSec};
-                if (isArrow) carOneMSecList.AddRange(new List<int> { carOneMSec + 2 * YellowMSec + AllRedMSec, carOneMSec + 2 * YellowMSec + 2 * AllRedMSec });
+                List<int> carOneMSecList = new List<int> { 0, carOneMSec, carOneMSec + YellowMSec, carOneMSec + YellowMSec + MinMSec };
+                if (isArrow)
+                {
+                    carOneMSecList[carOneMSecList.Count - 1] += Math.Max(0, carTwoMSec - carOneMSec);
+                    carOneMSecList.AddRange(new List<int> { carOneMSecList[carOneMSecList.Count - 1] + setMSec.ArwMSec, 
+                                                            carOneMSecList[carOneMSecList.Count - 1] + setMSec.ArwMSec + MinMSec });
+                }
+                LightState carOneState = LightState.Green;
 
+                // ２つ目の車用信号機
                 int carTwoListIndex = 0;
-                List<int> carTwoMSecList = new List<int> { carTwoMSec, carTwoMSec + YellowMSec, carTwoMSec + YellowMSec + AllRedMSec };
-                if (isArrow) carOneMSecList.AddRange(new List<int> { carTwoMSec + 2 * YellowMSec + AllRedMSec, carTwoMSec + 2 * YellowMSec + 2 * AllRedMSec });
+                List<int> carTwoMSecList = new List<int> { 0, carTwoMSec, carTwoMSec + YellowMSec, carTwoMSec + YellowMSec + MinMSec };
+                if (isArrow)
+                {
+                    carTwoMSecList[carTwoMSecList.Count - 1] += Math.Max(0, carOneMSec - carTwoMSec);
+                    carTwoMSecList.AddRange(new List<int> { carTwoMSecList[carTwoMSecList.Count - 1] + setMSec.ArwMSec, 
+                                                            carTwoMSecList[carTwoMSecList.Count - 1] + setMSec.ArwMSec + MinMSec });
+                }
+                LightState carTwoState = LightState.Green;
 
+                // 歩行者用信号機
+                int pedListIndex = 0;
+                List<int> pedMSecList = new List<int> { 0, pedMSec };
+                for(int i = 0; i < BlinkPhaseCount; i++)
+                {
+                    pedMSecList.Add(pedMSecList[pedMSecList.Count - 1] + BlinkMSec);
+                }
+                pedMSecList.Add(pedMSecList[pedMSecList.Count - 1] + MinMSec);
+                LightState pedState = LightState.Green;
+
+                // 車用信号機の状態遷移
                 List<LightState> sList = new List<LightState> { LightState.Green, LightState.Yellow, LightState.Red };
-                if (isArrow) sList.AddRange(new List<LightState> { LightState.ArrowRed, LightState.Yellow});
+                if (isArrow) sList.AddRange(new List<LightState> { LightState.ArrowRed, LightState.Yellow });
 
-                for (int i = 0; i < phaseToTal; i ++)
+                // 歩行者用信号機の状態遷移
+                List<LightState> pedSList = new List<LightState> { LightState.Green };
+                for (int i = 0; i < BlinkPhaseCount; i++)
+                {
+                    if      (i % 2 == 0) pedSList.Add(LightState.NoLight);
+                    else if (i % 2 != 0) pedSList.Add(LightState.Green);
+                }
+                pedSList.Add(LightState.Red);
+
+                int nextMSec = 0;
+
+                for (int i = 0; i <= phaseTotal; i ++)
                 {
                     int progMSec = 500 * i;
                     List<TrafficCommand> cmdList = new List<TrafficCommand>();
 
-                    //if (progMSec < carOneMSecList[0] || progMSec >= carOneMSecList[carOneListIndex] && progMSec < carOneMSecList[carOneListIndex + 1])
-                    //{
-                    //    cOneSList.Add(sList[carOneListIndex]);
-                    //    carOneListIndex++;
-                    //}
-
-                    //if (progMSec < carTwoMSecList[0] || progMSec >= carTwoMSecList[carTwoListIndex] && progMSec < carTwoMSecList[carTwoListIndex + 1])
-                    //{
-                    //    cTwoSList.Add(sList[carTwoListIndex]); 
-                    //    carTwoListIndex++;
-                    //}
-
-                    //if (progMSec < pedMSec) pSList.Add(LightState.Green);
-                    //else if (progMSec >= pedMSec && progMSec < pedMSec + BlinkMSec * BlinkPhaseCount && i % 2 == 0) pSList.Add(LightState.NoLight);
-                    //else if (progMSec >= pedMSec && progMSec < pedMSec + BlinkMSec * BlinkPhaseCount && i % 2 != 0) pSList.Add(LightState.Green);
-                    //else pSList.Add(LightState.Red);
-
-                    if (cOneSList.Count > 0 && cTwoSList.Count > 0)
+                    // １つ目車用信号機の点灯状態変更
+                    TrafficCommand carOneCmd = null;
+                    if (carOneListIndex < carOneMSecList.Count - 1 && progMSec >= carOneMSecList[carOneListIndex])
                     {
-                        // 車用信号機の点灯状態を取得
-                        if (cOneSList[i] != cOneSList[i - 1] || cTwoSList[i] != cTwoSList[i - 1])
-                        {
-                            if (cOneSList[i - 1] == cTwoSList[i - 1])
-                            { 
-                                cmdList.Add(new TrafficCommand(direction, Signal.Car, cOneSList[i - 1]));
-                                carOneIndex = i;
-                                carTwoIndex = i;
-                            }
-                            else
-                            {
-                                if (cOneSList[carOneIndex - 1] != cOneSList[i - 1])
-                                { 
-                                    cmdList.Add(new TrafficCommand(cOneDir, Signal.Car, cOneSList[i - 1]));
-                                    carOneIndex = i;
-                                }
-                                
-                                if (cTwoSList[carTwoIndex - 1] != cTwoSList[i - 1])
-                                { 
-                                    cmdList.Add(new TrafficCommand(cTwoDir, Signal.Car, cTwoSList[i - 1]));
-                                    carTwoIndex = i;
-                                }
-                            }
-                        }
-
-                        // 歩行者用信号機の点灯状態を取得
+                        carOneCmd = new TrafficCommand(cOneDir, Signal.Car, carOneState);
+                        carOneListIndex++;
+                        if (carOneListIndex < sList.Count) carOneState = sList[carOneListIndex];
                     }
 
-                    Console.WriteLine(carOneIndex + " " + carTwoIndex);
-
-                    if (i == 0 || (cOneSList[i] == cOneSList[i - 1] && cTwoSList[i] == cTwoSList[i - 1]))
+                    // ２つ目車用信号機の点灯状態変更
+                    TrafficCommand carTwoCmd = null;
+                    if (carTwoListIndex < carTwoMSecList.Count - 1 && progMSec >= carTwoMSecList[carTwoListIndex])
                     {
-                        waitMsec += 500;
+                        carTwoCmd = new TrafficCommand(cTwoDir, Signal.Car, carTwoState);
+                        carTwoListIndex++;
+                        if (carTwoListIndex < sList.Count) carTwoState = sList[carTwoListIndex];
+                    }
+
+                    // 歩行者用信号機の点灯状態変更
+                    TrafficCommand pedCmd = null;
+                    if (pedListIndex < pedMSecList.Count - 1 && progMSec >= pedMSecList[pedListIndex])
+                    {
+                        if (pedMSecList[pedListIndex + 1] - pedMSecList[pedListIndex] == BlinkMSec) isBlink = true;
+                        else isBlink = false;
+
+                        if (isBlink && pedMSecList[pedListIndex + 1] == pedMSec + BlinkMSec) isStart = true;
+                        else isStart = false;
+
+                        pedCmd = new TrafficCommand(pedDirection, Signal.Pedes, pedState);
+                        pedListIndex++;
+                        if (pedListIndex < pedSList.Count) pedState = pedSList[pedListIndex];
+                    }
+
+                    // 点灯状態変更内容をリストに追加
+                    if (carOneCmd != null && carTwoCmd != null && carOneCmd.State == carTwoCmd.State)
+                    {
+                        // ２つの車用信号機を同じ色にする場合
+                        cmdList.Add(new TrafficCommand(direction, Signal.Car, sList[carOneListIndex - 1]));
                     }
                     else
                     {
-                        pList.Add(new TrafficPhase(waitMsec, cmdList.ToArray()));
-                        waitMsec = 500;
+                        if (carOneCmd != null) cmdList.Add(carOneCmd);
+                        if (carTwoCmd != null) cmdList.Add(carTwoCmd);
                     }
+                    
+                    if (pedCmd != null) cmdList.Add(pedCmd);
 
-                    //if (i == 0 || (cOneSList[i] == cOneSList[i - 1] && cTwoSList[i] == cTwoSList[i - 1] && pSList[i] == pSList[i - 1]))
-                    //{
-                    //    waitMsec += 500;
-                    //}
-                    //else
-                    //{
-                    //    if (waitMsec != BlinkMSec)
-                    //    {
-                    //        TrafficPhase phase = new TrafficPhase(waitMsec, cmdList.ToArray());
-                    //        pList.Add(phase);
-                    //    }
-                    //    else
-                    //    {
-                    //        TrafficPhase phase = new TrafficPhase(BlinkMSec, cmdList.ToArray(), isStart, true, BlinkPhaseCount);
-                    //        pList.Add(phase);
-                    //        isStart = false;
-                    //    }
+                    // 点灯フェーズの追加
+                    if (cmdList.Count != 0)
+                    {
+                        // 待機時間の設定
+                        if (progMSec == 0)
+                        {
+                            waitMsec = Math.Min(Math.Min(carOneMSecList[1], carTwoMSecList[1]), pedMSecList[1]);
+                            nextMSec = waitMsec;
+                        }
+                        else if (progMSec == nextMSec)
+                        {
+                            int carOneWaitMSec = Math.Max(0, carOneMSecList[carOneListIndex] - progMSec);
+                            int carTwoWaitMSec = Math.Max(0, carTwoMSecList[carTwoListIndex] - progMSec);
+                            int pedWaitMSec    = Math.Max(0, pedMSecList[pedListIndex]       - progMSec);
 
-                    //    waitMsec = 500;
-                    //}
-                }
+                            List<int> waitMSecList = new List<int>();
+                            if (carOneState != LightState.Red && carOneWaitMSec != 0) waitMSecList.Add(carOneWaitMSec);
+                            if (carTwoState != LightState.Red && carTwoWaitMSec != 0) waitMSecList.Add(carTwoWaitMSec);
+                            if (pedState    != LightState.Red && pedWaitMSec    != 0) waitMSecList.Add(pedWaitMSec);
 
-                if (isArrow)
-                {
-                    pList.Add(new TrafficPhase(SetMSec.ArwMSec, new TrafficCommand[] { new TrafficCommand(direction, Signal.Car, LightState.ArrowRed)}));
-                    pList.Add(new TrafficPhase(MinMSec, new TrafficCommand[] { new TrafficCommand(direction, Signal.Car, LightState.Yellow) }));
-                }
-                else
-                {
-                    pList.Add(new TrafficPhase(MinMSec, new TrafficCommand[] {new TrafficCommand()}));
+                            waitMsec = Math.Min(Math.Min(carOneWaitMSec, carTwoWaitMSec), pedWaitMSec);
+                            
+                            if (waitMSecList.Count != 0)
+                            {
+                                waitMSecList.Sort();
+                                waitMsec = waitMSecList[0];
+                            }
+
+                            nextMSec += waitMsec;
+                        }
+
+                        if (isBlink) pList.Add(new TrafficPhase(BlinkMSec, cmdList.ToArray(), isStart, isBlink, BlinkPhaseCount));
+                        else         pList.Add(new TrafficPhase(waitMsec,  cmdList.ToArray()));
+                    }
                 }
 
                 return pList;

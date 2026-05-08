@@ -16,14 +16,14 @@
         public readonly int BlinkMSec;
 
         /// <summary>
-        /// 点滅開始フェーズの場合はtrue、それ以外の場合はfalse
-        /// </summary>
-        public readonly bool IsBlinkStart;
-
-        /// <summary>
         /// 点滅を行うフェーズの場合はtrue、それ以外の場合はfalse
         /// </summary>
         public readonly bool IsBlink;
+
+        /// <summary>
+        /// 点滅開始フェーズの場合はtrue、それ以外の場合はfalse
+        /// </summary>
+        public readonly bool IsBlinkStart;
 
         /// <summary>
         /// 信号機の種類と点灯状態
@@ -42,8 +42,8 @@
         { 
             WaitMSec     = waitMSec;
             Commands     = commands;
-            IsBlinkStart = isBlinkStart;
             IsBlink      = isBlink;
+            IsBlinkStart = isBlinkStart;
             BlinkMSec    = waitMSec * phaseCount;
         }
 
@@ -54,10 +54,11 @@
         public string GetMsg()
         {
             string msg = "";
+            bool isCarChange = false;
 
             for(int i = 0; i < Commands.Length; i++)
             {
-                if (!IsBlinkStart && IsBlink) continue;
+                if (Commands[i].Signal == Signal.Car) isCarChange = true;
 
                 // 方角
                 if      (Commands[i].Direction == Direction.All)        msg += "全";
@@ -75,7 +76,7 @@
                 else if (Commands[i].Signal == Signal.Pedes) msg += "歩行者用信号が";
 
                 // 点灯状態
-                if (IsBlink)
+                if (Commands[i].Signal == Signal.Pedes && IsBlink)
                 {
                     msg += "点滅しました。";
                 }
@@ -102,8 +103,9 @@
                 }
             }
 
-            int mSecValue = WaitMSec;                 // ミリ秒数の値が入る
-            if (IsBlinkStart) mSecValue = BlinkMSec;  // 点滅開始フェーズの場合、点滅にかける待機ミリ秒の合計が入る
+            int mSecValue = WaitMSec;                                 // ミリ秒数の値が入る
+            if (IsBlinkStart && !isCarChange) mSecValue = BlinkMSec;  // 点滅開始フェーズの場合、点滅にかける待機ミリ秒の合計が入る
+            else if (IsBlink && isCarChange)  mSecValue = WaitMSec;
             msg += mSecValue / 1000F + "秒待機します。";
 
             return msg;
