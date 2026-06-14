@@ -106,7 +106,7 @@
             this.lbl_FormTitle.Name = "lbl_FormTitle";
             this.lbl_FormTitle.Size = new System.Drawing.Size(390, 50);
             this.lbl_FormTitle.TabIndex = 23;
-            this.lbl_FormTitle.Text = "設定値編集";
+            this.lbl_FormTitle.Text = "時間設定一覧";
             this.lbl_FormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl_SecCN

@@ -26,7 +26,7 @@
         /// <param name="direction"> 信号機を設置した方角 </param>
         /// <param name="signal">    信号機の種類         </param>
         /// <param name="state">     信号機の点灯状態     </param>
-        public TrafficCommand(Direction direction = Direction.All, Signal signal = Signal.All, LightState state = LightState.Red)
+        public TrafficCommand(Direction direction, Signal signal, LightState state)
         {
             State     = state;
             Signal    = signal;

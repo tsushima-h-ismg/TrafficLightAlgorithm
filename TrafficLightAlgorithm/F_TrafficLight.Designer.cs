@@ -37,6 +37,13 @@
             this.lbl_WestDirection = new System.Windows.Forms.Label();
             this.lbl_EastDirection = new System.Windows.Forms.Label();
             this.grb_TrafficShow = new System.Windows.Forms.GroupBox();
+            this.lbx_SignalControlLog = new System.Windows.Forms.ListBox();
+            this.grb_SignalControlLog = new System.Windows.Forms.GroupBox();
+            this.lbl_FormTitle = new System.Windows.Forms.Label();
+            this.lbl_FormTitleRight = new System.Windows.Forms.Label();
+            this.lbl_FormTitleAbove = new System.Windows.Forms.Label();
+            this.lbl_FormTitleUnder = new System.Windows.Forms.Label();
+            this.lbl_FormTitleLeft = new System.Windows.Forms.Label();
             this.pnl_Traffic = new System.Windows.Forms.Panel();
             this.lbl_PSRedTwo = new System.Windows.Forms.Label();
             this.lbl_PSGreTwo = new System.Windows.Forms.Label();
@@ -94,15 +101,9 @@
             this.pib_PESignalTwo = new System.Windows.Forms.PictureBox();
             this.pib_PESignalOne = new System.Windows.Forms.PictureBox();
             this.pib_PWSignalTwo = new System.Windows.Forms.PictureBox();
-            this.lbx_SignalControlLog = new System.Windows.Forms.ListBox();
-            this.grb_SignalControlLog = new System.Windows.Forms.GroupBox();
             this.btn_SetAllValue = new System.Windows.Forms.Button();
-            this.lbl_FormTitle = new System.Windows.Forms.Label();
-            this.lbl_FormTitleRight = new System.Windows.Forms.Label();
-            this.lbl_FormTitleAbove = new System.Windows.Forms.Label();
-            this.lbl_FormTitleUnder = new System.Windows.Forms.Label();
-            this.lbl_FormTitleLeft = new System.Windows.Forms.Label();
             this.grb_TrafficShow.SuspendLayout();
+            this.grb_SignalControlLog.SuspendLayout();
             this.pnl_Traffic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pib_WArrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_NGreen)).BeginInit();
@@ -130,7 +131,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalTwo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PWSignalTwo)).BeginInit();
-            this.grb_SignalControlLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_Start
@@ -141,7 +141,7 @@
             this.btn_Start.FlatAppearance.BorderSize = 2;
             this.btn_Start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Start.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_Start.Location = new System.Drawing.Point(668, 182);
+            this.btn_Start.Location = new System.Drawing.Point(668, 128);
             this.btn_Start.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(100, 40);
@@ -158,7 +158,7 @@
             this.btn_Reset.FlatAppearance.BorderSize = 2;
             this.btn_Reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Reset.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_Reset.Location = new System.Drawing.Point(1006, 182);
+            this.btn_Reset.Location = new System.Drawing.Point(1000, 128);
             this.btn_Reset.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Reset.Name = "btn_Reset";
             this.btn_Reset.Size = new System.Drawing.Size(100, 40);
@@ -175,7 +175,7 @@
             this.btn_InterruptResume.FlatAppearance.BorderSize = 2;
             this.btn_InterruptResume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_InterruptResume.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_InterruptResume.Location = new System.Drawing.Point(837, 182);
+            this.btn_InterruptResume.Location = new System.Drawing.Point(831, 128);
             this.btn_InterruptResume.Margin = new System.Windows.Forms.Padding(0);
             this.btn_InterruptResume.Name = "btn_InterruptResume";
             this.btn_InterruptResume.Size = new System.Drawing.Size(100, 40);
@@ -188,7 +188,7 @@
             // 
             this.lbl_NorthDirection.BackColor = System.Drawing.Color.White;
             this.lbl_NorthDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_NorthDirection.Location = new System.Drawing.Point(228, 13);
+            this.lbl_NorthDirection.Location = new System.Drawing.Point(228, 33);
             this.lbl_NorthDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_NorthDirection.Name = "lbl_NorthDirection";
             this.lbl_NorthDirection.Size = new System.Drawing.Size(80, 30);
@@ -200,7 +200,7 @@
             // 
             this.lbl_SouthDirection.BackColor = System.Drawing.Color.White;
             this.lbl_SouthDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_SouthDirection.Location = new System.Drawing.Point(228, 455);
+            this.lbl_SouthDirection.Location = new System.Drawing.Point(228, 475);
             this.lbl_SouthDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_SouthDirection.Name = "lbl_SouthDirection";
             this.lbl_SouthDirection.Size = new System.Drawing.Size(80, 30);
@@ -212,7 +212,7 @@
             // 
             this.lbl_WestDirection.BackColor = System.Drawing.Color.White;
             this.lbl_WestDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_WestDirection.Location = new System.Drawing.Point(1, 209);
+            this.lbl_WestDirection.Location = new System.Drawing.Point(1, 229);
             this.lbl_WestDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WestDirection.Name = "lbl_WestDirection";
             this.lbl_WestDirection.Size = new System.Drawing.Size(30, 80);
@@ -224,7 +224,7 @@
             // 
             this.lbl_EastDirection.BackColor = System.Drawing.Color.White;
             this.lbl_EastDirection.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_EastDirection.Location = new System.Drawing.Point(505, 209);
+            this.lbl_EastDirection.Location = new System.Drawing.Point(505, 229);
             this.lbl_EastDirection.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EastDirection.Name = "lbl_EastDirection";
             this.lbl_EastDirection.Size = new System.Drawing.Size(30, 80);
@@ -239,16 +239,111 @@
             this.grb_TrafficShow.Controls.Add(this.lbl_NorthDirection);
             this.grb_TrafficShow.Controls.Add(this.lbl_WestDirection);
             this.grb_TrafficShow.Controls.Add(this.lbl_EastDirection);
+            this.grb_TrafficShow.Controls.Add(this.btn_SetAllValue);
             this.grb_TrafficShow.Controls.Add(this.lbl_SouthDirection);
             this.grb_TrafficShow.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.grb_TrafficShow.Location = new System.Drawing.Point(50, 110);
             this.grb_TrafficShow.Margin = new System.Windows.Forms.Padding(0);
             this.grb_TrafficShow.Name = "grb_TrafficShow";
             this.grb_TrafficShow.Padding = new System.Windows.Forms.Padding(0);
-            this.grb_TrafficShow.Size = new System.Drawing.Size(536, 487);
+            this.grb_TrafficShow.Size = new System.Drawing.Size(536, 507);
             this.grb_TrafficShow.TabIndex = 23;
             this.grb_TrafficShow.TabStop = false;
             this.grb_TrafficShow.Text = "交差点イメージ図";
+            // 
+            // lbx_SignalControlLog
+            // 
+            this.lbx_SignalControlLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbx_SignalControlLog.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbx_SignalControlLog.FormattingEnabled = true;
+            this.lbx_SignalControlLog.ItemHeight = 15;
+            this.lbx_SignalControlLog.Location = new System.Drawing.Point(32, 44);
+            this.lbx_SignalControlLog.Margin = new System.Windows.Forms.Padding(0);
+            this.lbx_SignalControlLog.Name = "lbx_SignalControlLog";
+            this.lbx_SignalControlLog.Size = new System.Drawing.Size(438, 332);
+            this.lbx_SignalControlLog.TabIndex = 27;
+            this.lbx_SignalControlLog.TabStop = false;
+            // 
+            // grb_SignalControlLog
+            // 
+            this.grb_SignalControlLog.Controls.Add(this.lbx_SignalControlLog);
+            this.grb_SignalControlLog.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.grb_SignalControlLog.Location = new System.Drawing.Point(636, 208);
+            this.grb_SignalControlLog.Margin = new System.Windows.Forms.Padding(0);
+            this.grb_SignalControlLog.Name = "grb_SignalControlLog";
+            this.grb_SignalControlLog.Padding = new System.Windows.Forms.Padding(0);
+            this.grb_SignalControlLog.Size = new System.Drawing.Size(502, 409);
+            this.grb_SignalControlLog.TabIndex = 29;
+            this.grb_SignalControlLog.TabStop = false;
+            this.grb_SignalControlLog.Text = "信号機制御ログ";
+            // 
+            // lbl_FormTitle
+            // 
+            this.lbl_FormTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(255)))), ((int)(((byte)(152)))));
+            this.lbl_FormTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_FormTitle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_FormTitle.Font = new System.Drawing.Font("Meiryo UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_FormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.lbl_FormTitle.Location = new System.Drawing.Point(50, 30);
+            this.lbl_FormTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_FormTitle.Name = "lbl_FormTitle";
+            this.lbl_FormTitle.Size = new System.Drawing.Size(1088, 60);
+            this.lbl_FormTitle.TabIndex = 26;
+            this.lbl_FormTitle.Text = "信号機プログラム";
+            this.lbl_FormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_FormTitle.Click += new System.EventHandler(this.Lbl_FormTitle_Click);
+            // 
+            // lbl_FormTitleRight
+            // 
+            this.lbl_FormTitleRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.lbl_FormTitleRight.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_FormTitleRight.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_FormTitleRight.Location = new System.Drawing.Point(1131, 36);
+            this.lbl_FormTitleRight.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_FormTitleRight.Name = "lbl_FormTitleRight";
+            this.lbl_FormTitleRight.Size = new System.Drawing.Size(1, 48);
+            this.lbl_FormTitleRight.TabIndex = 37;
+            this.lbl_FormTitleRight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbl_FormTitleRight.Click += new System.EventHandler(this.Lbl_FormTitle_Click);
+            // 
+            // lbl_FormTitleAbove
+            // 
+            this.lbl_FormTitleAbove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.lbl_FormTitleAbove.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_FormTitleAbove.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_FormTitleAbove.Location = new System.Drawing.Point(56, 36);
+            this.lbl_FormTitleAbove.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_FormTitleAbove.Name = "lbl_FormTitleAbove";
+            this.lbl_FormTitleAbove.Size = new System.Drawing.Size(1076, 1);
+            this.lbl_FormTitleAbove.TabIndex = 38;
+            this.lbl_FormTitleAbove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbl_FormTitleAbove.Click += new System.EventHandler(this.Lbl_FormTitle_Click);
+            // 
+            // lbl_FormTitleUnder
+            // 
+            this.lbl_FormTitleUnder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.lbl_FormTitleUnder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_FormTitleUnder.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_FormTitleUnder.Location = new System.Drawing.Point(56, 83);
+            this.lbl_FormTitleUnder.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_FormTitleUnder.Name = "lbl_FormTitleUnder";
+            this.lbl_FormTitleUnder.Size = new System.Drawing.Size(1076, 1);
+            this.lbl_FormTitleUnder.TabIndex = 39;
+            this.lbl_FormTitleUnder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbl_FormTitleUnder.Click += new System.EventHandler(this.Lbl_FormTitle_Click);
+            // 
+            // lbl_FormTitleLeft
+            // 
+            this.lbl_FormTitleLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.lbl_FormTitleLeft.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_FormTitleLeft.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_FormTitleLeft.Location = new System.Drawing.Point(56, 36);
+            this.lbl_FormTitleLeft.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_FormTitleLeft.Name = "lbl_FormTitleLeft";
+            this.lbl_FormTitleLeft.Size = new System.Drawing.Size(1, 48);
+            this.lbl_FormTitleLeft.TabIndex = 40;
+            this.lbl_FormTitleLeft.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbl_FormTitleLeft.Click += new System.EventHandler(this.Lbl_FormTitle_Click);
             // 
             // pnl_Traffic
             // 
@@ -311,7 +406,7 @@
             this.pnl_Traffic.Controls.Add(this.pib_PESignalTwo);
             this.pnl_Traffic.Controls.Add(this.pib_PESignalOne);
             this.pnl_Traffic.Controls.Add(this.pib_PWSignalTwo);
-            this.pnl_Traffic.Location = new System.Drawing.Point(32, 44);
+            this.pnl_Traffic.Location = new System.Drawing.Point(32, 64);
             this.pnl_Traffic.Margin = new System.Windows.Forms.Padding(0);
             this.pnl_Traffic.Name = "pnl_Traffic";
             this.pnl_Traffic.Size = new System.Drawing.Size(472, 410);
@@ -1019,116 +1114,22 @@
             this.pib_PWSignalTwo.TabIndex = 250;
             this.pib_PWSignalTwo.TabStop = false;
             // 
-            // lbx_SignalControlLog
-            // 
-            this.lbx_SignalControlLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbx_SignalControlLog.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbx_SignalControlLog.FormattingEnabled = true;
-            this.lbx_SignalControlLog.ItemHeight = 15;
-            this.lbx_SignalControlLog.Location = new System.Drawing.Point(32, 44);
-            this.lbx_SignalControlLog.Margin = new System.Windows.Forms.Padding(0);
-            this.lbx_SignalControlLog.Name = "lbx_SignalControlLog";
-            this.lbx_SignalControlLog.Size = new System.Drawing.Size(438, 257);
-            this.lbx_SignalControlLog.TabIndex = 27;
-            this.lbx_SignalControlLog.TabStop = false;
-            // 
-            // grb_SignalControlLog
-            // 
-            this.grb_SignalControlLog.Controls.Add(this.lbx_SignalControlLog);
-            this.grb_SignalControlLog.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.grb_SignalControlLog.Location = new System.Drawing.Point(636, 262);
-            this.grb_SignalControlLog.Margin = new System.Windows.Forms.Padding(0);
-            this.grb_SignalControlLog.Name = "grb_SignalControlLog";
-            this.grb_SignalControlLog.Padding = new System.Windows.Forms.Padding(0);
-            this.grb_SignalControlLog.Size = new System.Drawing.Size(502, 335);
-            this.grb_SignalControlLog.TabIndex = 29;
-            this.grb_SignalControlLog.TabStop = false;
-            this.grb_SignalControlLog.Text = "信号機制御ログ";
-            // 
             // btn_SetAllValue
             // 
-            this.btn_SetAllValue.BackColor = System.Drawing.Color.Gainsboro;
+            this.btn_SetAllValue.BackColor = System.Drawing.Color.Silver;
             this.btn_SetAllValue.Cursor = System.Windows.Forms.Cursors.Default;
             this.btn_SetAllValue.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.btn_SetAllValue.FlatAppearance.BorderSize = 2;
             this.btn_SetAllValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_SetAllValue.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_SetAllValue.Location = new System.Drawing.Point(668, 122);
+            this.btn_SetAllValue.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btn_SetAllValue.Image = global::TrafficLightAlgorithm.Properties.Resources.SignalSet;
+            this.btn_SetAllValue.Location = new System.Drawing.Point(444, 18);
             this.btn_SetAllValue.Margin = new System.Windows.Forms.Padding(0);
             this.btn_SetAllValue.Name = "btn_SetAllValue";
-            this.btn_SetAllValue.Size = new System.Drawing.Size(438, 40);
+            this.btn_SetAllValue.Size = new System.Drawing.Size(60, 40);
             this.btn_SetAllValue.TabIndex = 30;
-            this.btn_SetAllValue.Text = "設定値編集";
             this.btn_SetAllValue.UseVisualStyleBackColor = false;
             this.btn_SetAllValue.Click += new System.EventHandler(this.Btn_SetAllValueShow_Click);
-            // 
-            // lbl_FormTitle
-            // 
-            this.lbl_FormTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(255)))), ((int)(((byte)(152)))));
-            this.lbl_FormTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl_FormTitle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_FormTitle.Font = new System.Drawing.Font("Meiryo UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_FormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.lbl_FormTitle.Location = new System.Drawing.Point(50, 30);
-            this.lbl_FormTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_FormTitle.Name = "lbl_FormTitle";
-            this.lbl_FormTitle.Size = new System.Drawing.Size(1088, 60);
-            this.lbl_FormTitle.TabIndex = 26;
-            this.lbl_FormTitle.Text = "信号機プログラム";
-            this.lbl_FormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_FormTitle.Click += new System.EventHandler(this.Lbl_FormTitle_Click);
-            // 
-            // lbl_FormTitleRight
-            // 
-            this.lbl_FormTitleRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.lbl_FormTitleRight.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_FormTitleRight.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_FormTitleRight.Location = new System.Drawing.Point(1131, 36);
-            this.lbl_FormTitleRight.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_FormTitleRight.Name = "lbl_FormTitleRight";
-            this.lbl_FormTitleRight.Size = new System.Drawing.Size(1, 48);
-            this.lbl_FormTitleRight.TabIndex = 37;
-            this.lbl_FormTitleRight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbl_FormTitleRight.Click += new System.EventHandler(this.Lbl_FormTitle_Click);
-            // 
-            // lbl_FormTitleAbove
-            // 
-            this.lbl_FormTitleAbove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.lbl_FormTitleAbove.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_FormTitleAbove.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_FormTitleAbove.Location = new System.Drawing.Point(56, 36);
-            this.lbl_FormTitleAbove.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_FormTitleAbove.Name = "lbl_FormTitleAbove";
-            this.lbl_FormTitleAbove.Size = new System.Drawing.Size(1076, 1);
-            this.lbl_FormTitleAbove.TabIndex = 38;
-            this.lbl_FormTitleAbove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbl_FormTitleAbove.Click += new System.EventHandler(this.Lbl_FormTitle_Click);
-            // 
-            // lbl_FormTitleUnder
-            // 
-            this.lbl_FormTitleUnder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.lbl_FormTitleUnder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_FormTitleUnder.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_FormTitleUnder.Location = new System.Drawing.Point(56, 83);
-            this.lbl_FormTitleUnder.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_FormTitleUnder.Name = "lbl_FormTitleUnder";
-            this.lbl_FormTitleUnder.Size = new System.Drawing.Size(1076, 1);
-            this.lbl_FormTitleUnder.TabIndex = 39;
-            this.lbl_FormTitleUnder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbl_FormTitleUnder.Click += new System.EventHandler(this.Lbl_FormTitle_Click);
-            // 
-            // lbl_FormTitleLeft
-            // 
-            this.lbl_FormTitleLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.lbl_FormTitleLeft.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbl_FormTitleLeft.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbl_FormTitleLeft.Location = new System.Drawing.Point(56, 36);
-            this.lbl_FormTitleLeft.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_FormTitleLeft.Name = "lbl_FormTitleLeft";
-            this.lbl_FormTitleLeft.Size = new System.Drawing.Size(1, 48);
-            this.lbl_FormTitleLeft.TabIndex = 40;
-            this.lbl_FormTitleLeft.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbl_FormTitleLeft.Click += new System.EventHandler(this.Lbl_FormTitle_Click);
             // 
             // F_TrafficLight
             // 
@@ -1136,12 +1137,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1188, 627);
+            this.ClientSize = new System.Drawing.Size(1188, 647);
             this.Controls.Add(this.lbl_FormTitleLeft);
             this.Controls.Add(this.lbl_FormTitleUnder);
             this.Controls.Add(this.lbl_FormTitleAbove);
             this.Controls.Add(this.lbl_FormTitleRight);
-            this.Controls.Add(this.btn_SetAllValue);
             this.Controls.Add(this.grb_SignalControlLog);
             this.Controls.Add(this.btn_Start);
             this.Controls.Add(this.lbl_FormTitle);
@@ -1150,14 +1150,15 @@
             this.Controls.Add(this.grb_TrafficShow);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1204, 666);
+            this.MaximumSize = new System.Drawing.Size(1204, 686);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1204, 666);
+            this.MinimumSize = new System.Drawing.Size(1204, 686);
             this.Name = "F_TrafficLight";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "信号機プログラム";
             this.Load += new System.EventHandler(this.F_TrafficLight_Load);
             this.grb_TrafficShow.ResumeLayout(false);
+            this.grb_SignalControlLog.ResumeLayout(false);
             this.pnl_Traffic.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pib_WArrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_NGreen)).EndInit();
@@ -1185,7 +1186,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalTwo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PESignalOne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_PWSignalTwo)).EndInit();
-            this.grb_SignalControlLog.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

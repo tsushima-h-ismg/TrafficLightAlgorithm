@@ -429,7 +429,7 @@ namespace TrafficLightAlgorithm
         }
 
         /// <summary>
-        /// 「編集画面表示」ボタンクリック時イベント
+        /// 「一括編集」ボタンクリック時イベント
         /// </summary>
         private void Btn_SetAllValueShow_Click(object sender, EventArgs e)
         {

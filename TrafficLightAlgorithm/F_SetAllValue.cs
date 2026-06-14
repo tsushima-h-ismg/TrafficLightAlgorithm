@@ -82,16 +82,17 @@ namespace TrafficLightAlgorithm
                 string errMsg = "";  // エラーメッセージが入る
 
                 // 進行可能時間の入力チェック
-                if (!CheckSecText(txt_AvaiCN,     out MSecValue.CarNMSec))  errMsg += $"「北車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
-                if (!CheckSecText(txt_AvaiCS,     out MSecValue.CarSMSec))  errMsg += $"「南車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
-                if (!CheckSecText(txt_AvaiCE,     out MSecValue.CarEMSec))  errMsg += $"「東車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
-                if (!CheckSecText(txt_AvaiCW,     out MSecValue.CarWMSec))  errMsg += $"「西車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
-                if (!CheckSecText(txt_AvaiPNS,    out MSecValue.PedNSMSec)) errMsg += $"「北南歩行者用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
-                if (!CheckSecText(txt_AvaiPEW,    out MSecValue.PedEWMSec)) errMsg += $"「東西歩行者用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
-                if (!CheckSecText(txt_LightOnArw, out MSecValue.ArwMSec))   errMsg += $"「矢印信号機の点灯時間」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
+                if (!CheckSecText(txt_AvaiCN,     out int carNMSec))  errMsg += $"「北車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
+                if (!CheckSecText(txt_AvaiCS,     out int carSMSec))  errMsg += $"「南車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
+                if (!CheckSecText(txt_AvaiCE,     out int carEMSec))  errMsg += $"「東車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
+                if (!CheckSecText(txt_AvaiCW,     out int carWMSec))  errMsg += $"「西車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
+                if (!CheckSecText(txt_AvaiPNS,    out int pedNSMSec)) errMsg += $"「北南歩行者用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
+                if (!CheckSecText(txt_AvaiPEW,    out int pedEWMSec)) errMsg += $"「東西歩行者用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
+                if (!CheckSecText(txt_LightOnArw, out int arwMSec))   errMsg += $"「矢印信号機の点灯時間」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
 
                 if (errMsg == "")
                 {
+                    MSecValue = new TrafficMSecValue(carNMSec, carSMSec, carEMSec, carWMSec, pedNSMSec, pedEWMSec, arwMSec);
                     Close();
                 }
                 else
