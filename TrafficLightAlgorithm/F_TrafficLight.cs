@@ -67,7 +67,7 @@ namespace TrafficLightAlgorithm
 
         public F_TrafficLight()
         {
-            InitializeComponent();
+            InitializeComponent();  // テストコメント
         }
 
         /// <summary>

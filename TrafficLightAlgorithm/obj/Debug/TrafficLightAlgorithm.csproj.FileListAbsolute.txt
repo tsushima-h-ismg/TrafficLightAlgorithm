@@ -1,0 +1,16 @@
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\bin\Debug\TrafficLightAlgorithm.exe.config
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\bin\Debug\TrafficLightAlgorithm.exe
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\bin\Debug\TrafficLightAlgorithm.pdb
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\bin\Debug\ff-Adlm-NE\TrafficLightAlgorithm.resources.dll
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.csproj.AssemblyReference.cache
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.F_SetAllValue.resources
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.F_SetSec.resources
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.F_TrafficLight.resources
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.F_Version.resources
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.Properties.Resources.resources
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.F_SetSec.ff-Adlm-NE.resources
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.csproj.GenerateResource.cache
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.csproj.CoreCompileInputs.cache
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\ff-Adlm-NE\TrafficLightAlgorithm.resources.dll
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.exe
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.pdb
