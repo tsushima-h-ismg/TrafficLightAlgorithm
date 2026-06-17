@@ -14,3 +14,4 @@ C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\D
 C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\ff-Adlm-NE\TrafficLightAlgorithm.resources.dll
 C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.exe
 C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.pdb
+C:\Users\sekiya-k\source\repos\TrafficLightAlgorithm\TrafficLightAlgorithm\obj\Debug\TrafficLightAlgorithm.exe.config

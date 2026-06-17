@@ -1116,7 +1116,7 @@
             // 
             // btn_SetAllValue
             // 
-            this.btn_SetAllValue.BackColor = System.Drawing.Color.Silver;
+            this.btn_SetAllValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(252)))), ((int)(((byte)(241)))));
             this.btn_SetAllValue.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.SignalSet;
             this.btn_SetAllValue.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_SetAllValue.Cursor = System.Windows.Forms.Cursors.Default;
@@ -1124,10 +1124,10 @@
             this.btn_SetAllValue.FlatAppearance.BorderSize = 2;
             this.btn_SetAllValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SetAllValue.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_SetAllValue.Location = new System.Drawing.Point(444, 18);
+            this.btn_SetAllValue.Location = new System.Drawing.Point(424, 18);
             this.btn_SetAllValue.Margin = new System.Windows.Forms.Padding(0);
             this.btn_SetAllValue.Name = "btn_SetAllValue";
-            this.btn_SetAllValue.Size = new System.Drawing.Size(60, 40);
+            this.btn_SetAllValue.Size = new System.Drawing.Size(80, 40);
             this.btn_SetAllValue.TabIndex = 30;
             this.btn_SetAllValue.UseVisualStyleBackColor = false;
             this.btn_SetAllValue.Click += new System.EventHandler(this.Btn_SetAllValueShow_Click);
