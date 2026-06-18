@@ -1116,7 +1116,7 @@
             // 
             // btn_SetAllValue
             // 
-            this.btn_SetAllValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(252)))), ((int)(((byte)(241)))));
+            this.btn_SetAllValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(247)))), ((int)(((byte)(242)))));
             this.btn_SetAllValue.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.SignalSet;
             this.btn_SetAllValue.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_SetAllValue.Cursor = System.Windows.Forms.Cursors.Default;
