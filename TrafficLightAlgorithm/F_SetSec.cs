@@ -94,7 +94,7 @@ namespace TrafficLightAlgorithm
 
                     lbl_SupplementArrow.Text = "※" + oppositeDirStr + "方向の矢印信号機の点灯時間と共通設定";
                 }
-                else if (!IsArrow)
+                else
                 {
                     // 矢印信号機が存在しない場合、項目名と入力欄を非表示にする
                     lbl_ArrowSec.Visible        = false;

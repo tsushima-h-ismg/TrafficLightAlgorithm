@@ -82,7 +82,7 @@ namespace TrafficLightAlgorithm
                 
                 Cts = new CancellationTokenSource();  // Ctsの初期化
                 
-                SetMSec = new TrafficMSecValue(5000, 5000, 5000, 5000, 1000, 1000, 1000);  // 設定値構造体の初期設定
+                SetMSec = new TrafficMSecValue(1000, 1000, 1000, 1000, 1000, 1000, 1000);  // 設定値構造体の初期設定
 
                 // 車用信号機イメージ画像を表示するピクチャボックスのコントロールコレクションにラベルを追加する
                 // ラベルを追加することで、ラベルはピクチャボックスが表示する信号機部分を囲うように配置され、「ラベルクリック = 信号機部分をクリック」としてクリック時イベントを実行する
@@ -191,7 +191,6 @@ namespace TrafficLightAlgorithm
         /// <param name="signal">       信号機の種類                                        </param>
         /// <param name="direction">    信号機が存在する方角                                </param>
         /// <param name="pib">          信号機イメージ画像を表示するピクチャボックス        </param>
-        /// <param name="highlightImg"> 強調表示した信号機イメージ画像                      </param>
         private void SetFormShow(int avaiMSec, bool isArrow, Signal signal, Direction direction, PictureBox pib)
         {
             try
