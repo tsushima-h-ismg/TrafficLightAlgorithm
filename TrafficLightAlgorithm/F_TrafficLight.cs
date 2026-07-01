@@ -523,7 +523,7 @@ namespace TrafficLightAlgorithm
             {
                 int       carOneMSec   = setMSec.CarNMSec;    // １つ目の車用信号機の進行可能ミリ秒
                 int       carTwoMSec   = setMSec.CarSMSec;    // ２つ目の車用信号機の進行可能ミリ秒
-                int       pedMSec      = setMSec.PedNSMSec;   // 歩行者用信号機の進行可能ミリ秒
+                int       pedMSec      = setMSec.PedEWMSec;   // 歩行者用信号機の進行可能ミリ秒
                 Direction cOneDir      = Direction.North;     // １つ目の車用信号機の方角
                 Direction cTwoDir      = Direction.South;     // ２つ目の車用信号機の方角
                 Direction pedDirection = Direction.EastWest;  // 歩行者用信号機の方角
@@ -535,7 +535,7 @@ namespace TrafficLightAlgorithm
                 {
                     carOneMSec   = setMSec.CarEMSec;
                     carTwoMSec   = setMSec.CarWMSec;
-                    pedMSec      = setMSec.PedEWMSec;
+                    pedMSec      = setMSec.PedNSMSec;
                     cOneDir      = Direction.East;
                     cTwoDir      = Direction.West;
                     pedDirection = Direction.NorthSouth;
@@ -557,63 +557,51 @@ namespace TrafficLightAlgorithm
                 bool isBlink      = false;
                 bool cmdMatch = true;
 
-                TrafficCommand carOneCmd = null;
-                TrafficCommand carTwoCmd = null;
-                TrafficCommand pedCmd    = null;
-                TrafficCommand carDblCmd = null;
-                TrafficCommand[] cmdArr = new TrafficCommand[] { new TrafficCommand(direction,    Signal.Car,   LightState.Green),
-                                                                 new TrafficCommand(pedDirection, Signal.Pedes, LightState.Green)};
+                TrafficCommand   carOneCmd = null;
+                TrafficCommand   carTwoCmd = null;
+                TrafficCommand   pedCmd    = null;
+                TrafficCommand[] befcmdArr = null;
+                TrafficCommand[] cmdArr    = new TrafficCommand[] { new TrafficCommand(cOneDir,      Signal.Car,   LightState.Green),
+                                                                    new TrafficCommand(cTwoDir,      Signal.Car,   LightState.Green),
+                                                                    new TrafficCommand(pedDirection, Signal.Pedes, LightState.Green)};
                 TrafficPhase addphase   = new TrafficPhase(BlinkMSec, cmdArr);
 
                 for (int elap_msec = 0; elap_msec <= finishMSec; elap_msec += BlinkMSec)
                 {
                     carOneCmd = GetTrafficCmd(elap_msec, setMSec, Signal.Car,   cOneDir,      isArrow);  // １つ目車用信号機の点灯状態取得
                     carTwoCmd = GetTrafficCmd(elap_msec, setMSec, Signal.Car,   cTwoDir,      isArrow);  // ２つ目車用信号機の点灯状態取得
-                    pedCmd    = GetTrafficCmd(elap_msec, setMSec, Signal.Pedes, pedDirection, false);    // 歩行者用信号機の点灯状態取得
+                    pedCmd    = GetTrafficCmd(elap_msec, setMSec, Signal.Pedes, pedDirection, false);    //   歩行者用信号機の点灯状態取得
 
-                    if (carOneCmd != null && carTwoCmd != null && carOneCmd.State == carTwoCmd.State)
+                    cmdArr = new TrafficCommand[] { carOneCmd, carTwoCmd, pedCmd };
+
+                    cmdMatch = true;
+                    if (befcmdArr != null)
                     {
-                        carDblCmd = new TrafficCommand(direction, Signal.Car, carOneCmd.State);  // ２つの車用信号機の点灯状態変更
-                    }
-
-                    if (carDblCmd != null) cmdArr = new TrafficCommand[] { carDblCmd, pedCmd };
-                    else                   cmdArr = new TrafficCommand[] { carOneCmd, carTwoCmd, pedCmd };
-
-                    Console.WriteLine(cmdArr.Length + " " + addphase.Commands.Length);
-
-                    if (cmdArr.Length == addphase.Commands.Length)
-                    {
-                        for (int i = 0; i < addphase.Commands.Length; i++)
+                        for (int i = 0; i < befcmdArr.Length; i++)
                         {
-                            if (cmdArr[i].State != addphase.Commands[i].State)
+                            if (befcmdArr[i].State != cmdArr[i].State)
                             {
-                                cmdMatch = false; 
+                                cmdMatch = false;
                                 break;
                             }
                         }
                     }
-                    else
-                    {
-                        cmdMatch = false;
-                    }
 
                     if (elap_msec == finishMSec)
                     {
-                        pList.Add(addphase);
+                        pList.Add(new TrafficPhase(MinMSec, cmdArr));
                     }
                     else if (cmdMatch)
                     {
                         waitMSec += BlinkMSec;
-                        addphase = new TrafficPhase(waitMSec, addphase.Commands, isBlinkStart, isBlink, BlinkPhaseCount);
+                        befcmdArr = cmdArr;
                     }
                     else
-                    { 
-                        pList.Add(addphase);
-                        waitMSec = 500;
+                    {
 
-                        cmdArr = new TrafficCommand[] { carOneCmd, carTwoCmd, pedCmd };
-                        if (carOneCmd.State == carTwoCmd.State) cmdArr = new TrafficCommand[] { carDblCmd, pedCmd };
-                        addphase = new TrafficPhase(waitMSec, cmdArr, isBlinkStart, isBlink, BlinkPhaseCount);
+                        addphase = new TrafficPhase(waitMSec, befcmdArr, isBlinkStart, isBlink, BlinkPhaseCount);
+                        pList.Add(addphase);
+                        waitMSec = BlinkMSec;
 
                         // 歩行者用信号機の点滅状態を取得
                         isBlink = false;
@@ -624,6 +612,9 @@ namespace TrafficLightAlgorithm
                             isBlinkStart = false;
                             if (elap_msec == pedMSec) isBlinkStart = true;  // 最初の歩行者用信号機の点滅を行うフェーズを表す
                         }
+
+                        befcmdArr = cmdArr;
+                        cmdArr    = new TrafficCommand[] { carOneCmd, carTwoCmd, pedCmd };
                     }
                 }
 
@@ -638,14 +629,14 @@ namespace TrafficLightAlgorithm
         }
 
         /// <summary>
-        /// 経過ミリ秒と信号機の種類に合わせて点灯状態を返す
+        /// 信号機の点灯状態・種類・設置方角を返す
         /// </summary>
         /// <param name="elapMSec">  信号機点灯処理の経過ミリ秒                            </param>
         /// <param name="setMSec">   進行可能ミリ秒設定値構造体                            </param>
         /// <param name="signal">    信号機の種類                                          </param>
         /// <param name="direction"> 車用信号機を設置した方角を表す列挙型                  </param>
         /// <param name="isArrow">   矢印信号機が存在する場合はtrue、それ以外の場合はfalse </param>
-        /// <returns> 信号機の点灯状態・種類・方角 </returns>
+        /// <returns> 信号機の点灯状態・種類・設置方角 </returns>
         private TrafficCommand GetTrafficCmd(int elapMSec, TrafficMSecValue setMSec, Signal signal, Direction direction, bool isArrow)
         {
             try
