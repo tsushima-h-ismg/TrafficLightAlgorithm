@@ -26,14 +26,9 @@ namespace TrafficLightAlgorithm
         private const int ArrowSecMin = 1;
 
         /// <summary>
-        /// 設定値の変更が有効の場合はtrue、それ以外の場合はfalse
+        /// ミリ秒設定値
         /// </summary>
-        public bool IsEnable;
-
-        /// <summary>
-        /// 設定値構造体
-        /// </summary>
-        public TrafficMSecValue MSecValue;
+        private TrafficMSecValues MSecValues;
 
         public F_SetAllValue()
         {
@@ -48,27 +43,53 @@ namespace TrafficLightAlgorithm
             try
             {
                 // テキストボックスのTextプロパティ値設定
-                txt_AvaiCN.Text     = (MSecValue.CarNMSec  / 1000).ToString();
-                txt_AvaiCS.Text     = (MSecValue.CarSMSec  / 1000).ToString();
-                txt_AvaiCE.Text     = (MSecValue.CarEMSec  / 1000).ToString();
-                txt_AvaiCW.Text     = (MSecValue.CarWMSec  / 1000).ToString();
-                txt_AvaiPNS.Text    = (MSecValue.PedNSMSec / 1000).ToString();
-                txt_AvaiPEW.Text    = (MSecValue.PedEWMSec / 1000).ToString();
-                txt_LightOnArw.Text = (MSecValue.ArwMSec   / 1000).ToString();
-
-                // テキストボックスのEnabledプロパティ値設定
-                txt_AvaiCN.Enabled     = IsEnable;
-                txt_AvaiCS.Enabled     = IsEnable;
-                txt_AvaiCE.Enabled     = IsEnable;
-                txt_AvaiCW.Enabled     = IsEnable;
-                txt_AvaiPNS.Enabled    = IsEnable;
-                txt_AvaiPEW.Enabled    = IsEnable;
-                txt_LightOnArw.Enabled = IsEnable;
+                txt_AvaiCN.Text     = (MSecValues.CarNMSec  / 1000).ToString();
+                txt_AvaiCS.Text     = (MSecValues.CarSMSec  / 1000).ToString();
+                txt_AvaiCE.Text     = (MSecValues.CarEMSec  / 1000).ToString();
+                txt_AvaiCW.Text     = (MSecValues.CarWMSec  / 1000).ToString();
+                txt_AvaiPNS.Text    = (MSecValues.PedNSMSec / 1000).ToString();
+                txt_AvaiPEW.Text    = (MSecValues.PedEWMSec / 1000).ToString();
+                txt_LightOnArw.Text = (MSecValues.ArwMSec   / 1000).ToString();
             }
             catch (Exception ex)
             {
                 string exStr = "設定値入力画面の読み込みでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// ミリ秒数設定値を取得する
+        /// </summary>
+        /// <param name="mSecValues"> ミリ秒数設定値 </param>
+        public void GetMSecValues(TrafficMSecValues mSecValues)
+        {
+            try
+            {
+                MSecValues = mSecValues;
+            }
+            catch (Exception ex)
+            {
+                string exStr = "ミリ秒数設定値の取得でエラーが発生しました。\n" + ex.Message;
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// ミリ秒数設定値を返す
+        /// </summary>
+        /// <returns> ミリ秒数設定値 </returns>
+        public TrafficMSecValues ReturnMSecValues()
+        {
+            try
+            {
+                return MSecValues;
+            }
+            catch (Exception ex)
+            {
+                string exStr = "ミリ秒数設定値の返却でエラーが発生しました。\n" + ex.Message;
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
             }
         }
 
@@ -82,17 +103,17 @@ namespace TrafficLightAlgorithm
                 string errMsg = "";  // エラーメッセージが入る
 
                 // 進行可能時間の入力チェック
-                if (!CheckSecText(txt_AvaiCN,     out int carNMSec))  errMsg += $"「北車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
-                if (!CheckSecText(txt_AvaiCS,     out int carSMSec))  errMsg += $"「南車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
-                if (!CheckSecText(txt_AvaiCE,     out int carEMSec))  errMsg += $"「東車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
-                if (!CheckSecText(txt_AvaiCW,     out int carWMSec))  errMsg += $"「西車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
-                if (!CheckSecText(txt_AvaiPNS,    out int pedNSMSec)) errMsg += $"「北南歩行者用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
-                if (!CheckSecText(txt_AvaiPEW,    out int pedEWMSec)) errMsg += $"「東西歩行者用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
-                if (!CheckSecText(txt_LightOnArw, out int arwMSec))   errMsg += $"「矢印信号機の点灯時間」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
+                if (!CheckSecText(txt_AvaiCN, out int carNMSec)) errMsg += $"「北車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
+                if (!CheckSecText(txt_AvaiCS, out int carSMSec)) errMsg += $"「南車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
+                if (!CheckSecText(txt_AvaiCE, out int carEMSec)) errMsg += $"「東車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
+                if (!CheckSecText(txt_AvaiCW, out int carWMSec)) errMsg += $"「西車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
+                if (!CheckSecText(txt_AvaiPNS, out int pedNSMSec)) errMsg += $"「北南歩行者用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
+                if (!CheckSecText(txt_AvaiPEW, out int pedEWMSec)) errMsg += $"「東西歩行者用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
+                if (!CheckSecText(txt_LightOnArw, out int arwMSec)) errMsg += $"「矢印信号機の点灯時間」には{ArrowSecMin}から{ArrowSecMax}の整数を入力してください。\n";
 
                 if (errMsg == "")
                 {
-                    MSecValue = new TrafficMSecValue(carNMSec, carSMSec, carEMSec, carWMSec, pedNSMSec, pedEWMSec, arwMSec);
+                    MSecValues = new TrafficMSecValues(carNMSec, carSMSec, carEMSec, carWMSec, pedNSMSec, pedEWMSec, arwMSec);
                     Close();
                 }
                 else

@@ -78,7 +78,7 @@
     </Compile>
     <Compile Include="TrafficCommand.cs" />
     <Compile Include="TrafficPhase.cs" />
-    <Compile Include="TrafficMSecValue.cs" />
+    <Compile Include="TrafficMSecValues.cs" />
     <EmbeddedResource Include="F_SetAllValue.resx">
       <DependentUpon>F_SetAllValue.cs</DependentUpon>
     </EmbeddedResource>

@@ -36,11 +36,6 @@ namespace TrafficLightAlgorithm
         public int ArrowSec;
 
         /// <summary>
-        /// 設定値の変更が有効の場合はtrue、それ以外の場合はfalse
-        /// </summary>
-        public bool IsEnable;
-
-        /// <summary>
         /// 矢印信号機を持つ場合はtrue、それ以外の場合はfalse
         /// </summary>
         public bool IsArrow;
@@ -59,7 +54,68 @@ namespace TrafficLightAlgorithm
         {
             InitializeComponent();
         }
-        
+
+        /// <summary>
+        /// 信号機の各設定値を取得する
+        /// </summary>
+        /// <param name="avaiSec">      進行可能ミリ秒数                                      </param>
+        /// <param name="arrowSec">     矢印信号機の点灯ミリ秒数                              </param>
+        /// <param name="isArrow">      矢印信号機が存在する場合はtrue、それ以外の場合はfalse </param>
+        /// <param name="setSignal">    信号機の種類を表す列挙型                              </param>        
+        /// <param name="setDirection"> 信号機の設置方角を表す列挙型                          </param>
+        public void GetTrafficSettings(int avaiSec, int arrowSec, bool isArrow, Signal setSignal, Direction setDirection)
+        {
+            try
+            {
+                AvaiSec      = avaiSec;      // 進行可能秒数を取得する
+                ArrowSec     = arrowSec;     // 矢印信号機の点灯秒数を取得する
+                IsArrow      = isArrow;      // 矢印信号機が存在するか判定する
+                SetSignal    = setSignal;    // 信号機の種類を取得する
+                SetDirection = setDirection; // 信号機を設置した方角を取得する
+            }
+            catch (Exception ex)
+            {
+                string exStr = "設定値入力画面の読み込みでエラーが発生しました。\n" + ex.Message;
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// 進行可能秒数を返却する
+        /// </summary>
+        /// <returns> 信号機の進行可能秒数 </returns>
+        public int ReturnAvaiSec()
+        {
+            try
+            {
+                return AvaiSec;
+            }
+            catch (Exception ex)
+            {
+                string exStr = "進行可能秒数の返却でエラーが発生しました。\n" + ex.Message;
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 矢印信号機の点灯秒数を返却する
+        /// </summary>
+        /// <returns> 矢印信号機の点灯秒数 </returns>
+        public int ReturnArrowSec()
+        {
+            try
+            {
+                return ArrowSec;
+            }
+            catch (Exception ex)
+            {
+                string exStr = "矢印信号機の点灯秒数の返却でエラーが発生しました。\n" + ex.Message;
+                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return 0;
+            }
+        }
+
         /// <summary>
         /// フォームロードイベント
         /// </summary>
@@ -67,19 +123,17 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                bool arrowEnable = IsEnable;          // 矢印信号機点灯秒数を入力するテキストボックスのEnabledプロパティ値
-                if (IsEnable) arrowEnable = IsArrow;  // IsEnableがtrueの場合に矢印信号機が存在するか判定する
+                bool arrowEnable = IsArrow;  // 矢印信号機が存在するか判定する
 
-                // SetDirectionの反対方向を表す文字列
+                // SetDirectionの反対方向を表す文字列を取得する
                 string oppositeDirStr = "北";
-                if      (SetDirection == Direction.North) oppositeDirStr = CreateDirStr(Direction.South);
-                else if (SetDirection == Direction.East)  oppositeDirStr = CreateDirStr(Direction.West);
-                else if (SetDirection == Direction.West)  oppositeDirStr = CreateDirStr(Direction.East);
-                
-                lbl_FormTitle.Text  = CreateDirStr(SetDirection) + CreateSigStr(SetSignal) + "信号機の設定値";  // フォームタイトルを取得
+                if (SetDirection == Direction.North) oppositeDirStr = CreateDirStr(Direction.South);
+                else if (SetDirection == Direction.East) oppositeDirStr = CreateDirStr(Direction.West);
+                else if (SetDirection == Direction.West) oppositeDirStr = CreateDirStr(Direction.East);
 
-                txt_AvaiSec.Text    = AvaiSec.ToString();  // 進行可能秒数を取得
-                txt_AvaiSec.Enabled = IsEnable;            // テキストボックスのEnabledプロパティ値設定
+                lbl_FormTitle.Text = CreateDirStr(SetDirection) + CreateSigStr(SetSignal) + "信号機の設定値";  // フォームタイトルを取得する
+
+                txt_AvaiSec.Text = AvaiSec.ToString();  // 進行可能秒数を取得
 
                 if (SetSignal == Signal.Pedes)
                 {
@@ -88,18 +142,16 @@ namespace TrafficLightAlgorithm
 
                 if (IsArrow)
                 {
-                    // 矢印信号機が存在する場合、矢印信号機の点灯秒数を取得する
-                    txt_ArrowSec.Text    = ArrowSec.ToString();  // 矢印信号機の点灯秒数を取得
-                    txt_ArrowSec.Enabled = arrowEnable;          // テキストボックスのEnabledプロパティ値設定
+                    txt_ArrowSec.Text = ArrowSec.ToString();  // 矢印信号機の点灯秒数を取得
 
                     lbl_SupplementArrow.Text = "※" + oppositeDirStr + "方向の矢印信号機の点灯時間と共通設定";
                 }
                 else
                 {
                     // 矢印信号機が存在しない場合、項目名と入力欄を非表示にする
-                    lbl_ArrowSec.Visible        = false;
-                    txt_ArrowSec.Visible        = false;
-                    lbl_SecTwo.Visible          = false;
+                    lbl_ArrowSec.Visible = false;
+                    txt_ArrowSec.Visible = false;
+                    lbl_SecTwo.Visible = false;
                     lbl_SupplementArrow.Visible = false;
 
                     btn_Confirm.Top -= txt_ArrowSec.Location.Y - txt_AvaiSec.Location.Y;  // 確定ボタンを上に詰める
@@ -143,7 +195,7 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                if      (signal == Signal.Car)   return "車用";
+                if (signal == Signal.Car) return "車用";
                 else if (signal == Signal.Pedes) return "歩行者用";
                 return "";
             }
@@ -160,11 +212,11 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                int    arrowVal = ArrowSec;  // 矢印信号機の点灯時間が入る
-                string errMsg   = "";        // エラーメッセージが入る
+                int arrowVal = ArrowSec;  // 矢印信号機の点灯時間が入る
+                string errMsg = "";        // エラーメッセージが入る
 
                 // 進行可能時間の入力チェック
-                if (!CheckSecText(txt_AvaiSec, out int avaiVal))   errMsg += $"「進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を入力してください。\n";                
+                if (!CheckSecText(txt_AvaiSec, out int avaiVal)) errMsg += $"「進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を入力してください。\n";
 
                 // 矢印信号機の点灯時間の入力チェック
                 if (IsArrow)
@@ -174,7 +226,7 @@ namespace TrafficLightAlgorithm
 
                 if (errMsg == "")
                 {
-                    AvaiSec  = avaiVal;   // 進行可能秒数を取得する
+                    AvaiSec = avaiVal;   // 進行可能秒数を取得する
                     ArrowSec = arrowVal;  // 矢印信号機の点灯時間を取得する
                     Close();
                 }
@@ -201,7 +253,7 @@ namespace TrafficLightAlgorithm
             try
             {
                 resultVal = 0;
-                
+
                 int maxVal = AvaiSecMax;  // 進行可能秒数の最大値を取得
                 int minVal = AvaiSecMin;  // 進行可能秒数の最小値を取得
 
