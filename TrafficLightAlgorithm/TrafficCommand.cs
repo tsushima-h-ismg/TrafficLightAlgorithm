@@ -21,7 +21,7 @@
         public readonly LightState State;
 
         /// <summary>
-        /// 信号機の種類・点灯状態・方角を表す値を取得する
+        /// 信号機の種類・点灯状態・方角
         /// </summary>
         /// <param name="direction"> 信号機を設置した方角 </param>
         /// <param name="signal">    信号機の種類         </param>

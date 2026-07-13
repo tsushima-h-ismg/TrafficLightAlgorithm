@@ -14,7 +14,7 @@ namespace TrafficLightAlgorithm
         /// 車用信号機の黄点灯ミリ秒
         /// </summary>
         private const int YellowMSec      = 1000;
-
+        
         /// <summary>
         /// 歩行者用信号機の点滅間隔ミリ秒
         /// </summary>
@@ -34,6 +34,16 @@ namespace TrafficLightAlgorithm
         /// 歩行者用信号機点滅の合計フェーズ数
         /// </summary>
         private const int BlinkPhaseCount = 5;
+
+        /// <summary>
+        /// 設定値一覧画面表示ボタンのデフォルト背景色
+        /// </summary>
+        private readonly Color BtnAllValuesDefaultColor = Color.FromArgb(200, 247, 242);
+
+        /// <summary>
+        /// 設定値一覧画面表示ボタンの無効時背景色
+        /// </summary>
+        private readonly Color BtnAllValuesValidColor   = Color.FromArgb(220, 220, 220);
 
         /// <summary>
         /// 信号機アルゴリズムのフェーズ再生で中断したフェーズを表す番号
@@ -82,7 +92,7 @@ namespace TrafficLightAlgorithm
 
                 Cts = new CancellationTokenSource();  // Ctsの初期化
 
-                MSecValues = new TrafficMSecValues(1000, 1000, 1000, 1000, 1000, 1000, 1000);  // 設定値クラスの初期設定
+                MSecValues = new TrafficMSecValues(1000, 1000, 1000, 1000, 1000, 1000, 1000);  // ミリ秒の初期設定
 
                 // 車用信号機イメージ画像を表示するピクチャボックスのコントロールコレクションにラベルを追加する
                 // ラベルを追加することで、ラベルはピクチャボックスが表示する信号機部分を囲うように配置され、「ラベルクリック = 信号機部分をクリック」としてクリック時イベントを実行する
@@ -127,7 +137,7 @@ namespace TrafficLightAlgorithm
             try
             {
                 if (IsTrafficEnable) return;  // 信号機アルゴリズムが動いている場合は終了する
-                Console.Write("");
+                
                 // 設定値入力フォームを表示する
                 if (sender == lbl_NSignal || sender == pib_NGreen || sender == pib_NYellow || sender == pib_NRed)
                 {
@@ -199,10 +209,11 @@ namespace TrafficLightAlgorithm
             {
                 if (!ChangeSignalImage(signal, direction, true)) return;  // 信号機イメージ画像を強調表示した画像に変更する
 
-                F_SetSec f_SetSec = new F_SetSec();                       // 設定値入力フォームを初期化
-                f_SetSec.GetTrafficSettings(avaiMSec / 1000,
-                                            MSecValues.ArwMSec / 1000,
-                                            isArrow, signal, direction);  // フォームに設定値を渡す
+                F_SetSec f_SetSec = new F_SetSec { AvaiSec = avaiMSec / 1000, 
+                                                   ArrowSec = MSecValues.ArwMSec /  1000, 
+                                                   IsArrow = isArrow, 
+                                                   SetSignal = signal, 
+                                                   SetDirection = direction };
 
                 // 設定値入力フォームの初期表示位置設定
                 Point pibTopLeft = pib.PointToScreen(Point.Empty);            // 信号機イメージ画像表示ピクチャボックスの左上端の座標
@@ -213,10 +224,10 @@ namespace TrafficLightAlgorithm
                 if (ylocation > scArea.Bottom - f_SetSec.Height) ylocation = scArea.Bottom - f_SetSec.Height;
                 f_SetSec.Location = new Point(xlocation, ylocation);
 
-                f_SetSec.ShowDialog();  // 設定値入力フォームを表示
+                f_SetSec.ShowDialog();
 
-                MSecValues = MSecValues.ChangeMSec(f_SetSec.ReturnAvaiSec() * 1000,
-                                                   f_SetSec.ReturnArrowSec() * 1000,
+                MSecValues = MSecValues.ChangeMSec(f_SetSec.AvaiSec * 1000,
+                                                   f_SetSec.ArrowSec * 1000,
                                                    signal, direction);        // ミリ秒設定値更新
 
                 if (!ChangeSignalImage(signal, direction, false)) return;  // 信号機イメージ画像をデフォルトの画像に変更する
@@ -289,15 +300,8 @@ namespace TrafficLightAlgorithm
         /// <returns> 引数isHilightがtrueの場合はhilightImg、それ以外の場合は引数defaultImg </returns>
         private Bitmap GetHilightImg(Bitmap hilightImg, Bitmap defaultImg, bool isHilight)
         {
-            try
-            {
-                if (isHilight) return hilightImg;  // 強調表示した信号機イメージ画像を返す
-                return defaultImg;                 // デフォルトの信号機イメージ画像を返す
-            }
-            catch
-            {
-                return defaultImg;
-            }
+            if (isHilight) return hilightImg;
+            return defaultImg;
         }
 
         /// <summary>
@@ -320,10 +324,12 @@ namespace TrafficLightAlgorithm
                 PhaseList = CreateTrafficPhaseList(MSecValues);             // フェーズリスト作成
                 if (PhaseList == null || PhaseList.Contains(null)) return;  // フェーズリストが作成できなかった場合は終了する
 
-                IsTrafficEnable = true;           // 信号機アルゴリズムが動く場合のブール値に設定する
-                IsInterrupt     = false;          // 信号機アルゴリズムの中断を無効にする
-                btn_SetAllValue.Enabled = false;  // 設定値一覧画面表示ボタンを無効にする
-                LoopTrafficPhase(0, PhaseList);   // フェーズリストを最初のフェーズから再生する
+                IsTrafficEnable = true;                              // 信号機アルゴリズムが動く場合のブール値に設定する
+                IsInterrupt     = false;                             // 信号機アルゴリズムの中断を無効にする
+                btn_SetAllValue.Enabled = false;                     // 設定値一覧画面表示ボタンを無効にする
+                btn_SetAllValue.BackColor = BtnAllValuesValidColor;  // 設定値一覧画面表示ボタンの背景色を無効時の色に変更する
+                ChangeChdCtlCursor(pnl_Traffic, Cursors.Default);    // 信号機イメージ部分のカーソル変更
+                LoopTrafficPhase(0, PhaseList);                      // フェーズリストを最初のフェーズから再生する
             }
             catch (Exception ex)
             {
@@ -382,16 +388,11 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                if (IsTrafficEnable)
-                {
-                    string msgStr = "信号機プログラムを停止し、信号機の点灯状態をリセットしますか？";
-                    if (MessageBox.Show(msgStr, Program.SoftTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No) return;
-                }
-                else
-                {
-                    return;
-                }
+		        if (!IsTrafficEnable) return;  // 信号機アルゴリズムが動いていない場合は終了する
 
+                string msgStr = "信号機プログラムを停止し、信号機の点灯状態をリセットしますか？";
+                if (MessageBox.Show(msgStr, Program.SoftTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No) return;
+                
                 Cts.Cancel();  // キャンセル要求を伝える
 
                 ChangeSignalLightOn(LightState.NoLight, pib_NGreen,  pib_NYellow,  pib_NRed,     null);          // 北方向の車用信号機を無灯火にする
@@ -403,11 +404,13 @@ namespace TrafficLightAlgorithm
                 ChangePedesLightOn(LightState.NoLight, lbl_PEGreOne, lbl_PEGreTwo, lbl_PERedOne, lbl_PERedTwo);  // 東方向の歩行者用信号機を無灯火にする
                 ChangePedesLightOn(LightState.NoLight, lbl_PWGreOne, lbl_PWGreTwo, lbl_PWRedOne, lbl_PWRedTwo);  // 西方向の歩行者用信号機を無灯火にする
 
-                IsTrafficEnable = false;              // 信号機アルゴリズムが動かない場合のブール値に設定する
-                IsInterrupt     = false;              // 信号機アルゴリズムの中断を無効にする
-                btn_SetAllValue.Enabled = true;       // 設定値一覧画面表示ボタンを有効にする
-                lbx_SignalControlLog.Items.Clear();   // 信号機点灯状態のログを全て削除する
-                ChangeTextInterruptResumeBtn(false);  // 「中断/再開」ボタンのTextプロパティ値変更
+                IsTrafficEnable = false;                               // 信号機アルゴリズムが動かない場合のブール値に設定する
+                IsInterrupt     = false;                               // 信号機アルゴリズムの中断を無効にする
+                btn_SetAllValue.Enabled = true;                        // 設定値一覧画面表示ボタンを有効にする
+                btn_SetAllValue.BackColor = BtnAllValuesDefaultColor;  // 設定値一覧画面表示ボタンの背景色を有効時の色に変更する
+                ChangeChdCtlCursor(pnl_Traffic, Cursors.Hand);         // 信号機イメージ部分のカーソル変更
+                lbx_SignalControlLog.Items.Clear();                    // 信号機点灯状態のログを全て削除する
+                ChangeTextInterruptResumeBtn(false);                   // 「中断/再開」ボタンのTextプロパティ値変更
 
                 Cts.Dispose();  // キャンセル要求の破棄
             }
@@ -425,15 +428,29 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                F_SetAllValue f_SetAllValue = new F_SetAllValue();  // 設定値一覧フォーム画面の初期化
-                f_SetAllValue.GetMSecValues(MSecValues);            // 設定値を渡す
-                f_SetAllValue.ShowDialog();         　              // 全設定値編集フォーム表示
-                MSecValues = f_SetAllValue.ReturnMSecValues();      // 設定値を取得する
+                F_SetAllValue f_SetAllValue = new F_SetAllValue();
+                f_SetAllValue.GetMSecValues(MSecValues);
+                f_SetAllValue.ShowDialog();
+                MSecValues = f_SetAllValue.ReturnMSecValues();
             }
             catch (Exception ex)
             {
                 string exStr = "「編集画面表示」ボタンのクリックでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// コントロールの子コントロールのカーソルを変更する
+        /// </summary>
+        /// <param name="ctl">    親コントロール </param>
+        /// <param name="cursor"> 変更後のカーソル </param>
+        private void ChangeChdCtlCursor(Control prtctl, Cursor cursor)
+        {
+            foreach (Control chdctl in prtctl.Controls)
+            {
+                chdctl.Cursor = cursor;
+                if (chdctl.HasChildren) ChangeChdCtlCursor(chdctl, cursor);
             }
         }
 
@@ -487,8 +504,8 @@ namespace TrafficLightAlgorithm
                     new TrafficPhase(AllRedMSec, new TrafficCommand[]{ new TrafficCommand(Direction.All, Signal.All, LightState.Red) })  // 全信号機の赤点灯フェーズ
                 };
 
-                phases.AddRange(DirectionPhaseList(setMSec, Direction.NorthSouth, false));  // 交差点北南方向の信号機点灯フェーズリストを追加
-                phases.AddRange(DirectionPhaseList(setMSec, Direction.EastWest,   true));   // 交差点東西方向の信号機点灯フェーズリストを追加
+                phases.AddRange(DirectionPhaseList(setMSec, Direction.NorthSouth, false));  // 交差点北南方向の点灯フェーズリストを追加
+                phases.AddRange(DirectionPhaseList(setMSec, Direction.EastWest,   true));   // 交差点東西方向の点灯フェーズリストを追加
 
                 return phases;
             }
@@ -512,17 +529,17 @@ namespace TrafficLightAlgorithm
                 int carOneAllMSec = mSecValues.CarNMSec  + YellowMSec;                   // １つ目の車用信号機が赤に点灯するまでのミリ秒
                 int carTwoAllMSec = mSecValues.CarSMSec  + YellowMSec;                   // ２つ目の車用信号機が赤に点灯するまでのミリ秒
                 int pedAllMSec    = mSecValues.PedEWMSec + BlinkMSec * BlinkPhaseCount;  // 　　歩行者用信号機が赤に点灯するまでのミリ秒
-                Direction cOneDir      = Direction.North;                                     // １つ目の車用信号機の方角
-                Direction cTwoDir      = Direction.South;                                     // ２つ目の車用信号機の方角
-                Direction pedDirection = Direction.EastWest;                                  // 　　歩行者用信号機の方角
+                Direction cOneDir      = Direction.North;                                // １つ目の車用信号機の方角
+                Direction cTwoDir      = Direction.South;                                // ２つ目の車用信号機の方角
+                Direction pedDirection = Direction.EastWest;                             // 　　歩行者用信号機の方角
 
                 if (direction == Direction.EastWest)
                 {
                     carOneAllMSec = mSecValues.CarEMSec + YellowMSec;
                     carTwoAllMSec = mSecValues.CarWMSec + YellowMSec;
-                    pedAllMSec = mSecValues.PedNSMSec + BlinkMSec * BlinkPhaseCount;
-                    cOneDir = Direction.East;
-                    cTwoDir = Direction.West;
+                    pedAllMSec    = mSecValues.PedNSMSec + BlinkMSec * BlinkPhaseCount;
+                    cOneDir      = Direction.East;
+                    cTwoDir      = Direction.West;
                     pedDirection = Direction.NorthSouth;
                 }
 
@@ -533,8 +550,8 @@ namespace TrafficLightAlgorithm
                 }
 
                 int  waitMSec     = 0;      // 点灯フェーズの待機ミリ秒
-                bool isBlinkStart = false;  // 点滅開始フェーズの場合はtrue、それ以外ではfalse
-                bool isBlink      = false;  // 点滅中のフェーズの場合はtrue、それ以外ではfalse
+                bool isBlinkStart = false;  // 歩行者用信号機点滅開始フェーズの場合はtrue、それ以外ではfalse
+                bool isBlink      = false;  // 歩行者用信号機点滅フェーズの場合はtrue、それ以外ではfalse
                 bool cmdMatch     = true;   // 前回のTrafficCommand[]と今回のTrafficCommand[]の点灯状態が一致する場合はtrue、それ以外ではfalse
 
                 // 進行方向ごとの信号機点灯フェーズの終了ミリ秒
@@ -586,7 +603,7 @@ namespace TrafficLightAlgorithm
                                 if (j > 0)
                                 {
                                     // ２つの車用信号機の点灯状態が同じ場合は、車用信号機TrafficCommandを1つにまとめる
-                                    if (befcmdArr[j].State == befcmdArr[j - 1].State &&
+                                    if (befcmdArr[j].State  == befcmdArr[j - 1].State &&
                                         befcmdArr[j].Signal == befcmdArr[j - 1].Signal)
                                     {
                                         cmdList = new List<TrafficCommand> { new TrafficCommand(direction, Signal.Car, befcmdArr[j].State) };
@@ -612,7 +629,7 @@ namespace TrafficLightAlgorithm
                         pList.Add(new TrafficPhase(waitMSec, cmdList.ToArray(), isBlinkStart, isBlink, BlinkPhaseCount));
                         waitMSec = BlinkMSec;
 
-                        // 歩行者用信号機の点滅状態を取得
+                        // 歩行者用信号機の点滅状態を更新
                         isBlink = false;
                         isBlinkStart = false;
                         if (elap_msec >= mSecValues.PedEWMSec && elap_msec < pedAllMSec) isBlink = true;

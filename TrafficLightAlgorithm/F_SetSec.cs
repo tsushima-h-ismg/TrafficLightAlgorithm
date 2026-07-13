@@ -56,67 +56,6 @@ namespace TrafficLightAlgorithm
         }
 
         /// <summary>
-        /// 信号機の各設定値を取得する
-        /// </summary>
-        /// <param name="avaiSec">      進行可能ミリ秒数                                      </param>
-        /// <param name="arrowSec">     矢印信号機の点灯ミリ秒数                              </param>
-        /// <param name="isArrow">      矢印信号機が存在する場合はtrue、それ以外の場合はfalse </param>
-        /// <param name="setSignal">    信号機の種類を表す列挙型                              </param>        
-        /// <param name="setDirection"> 信号機の設置方角を表す列挙型                          </param>
-        public void GetTrafficSettings(int avaiSec, int arrowSec, bool isArrow, Signal setSignal, Direction setDirection)
-        {
-            try
-            {
-                AvaiSec      = avaiSec;      // 進行可能秒数を取得する
-                ArrowSec     = arrowSec;     // 矢印信号機の点灯秒数を取得する
-                IsArrow      = isArrow;      // 矢印信号機が存在するか判定する
-                SetSignal    = setSignal;    // 信号機の種類を取得する
-                SetDirection = setDirection; // 信号機を設置した方角を取得する
-            }
-            catch (Exception ex)
-            {
-                string exStr = "設定値入力画面の読み込みでエラーが発生しました。\n" + ex.Message;
-                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        /// <summary>
-        /// 進行可能秒数を返却する
-        /// </summary>
-        /// <returns> 信号機の進行可能秒数 </returns>
-        public int ReturnAvaiSec()
-        {
-            try
-            {
-                return AvaiSec;
-            }
-            catch (Exception ex)
-            {
-                string exStr = "進行可能秒数の返却でエラーが発生しました。\n" + ex.Message;
-                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return 0;
-            }
-        }
-
-        /// <summary>
-        /// 矢印信号機の点灯秒数を返却する
-        /// </summary>
-        /// <returns> 矢印信号機の点灯秒数 </returns>
-        public int ReturnArrowSec()
-        {
-            try
-            {
-                return ArrowSec;
-            }
-            catch (Exception ex)
-            {
-                string exStr = "矢印信号機の点灯秒数の返却でエラーが発生しました。\n" + ex.Message;
-                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return 0;
-            }
-        }
-
-        /// <summary>
         /// フォームロードイベント
         /// </summary>
         private void F_SetSec_Load(object sender, EventArgs e)
@@ -131,7 +70,7 @@ namespace TrafficLightAlgorithm
                 else if (SetDirection == Direction.East) oppositeDirStr = CreateDirStr(Direction.West);
                 else if (SetDirection == Direction.West) oppositeDirStr = CreateDirStr(Direction.East);
 
-                lbl_FormTitle.Text = CreateDirStr(SetDirection) + CreateSigStr(SetSignal) + "信号機の設定値";  // フォームタイトルを取得する
+                lbl_FormTitle.Text = CreateDirStr(SetDirection) + CreateSigStr(SetSignal) + "信号機の設定値";
 
                 txt_AvaiSec.Text = AvaiSec.ToString();  // 進行可能秒数を取得
 
@@ -226,8 +165,8 @@ namespace TrafficLightAlgorithm
 
                 if (errMsg == "")
                 {
-                    AvaiSec = avaiVal;   // 進行可能秒数を取得する
-                    ArrowSec = arrowVal;  // 矢印信号機の点灯時間を取得する
+                    AvaiSec = avaiVal;
+                    ArrowSec = arrowVal;
                     Close();
                 }
                 else

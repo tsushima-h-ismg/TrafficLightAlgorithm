@@ -42,7 +42,6 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                // テキストボックスのTextプロパティ値設定
                 txt_AvaiCN.Text     = (MSecValues.CarNMSec  / 1000).ToString();
                 txt_AvaiCS.Text     = (MSecValues.CarSMSec  / 1000).ToString();
                 txt_AvaiCE.Text     = (MSecValues.CarEMSec  / 1000).ToString();
@@ -118,7 +117,7 @@ namespace TrafficLightAlgorithm
                 }
                 else
                 {
-                    MessageBox.Show(errMsg, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);  // エラーメッセージ表示
+                    MessageBox.Show(errMsg, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

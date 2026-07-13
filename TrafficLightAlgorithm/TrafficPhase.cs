@@ -31,7 +31,7 @@
         public readonly TrafficCommand[] Commands;
 
         /// <summary>
-        /// 点灯状態変更後の待機ミリ秒・点灯する信号機の種類・点灯状態を取得する
+        /// 点灯状態変更後の待機ミリ秒・信号機の種類・点灯状態
         /// </summary>
         /// <param name="waitMSec">     点灯状態変更後の待機ミリ秒                                        </param>
         /// <param name="commands">     信号機の種類と点灯状態                                            </param>
@@ -105,7 +105,7 @@
             }
 
             int mSecValue = WaitMSec;                                 // ミリ秒数の値が入る
-            if (IsBlinkStart && !isCarChange) mSecValue = BlinkMSec;  // 点滅開始フェーズの場合、点滅にかける待機ミリ秒の合計が入る
+            if (IsBlinkStart && !isCarChange) mSecValue = BlinkMSec;  // 点滅開始フェーズで車用信号機点灯状態が変化しない場合、点滅にかかる合計ミリ秒の値が入る
             else if (IsBlink && isCarChange)  mSecValue = WaitMSec;
             msg += mSecValue / 1000F + "秒待機します。";
 

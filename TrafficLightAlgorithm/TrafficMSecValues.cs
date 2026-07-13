@@ -41,7 +41,7 @@
         public readonly int ArwMSec;
 
         /// <summary>
-        /// 各ミリ秒数の値を設定する
+        /// 各ミリ秒数の値
         /// </summary>
         /// <param name="carNMSec">  北方向車用信号機の進行可能ミリ秒数       </param>
         /// <param name="carSMSec">  南方向車用信号機の進行可能ミリ秒数       </param>
@@ -68,7 +68,7 @@
         /// <param name="arwMSec">   矢印信号機の点灯ミリ秒数         </param>
         /// <param name="signal">    信号機の種類を表す列挙型         </param>
         /// <param name="direction"> 信号機を設置した方角を表す列挙型 </param>
-        /// <returns> 変更後の </returns>
+        /// <returns> 変更後のミリ秒設定値 </returns>
         public TrafficMSecValues ChangeMSec(int avaiMSec, int arwMSec, Signal signal, Direction direction)
         {
             if (signal == Signal.Car)
