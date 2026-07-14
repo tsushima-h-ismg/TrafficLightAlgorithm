@@ -62,8 +62,6 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                bool arrowEnable = IsArrow;  // 矢印信号機が存在するか判定する
-
                 // SetDirectionの反対方向を表す文字列を取得する
                 string oppositeDirStr = "北";
                 if (SetDirection == Direction.North) oppositeDirStr = CreateDirStr(Direction.South);
@@ -111,18 +109,11 @@ namespace TrafficLightAlgorithm
         /// <returns> 変換後の文字列 </returns>
         private string CreateDirStr(Direction direction)
         {
-            try
-            {
-                if      (direction == Direction.North) return "北";
-                else if (direction == Direction.South) return "南";
-                else if (direction == Direction.East)  return "東";
-                else if (direction == Direction.West)  return "西";
-                return "";
-            }
-            catch
-            {
-                return "";
-            }
+            if      (direction == Direction.North) return "北";
+            else if (direction == Direction.South) return "南";
+            else if (direction == Direction.East)  return "東";
+            else if (direction == Direction.West)  return "西";
+            return "";
         }
 
         /// <summary>
@@ -132,16 +123,9 @@ namespace TrafficLightAlgorithm
         /// <returns> 変換後の文字列 </returns>
         private string CreateSigStr(Signal signal)
         {
-            try
-            {
-                if (signal == Signal.Car) return "車用";
-                else if (signal == Signal.Pedes) return "歩行者用";
-                return "";
-            }
-            catch
-            {
-                return "";
-            }
+            if (signal == Signal.Car) return "車用";
+            else if (signal == Signal.Pedes) return "歩行者用";
+            return "";
         }
 
         /// <summary>

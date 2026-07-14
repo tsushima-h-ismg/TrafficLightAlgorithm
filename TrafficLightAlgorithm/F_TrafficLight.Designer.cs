@@ -530,7 +530,7 @@
             // 
             this.pib_WArrow.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.ArrowWSignal;
             this.pib_WArrow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_WArrow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_WArrow.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_WArrow.Location = new System.Drawing.Point(155, 202);
             this.pib_WArrow.Margin = new System.Windows.Forms.Padding(0);
             this.pib_WArrow.Name = "pib_WArrow";
@@ -546,7 +546,7 @@
             this.pib_NGreen.BackColor = System.Drawing.Color.Transparent;
             this.pib_NGreen.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_NGreen.BackgroundImage")));
             this.pib_NGreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_NGreen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_NGreen.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_NGreen.Location = new System.Drawing.Point(4, 8);
             this.pib_NGreen.Margin = new System.Windows.Forms.Padding(0);
             this.pib_NGreen.Name = "pib_NGreen";
@@ -562,7 +562,7 @@
             this.pib_NYellow.BackColor = System.Drawing.Color.Transparent;
             this.pib_NYellow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_NYellow.BackgroundImage")));
             this.pib_NYellow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_NYellow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_NYellow.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_NYellow.Location = new System.Drawing.Point(23, 8);
             this.pib_NYellow.Margin = new System.Windows.Forms.Padding(0);
             this.pib_NYellow.Name = "pib_NYellow";
@@ -578,7 +578,7 @@
             this.pib_NRed.BackColor = System.Drawing.Color.Transparent;
             this.pib_NRed.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_NRed.BackgroundImage")));
             this.pib_NRed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_NRed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_NRed.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_NRed.Location = new System.Drawing.Point(43, 8);
             this.pib_NRed.Margin = new System.Windows.Forms.Padding(0);
             this.pib_NRed.Name = "pib_NRed";
@@ -594,7 +594,7 @@
             this.pib_WGreen.BackColor = System.Drawing.Color.Transparent;
             this.pib_WGreen.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_WGreen.BackgroundImage")));
             this.pib_WGreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_WGreen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_WGreen.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_WGreen.Location = new System.Drawing.Point(8, 44);
             this.pib_WGreen.Margin = new System.Windows.Forms.Padding(0);
             this.pib_WGreen.Name = "pib_WGreen";
@@ -610,7 +610,7 @@
             this.pib_WYellow.BackColor = System.Drawing.Color.Transparent;
             this.pib_WYellow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_WYellow.BackgroundImage")));
             this.pib_WYellow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_WYellow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_WYellow.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_WYellow.Location = new System.Drawing.Point(8, 24);
             this.pib_WYellow.Margin = new System.Windows.Forms.Padding(0);
             this.pib_WYellow.Name = "pib_WYellow";
@@ -626,7 +626,7 @@
             this.pib_WRed.BackColor = System.Drawing.Color.Transparent;
             this.pib_WRed.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_WRed.BackgroundImage")));
             this.pib_WRed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_WRed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_WRed.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_WRed.Location = new System.Drawing.Point(8, 5);
             this.pib_WRed.Margin = new System.Windows.Forms.Padding(0);
             this.pib_WRed.Name = "pib_WRed";
@@ -642,7 +642,7 @@
             this.pib_SGreen.BackColor = System.Drawing.Color.Transparent;
             this.pib_SGreen.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_SGreen.BackgroundImage")));
             this.pib_SGreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_SGreen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_SGreen.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_SGreen.Location = new System.Drawing.Point(43, 2);
             this.pib_SGreen.Margin = new System.Windows.Forms.Padding(0);
             this.pib_SGreen.Name = "pib_SGreen";
@@ -658,7 +658,7 @@
             this.pib_SYellow.BackColor = System.Drawing.Color.Transparent;
             this.pib_SYellow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_SYellow.BackgroundImage")));
             this.pib_SYellow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_SYellow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_SYellow.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_SYellow.Location = new System.Drawing.Point(24, 2);
             this.pib_SYellow.Margin = new System.Windows.Forms.Padding(0);
             this.pib_SYellow.Name = "pib_SYellow";
@@ -674,7 +674,7 @@
             this.pib_SRed.BackColor = System.Drawing.Color.Transparent;
             this.pib_SRed.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_SRed.BackgroundImage")));
             this.pib_SRed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_SRed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_SRed.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_SRed.Location = new System.Drawing.Point(5, 2);
             this.pib_SRed.Margin = new System.Windows.Forms.Padding(0);
             this.pib_SRed.Name = "pib_SRed";
@@ -690,7 +690,7 @@
             this.pib_EGreen.BackColor = System.Drawing.Color.Transparent;
             this.pib_EGreen.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_EGreen.BackgroundImage")));
             this.pib_EGreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_EGreen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_EGreen.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_EGreen.Location = new System.Drawing.Point(3, 3);
             this.pib_EGreen.Margin = new System.Windows.Forms.Padding(0);
             this.pib_EGreen.Name = "pib_EGreen";
@@ -706,7 +706,7 @@
             this.pib_EYellow.BackColor = System.Drawing.Color.Transparent;
             this.pib_EYellow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_EYellow.BackgroundImage")));
             this.pib_EYellow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_EYellow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_EYellow.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_EYellow.Location = new System.Drawing.Point(3, 22);
             this.pib_EYellow.Margin = new System.Windows.Forms.Padding(0);
             this.pib_EYellow.Name = "pib_EYellow";
@@ -722,7 +722,7 @@
             this.pib_ERed.BackColor = System.Drawing.Color.Transparent;
             this.pib_ERed.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pib_ERed.BackgroundImage")));
             this.pib_ERed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_ERed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_ERed.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_ERed.Location = new System.Drawing.Point(3, 41);
             this.pib_ERed.Margin = new System.Windows.Forms.Padding(0);
             this.pib_ERed.Name = "pib_ERed";
@@ -737,7 +737,7 @@
             // 
             this.pib_EArrow.BackgroundImage = global::TrafficLightAlgorithm.Properties.Resources.ArrowESignal;
             this.pib_EArrow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pib_EArrow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pib_EArrow.Cursor = System.Windows.Forms.Cursors.Default;
             this.pib_EArrow.Location = new System.Drawing.Point(310, 201);
             this.pib_EArrow.Margin = new System.Windows.Forms.Padding(0);
             this.pib_EArrow.Name = "pib_EArrow";
@@ -770,7 +770,7 @@
             // 
             // lbl_EArrow
             // 
-            this.lbl_EArrow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_EArrow.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbl_EArrow.Location = new System.Drawing.Point(14, 51);
             this.lbl_EArrow.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EArrow.Name = "lbl_EArrow";
@@ -780,7 +780,7 @@
             // 
             // lbl_WArrow
             // 
-            this.lbl_WArrow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_WArrow.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbl_WArrow.Location = new System.Drawing.Point(22, 5);
             this.lbl_WArrow.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WArrow.Name = "lbl_WArrow";
@@ -844,7 +844,7 @@
             // 
             // lbl_PNTwo
             // 
-            this.lbl_PNTwo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PNTwo.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbl_PNTwo.Location = new System.Drawing.Point(11, 1);
             this.lbl_PNTwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PNTwo.Name = "lbl_PNTwo";
@@ -854,7 +854,7 @@
             // 
             // lbl_PSOne
             // 
-            this.lbl_PSOne.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PSOne.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbl_PSOne.Location = new System.Drawing.Point(1, 11);
             this.lbl_PSOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PSOne.Name = "lbl_PSOne";
@@ -864,7 +864,7 @@
             // 
             // lbl_PWOne
             // 
-            this.lbl_PWOne.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PWOne.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbl_PWOne.Location = new System.Drawing.Point(1, 1);
             this.lbl_PWOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PWOne.Name = "lbl_PWOne";
@@ -874,7 +874,7 @@
             // 
             // lbl_PNOne
             // 
-            this.lbl_PNOne.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PNOne.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbl_PNOne.Location = new System.Drawing.Point(1, 11);
             this.lbl_PNOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PNOne.Name = "lbl_PNOne";
@@ -884,7 +884,7 @@
             // 
             // lbl_PEOne
             // 
-            this.lbl_PEOne.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PEOne.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbl_PEOne.Location = new System.Drawing.Point(11, 1);
             this.lbl_PEOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PEOne.Name = "lbl_PEOne";
@@ -894,7 +894,7 @@
             // 
             // lbl_PETwo
             // 
-            this.lbl_PETwo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PETwo.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbl_PETwo.Location = new System.Drawing.Point(11, 11);
             this.lbl_PETwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PETwo.Name = "lbl_PETwo";
@@ -904,7 +904,7 @@
             // 
             // lbl_PWTwo
             // 
-            this.lbl_PWTwo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PWTwo.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbl_PWTwo.Location = new System.Drawing.Point(1, 11);
             this.lbl_PWTwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PWTwo.Name = "lbl_PWTwo";
@@ -914,7 +914,7 @@
             // 
             // lbl_PSTwo
             // 
-            this.lbl_PSTwo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_PSTwo.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbl_PSTwo.Location = new System.Drawing.Point(11, 11);
             this.lbl_PSTwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PSTwo.Name = "lbl_PSTwo";

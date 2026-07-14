@@ -51,7 +51,7 @@ namespace TrafficLightAlgorithm
         private int InterruptPhase;
 
         /// <summary>
-        /// 信号機アルゴリズムが動いている・中断している場合はtrue、それ以外の場合はfalse
+        /// 信号機アルゴリズムを開始・中断・再開する場合はtrue、それ以外の場合はfalse
         /// </summary>
         private bool IsTrafficEnable;
 
@@ -216,10 +216,10 @@ namespace TrafficLightAlgorithm
                                                    SetDirection = direction };
 
                 // 設定値入力フォームの初期表示位置設定
-                Point pibTopLeft = pib.PointToScreen(Point.Empty);            // 信号機イメージ画像表示ピクチャボックスの左上端の座標
-                Rectangle scArea = Screen.FromPoint(pibTopLeft).WorkingArea;  // 信号機イメージ画像表示ピクチャボックスを保持するスクリーンの作業領域
-                int xlocation = pibTopLeft.X + pib.Width;                     // 設定値入力フォーム初期表示位置のx座標
-                int ylocation = pibTopLeft.Y;                                 // 設定値入力フォーム初期表示位置のy座標
+                Point pibTopLeft = pib.PointToScreen(Point.Empty);
+                Rectangle scArea = Screen.FromPoint(pibTopLeft).WorkingArea;
+                int xlocation = pibTopLeft.X + pib.Width;
+                int ylocation = pibTopLeft.Y;
                 if (xlocation > scArea.Right - f_SetSec.Width) xlocation = scArea.Right - f_SetSec.Width;
                 if (ylocation > scArea.Bottom - f_SetSec.Height) ylocation = scArea.Bottom - f_SetSec.Height;
                 f_SetSec.Location = new Point(xlocation, ylocation);
@@ -328,7 +328,7 @@ namespace TrafficLightAlgorithm
                 IsInterrupt     = false;                             // 信号機アルゴリズムの中断を無効にする
                 btn_SetAllValue.Enabled = false;                     // 設定値一覧画面表示ボタンを無効にする
                 btn_SetAllValue.BackColor = BtnAllValuesValidColor;  // 設定値一覧画面表示ボタンの背景色を無効時の色に変更する
-                ChangeChdCtlCursor(pnl_Traffic, Cursors.Default);    // 信号機イメージ部分のカーソル変更
+                ChangeChdCtlCursor(Cursors.Default);                 // 信号機イメージ部分のカーソル変更
                 LoopTrafficPhase(0, PhaseList);                      // フェーズリストを最初のフェーズから再生する
             }
             catch (Exception ex)
@@ -393,7 +393,7 @@ namespace TrafficLightAlgorithm
                 string msgStr = "信号機プログラムを停止し、信号機の点灯状態をリセットしますか？";
                 if (MessageBox.Show(msgStr, Program.SoftTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No) return;
                 
-                Cts.Cancel();  // キャンセル要求を伝える
+                Cts.Cancel();
 
                 ChangeSignalLightOn(LightState.NoLight, pib_NGreen,  pib_NYellow,  pib_NRed,     null);          // 北方向の車用信号機を無灯火にする
                 ChangeSignalLightOn(LightState.NoLight, pib_SGreen,  pib_SYellow,  pib_SRed,     null);          // 南方向の車用信号機を無灯火にする
@@ -406,13 +406,13 @@ namespace TrafficLightAlgorithm
 
                 IsTrafficEnable = false;                               // 信号機アルゴリズムが動かない場合のブール値に設定する
                 IsInterrupt     = false;                               // 信号機アルゴリズムの中断を無効にする
-                btn_SetAllValue.Enabled = true;                        // 設定値一覧画面表示ボタンを有効にする
+                btn_SetAllValue.Enabled = true;
                 btn_SetAllValue.BackColor = BtnAllValuesDefaultColor;  // 設定値一覧画面表示ボタンの背景色を有効時の色に変更する
-                ChangeChdCtlCursor(pnl_Traffic, Cursors.Hand);         // 信号機イメージ部分のカーソル変更
+                ChangeChdCtlCursor(Cursors.Hand);                      // 信号機イメージ部分のカーソル変更
                 lbx_SignalControlLog.Items.Clear();                    // 信号機点灯状態のログを全て削除する
                 ChangeTextInterruptResumeBtn(false);                   // 「中断/再開」ボタンのTextプロパティ値変更
 
-                Cts.Dispose();  // キャンセル要求の破棄
+                Cts.Dispose();
             }
             catch (Exception ex)
             {
@@ -428,10 +428,9 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                F_SetAllValue f_SetAllValue = new F_SetAllValue();
-                f_SetAllValue.GetMSecValues(MSecValues);
+                F_SetAllValue f_SetAllValue = new F_SetAllValue { SetMSecValues = MSecValues};
                 f_SetAllValue.ShowDialog();
-                MSecValues = f_SetAllValue.ReturnMSecValues();
+                MSecValues = f_SetAllValue.SetMSecValues;
             }
             catch (Exception ex)
             {
@@ -445,13 +444,46 @@ namespace TrafficLightAlgorithm
         /// </summary>
         /// <param name="ctl">    親コントロール </param>
         /// <param name="cursor"> 変更後のカーソル </param>
-        private void ChangeChdCtlCursor(Control prtctl, Cursor cursor)
+        private void ChangeChdCtlCursor(Cursor cursor)
         {
-            foreach (Control chdctl in prtctl.Controls)
-            {
-                chdctl.Cursor = cursor;
-                if (chdctl.HasChildren) ChangeChdCtlCursor(chdctl, cursor);
-            }
+            lbl_NSignal.Cursor = cursor;
+            lbl_SSignal.Cursor = cursor;
+            lbl_ESignal.Cursor = cursor;
+            lbl_WSignal.Cursor = cursor;
+            lbl_EArrow.Cursor  = cursor;
+            lbl_WArrow.Cursor  = cursor;
+
+            lbl_PNOne.Cursor    = cursor;
+            lbl_PNGreOne.Cursor = cursor;
+            lbl_PNRedOne.Cursor = cursor;
+
+            lbl_PNTwo.Cursor    = cursor;
+            lbl_PNGreTwo.Cursor = cursor;
+            lbl_PNRedTwo.Cursor = cursor;
+
+            lbl_PSOne.Cursor    = cursor;
+            lbl_PSGreOne.Cursor = cursor;
+            lbl_PSRedOne.Cursor = cursor;
+
+            lbl_PSTwo.Cursor    = cursor;
+            lbl_PSGreTwo.Cursor = cursor;
+            lbl_PSRedTwo.Cursor = cursor;
+
+            lbl_PEOne.Cursor    = cursor;
+            lbl_PEGreOne.Cursor = cursor;
+            lbl_PERedOne.Cursor = cursor;
+
+            lbl_PETwo.Cursor    = cursor;
+            lbl_PEGreTwo.Cursor = cursor;
+            lbl_PERedTwo.Cursor = cursor;
+
+            lbl_PWOne.Cursor    = cursor;
+            lbl_PWGreOne.Cursor = cursor;
+            lbl_PWRedOne.Cursor = cursor;
+
+            lbl_PWTwo.Cursor    = cursor;
+            lbl_PWGreTwo.Cursor = cursor;
+            lbl_PWRedTwo.Cursor = cursor;
         }
 
         /// <summary>
@@ -461,8 +493,8 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                F_Version f_Version = new F_Version();  // バージョン情報フォームの初期化
-                f_Version.ShowDialog();                 // バージョン情報フォーム表示
+                F_Version f_Version = new F_Version();
+                f_Version.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -620,17 +652,17 @@ namespace TrafficLightAlgorithm
                     }
                     else if (cmdMatch)
                     {
-                        waitMSec += BlinkMSec;  // 待機時間を加算
+                        waitMSec += BlinkMSec;
                         befcmdArr = cmdArr;     // TrafficCommand[]の参照を更新
                     }
                     else
                     {
-                        // 信号機点灯フェーズリストに追加する
+                        // 信号機点灯フェーズリストに点灯フェーズを追加する
                         pList.Add(new TrafficPhase(waitMSec, cmdList.ToArray(), isBlinkStart, isBlink, BlinkPhaseCount));
                         waitMSec = BlinkMSec;
 
                         // 歩行者用信号機の点滅状態を更新
-                        isBlink = false;
+                        isBlink      = false;
                         isBlinkStart = false;
                         if (elap_msec >= mSecValues.PedEWMSec && elap_msec < pedAllMSec) isBlink = true;
                         if (elap_msec == mSecValues.PedEWMSec) isBlinkStart = true;
@@ -671,18 +703,18 @@ namespace TrafficLightAlgorithm
                     // 車用信号機の点灯状態変更
                     int carOneMSec = mSecValues.CarNMSec;
                     int carTwoMSec = mSecValues.CarSMSec;
-
+                    
                     if      (direction == Direction.South) (carOneMSec, carTwoMSec) = (mSecValues.CarSMSec, mSecValues.CarNMSec);
                     else if (direction == Direction.East)  (carOneMSec, carTwoMSec) = (mSecValues.CarEMSec, mSecValues.CarWMSec);
                     else if (direction == Direction.West)  (carOneMSec, carTwoMSec) = (mSecValues.CarWMSec, mSecValues.CarEMSec);
 
                     if (elapMSec < carOneMSec)
                     {
-                        lightState = LightState.Green;   // 緑点灯
+                        lightState = LightState.Green;
                     }
                     else if (elapMSec >= carOneMSec && elapMSec < carOneMSec + YellowMSec)
                     {
-                        lightState = LightState.Yellow;  // 黄点灯
+                        lightState = LightState.Yellow;
                     }
                     else if (elapMSec >= carOneMSec + YellowMSec)
                     {
@@ -691,25 +723,25 @@ namespace TrafficLightAlgorithm
                             // 矢印信号機が存在する場合
                             if (elapMSec < Math.Max(carOneMSec, carTwoMSec) + YellowMSec + MinMSec)
                             {
-                                lightState = LightState.Red;       // 赤点灯
+                                lightState = LightState.Red;
                             }
                             else if (elapMSec < Math.Max(carOneMSec, carTwoMSec) + YellowMSec + MinMSec + mSecValues.ArwMSec)
                             {
-                                lightState = LightState.ArrowRed;  // 矢印信号機の点灯
+                                lightState = LightState.ArrowRed;
                             }
                             else if (elapMSec < Math.Max(carOneMSec, carTwoMSec) + YellowMSec + MinMSec + mSecValues.ArwMSec + YellowMSec)
                             {
-                                lightState = LightState.Yellow;    // 黄点灯
+                                lightState = LightState.Yellow;
                             }
                             else if (elapMSec >= Math.Max(carOneMSec, carTwoMSec) + YellowMSec + MinMSec + mSecValues.ArwMSec + YellowMSec)
                             {
-                                lightState = LightState.Red;       // 赤点灯
+                                lightState = LightState.Red;
                             }
                         }
                         else
                         {
                             // 矢印信号機が存在しない場合
-                            lightState = LightState.Red;  // 赤点灯
+                            lightState = LightState.Red;
                         }
                     }
                 }
@@ -723,7 +755,7 @@ namespace TrafficLightAlgorithm
 
                     if (elapMSec < pedMSec)
                     {
-                        lightState = LightState.Green;  // 緑点灯
+                        lightState = LightState.Green;
                     }
                     else if (elapMSec >= pedMSec && elapMSec < pedAllMSec)
                     {
@@ -732,14 +764,14 @@ namespace TrafficLightAlgorithm
                         {
                             if (elapMSec == pedMSec + BlinkMSec * i)
                             {
-                                if (i % 2 == 0) lightState = LightState.NoLight;
+                                if      (i % 2 == 0) lightState = LightState.NoLight;
                                 else if (i % 2 == 1) lightState = LightState.Green;
                             }
                         }
                     }
                     else if (elapMSec >= pedAllMSec)
                     {
-                        lightState = LightState.Red;  // 赤点灯
+                        lightState = LightState.Red;
                     }
                 }
 
@@ -775,7 +807,7 @@ namespace TrafficLightAlgorithm
 
                         foreach (TrafficCommand cmd in phases[i].Commands)
                         {
-                            // 点灯状態更新の結果を取得し、結果がfalseの場合は終了する
+                            // 点灯状態更新の結果を取得し、更新に失敗した場合は終了する
 
                             // 車用信号機の点灯状態更新
                             if (cmd.Signal == Signal.All || cmd.Signal == Signal.Car)
@@ -784,22 +816,22 @@ namespace TrafficLightAlgorithm
 
                                 if (cmd.Direction == Direction.All || cmd.Direction == Direction.NorthSouth || cmd.Direction == Direction.North)
                                 {
-                                    if (!ChangeSignalLightOn(cmd.State, pib_NGreen, pib_NYellow, pib_NRed, null)) return;  // 北方向の車用信号機
+                                    if (!ChangeSignalLightOn(cmd.State, pib_NGreen, pib_NYellow, pib_NRed, null)) return;  // 北方向
                                 }
 
                                 if (cmd.Direction == Direction.All || cmd.Direction == Direction.NorthSouth || cmd.Direction == Direction.South)
                                 {
-                                    if (!ChangeSignalLightOn(cmd.State, pib_SGreen, pib_SYellow, pib_SRed, null)) return;  // 南方向の車用信号機
+                                    if (!ChangeSignalLightOn(cmd.State, pib_SGreen, pib_SYellow, pib_SRed, null)) return;  // 南方向
                                 }
 
                                 if (cmd.Direction == Direction.All || cmd.Direction == Direction.EastWest || cmd.Direction == Direction.East)
                                 {
-                                    if (!ChangeSignalLightOn(cmd.State, pib_EGreen, pib_EYellow, pib_ERed, pib_EArrow)) return;  // 東方向の車用信号機
+                                    if (!ChangeSignalLightOn(cmd.State, pib_EGreen, pib_EYellow, pib_ERed, pib_EArrow)) return;  // 東方向
                                 }
 
                                 if (cmd.Direction == Direction.All || cmd.Direction == Direction.EastWest || cmd.Direction == Direction.West)
                                 {
-                                    if (!ChangeSignalLightOn(cmd.State, pib_WGreen, pib_WYellow, pib_WRed, pib_WArrow)) return;  // 西方向の車用信号機
+                                    if (!ChangeSignalLightOn(cmd.State, pib_WGreen, pib_WYellow, pib_WRed, pib_WArrow)) return;  // 西方向
                                 }
                             }
 
@@ -808,14 +840,14 @@ namespace TrafficLightAlgorithm
                             {
                                 if (cmd.Direction == Direction.All || cmd.Direction == Direction.NorthSouth)
                                 {
-                                    if (!ChangePedesLightOn(cmd.State, lbl_PNGreOne, lbl_PNGreTwo, lbl_PNRedOne, lbl_PNRedTwo)) return;  // 北方向の歩行者用信号機                                                                                                                     
-                                    if (!ChangePedesLightOn(cmd.State, lbl_PSGreOne, lbl_PSGreTwo, lbl_PSRedOne, lbl_PSRedTwo)) return;  // 南方向の歩行者用信号機
+                                    if (!ChangePedesLightOn(cmd.State, lbl_PNGreOne, lbl_PNGreTwo, lbl_PNRedOne, lbl_PNRedTwo)) return;  // 北方向
+                                    if (!ChangePedesLightOn(cmd.State, lbl_PSGreOne, lbl_PSGreTwo, lbl_PSRedOne, lbl_PSRedTwo)) return;  // 南方向
                                 }
 
                                 if (cmd.Direction == Direction.All || cmd.Direction == Direction.EastWest)
                                 {
-                                    if (!ChangePedesLightOn(cmd.State, lbl_PEGreOne, lbl_PEGreTwo, lbl_PERedOne, lbl_PERedTwo)) return;  // 東方向の歩行者用信号機
-                                    if (!ChangePedesLightOn(cmd.State, lbl_PWGreOne, lbl_PWGreTwo, lbl_PWRedOne, lbl_PWRedTwo)) return;  // 西方向の歩行者用信号機
+                                    if (!ChangePedesLightOn(cmd.State, lbl_PEGreOne, lbl_PEGreTwo, lbl_PERedOne, lbl_PERedTwo)) return;  // 東方向
+                                    if (!ChangePedesLightOn(cmd.State, lbl_PWGreOne, lbl_PWGreTwo, lbl_PWRedOne, lbl_PWRedTwo)) return;  // 西方向
                                 }
                             }
                         }
@@ -833,7 +865,7 @@ namespace TrafficLightAlgorithm
                         }
                         catch
                         {
-                            return;  // 待機中に例外が発生した場合は終了する
+                            return;
                         }
                     }
 
@@ -898,8 +930,8 @@ namespace TrafficLightAlgorithm
             {
                 bool greNotVisible = true;  // 歩行者用信号機の緑ランプを点灯しない場合はtrue、点灯する場合はfalse
                 bool redNotVisible = true;  // 歩行者用信号機の赤ランプを点灯しない場合はtrue、点灯する場合はfalse
-                if (state == LightState.Green) greNotVisible = false;
-                else if (state == LightState.Red) redNotVisible = false;
+                if      (state == LightState.Green) greNotVisible = false;
+                else if (state == LightState.Red)   redNotVisible = false;
 
                 lbl_greOne.Visible = greNotVisible;  // １つ目歩行者用信号機の緑ランプの点灯状態変更
                 lbl_greTwo.Visible = greNotVisible;  // １つ目歩行者用信号機の赤ランプの点灯状態変更

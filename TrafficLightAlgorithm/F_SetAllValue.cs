@@ -28,7 +28,7 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// ミリ秒設定値
         /// </summary>
-        private TrafficMSecValues MSecValues;
+        public TrafficMSecValues SetMSecValues;
 
         public F_SetAllValue()
         {
@@ -42,53 +42,18 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                txt_AvaiCN.Text     = (MSecValues.CarNMSec  / 1000).ToString();
-                txt_AvaiCS.Text     = (MSecValues.CarSMSec  / 1000).ToString();
-                txt_AvaiCE.Text     = (MSecValues.CarEMSec  / 1000).ToString();
-                txt_AvaiCW.Text     = (MSecValues.CarWMSec  / 1000).ToString();
-                txt_AvaiPNS.Text    = (MSecValues.PedNSMSec / 1000).ToString();
-                txt_AvaiPEW.Text    = (MSecValues.PedEWMSec / 1000).ToString();
-                txt_LightOnArw.Text = (MSecValues.ArwMSec   / 1000).ToString();
+                txt_AvaiCN.Text     = (SetMSecValues.CarNMSec  / 1000).ToString();
+                txt_AvaiCS.Text     = (SetMSecValues.CarSMSec  / 1000).ToString();
+                txt_AvaiCE.Text     = (SetMSecValues.CarEMSec  / 1000).ToString();
+                txt_AvaiCW.Text     = (SetMSecValues.CarWMSec  / 1000).ToString();
+                txt_AvaiPNS.Text    = (SetMSecValues.PedNSMSec / 1000).ToString();
+                txt_AvaiPEW.Text    = (SetMSecValues.PedEWMSec / 1000).ToString();
+                txt_LightOnArw.Text = (SetMSecValues.ArwMSec   / 1000).ToString();
             }
             catch (Exception ex)
             {
                 string exStr = "設定値入力画面の読み込みでエラーが発生しました。\n" + ex.Message;
                 MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        /// <summary>
-        /// ミリ秒数設定値を取得する
-        /// </summary>
-        /// <param name="mSecValues"> ミリ秒数設定値 </param>
-        public void GetMSecValues(TrafficMSecValues mSecValues)
-        {
-            try
-            {
-                MSecValues = mSecValues;
-            }
-            catch (Exception ex)
-            {
-                string exStr = "ミリ秒数設定値の取得でエラーが発生しました。\n" + ex.Message;
-                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        /// <summary>
-        /// ミリ秒数設定値を返す
-        /// </summary>
-        /// <returns> ミリ秒数設定値 </returns>
-        public TrafficMSecValues ReturnMSecValues()
-        {
-            try
-            {
-                return MSecValues;
-            }
-            catch (Exception ex)
-            {
-                string exStr = "ミリ秒数設定値の返却でエラーが発生しました。\n" + ex.Message;
-                MessageBox.Show(exStr, Program.SoftTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return null;
             }
         }
 
@@ -112,7 +77,7 @@ namespace TrafficLightAlgorithm
 
                 if (errMsg == "")
                 {
-                    MSecValues = new TrafficMSecValues(carNMSec, carSMSec, carEMSec, carWMSec, pedNSMSec, pedEWMSec, arwMSec);
+                    SetMSecValues = new TrafficMSecValues(carNMSec, carSMSec, carEMSec, carWMSec, pedNSMSec, pedEWMSec, arwMSec);
                     Close();
                 }
                 else
