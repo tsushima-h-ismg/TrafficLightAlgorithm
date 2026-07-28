@@ -539,7 +539,6 @@
             this.pib_WArrow.TabIndex = 230;
             this.pib_WArrow.TabStop = false;
             this.pib_WArrow.Visible = false;
-            this.pib_WArrow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_NGreen
             // 
@@ -555,7 +554,6 @@
             this.pib_NGreen.TabIndex = 229;
             this.pib_NGreen.TabStop = false;
             this.pib_NGreen.Visible = false;
-            this.pib_NGreen.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_NYellow
             // 
@@ -571,7 +569,6 @@
             this.pib_NYellow.TabIndex = 228;
             this.pib_NYellow.TabStop = false;
             this.pib_NYellow.Visible = false;
-            this.pib_NYellow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_NRed
             // 
@@ -587,7 +584,6 @@
             this.pib_NRed.TabIndex = 227;
             this.pib_NRed.TabStop = false;
             this.pib_NRed.Visible = false;
-            this.pib_NRed.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_WGreen
             // 
@@ -603,7 +599,6 @@
             this.pib_WGreen.TabIndex = 226;
             this.pib_WGreen.TabStop = false;
             this.pib_WGreen.Visible = false;
-            this.pib_WGreen.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_WYellow
             // 
@@ -619,7 +614,6 @@
             this.pib_WYellow.TabIndex = 225;
             this.pib_WYellow.TabStop = false;
             this.pib_WYellow.Visible = false;
-            this.pib_WYellow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_WRed
             // 
@@ -635,7 +629,6 @@
             this.pib_WRed.TabIndex = 224;
             this.pib_WRed.TabStop = false;
             this.pib_WRed.Visible = false;
-            this.pib_WRed.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_SGreen
             // 
@@ -651,7 +644,6 @@
             this.pib_SGreen.TabIndex = 223;
             this.pib_SGreen.TabStop = false;
             this.pib_SGreen.Visible = false;
-            this.pib_SGreen.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_SYellow
             // 
@@ -667,7 +659,6 @@
             this.pib_SYellow.TabIndex = 222;
             this.pib_SYellow.TabStop = false;
             this.pib_SYellow.Visible = false;
-            this.pib_SYellow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_SRed
             // 
@@ -683,7 +674,6 @@
             this.pib_SRed.TabIndex = 221;
             this.pib_SRed.TabStop = false;
             this.pib_SRed.Visible = false;
-            this.pib_SRed.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_EGreen
             // 
@@ -699,7 +689,6 @@
             this.pib_EGreen.TabIndex = 220;
             this.pib_EGreen.TabStop = false;
             this.pib_EGreen.Visible = false;
-            this.pib_EGreen.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_EYellow
             // 
@@ -715,7 +704,6 @@
             this.pib_EYellow.TabIndex = 206;
             this.pib_EYellow.TabStop = false;
             this.pib_EYellow.Visible = false;
-            this.pib_EYellow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_ERed
             // 
@@ -731,7 +719,6 @@
             this.pib_ERed.TabIndex = 205;
             this.pib_ERed.TabStop = false;
             this.pib_ERed.Visible = false;
-            this.pib_ERed.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // pib_EArrow
             // 
@@ -746,7 +733,6 @@
             this.pib_EArrow.TabIndex = 219;
             this.pib_EArrow.TabStop = false;
             this.pib_EArrow.Visible = false;
-            this.pib_EArrow.Click += new System.EventHandler(this.Lbl_Signal_Click);
             // 
             // lbl_NSignal
             // 
@@ -770,7 +756,7 @@
             // 
             // lbl_EArrow
             // 
-            this.lbl_EArrow.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbl_EArrow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_EArrow.Location = new System.Drawing.Point(14, 51);
             this.lbl_EArrow.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_EArrow.Name = "lbl_EArrow";
@@ -780,7 +766,7 @@
             // 
             // lbl_WArrow
             // 
-            this.lbl_WArrow.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbl_WArrow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_WArrow.Location = new System.Drawing.Point(22, 5);
             this.lbl_WArrow.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_WArrow.Name = "lbl_WArrow";

@@ -104,8 +104,8 @@
                 }
             }
 
-            int mSecValue = WaitMSec;                                 // ミリ秒数の値が入る
-            if (IsBlinkStart && !isCarChange) mSecValue = BlinkMSec;  // 点滅開始フェーズで車用信号機点灯状態が変化しない場合、点滅にかかる合計ミリ秒の値が入る
+            int mSecValue = WaitMSec;
+            if (IsBlinkStart && !isCarChange) mSecValue = BlinkMSec;  // 点滅開始フェーズで車用信号機点灯状態が変化しない場合、点滅ミリ秒の合計値が入る
             else if (IsBlink && isCarChange)  mSecValue = WaitMSec;
             msg += mSecValue / 1000F + "秒待機します。";
 

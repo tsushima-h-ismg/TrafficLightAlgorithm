@@ -64,7 +64,7 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                string errMsg = "";  // エラーメッセージが入る
+                string errMsg = "";
 
                 // 進行可能時間の入力チェック
                 if (!CheckSecText(txt_AvaiCN, out int carNMSec)) errMsg += $"「北車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
@@ -104,19 +104,19 @@ namespace TrafficLightAlgorithm
             {
                 resultVal = 0;
 
-                int maxVal = AvaiSecMax;  // 進行可能秒数の最大値を取得
-                int minVal = AvaiSecMin;  // 進行可能秒数の最小値を取得
+                int maxVal = AvaiSecMax;  // 進行可能秒数の最大値
+                int minVal = AvaiSecMin;  // 進行可能秒数の最小値
 
                 // チェック対象テキストボックスが矢印信号機点灯秒数の入力欄の場合
                 if (txtBox == txt_LightOnArw)
                 {
-                    maxVal = ArrowSecMax;  // 矢印信号機点灯秒数の最大値を取得
-                    minVal = ArrowSecMin;  // 矢印信号機点灯秒数の最小値を取得
+                    maxVal = ArrowSecMax;  // 矢印信号機点灯秒数の最大値
+                    minVal = ArrowSecMin;  // 矢印信号機点灯秒数の最小値
                 }
 
-                if (!double.TryParse(txtBox.Text, out double dbevalue)) return false;  // Textプロパティ値がdouble型に変換できない場合は終了する
-                if (!int.TryParse(dbevalue.ToString(), out resultVal))  return false;  // double型から変換した文字列がint型に変換できない場合は終了する
-                if (resultVal < minVal || resultVal > maxVal)           return false;  // int型に変換した値がminValより小さい、もしくはmaxValより大きい場合は終了する
+                if (!double.TryParse(txtBox.Text, out double dbevalue)) return false;  // Textプロパティ値がdouble型に変換できない場合は終了
+                if (!int.TryParse(dbevalue.ToString(), out resultVal))  return false;  // double型から変換した文字列がint型に変換できない場合は終了
+                if (resultVal < minVal || resultVal > maxVal)           return false;  // int型に変換した値がminValより小さい、もしくはmaxValより大きい場合は終了
                 resultVal *= 1000;
                 return true;
             }

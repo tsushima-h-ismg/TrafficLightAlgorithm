@@ -19,9 +19,9 @@ namespace TrafficLightAlgorithm
             try
             {
                 Version ver    = typeof(F_Version).Assembly.GetName().Version;
-                string  verStr = $"Version {ver.Minor}.{ver.Build}{ver.Revision}";  // 「Version {マイナー番号}.{ビルド番号}{リビジョン番号}」形式の文字列を取得する
+                string  verStr = $"Version {ver.Minor}.{ver.Build}{ver.Revision}";  // 「Version {マイナー番号}.{ビルド番号}{リビジョン番号}」形式の文字列を取得
                 
-                // 著作権と会社名のカスタム属性を取得する
+                // 著作権と会社名のカスタム属性を取得
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 AssemblyCopyrightAttribute copyRight = (AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyCopyrightAttribute));
                 AssemblyCompanyAttribute   company   = (AssemblyCompanyAttribute)  Attribute.GetCustomAttribute(assembly, typeof(AssemblyCompanyAttribute));
