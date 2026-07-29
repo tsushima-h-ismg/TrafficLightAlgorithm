@@ -206,7 +206,7 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                if (!ChangeSignalImage(signal, direction, true)) return;  // 信号機イメージ画像を強調表示した画像に変更
+                if (!ChangeSignalImage(signal, direction, true)) return;  // 信号機イメージ画像を強調表示画像に変更
 
                 F_SetSec f_SetSec = new F_SetSec { AvaiSec = avaiMSec / 1000, 
                                                    ArrowSec = MSecValues.ArwMSec /  1000, 
@@ -229,7 +229,7 @@ namespace TrafficLightAlgorithm
                                                    f_SetSec.ArrowSec * 1000,
                                                    signal, direction);        // ミリ秒設定値更新
 
-                if (!ChangeSignalImage(signal, direction, false)) return;  // 信号機イメージ画像をデフォルトの画像に変更
+                if (!ChangeSignalImage(signal, direction, false)) return;  // 信号機イメージ画像をデフォルト画像に変更
             }
             catch (Exception ex)
             {
@@ -325,7 +325,7 @@ namespace TrafficLightAlgorithm
 
                 IsTrafficEnable = true;                              // 信号機アルゴリズムが動く場合のブール値に設定
                 IsInterrupt     = false;                             // 信号機アルゴリズムの中断が無効の場合のブール値に設定
-                btn_SetAllValue.Enabled = false;                     // 設定値一覧画面表示ボタンの応答無効
+                btn_SetAllValue.Enabled = false;                     
                 btn_SetAllValue.BackColor = BtnAllValuesValidColor;  // 設定値一覧画面表示ボタンの背景色を無効時の色に変更
                 ChangeChdCtlCursor(Cursors.Default);                 // 信号機イメージ部分の表示カーソル変更
                 LoopTrafficPhase(0, PhaseList);                      // フェーズリストを最初のフェーズから再生
@@ -406,7 +406,7 @@ namespace TrafficLightAlgorithm
 
                 IsTrafficEnable = false;                               // 信号機アルゴリズムが動かない場合のブール値に設定
                 IsInterrupt     = false;                               // 信号機アルゴリズムの中断が無効の場合のブール値に設定
-                btn_SetAllValue.Enabled = true;                        // 設定値一覧画面表示ボタンの応答有効
+                btn_SetAllValue.Enabled = true;                        
                 btn_SetAllValue.BackColor = BtnAllValuesDefaultColor;  // 設定値一覧画面表示ボタンの背景色を有効時の色に変更
                 ChangeChdCtlCursor(Cursors.Hand);                      // 信号機イメージ部分の表示カーソル変更
                 lbx_SignalControlLog.Items.Clear();                    // 信号機点灯状態のログを全て削除
@@ -518,7 +518,6 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                // 信号機アルゴリズムが中断する場合は「再開」に、中断しない場合は「中断」にする
                 if (isInterrupt) btn_InterruptResume.Text = "再開";
                 else btn_InterruptResume.Text = "中断";
             }
@@ -591,21 +590,20 @@ namespace TrafficLightAlgorithm
                 int  waitMSec     = 0;      // 点灯フェーズの待機ミリ秒
                 bool isBlinkStart = false;  // 歩行者用信号機点滅開始フェーズの場合はtrue、それ以外ではfalse
                 bool isBlink      = false;  // 歩行者用信号機点滅フェーズの場合はtrue、それ以外ではfalse
-                bool cmdMatch     = true;   // 前回のTrafficCommand[]と今回のTrafficCommand[]の点灯状態が一致する場合はtrue、それ以外ではfalse
+                bool cmdMatch     = true;   // ２つの車用信号機の点灯状態が一致する場合はtrue、それ以外ではfalse
 
-                // 進行方向ごとの信号機点灯フェーズの終了ミリ秒
+                // 進行方向で全ての車用・歩行者用信号機が赤に点灯するまでのミリ秒
                 int finishMSec = Math.Max(Math.Max(carOneAllMSec, carTwoAllMSec), pedAllMSec) + MinMSec;
 
-                // 空の信号機点灯フェーズリスト
-                List<TrafficPhase> pList = new List<TrafficPhase>();
+                List<TrafficPhase> pList = new List<TrafficPhase>();  // 信号機点灯フェーズリスト
 
-                TrafficCommand[] cmdArr    = null;  // 現在経過ミリ秒の点灯状態
+                TrafficCommand[] cmdArr    = null;  // 現在の経過ミリ秒の点灯状態
                 TrafficCommand[] befcmdArr = null;  // cmdArrの前回の点灯状態
 
-                // 最後に追加された点灯フェーズの点灯状態
+                // 最後にフェーズリストに追加された点灯フェーズの点灯状態
                 TrafficCommand[] lastcmdArr = new TrafficCommand[] { new TrafficCommand(cOneDir,      Signal.Car,   LightState.Red),
                                                                      new TrafficCommand(cTwoDir,      Signal.Car,   LightState.Red),
-                                                                     new TrafficCommand(pedDirection, Signal.Pedes, LightState.Red)};
+                                                                     new TrafficCommand(pedDirection, Signal.Pedes, LightState.Red) };
 
                 // 500ミリ秒ごとに信号機の点灯状態を取得し、点灯フェーズリストを作成する
                 for (int elap_msec = 0; elap_msec <= finishMSec; elap_msec += BlinkMSec)
@@ -641,8 +639,8 @@ namespace TrafficLightAlgorithm
 
                                 if (j > 0)
                                 {
-                                    // ２つの車用信号機の点灯状態が同じ場合は、１つの車用信号機TrafficCommandにまとめる
-                                    if (befcmdArr[j].State  == befcmdArr[j - 1].State &&
+                                    // ２つの車用信号機の点灯状態が同じ場合
+                                    if (befcmdArr[j].State  == befcmdArr[j - 1].State && 
                                         befcmdArr[j].Signal == befcmdArr[j - 1].Signal)
                                     {
                                         cmdList = new List<TrafficCommand> { new TrafficCommand(direction, Signal.Car, befcmdArr[j].State) };
@@ -654,8 +652,10 @@ namespace TrafficLightAlgorithm
 
                     if (elap_msec == finishMSec)
                     {
-                        // フェーズリストに点灯フェーズを追加
-                        pList.Add(new TrafficPhase(MinMSec, cmdList.ToArray()));
+                        if (!(direction == Direction.EastWest && cmdList[0].Signal == Signal.Pedes))
+                        {
+                            pList.Add(new TrafficPhase(MinMSec, cmdList.ToArray()));  // フェーズリストに点灯フェーズを追加                       
+                        }
                     }
                     else if (cmdMatch)
                     {
@@ -801,7 +801,7 @@ namespace TrafficLightAlgorithm
         {
             try
             {
-                int startPhase = phaseNum;            // 最初に再生するフェーズのインデックス番号が入る
+                int startPhase = phaseNum;            // 最初に再生するフェーズのインデックス番号
                 bool isCarChange = false;             // 点灯フェーズに車用信号機の点灯状態変更が含まれる場合はtrue、それ以外の場合はfalse
                 Cts = new CancellationTokenSource();  // Ctsの初期化
 
@@ -809,12 +809,12 @@ namespace TrafficLightAlgorithm
                 {
                     for (int i = startPhase; i < phases.Count; i++)
                     {
-                        InterruptPhase = i;  // 現在のフェーズを表す番号を取得する
+                        InterruptPhase = i;  // 現在のフェーズを表す番号を取得
                         isCarChange = false;
 
                         foreach (TrafficCommand cmd in phases[i].Commands)
                         {
-                            // 点灯状態更新結果の取得に失敗した場合は終了する
+                            // 点灯状態更新結果の取得に失敗した場合は終了
 
                             // 車用信号機の点灯状態更新
                             if (cmd.Signal == Signal.All || cmd.Signal == Signal.Car)
@@ -876,7 +876,7 @@ namespace TrafficLightAlgorithm
                         }
                     }
 
-                    startPhase = 0;  // 次のループで最初から再生するフェーズの番号を0に設定する
+                    startPhase = 0;  // 次のループで最初から再生するフェーズの番号を0に設定
                 }
             }
             catch (Exception ex)

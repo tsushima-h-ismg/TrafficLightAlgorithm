@@ -66,7 +66,7 @@ namespace TrafficLightAlgorithm
             {
                 string errMsg = "";
 
-                // 進行可能時間の入力チェック
+                // 入力値のチェック
                 if (!CheckSecText(txt_AvaiCN, out int carNMSec)) errMsg += $"「北車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
                 if (!CheckSecText(txt_AvaiCS, out int carSMSec)) errMsg += $"「南車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
                 if (!CheckSecText(txt_AvaiCE, out int carEMSec)) errMsg += $"「東車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
