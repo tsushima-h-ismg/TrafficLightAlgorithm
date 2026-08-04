@@ -11,7 +11,7 @@
         public readonly int WaitMSec;
 
         /// <summary>
-        /// 点滅状態の合計ミリ秒
+        /// 点滅状態の合計待機ミリ秒
         /// </summary>
         public readonly int BlinkMSec;
 
@@ -105,7 +105,7 @@
             }
 
             int mSecValue = WaitMSec;
-            if (IsBlinkStart && !isCarChange) mSecValue = BlinkMSec;  // 点滅開始フェーズで車用信号機点灯状態が変化しない場合、点滅ミリ秒の合計値が入る
+            if (IsBlinkStart && !isCarChange) mSecValue = BlinkMSec;
             else if (IsBlink && isCarChange)  mSecValue = WaitMSec;
             msg += mSecValue / 1000F + "秒待機します。";
 

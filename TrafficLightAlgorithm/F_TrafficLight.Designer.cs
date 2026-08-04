@@ -830,7 +830,7 @@
             // 
             // lbl_PNTwo
             // 
-            this.lbl_PNTwo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbl_PNTwo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_PNTwo.Location = new System.Drawing.Point(11, 1);
             this.lbl_PNTwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PNTwo.Name = "lbl_PNTwo";
@@ -840,7 +840,7 @@
             // 
             // lbl_PSOne
             // 
-            this.lbl_PSOne.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbl_PSOne.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_PSOne.Location = new System.Drawing.Point(1, 11);
             this.lbl_PSOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PSOne.Name = "lbl_PSOne";
@@ -850,7 +850,7 @@
             // 
             // lbl_PWOne
             // 
-            this.lbl_PWOne.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbl_PWOne.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_PWOne.Location = new System.Drawing.Point(1, 1);
             this.lbl_PWOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PWOne.Name = "lbl_PWOne";
@@ -860,7 +860,7 @@
             // 
             // lbl_PNOne
             // 
-            this.lbl_PNOne.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbl_PNOne.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_PNOne.Location = new System.Drawing.Point(1, 11);
             this.lbl_PNOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PNOne.Name = "lbl_PNOne";
@@ -870,7 +870,7 @@
             // 
             // lbl_PEOne
             // 
-            this.lbl_PEOne.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbl_PEOne.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_PEOne.Location = new System.Drawing.Point(11, 1);
             this.lbl_PEOne.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PEOne.Name = "lbl_PEOne";
@@ -880,7 +880,7 @@
             // 
             // lbl_PETwo
             // 
-            this.lbl_PETwo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbl_PETwo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_PETwo.Location = new System.Drawing.Point(11, 11);
             this.lbl_PETwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PETwo.Name = "lbl_PETwo";
@@ -890,7 +890,7 @@
             // 
             // lbl_PWTwo
             // 
-            this.lbl_PWTwo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbl_PWTwo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_PWTwo.Location = new System.Drawing.Point(1, 11);
             this.lbl_PWTwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PWTwo.Name = "lbl_PWTwo";
@@ -900,7 +900,7 @@
             // 
             // lbl_PSTwo
             // 
-            this.lbl_PSTwo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbl_PSTwo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_PSTwo.Location = new System.Drawing.Point(11, 11);
             this.lbl_PSTwo.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PSTwo.Name = "lbl_PSTwo";

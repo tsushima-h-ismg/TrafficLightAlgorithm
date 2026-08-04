@@ -95,28 +95,28 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// テキストボックスのTextプロパティ値のチェックを行う
         /// </summary>
-        /// <param name="txtBox">    チェック対象のテキストボックス              </param>
-        /// <param name="resultVal"> txtBoxのTextプロパティ値をint型に変換した値 </param>
-        /// <returns> txtBoxのTextプロパティ値をint型に変換した値が最大値と最小値の範囲を満たす場合はtrue、それ以外の場合はfalse </returns>
+        /// <param name="txtBox">    チェック対象のテキストボックス                  </param>
+        /// <param name="resultVal"> 引数txtBoxのTextプロパティ値をint型に変換した値 </param>
+        /// <returns> 引数txtBoxのTextプロパティ値をint型に変換した値が最大値と最小値の範囲を満たす場合はtrue、それ以外の場合はfalse </returns>
         private bool CheckSecText(TextBox txtBox, out int resultVal)
         {
             try
             {
                 resultVal = 0;
 
-                int maxVal = AvaiSecMax;  // 進行可能秒数の最大値
-                int minVal = AvaiSecMin;  // 進行可能秒数の最小値
+                int maxVal = AvaiSecMax;  // チェックを満たす最大値
+                int minVal = AvaiSecMin;  // チェックを満たす最小値
 
-                // チェック対象テキストボックスが矢印信号機点灯秒数の入力欄の場合
+                // チェック対象が矢印信号機点灯秒数の場合
                 if (txtBox == txt_LightOnArw)
                 {
-                    maxVal = ArrowSecMax;  // 矢印信号機点灯秒数の最大値
-                    minVal = ArrowSecMin;  // 矢印信号機点灯秒数の最小値
+                    maxVal = ArrowSecMax;
+                    minVal = ArrowSecMin;
                 }
 
-                if (!double.TryParse(txtBox.Text, out double dbevalue)) return false;  // Textプロパティ値がdouble型に変換できない場合は終了
-                if (!int.TryParse(dbevalue.ToString(), out resultVal))  return false;  // double型から変換した文字列がint型に変換できない場合は終了
-                if (resultVal < minVal || resultVal > maxVal)           return false;  // int型に変換した値がminValより小さい、もしくはmaxValより大きい場合は終了
+                if (!double.TryParse(txtBox.Text, out double dbevalue)) return false;
+                if (!int.TryParse(dbevalue.ToString(), out resultVal))  return false;  // 「1.00」や「3.0」といった値を通すためのチェック
+                if (resultVal < minVal || resultVal > maxVal)           return false;  // 最大値と最小値の範囲を満たすかチェック
                 resultVal *= 1000;
                 return true;
             }
