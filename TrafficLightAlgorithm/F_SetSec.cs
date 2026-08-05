@@ -105,7 +105,7 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 信号機の設置方角を表す列挙型を文字列に変換
         /// </summary>
-        /// <param name="direction"> 方角を表す列挙型 </param>
+        /// <param name="direction"> 信号機設置方角 </param>
         /// <returns> 変換後の文字列 </returns>
         private string CreateDirStr(Direction direction)
         {
@@ -119,7 +119,7 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 信号機の種類を表す列挙型を文字列に変換
         /// </summary>
-        /// <param name="signal"> 信号機の種類を表す列挙型 </param>
+        /// <param name="signal"> 信号機の種類 </param>
         /// <returns> 変換後の文字列 </returns>
         private string CreateSigStr(Signal signal)
         {
@@ -166,7 +166,7 @@ namespace TrafficLightAlgorithm
         }
 
         /// <summary>
-        /// テキストボックスのTextプロパティ値のチェックを行う
+        /// テキストボックスのTextプロパティ値のチェック
         /// </summary>
         /// <param name="txtBox">    チェック対象のテキストボックス                  </param>
         /// <param name="resultVal"> 引数txtBoxのTextプロパティ値をint型に変換した値 </param>
@@ -180,7 +180,7 @@ namespace TrafficLightAlgorithm
                 int maxVal = AvaiSecMax;  // チェックを満たす最大値
                 int minVal = AvaiSecMin;  // チェックを満たす最小値
 
-                // チェック対象が矢印信号機点灯秒数の場合
+                // 矢印信号機点灯秒数の入力欄をチェックする場合
                 if (txtBox == txt_ArrowSec)
                 {
                     maxVal = ArrowSecMax;
@@ -188,7 +188,7 @@ namespace TrafficLightAlgorithm
                 }
 
                 if (!double.TryParse(txtBox.Text, out double dbevalue)) return false;
-                if (!int.TryParse(dbevalue.ToString(), out resultVal))  return false;  // 「1.00」や「3.0」といった値を通すためのチェック
+                if (!int.TryParse(dbevalue.ToString(), out resultVal))  return false;  // 「1.00」や「3.0」といった文字列を通すためのチェック
                 if (resultVal < minVal || resultVal > maxVal)           return false;  // 最大値と最小値の範囲を満たすかチェック
                 return true;
             }

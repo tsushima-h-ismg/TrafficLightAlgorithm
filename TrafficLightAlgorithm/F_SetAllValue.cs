@@ -66,7 +66,7 @@ namespace TrafficLightAlgorithm
             {
                 string errMsg = "";
 
-                // 入力値のチェック
+                // テキストボックスに入力した値のチェック
                 if (!CheckSecText(txt_AvaiCN, out int carNMSec)) errMsg += $"「北車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
                 if (!CheckSecText(txt_AvaiCS, out int carSMSec)) errMsg += $"「南車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
                 if (!CheckSecText(txt_AvaiCE, out int carEMSec)) errMsg += $"「東車用信号機の進行可能時間」には{AvaiSecMin}から{AvaiSecMax}の整数を\n入力してください。\n";
@@ -93,7 +93,7 @@ namespace TrafficLightAlgorithm
         }
 
         /// <summary>
-        /// テキストボックスのTextプロパティ値のチェックを行う
+        /// テキストボックスのTextプロパティ値のチェック
         /// </summary>
         /// <param name="txtBox">    チェック対象のテキストボックス                  </param>
         /// <param name="resultVal"> 引数txtBoxのTextプロパティ値をint型に変換した値 </param>
@@ -107,7 +107,7 @@ namespace TrafficLightAlgorithm
                 int maxVal = AvaiSecMax;  // チェックを満たす最大値
                 int minVal = AvaiSecMin;  // チェックを満たす最小値
 
-                // チェック対象が矢印信号機点灯秒数の場合
+                // 矢印信号機点灯秒数の入力欄をチェックする場合
                 if (txtBox == txt_LightOnArw)
                 {
                     maxVal = ArrowSecMax;
@@ -115,7 +115,7 @@ namespace TrafficLightAlgorithm
                 }
 
                 if (!double.TryParse(txtBox.Text, out double dbevalue)) return false;
-                if (!int.TryParse(dbevalue.ToString(), out resultVal))  return false;  // 「1.00」や「3.0」といった値を通すためのチェック
+                if (!int.TryParse(dbevalue.ToString(), out resultVal))  return false;  // 「1.00」や「3.0」といった文字列を通すためのチェック
                 if (resultVal < minVal || resultVal > maxVal)           return false;  // 最大値と最小値の範囲を満たすかチェック
                 resultVal *= 1000;
                 return true;

@@ -16,12 +16,12 @@
         public readonly int BlinkMSec;
 
         /// <summary>
-        /// 点滅を行うフェーズの場合はtrue、それ以外の場合はfalse
+        /// 歩行者用信号機の点滅を行うフェーズの場合はtrue、それ以外の場合はfalse
         /// </summary>
         public readonly bool IsBlink;
 
         /// <summary>
-        /// 点滅開始フェーズの場合はtrue、それ以外の場合はfalse
+        /// 歩行者用信号機の点滅開始フェーズの場合はtrue、それ以外の場合はfalse
         /// </summary>
         public readonly bool IsBlinkStart;
 
@@ -104,11 +104,12 @@
                 }
             }
 
+            // 待機時間
             int mSecValue = WaitMSec;
             if (IsBlinkStart && !isCarChange) mSecValue = BlinkMSec;
             else if (IsBlink && isCarChange)  mSecValue = WaitMSec;
-            msg += mSecValue / 1000F + "秒待機します。";
 
+            msg += mSecValue / 1000F + "秒待機します。";
             return msg;
         }
     }

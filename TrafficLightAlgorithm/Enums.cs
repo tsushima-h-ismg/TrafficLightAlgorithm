@@ -32,7 +32,7 @@
     }
     
     /// <summary>
-    /// 車用・歩行者用信号機の方角
+    /// 車用・歩行者用信号機の設置方角
     /// </summary>
     public enum Direction
     {

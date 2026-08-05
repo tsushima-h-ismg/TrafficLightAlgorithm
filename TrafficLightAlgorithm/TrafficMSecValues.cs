@@ -66,10 +66,10 @@
         /// </summary>
         /// <param name="avaiMSec">  信号機の進行可能ミリ秒 </param>
         /// <param name="arwMSec">   矢印信号機の点灯ミリ秒 </param>
+        /// <param name="direction"> 信号機設置方角         </param>        
         /// <param name="signal">    信号機の種類           </param>
-        /// <param name="direction"> 信号機設置方角         </param>
         /// <returns> 変更後のミリ秒設定値 </returns>
-        public TrafficMSecValues ChangeMSec(int avaiMSec, int arwMSec, Signal signal, Direction direction)
+        public TrafficMSecValues ChangeMSec(int avaiMSec, int arwMSec, Direction direction, Signal signal)
         {
             if (signal == Signal.Car)
             {
