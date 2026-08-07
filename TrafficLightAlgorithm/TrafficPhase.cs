@@ -16,6 +16,11 @@
         public readonly int BlinkMSec;
 
         /// <summary>
+        /// 信号機の種類と点灯状態
+        /// </summary>
+        public readonly TrafficCommand[] Commands;
+
+        /// <summary>
         /// 歩行者用信号機の点滅を行うフェーズの場合はtrue、それ以外の場合はfalse
         /// </summary>
         public readonly bool IsBlink;
@@ -24,11 +29,6 @@
         /// 歩行者用信号機の点滅開始フェーズの場合はtrue、それ以外の場合はfalse
         /// </summary>
         public readonly bool IsBlinkStart;
-
-        /// <summary>
-        /// 信号機の種類と点灯状態
-        /// </summary>
-        public readonly TrafficCommand[] Commands;
 
         /// <summary>
         /// 点灯状態変更後の待機ミリ秒・信号機の種類・点灯状態

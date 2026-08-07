@@ -170,7 +170,7 @@ namespace TrafficLightAlgorithm
         /// </summary>
         /// <param name="txtBox">    チェック対象のテキストボックス                  </param>
         /// <param name="resultVal"> 引数txtBoxのTextプロパティ値をint型に変換した値 </param>
-        /// <returns> 引数txtBoxのTextプロパティ値をint型に変換した値が最大値と最小値の範囲を満たす場合はtrue、それ以外の場合はfalse </returns>
+        /// <returns> 引数txtBoxのTextプロパティ値をint型に変換した値が最大値と最小値の範囲を満たす場合はtrue、それ以外ではfalse </returns>
         private bool CheckSecText(TextBox txtBox, out int resultVal)
         {
             try

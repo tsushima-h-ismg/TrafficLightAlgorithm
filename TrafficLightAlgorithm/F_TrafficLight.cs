@@ -46,17 +46,17 @@ namespace TrafficLightAlgorithm
         private readonly Color BtnAllValuesValidColor   = Color.FromArgb(220, 220, 220);
 
         /// <summary>
-        /// 信号機アルゴリズムでフェーズ再生を中断する時点のフェーズ番号
+        /// 信号機アルゴリズムでフェーズ再生を中断した時点のフェーズ番号
         /// </summary>
         private int InterruptPhase;
 
         /// <summary>
-        /// 信号機アルゴリズムでフェーズを再生する・フェーズ再生を中断する場合はtrue、それ以外の場合はfalse
+        /// 信号機アルゴリズムでフェーズを再生する・フェーズ再生を中断する場合はtrue、それ以外ではfalse
         /// </summary>
         private bool IsTrafficEnable;
 
         /// <summary>
-        /// 信号機アルゴリズムのフェーズ再生を中断する場合はtrue、それ以外の場合はfalse
+        /// 信号機アルゴリズムのフェーズ再生を中断する場合はtrue、それ以外ではfalse
         /// </summary>
         private bool IsInterrupt;
 
@@ -188,11 +188,11 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 時間設定値入力フォーム表示
         /// </summary>
-        /// <param name="avaiMSec">  進行可能ミリ秒　                                    </param>
-        /// <param name="isArrow">   矢印信号機を有する場合はtrue、それ以外の場合はfalse </param>
-        /// <param name="direction"> 信号機設置方角                                　　　</param>        
-        /// <param name="signal">    信号機の種類                                        </param>
-        /// <param name="pib">       信号機イメージ画像表示ピクチャボックス 　　　       </param>
+        /// <param name="avaiMSec">  進行可能ミリ秒　                                </param>
+        /// <param name="isArrow">   矢印信号機を有する場合はtrue、それ以外ではfalse </param>
+        /// <param name="direction"> 信号機設置方角                            　　　</param>        
+        /// <param name="signal">    信号機の種類                                    </param>
+        /// <param name="pib">       信号機イメージ画像表示ピクチャボックス 　　     </param>
         private void SetFormShow(int avaiMSec, bool isArrow, Direction direction, Signal signal, PictureBox pib)
         {
             try
@@ -222,7 +222,7 @@ namespace TrafficLightAlgorithm
                                                    direction,
                                                    signal);
 
-                // 信号機イメージ画像を強調表示からデフォルト表示に戻す
+                // 信号機イメージ画像を変更して、強調表示からデフォルト表示に戻す
                 if (!ChangeSignalImage(direction, signal, false)) return;
             }
             catch (Exception ex)
@@ -235,10 +235,10 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 信号機イメージ画像の変更
         /// </summary>
-        /// <param name="direction"> 信号機設置方角   　　                                     </param>        
-        /// <param name="signal">    信号機の種類                                              </param>
-        /// <param name="isHilight"> 強調表示の画像に変更する場合はtrue、それ以外の場合はfalse </param>
-        /// <returns> 信号機イメージ画像の変更に成功した場合はtrue、それ以外の場合はfalse </returns>
+        /// <param name="direction"> 信号機設置方角   　　                                 </param>        
+        /// <param name="signal">    信号機の種類                                          </param>
+        /// <param name="isHilight"> 強調表示の画像に変更する場合はtrue、それ以外ではfalse </param>
+        /// <returns> 信号機イメージ画像の変更に成功した場合はtrue、それ以外ではfalse </returns>
         private bool ChangeSignalImage(Direction direction, Signal signal, bool isHilight)
         {
             try
@@ -287,10 +287,10 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 信号機イメージ画像を取得
         /// </summary>
-        /// <param name="hilightImg"> 強調表示した信号機イメージ画像                        </param>
-        /// <param name="defaultImg"> デフォルトの信号機イメージ画像                        </param>
-        /// <param name="isHilight">  強調表示の画像を返す場合はtrue、それ以外の場合はfalse </param>
-        /// <returns> 引数isHilightがtrueの場合は引数hilightImg、それ以外の場合は引数defaultImg </returns>
+        /// <param name="hilightImg"> 強調表示した信号機イメージ画像                    </param>
+        /// <param name="defaultImg"> デフォルトの信号機イメージ画像                    </param>
+        /// <param name="isHilight">  強調表示の画像を返す場合はtrue、それ以外ではfalse </param>
+        /// <returns> 引数isHilightがtrueの場合は引数hilightImg、それ以外では引数defaultImg </returns>
         private Bitmap GetImg(Bitmap hilightImg, Bitmap defaultImg, bool isHilight)
         {
             if (isHilight) return hilightImg;
@@ -501,7 +501,7 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 「中断/再開」ボタンのtextプロパティ値変更
         /// </summary>
-        /// <param name="isInterrupt"> 信号機アルゴリズムの中断が有効の場合はtrue、それ以外の場合はfalse </param>
+        /// <param name="isInterrupt"> 信号機アルゴリズムの中断が有効の場合はtrue、それ以外ではfalse </param>
         private void ChangeTextInterruptResumeBtn(bool isInterrupt)
         {
             try
@@ -544,9 +544,9 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 進行方向ごとにフェーズリスト作成
         /// </summary>
-        /// <param name="mSecValues"> 信号機のミリ秒設定値                                  </param>
-        /// <param name="direction">  交差点内の進行方向                　　　　　　　　　　</param>
-        /// <param name="isArrow">    矢印信号機が存在する場合はtrue、それ以外の場合はfalse </param>
+        /// <param name="mSecValues"> 信号機のミリ秒設定値                              </param>
+        /// <param name="direction">  交差点内の進行方向                　　　　　　　　</param>
+        /// <param name="isArrow">    矢印信号機が存在する場合はtrue、それ以外ではfalse </param>
         /// <returns> 作成した点灯フェーズリスト </returns>
         private List<TrafficPhase> DirectionPhaseList(TrafficMSecValues mSecValues, Direction direction, bool isArrow)
         {
@@ -674,11 +674,11 @@ namespace TrafficLightAlgorithm
         /// <summary>
         /// 経過ミリ秒に応じた信号機の設置方角・種類・点灯状態を取得
         /// </summary>
-        /// <param name="elapMSec">   信号機点灯処理の経過ミリ秒                            </param>
-        /// <param name="mSecValues"> 信号機のミリ秒設定値    　　　                        </param>
-        /// <param name="direction">  信号機設置方角                                        </param>        
-        /// <param name="signal">     信号機の種類                                          </param>
-        /// <param name="isArrow">    矢印信号機が存在する場合はtrue、それ以外の場合はfalse </param>
+        /// <param name="elapMSec">   信号機点灯処理の経過ミリ秒                        </param>
+        /// <param name="mSecValues"> 信号機のミリ秒設定値    　　　                    </param>
+        /// <param name="direction">  信号機設置方角                                    </param>        
+        /// <param name="signal">     信号機の種類                                      </param>
+        /// <param name="isArrow">    矢印信号機が存在する場合はtrue、それ以外ではfalse </param>
         /// <returns> 信号機の設置方角・種類・点灯状態 </returns>
         private TrafficCommand GetTrafficCmd(int elapMSec, TrafficMSecValues mSecValues, Direction direction, Signal signal, bool isArrow)
         {
@@ -781,7 +781,7 @@ namespace TrafficLightAlgorithm
             try
             {
                 int  startPhase  = phaseNum;  // ループで最初に再生するフェーズの番号
-                bool isCarChange = false;     // フェーズに車用信号機の点灯状態変更が含まれる場合はtrue、それ以外の場合はfalse
+                bool isCarChange = false;     // フェーズに車用信号機の点灯状態変更が含まれる場合はtrue、それ以外ではfalse
                 Cts = new CancellationTokenSource();
 
                 while (!Cts.IsCancellationRequested)
@@ -872,15 +872,15 @@ namespace TrafficLightAlgorithm
         /// <param name="pib_yel"> 車用信号機の黄ランプを表すピクチャボックス </param>
         /// <param name="pib_red"> 車用信号機の赤ランプを表すピクチャボックス </param>
         /// <param name="pib_arw"> 矢印信号機を表すピクチャボックス           </param>
-        /// <returns> 点灯状態更新に成功した場合はtrue、それ以外の場合はfalse </returns>
+        /// <returns> 点灯状態更新に成功した場合はtrue、それ以外ではfalse </returns>
         private bool ChangeSignalLightOn(LightState state, PictureBox pib_gre, PictureBox pib_yel, PictureBox pib_red, PictureBox pib_arw)
         {
             try
             {
-                bool greVisible = false;  // 車用信号機の緑ランプを点灯する場合はtrue、それ以外の場合はfalse
-                bool yelVisible = false;  // 車用信号機の黄ランプを点灯する場合はtrue、それ以外の場合はfalse
-                bool redVisible = false;  // 車用信号機の赤ランプを点灯する場合はtrue、それ以外の場合はfalse
-                bool arwVisible = false;  // 矢印信号機のランプを点灯する場合はtrue、　それ以外の場合はfalse
+                bool greVisible = false;  // 車用信号機の緑ランプを点灯する場合はtrue、それ以外ではfalse
+                bool yelVisible = false;  // 車用信号機の黄ランプを点灯する場合はtrue、それ以外ではfalse
+                bool redVisible = false;  // 車用信号機の赤ランプを点灯する場合はtrue、それ以外ではfalse
+                bool arwVisible = false;  // 矢印信号機のランプを点灯する場合はtrue、　それ以外ではfalse
                 if (state == LightState.Green) greVisible = true;
                 if (state == LightState.Yellow) yelVisible = true;
                 if (state == LightState.Red || state == LightState.ArrowRed) redVisible = true;
@@ -908,13 +908,13 @@ namespace TrafficLightAlgorithm
         /// <param name="lbl_greTwo"> 歩行者用信号機の緑ランプを表す２つ目のラベル </param>
         /// <param name="lbl_redOne"> 歩行者用信号機の赤ランプを表す１つ目のラベル </param>
         /// <param name="lbl_redTwo"> 歩行者用信号機の赤ランプを表す２つ目のラベル </param>
-        /// <returns> 点灯状態更新に成功した場合はtrue、それ以外の場合はfalse </returns>
+        /// <returns> 点灯状態更新に成功した場合はtrue、それ以外ではfalse </returns>
         private bool ChangePedesLightOn(LightState state, Label lbl_greOne, Label lbl_greTwo, Label lbl_redOne, Label lbl_redTwo)
         {
             try
             {
-                bool greNotVisible = true;  // 歩行者用信号機の緑ランプを点灯しない場合はtrue、点灯する場合はfalse
-                bool redNotVisible = true;  // 歩行者用信号機の赤ランプを点灯しない場合はtrue、点灯する場合はfalse
+                bool greNotVisible = true;  // 歩行者用信号機の緑ランプを点灯しない場合はtrue、それ以外ではfalse
+                bool redNotVisible = true;  // 歩行者用信号機の赤ランプを点灯しない場合はtrue、それ以外ではfalse
                 if      (state == LightState.Green) greNotVisible = false;
                 else if (state == LightState.Red)   redNotVisible = false;
 
